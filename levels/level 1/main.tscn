@@ -1,0 +1,594 @@
+[gd_scene load_steps=23 format=3 uid="uid://d0gfxmbqg5pi8"]
+
+[ext_resource type="Script" path="res://scripts/area_script.gd" id="1_ina80"]
+[ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://assets/Floors/Blue Floor.png" id="1_ormqp"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://! favorites/checkpoint.tscn" id="3_io0bq"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://! favorites/blue_enemy.tscn" id="3_muyhu"]
+[ext_resource type="Script" path="res://! favorites/animation_player.gd" id="4_r5s56"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://! favorites/coin.tscn" id="5_0djku"]
+[ext_resource type="PackedScene" uid="uid://d11iiu0r66rbe" path="res://scenes/tile_map.tscn" id="5_apr2k"]
+[ext_resource type="PackedScene" uid="uid://db78gabyxxg2y" path="res://scenes/player.tscn" id="8_thk02"]
+
+[sub_resource type="Animation" id="Animation_sswm3"]
+resource_name = "new_animation"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Checkpoint:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(1248, 288), Vector2(1248, 576)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3yxiu"]
+_data = {
+"new_animation": SubResource("Animation_sswm3")
+}
+
+[sub_resource type="Animation" id="Animation_7skla"]
+resource_name = "new_animation"
+length = 0.75
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhjmm"]
+_data = {
+"new_animation": SubResource("Animation_7skla")
+}
+
+[sub_resource type="Animation" id="Animation_tr75u"]
+resource_name = "new_animation"
+length = 0.75
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bw3b3"]
+_data = {
+"new_animation": SubResource("Animation_tr75u")
+}
+
+[sub_resource type="Animation" id="Animation_x6dl8"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(552, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8w0b"]
+_data = {
+"new_animation": SubResource("Animation_x6dl8")
+}
+
+[sub_resource type="Animation" id="Animation_naia0"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-552, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_51i3s"]
+_data = {
+"new_animation": SubResource("Animation_naia0")
+}
+
+[sub_resource type="Animation" id="Animation_k2yg3"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.707, 0.707), Vector2(1, 1), Vector2(0.707, 0.707), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hmukk"]
+_data = {
+"new_animation": SubResource("Animation_k2yg3")
+}
+
+[sub_resource type="Animation" id="Animation_hqgiy"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dpguu"]
+_data = {
+"new_animation": SubResource("Animation_hqgiy")
+}
+
+[node name="1-A2" type="Node2D"]
+script = ExtResource("1_ina80")
+metadata/_edit_lock_ = true
+
+[node name="Gameplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Gameplay"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0
+scale = Vector2(48, 48)
+texture = ExtResource("1_ormqp")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Checkpoints" type="Node2D" parent="Gameplay"]
+metadata/_edit_lock_ = true
+
+[node name="Checkpoint" parent="Gameplay/Checkpoints" instance=ExtResource("3_io0bq")]
+offset_left = 144.0
+offset_top = 720.0
+offset_right = 336.0
+offset_bottom = 912.0
+type = 1
+
+[node name="Checkpoint2" parent="Gameplay/Checkpoints" instance=ExtResource("3_io0bq")]
+offset_left = 384.0
+offset_top = 384.0
+offset_right = 480.0
+offset_bottom = 576.0
+
+[node name="Checkpoint3" parent="Gameplay/Checkpoints" instance=ExtResource("3_io0bq")]
+offset_left = 864.0
+offset_top = 240.0
+offset_right = 912.0
+offset_bottom = 288.0
+
+[node name="Checkpoint4" parent="Gameplay/Checkpoints" instance=ExtResource("3_io0bq")]
+offset_left = 576.0
+offset_top = 672.0
+offset_right = 624.0
+offset_bottom = 720.0
+
+[node name="Checkpoint5" parent="Gameplay/Checkpoints" instance=ExtResource("3_io0bq")]
+offset_left = 144.0
+offset_top = -48.0
+offset_right = 192.0
+offset_bottom = 0.0
+
+[node name="Checkpoint6" parent="Gameplay/Checkpoints" instance=ExtResource("3_io0bq")]
+offset_left = 1200.0
+offset_top = 48.0
+offset_right = 1392.0
+offset_bottom = 240.0
+
+[node name="Moving1" type="Node2D" parent="Gameplay/Checkpoints"]
+
+[node name="Checkpoint" parent="Gameplay/Checkpoints/Moving1" instance=ExtResource("3_io0bq")]
+offset_left = 1248.0
+offset_top = 288.0
+offset_right = 1344.0
+offset_bottom = 384.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gameplay/Checkpoints/Moving1"]
+libraries = {
+"": SubResource("AnimationLibrary_3yxiu")
+}
+autoplay = "new_animation"
+script = ExtResource("4_r5s56")
+
+[node name="Coins" type="Node2D" parent="Gameplay"]
+
+[node name="Coin" parent="Gameplay/Coins" instance=ExtResource("5_0djku")]
+position = Vector2(240, 648)
+tracking = true
+
+[node name="Enemies" type="Node2D" parent="Gameplay"]
+metadata/_edit_lock_ = true
+
+[node name="StaticEnemies" type="Node2D" parent="Gameplay/Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="BlueEnemy" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 0)
+
+[node name="BlueEnemy2" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 24)
+
+[node name="BlueEnemy3" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 48)
+
+[node name="BlueEnemy4" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 72)
+
+[node name="BlueEnemy5" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 96)
+
+[node name="BlueEnemy6" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 120)
+
+[node name="BlueEnemy7" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 144)
+
+[node name="BlueEnemy8" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 168)
+
+[node name="BlueEnemy9" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(672, 192)
+
+[node name="BlueEnemy10" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(696, 192)
+
+[node name="BlueEnemy11" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(720, 192)
+
+[node name="BlueEnemy12" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(816, 192)
+
+[node name="BlueEnemy13" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(840, 192)
+
+[node name="BlueEnemy14" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(864, 192)
+
+[node name="BlueEnemy15" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(864, 168)
+
+[node name="BlueEnemy16" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(864, 144)
+
+[node name="BlueEnemy17" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(864, 48)
+
+[node name="BlueEnemy18" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(864, 24)
+
+[node name="BlueEnemy19" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(864, 0)
+
+[node name="BlueEnemy20" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(840, 0)
+
+[node name="BlueEnemy21" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(816, 0)
+
+[node name="BlueEnemy22" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(792, 0)
+
+[node name="BlueEnemy23" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(768, 0)
+
+[node name="BlueEnemy24" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(744, 0)
+
+[node name="BlueEnemy25" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(720, 0)
+
+[node name="BlueEnemy26" parent="Gameplay/Enemies/StaticEnemies" instance=ExtResource("3_muyhu")]
+position = Vector2(696, 0)
+
+[node name="Group1" type="Node2D" parent="Gameplay/Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gameplay/Enemies/Group1"]
+libraries = {
+"": SubResource("AnimationLibrary_bhjmm")
+}
+autoplay = "new_animation"
+script = ExtResource("4_r5s56")
+
+[node name="BlueEnemy" parent="Gameplay/Enemies/Group1" instance=ExtResource("3_muyhu")]
+position = Vector2(504, 300)
+
+[node name="BlueEnemy2" parent="Gameplay/Enemies/Group1" instance=ExtResource("3_muyhu")]
+position = Vector2(552, 300)
+
+[node name="BlueEnemy3" parent="Gameplay/Enemies/Group1" instance=ExtResource("3_muyhu")]
+position = Vector2(696, 300)
+
+[node name="BlueEnemy4" parent="Gameplay/Enemies/Group1" instance=ExtResource("3_muyhu")]
+position = Vector2(744, 300)
+
+[node name="BlueEnemy5" parent="Gameplay/Enemies/Group1" instance=ExtResource("3_muyhu")]
+position = Vector2(888, 300)
+
+[node name="BlueEnemy6" parent="Gameplay/Enemies/Group1" instance=ExtResource("3_muyhu")]
+position = Vector2(936, 300)
+
+[node name="Group2" type="Node2D" parent="Gameplay/Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gameplay/Enemies/Group2"]
+libraries = {
+"": SubResource("AnimationLibrary_bw3b3")
+}
+autoplay = "new_animation"
+script = ExtResource("4_r5s56")
+
+[node name="BlueEnemy" parent="Gameplay/Enemies/Group2" instance=ExtResource("3_muyhu")]
+position = Vector2(600, 660)
+
+[node name="BlueEnemy2" parent="Gameplay/Enemies/Group2" instance=ExtResource("3_muyhu")]
+position = Vector2(648, 660)
+
+[node name="BlueEnemy3" parent="Gameplay/Enemies/Group2" instance=ExtResource("3_muyhu")]
+position = Vector2(792, 660)
+
+[node name="BlueEnemy4" parent="Gameplay/Enemies/Group2" instance=ExtResource("3_muyhu")]
+position = Vector2(840, 660)
+
+[node name="BlueEnemy5" parent="Gameplay/Enemies/Group2" instance=ExtResource("3_muyhu")]
+position = Vector2(984, 660)
+
+[node name="BlueEnemy6" parent="Gameplay/Enemies/Group2" instance=ExtResource("3_muyhu")]
+position = Vector2(1032, 660)
+
+[node name="Group3" type="Node2D" parent="Gameplay/Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gameplay/Enemies/Group3"]
+libraries = {
+"": SubResource("AnimationLibrary_m8w0b")
+}
+autoplay = "new_animation"
+script = ExtResource("4_r5s56")
+
+[node name="BlueEnemy" parent="Gameplay/Enemies/Group3" instance=ExtResource("3_muyhu")]
+position = Vector2(492, 408)
+
+[node name="BlueEnemy2" parent="Gameplay/Enemies/Group3" instance=ExtResource("3_muyhu")]
+position = Vector2(492, 456)
+
+[node name="BlueEnemy3" parent="Gameplay/Enemies/Group3" instance=ExtResource("3_muyhu")]
+position = Vector2(492, 600)
+
+[node name="BlueEnemy4" parent="Gameplay/Enemies/Group3" instance=ExtResource("3_muyhu")]
+position = Vector2(492, 648)
+
+[node name="Group4" type="Node2D" parent="Gameplay/Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gameplay/Enemies/Group4"]
+libraries = {
+"": SubResource("AnimationLibrary_51i3s")
+}
+autoplay = "new_animation"
+script = ExtResource("4_r5s56")
+
+[node name="BlueEnemy" parent="Gameplay/Enemies/Group4" instance=ExtResource("3_muyhu")]
+position = Vector2(1044, 312)
+
+[node name="BlueEnemy2" parent="Gameplay/Enemies/Group4" instance=ExtResource("3_muyhu")]
+position = Vector2(1044, 360)
+
+[node name="BlueEnemy3" parent="Gameplay/Enemies/Group4" instance=ExtResource("3_muyhu")]
+position = Vector2(1044, 504)
+
+[node name="BlueEnemy4" parent="Gameplay/Enemies/Group4" instance=ExtResource("3_muyhu")]
+position = Vector2(1044, 552)
+
+[node name="Group5" type="Node2D" parent="Gameplay/Enemies"]
+position = Vector2(240, 480)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gameplay/Enemies/Group5"]
+libraries = {
+"": SubResource("AnimationLibrary_hmukk")
+}
+autoplay = "new_animation"
+script = ExtResource("4_r5s56")
+
+[node name="BlueEnemy-3" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-120, 120)
+
+[node name="BlueEnemy-2" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(120, -120)
+
+[node name="BlueEnemy-1" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(120, 120)
+
+[node name="BlueEnemy0" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-120, -120)
+
+[node name="BlueEnemy1" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-96, 96)
+
+[node name="BlueEnemy2" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(96, -96)
+
+[node name="BlueEnemy3" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(96, 96)
+
+[node name="BlueEnemy4" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-96, -96)
+
+[node name="BlueEnemy5" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-72, 72)
+
+[node name="BlueEnemy6" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(72, -72)
+
+[node name="BlueEnemy7" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(72, 72)
+
+[node name="BlueEnemy8" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-72, -72)
+
+[node name="BlueEnemy9" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-48, 48)
+
+[node name="BlueEnemy10" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(48, -48)
+
+[node name="BlueEnemy11" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(48, 48)
+
+[node name="BlueEnemy12" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-48, -48)
+
+[node name="BlueEnemy13" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-24, 24)
+
+[node name="BlueEnemy14" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(24, -24)
+
+[node name="BlueEnemy15" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(24, 24)
+
+[node name="BlueEnemy16" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+position = Vector2(-24, -24)
+
+[node name="BlueEnemy17" parent="Gameplay/Enemies/Group5" instance=ExtResource("3_muyhu")]
+
+[node name="Group6" type="Node2D" parent="Gameplay/Enemies"]
+position = Vector2(768, 96)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gameplay/Enemies/Group6"]
+libraries = {
+"": SubResource("AnimationLibrary_hmukk")
+}
+autoplay = "new_animation"
+script = ExtResource("4_r5s56")
+
+[node name="BlueEnemy5" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(-72, 72)
+
+[node name="BlueEnemy6" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(72, -72)
+
+[node name="BlueEnemy7" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(72, 72)
+
+[node name="BlueEnemy8" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(-72, -72)
+
+[node name="BlueEnemy9" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(-48, 48)
+
+[node name="BlueEnemy10" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(48, -48)
+
+[node name="BlueEnemy11" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(48, 48)
+
+[node name="BlueEnemy12" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(-48, -48)
+
+[node name="BlueEnemy13" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(-24, 24)
+
+[node name="BlueEnemy14" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(24, -24)
+
+[node name="BlueEnemy15" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(24, 24)
+
+[node name="BlueEnemy16" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+position = Vector2(-24, -24)
+
+[node name="BlueEnemy17" parent="Gameplay/Enemies/Group6" instance=ExtResource("3_muyhu")]
+
+[node name="4-B4" type="Node2D" parent="Gameplay/Enemies"]
+position = Vector2(1032, 120)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gameplay/Enemies/4-B4"]
+libraries = {
+"": SubResource("AnimationLibrary_dpguu")
+}
+autoplay = "new_animation"
+script = ExtResource("4_r5s56")
+
+[node name="BlueEnemy" parent="Gameplay/Enemies/4-B4" instance=ExtResource("3_muyhu")]
+position = Vector2(-48, -48)
+
+[node name="BlueEnemy2" parent="Gameplay/Enemies/4-B4" instance=ExtResource("3_muyhu")]
+position = Vector2(0, -48)
+
+[node name="BlueEnemy3" parent="Gameplay/Enemies/4-B4" instance=ExtResource("3_muyhu")]
+position = Vector2(48, -48)
+
+[node name="BlueEnemy4" parent="Gameplay/Enemies/4-B4" instance=ExtResource("3_muyhu")]
+position = Vector2(48, 48)
+
+[node name="BlueEnemy5" parent="Gameplay/Enemies/4-B4" instance=ExtResource("3_muyhu")]
+position = Vector2(0, 48)
+
+[node name="BlueEnemy6" parent="Gameplay/Enemies/4-B4" instance=ExtResource("3_muyhu")]
+position = Vector2(-48, 48)
+
+[node name="TileMap" parent="Gameplay" instance=ExtResource("5_apr2k")]
+layer_0/tile_data = PackedInt32Array(1310739, 131072, 3, 1245203, 131072, 1, 1310738, 65536, 3, 1245202, 65536, 1, 1310733, 196608, 3, 1245197, 196608, 2, 1310732, 131072, 3, 1245196, 131072, 2, 1310728, 131072, 3, 1245192, 131072, 1, 1310727, 131072, 3, 1245191, 589824, 2, 1310726, 131072, 3, 1245190, 131072, 1, 1310725, 131072, 3, 1310724, 131072, 3, 1245188, 131072, 1, 1310723, 131072, 3, 1245187, 131072, 1, 1310722, 131072, 3, 1245186, 327680, 2, 1310721, 65536, 3, 1245185, 65536, 2, 917536, 196608, 1, 917535, 131072, 1, 327711, 131072, 3, 30, 196608, 2, -65506, 196608, 1, 29, 393216, 1, -65507, 131072, 1, 28, 131072, 3, -65508, 131072, 1, 27, 131072, 3, -65509, 131072, 1, 26, 131072, 3, -65510, 131072, 1, 25, 131072, 3, -65511, 131072, 1, 24, 131072, 3, -65512, 131072, 1, 23, 65536, 3, -65513, 65536, 1, 19, 196608, 3, -65517, 196608, 1, 12, 393216, 1, -65524, 131072, 1, 917504, 131072, 3, 851968, 131072, 2, 786432, 131072, 2, 458752, 131072, 2, 983039, 65536, 3, 917503, 65536, 2, 851967, 65536, 2, 524287, 65536, 2, 393216, 327680, 2, 327680, 196608, 2, 917518, 196608, 1, 327694, 196608, 3, 327697, 0, 3, 262161, 262144, 0, 262158, 196608, 1, 917521, 65536, 1, 851990, 65536, 2, 786454, 65536, 1, 393238, 65536, 2, 458774, 65536, 3, 458775, 196608, 3, 393239, 196608, 2, 327703, 327680, 1, 327702, 393216, 1, 327701, 131072, 3, 262164, 131072, 1, 262163, 589824, 1, 262162, 393216, 3, 327699, 65536, 3, 327700, 131072, 3, 262167, 393216, 2, 196631, 65536, 2, 131095, 65536, 1, 262166, 131072, 1, 262165, 131072, 1, 196627, 196608, 1, 262157, 327680, 2, 262156, 524288, 3, 196620, 65536, 2, 131084, 65536, 2, 65548, 65536, 2, 262155, 65536, 0, 262152, 196608, 1, 262151, 327680, 2, 196615, 196608, 1, 262146, 65536, 3, 196610, 65536, 1, 327693, 131072, 3, 327692, 65536, 3, 327689, 196608, 1, 327688, 327680, 2, 327687, 131072, 2, 393218, 196608, 0, 393223, 131072, 3, 393224, 393216, 1, 393225, 196608, 2, 458761, 196608, 3, 786441, 196608, 1, 851977, 196608, 2, 458760, 65536, 3, 851975, 65536, 1, 851970, 196608, 1, 851969, 327680, 2, 786433, 196608, 2, 1179661, 196608, 2, 1114125, 196608, 2, 1048589, 196608, 2, 983053, 524288, 1, 917517, 65536, 1, 1179660, 131072, 2, 1114124, 131072, 2, 1048588, 131072, 2, 983052, 131072, 1, 983051, 262144, 2, 917515, 0, 1, 1179655, 0, 1, 1179650, 196608, 2, 1048578, 196608, 2, 917506, 196608, 2, 1179649, 65536, 2, 1114113, 65536, 2, 1048577, 65536, 2, 983041, 65536, 2, 917505, 393216, 1, 1114130, 0, 3, 917534, 131072, 1, 1048605, 196608, 3, 983069, 327680, 1, 917533, 131072, 1, 1048604, 131072, 3, 983068, 393216, 2, 917532, 65536, 1, 1048603, 393216, 3, 983067, 65536, 1, 1048602, 65536, 0, 1048600, 0, 3, 983064, 458752, 1, 917528, 327680, 0, 983063, 131072, 3, 917527, 327680, 2, 983062, 131072, 3, 917526, 393216, 2, 983061, 131072, 3, 917525, 131072, 1, 983060, 393216, 3, 917524, 65536, 1, 983059, 327680, 0, 1048594, 262144, 1, 983058, 589824, 1, 917522, 196608, 1, 851991, 196608, 2, 786455, 196608, 1, 327710, 131072, 3, 262174, 327680, 2, 196638, 196608, 2, 131102, 196608, 2, 65566, 196608, 2, 327709, 393216, 3, 262173, 65536, 2, 196637, 65536, 2, 131101, 65536, 2, 65565, 65536, 2, 327704, 327680, 3, 262168, 196608, 2, 196632, 196608, 2, 131096, 196608, 1, 262150, 131072, 2, 196614, 131072, 1, 262149, 131072, 2, 196613, 131072, 1, 262148, 393216, 1, 196612, 131072, 1, 262147, 131072, 3, 196611, 589824, 2, 983042, 196608, 2, 327705, 196608, 0, 327708, 65536, 0, 196621, 196608, 2, 131085, 196608, 2, 65549, 196608, 2, 13, 196608, 2, -65523, 196608, 1, 196626, 65536, 1, 18, 65536, 3, -65518, 65536, 1, 983054, 196608, 3, 983057, 65536, 3, 327712, 196608, 3, 393215, 65536, 2, 458751, 65536, 2, 131082, 0, 0, 65544, 0, 0, 65542, 0, 3, 1245205, 131072, 1, 1245204, 589824, 2, 1310741, 131072, 3, 1310740, 131072, 3, 1245206, 196608, 1, 1179668, 0, 1, 1114134, 0, 0, 1048595, 196608, 3, 1310742, 196608, 3, 1245213, 65536, 1, 1245214, 131072, 1, 1245215, 393216, 2, 1179679, 65536, 1, 1179680, 196608, 1, 1245216, 196608, 2, 1310750, 131072, 3, 1310749, 65536, 3, 1310751, 131072, 3, 1310752, 196608, 3, 1179675, 0, 0, 131093, 0, 0, 262175, 131072, 1, 262176, 196608, 1, 983070, 131072, 3, 983071, 131072, 3, 983072, 196608, 3, 917529, 196608, 0, 1114114, 196608, 2, 1245189, 131072, 1, 786440, 65536, 1, 851976, 393216, 2, 1048587, 65536, 2, 1114123, 65536, 2, 1179659, 65536, 2, 1245195, 393216, 2, 1310731, 131072, 3, 1310730, 131072, 3, 1245194, 131072, 1, 1245193, 131072, 1, 1310729, 131072, 3, 917511, 65536, 2, 917512, 131072, 2, 196608, 196608, 1, 262143, 65536, 1, 327679, 65536, 2, 262144, 196608, 2, 393217, 327680, 0, 458753, 196608, 2, 6, 458752, 1, 5, 65536, 3, -65531, 65536, 1, -65530, 196608, 1, -65525, 65536, 1, 11, 65536, 3, 131075, 0, 1, 327686, 131072, 2, 393222, 131072, 3, 393220, 65536, 3, 327685, 131072, 2, 393221, 131072, 3, 327684, 65536, 2, 917513, 196608, 2, 983049, 196608, 3, 983048, 131072, 3, 983047, 262144, 1, 1048583, 0, 3, 720897, 196608, 1, 720896, 131072, 1, 786431, 65536, 1, 589823, 65536, 3, 524288, 131072, 3, 524289, 196608, 3)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="Gameplay" instance=ExtResource("8_thk02")]
+position = Vector2(240, 816)
