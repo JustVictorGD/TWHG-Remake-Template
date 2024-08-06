@@ -7,9 +7,16 @@ var player : Node = preload("res://scenes/player.tscn").instantiate()
 var interface : Node = preload("res://scenes/interface.tscn").instantiate()
 
 func _ready() -> void:
-	# Setting up the camera and the GUI
-	add_child(interface)
-	$Gameplay.scale.x = Collider.GAMEPLAY_SCALE
-	$Gameplay.scale.y = Collider.GAMEPLAY_SCALE
-	$Gameplay.position.x += Collider.GAMEPLAY_POSITION.x
-	$Gameplay.position.y += Collider.GAMEPLAY_POSITION.y
+	var start_checkpoints: PackedStringArray = []
+	
+	for checkpoint: ColorRect in Collider.checkpoints:
+		if checkpoint.type == checkpoint.types.START:
+			player.last_checkpoint_id = checkpoint.id
+			start_checkpoints.append(get_path_to(checkpoint))
+	
+	add_child(player)
+	
+	if start_checkpoints.size() > 1:
+		push_warning("More than one start checkpoint has been found, \
+				choosing the latest one in the scene tree. Paths to all start type checkpoints: ", \
+				start_checkpoints)

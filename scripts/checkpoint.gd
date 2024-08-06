@@ -21,23 +21,24 @@ const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 
 var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
 var id: int
-
+var hitbox: Rect2
 
 func _ready() -> void:
 	if type == types.START:
 		state = states.SELECTED
 	
-	id = Collider.register_checkpoint_id()
-	Collider.checkpoints[id] = NiceFunctions.global_to_normal_rect(get_global_rect())
+	id = Collider.register_checkpoint_id(self)
+	hitbox = Rect2(global_position, size)
 	
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.update_timers.connect(update_timers)
-	
 	GlobalSignal.checkpoint_touched.connect(any_checkpoint_touched)
+	GlobalSignal.anything_collected.connect(anything_collected)
+	GlobalSignal.player_death.connect(player_death)
 
 
 func movement_update() -> void:
-	Collider.checkpoints[id] = NiceFunctions.global_to_normal_rect(get_global_rect())
+	hitbox = Rect2(round(global_position), round(size))
 
 
 func update_timers() -> void:
@@ -55,7 +56,24 @@ func any_checkpoint_touched(_id: int) -> void:
 		state = states.NOT_SELECTED
 
 
+func anything_collected() -> void:
+	if state == states.SELECTED and self.id not in Collider.touched_checkpoint_ids:
+		state = states.UPDATED
+
+
+func player_death() -> void:
+	if state == states.UPDATED:
+		state = states.SELECTED
+
+
 func select() -> void:
 	flash_animation.reset_and_play()
-	SFX.play("Checkpoint")
 	state = states.SELECTED
+	
+	if type == types.FINISH and AreaManager.money >= AreaManager.max_money and not AreaManager.finished:
+		SFX.play("Finish")
+		AreaManager.finished = true
+		GlobalSignal.finish.emit()
+	
+	else:
+		SFX.play("Checkpoint")

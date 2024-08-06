@@ -13,26 +13,42 @@ var collect_animation: TickBasedTimer = TickBasedTimer.new(24)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(24)
 
 var state: states = states.UNCOLLECTED
+var collect_sound: String
 
 func _init() -> void:
 	GameLoop.update_timers.connect(update_timers)
 	GlobalSignal.player_respawn.connect(player_respawn)
 
 func collect() -> void:
-	collect_animation.reset_and_play()
-	if Collider.touched_checkpoint_ids.size() == 0:
-		state = states.PICKED_UP
-	else:
-		state = states.SAVED
+	if state == states.UNCOLLECTED:
+		collect_animation.reset_and_play()
+		SFX.play(collect_sound)
+		
+		if Collider.touched_checkpoint_ids.size() == 0:
+			state = states.PICKED_UP
+		else:
+			state = states.SAVED
+		extra_collect()
 
 func drop() -> void:
 	if state == states.PICKED_UP:
 		state = states.UNCOLLECTED
 		drop_animation.reset_and_play()
+		extra_drop()
 
 func save() -> void:
 	if state == states.PICKED_UP:
 		state = states.SAVED
+		extra_save()
+
+# Override these functions to add more behavior.
+func extra_collect() -> void:
+	pass
+func extra_drop() -> void:
+	pass
+func extra_save() -> void:
+	pass
+
 
 func update_timers() -> void:
 	collect_animation.tick()

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TWHG Remake Template"
-run/main_scene="res://levels/level 1/main.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://TWHG Remake Template.png"
 
@@ -19,10 +19,9 @@ config/icon="res://TWHG Remake Template.png"
 
 GameLoop="*res://scripts/autoloads/game_loop.gd"
 AreaManager="*res://scripts/autoloads/area_manager.gd"
-NiceFunctions="*res://scripts/autoloads/nice_functions.gd"
 SFX="*res://scenes/sfx.tscn"
-Collider="*res://scripts/autoloads/collider.gd"
 GlobalSignal="*res://scripts/autoloads/global_signal.gd"
+Collider="*res://scripts/autoloads/collider.gd"
 
 [debug]
 

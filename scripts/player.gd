@@ -2,9 +2,9 @@ extends Node2D
 
 @export_range(0, 41) var sliding_sensitivity: int = 32
 
-var speed: float = 1
 const PLAYER_SIZE: Vector2 = Vector2(42, 42)
 
+var speed: float = 1
 # Physics
 var player_hitbox: Rect2 = Rect2(self.position - PLAYER_SIZE / 2, PLAYER_SIZE)
 var last_direction: Vector2 = Vector2.ZERO
@@ -13,9 +13,8 @@ var internal_position: Vector2
 # Special states
 var invincible: bool = false # Death can't trigger
 var dead: bool = false # Invincible but can't move
-#var ghost: bool = false # Ignore walls
-#var flying: bool = false # Ignore terrains
-
+var ghost: bool = false # Ignore walls
+var flying: bool = false # Ignore terrains
 
 # Timers, used for fading the player in and out.
 var respawn_timer: TickBasedTimer = TickBasedTimer.new(120)
@@ -24,18 +23,19 @@ var respawn_animation: TickBasedTimer = TickBasedTimer.new(24)
 
 # Respawning
 var last_checkpoint_id: int = -1
-#var last_checkpoint_area: String
+var last_checkpoint_area: String # Unused... for now.
 
 
 func _ready() -> void:
-	internal_position = position
-	
-	respawn_timer.timeout.connect(respawn)
+	internal_position = Collider.get_center(Collider.checkpoints[last_checkpoint_id].hitbox)
 	sliding_sensitivity += 1
+	respawn_timer.timeout.connect(respawn)
 	
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
+	
+	GlobalSignal.finish.connect(finish)
 
 
 func movement_update() -> void:
@@ -92,30 +92,30 @@ func corner_slide(intersections : Array) -> void:
 	}
 	# pls don't judge
 	for intersection: Rect2 in intersections:
-		if NiceFunctions.point_in_rect(Vector2(-21, -21), intersection):
+		if Collider.point_in_rect(Vector2(-21, -21), intersection):
 			points["top_left_corner"] = true
-		if NiceFunctions.point_in_rect(Vector2(21, -21), intersection):
+		if Collider.point_in_rect(Vector2(21, -21), intersection):
 			points["top_right_corner"] = true
-		if NiceFunctions.point_in_rect(Vector2(-21, 21), intersection):
+		if Collider.point_in_rect(Vector2(-21, 21), intersection):
 			points["bottom_left_corner"] = true
-		if NiceFunctions.point_in_rect(Vector2(21, 21), intersection):
+		if Collider.point_in_rect(Vector2(21, 21), intersection):
 			points["bottom_right_corner"] = true
 		
-		if NiceFunctions.point_in_rect(Vector2(-21 + sliding_sensitivity, -21), intersection):
+		if Collider.point_in_rect(Vector2(-21 + sliding_sensitivity, -21), intersection):
 			points["up_left_limit"] = true
-		if NiceFunctions.point_in_rect(Vector2(21 - sliding_sensitivity, -21), intersection):
+		if Collider.point_in_rect(Vector2(21 - sliding_sensitivity, -21), intersection):
 			points["up_right_limit"] = true
-		if NiceFunctions.point_in_rect(Vector2(-21, -21 + sliding_sensitivity), intersection):
+		if Collider.point_in_rect(Vector2(-21, -21 + sliding_sensitivity), intersection):
 			points["left_top_limit"] = true
-		if NiceFunctions.point_in_rect(Vector2(-21, 21 - sliding_sensitivity), intersection):
+		if Collider.point_in_rect(Vector2(-21, 21 - sliding_sensitivity), intersection):
 			points["left_bottom_limit"] = true
-		if NiceFunctions.point_in_rect(Vector2(-21 + sliding_sensitivity, 21), intersection):
+		if Collider.point_in_rect(Vector2(-21 + sliding_sensitivity, 21), intersection):
 			points["down_left_limit"] = true
-		if NiceFunctions.point_in_rect(Vector2(21 - sliding_sensitivity, 21), intersection):
+		if Collider.point_in_rect(Vector2(21 - sliding_sensitivity, 21), intersection):
 			points["down_right_limit"] = true
-		if NiceFunctions.point_in_rect(Vector2(21, -21 + sliding_sensitivity), intersection):
+		if Collider.point_in_rect(Vector2(21, -21 + sliding_sensitivity), intersection):
 			points["right_top_limit"] = true
-		if NiceFunctions.point_in_rect(Vector2(21, 21 - sliding_sensitivity), intersection):
+		if Collider.point_in_rect(Vector2(21, 21 - sliding_sensitivity), intersection):
 			points["right_bottom_limit"] = true
 	
 	# Moving up
@@ -162,34 +162,35 @@ func push_out_of_wall(intersection : Rect2, wall_hitbox : Rect2) -> void:
 
 #region Object Collision
 func handle_object_collision() -> void:
-	# Handling checkpoints
-	var touched_checkpoints: PackedInt32Array = []
-	for i: int in range(Collider.checkpoints.size()):
-		if Collider.checkpoints[i].intersects(player_hitbox):
+	var touched_checkpoint_ids: PackedInt32Array = []
+	# Handling checkpoints.
+	for checkpoint: ColorRect in Collider.checkpoints:
+		if player_hitbox.intersects(checkpoint.hitbox):
 			# Only activate when entering a checkpoint, when it wasn't being touched previously.
-			if Collider.touched_checkpoint_ids.count(i) == 0:
-				GlobalSignal.checkpoint_touched.emit(i)
-				print("Touched checkpoint ", i)
+			if Collider.touched_checkpoint_ids.count(checkpoint.id) == 0:
+				GlobalSignal.checkpoint_touched.emit(checkpoint.id)
 			
-			touched_checkpoints.append(i)
-			last_checkpoint_id = i
-	Collider.touched_checkpoint_ids = touched_checkpoints
+			touched_checkpoint_ids.append(checkpoint.id)
+			last_checkpoint_id = checkpoint.id
+	
+	Collider.touched_checkpoint_ids = touched_checkpoint_ids
 	
 	# Handling coins
-	for i: int in range(Collider.coins.size()):
-		if NiceFunctions.point_in_rect(Collider.coins[i], \
+	for coin: Node2D in Collider.coins:
+		if Collider.point_in_rect(coin.global_position, \
 				Rect2(-PLAYER_SIZE + position, PLAYER_SIZE * 2)):
-			if NiceFunctions.rect_and_circle_overlap(player_hitbox, Collider.coins[i], \
-					Collider.COIN_RADIUS):
-				collect_coin(i)
+			if Collider.rect_and_circle_overlap(player_hitbox, coin.global_position, coin.RADIUS):
+				coin.collect()
+				GlobalSignal.anything_collected.emit()
 	
 	# Handling enemies
-	for enemy_position: Vector2 in Collider.enemies:
-		if NiceFunctions.point_in_rect(enemy_position, \
-				Rect2(-PLAYER_SIZE + position, PLAYER_SIZE * 2)):
-			if NiceFunctions.rect_and_circle_overlap(player_hitbox, \
-					enemy_position, Collider.ENEMY_RADIUS) and not dead:
-				enemy_death()
+	if not invincible:
+		for enemy: Node2D in Collider.enemies:
+			if Collider.point_in_rect(enemy.global_position, \
+					Rect2(-PLAYER_SIZE + position, PLAYER_SIZE * 2)):
+				if Collider.rect_and_circle_overlap(player_hitbox, \
+						enemy.global_position, enemy.radius) and not dead:
+					enemy_death()
 
 
 func collect_coin(id: int) -> void:
@@ -220,17 +221,18 @@ func update_timers() -> void:
 	
 	if respawn_animation.active == true:
 		$CanvasGroup.self_modulate.a = respawn_animation.get_progress()
-	
-	print(position)
 
 
 func respawn() -> void:
 	dead = false
 	if last_checkpoint_id != -1:
-		internal_position = NiceFunctions.get_center(Collider.checkpoints[last_checkpoint_id])
-	
-	print(internal_position)
+		internal_position = Collider.get_center(Collider.checkpoints[last_checkpoint_id].hitbox)
+		pass
 	
 	respawn_animation.reset_and_play()
 	
 	GlobalSignal.player_respawn.emit()
+
+
+func finish() -> void:
+	invincible = true
