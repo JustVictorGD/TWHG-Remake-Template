@@ -11,12 +11,12 @@ enum subpixel {
 	RANGE = 1000
 }
 
+# Movement
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
-var movement_direction: Vector2i = Vector2i.ZERO # Primarily used for corner sliding.
-var speed: int = 500 # Subpixels/s
-var internal_position: Vector2
 
-var velocity: Vector2i
+var speed: float = 1
+var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner sliding.
+var velocity: Vector2
 
 # Physics
 var hitbox: Rect2 = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
@@ -39,7 +39,8 @@ var last_checkpoint_area: String # Unused... for now.
 
 
 func _ready() -> void:
-	internal_position = Collider.get_center(Collider.checkpoints[last_checkpoint_id].hitbox)
+	position = Collider.get_center(Collider.checkpoints[last_checkpoint_id].hitbox)
+	
 	Collider.player = self
 	
 	sliding_sensitivity += 1
@@ -55,9 +56,7 @@ func _ready() -> void:
 func movement_update() -> void:
 	velocity = Vector2.ZERO
 	
-	#velocity.y += 0.5 # Conveyor effect
-	
-	move(0.25, 0.25)
+	velocity.y += 0.5 # Conveyor effect
 	
 	if not dead:
 		movement_direction.x = (int(Input.is_action_pressed("right")) \
@@ -65,39 +64,40 @@ func movement_update() -> void:
 		movement_direction.y = (int(Input.is_action_pressed("down")) \
 				- int(Input.is_action_pressed("up")))
 		
-		velocity += movement_direction * speed
-		subpixels += velocity
+		move(movement_direction * speed)
+		move(velocity)
 	
-	position = round(internal_position)
-	hitbox = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
-	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
+	move(Collider.corner_slide(hitbox, Collider.walls, \
+			sliding_sensitivity, velocity, movement_direction) * speed)
 	
-	internal_position += Collider.corner_slide(hitbox, Collider.walls, \
-			sliding_sensitivity, velocity, movement_direction) * speed
-	
-	position = round(internal_position)
-	hitbox = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
-	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
-	
-	internal_position += Collider.push_out_of_walls(hitbox, Collider.walls)
+	#move_to(Collider.push_out_of_walls(hitbox, Collider.walls))
 
-# Changes the position while supporting the subpixel system.
-func move(x: float, y: float) -> void:
-	subpixels.x += int(x * 1000)
-	subpixels.y += int(y * 1000)
+# Adds to the position using the subpixel system.
+func move(movement: Vector2) -> void:
+	subpixels += Vector2i(movement * 1000)
 	
 	while subpixels.x > subpixel.MAX:
 		subpixels.x -= subpixel.RANGE
-		internal_position.x += 1
+		position.x += 1
 	while subpixels.x < subpixel.MIN:
 		subpixels.x += subpixel.RANGE
-		internal_position.x -= 1
+		position.x -= 1
 	while subpixels.y > subpixel.MAX:
 		subpixels.y -= subpixel.RANGE
-		internal_position.y += 1
+		position.y += 1
 	while subpixels.y < subpixel.MIN:
 		subpixels.y += subpixel.RANGE
-		internal_position.y -= 1
+		position.y -= 1
+	
+	position = round(position)
+	hitbox = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
+	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
+
+# Sets the position using the subpixel system.
+func move_to(given_position: Vector2) -> void:
+	position = floor(given_position)
+	subpixels = Vector2i((given_position - position) * 1000)
+
 
 
 #region Object Collision
@@ -153,13 +153,13 @@ func update_timers() -> void:
 	if respawn_animation.active == true:
 		$CanvasGroup.self_modulate.a = respawn_animation.get_progress()
 	
-	position = round(internal_position) # Purely visual
+	print_position()
 
 
 func respawn() -> void:
 	if last_checkpoint_id != -1:
-		internal_position = Collider.get_center(Collider.checkpoints[last_checkpoint_id].hitbox)
-		position = round(internal_position)
+		position = Collider.get_center(Collider.checkpoints[last_checkpoint_id].hitbox)
+		position = round(position)
 	
 	respawn_animation.reset_and_play()
 	GlobalSignal.player_respawn.emit()
@@ -169,3 +169,8 @@ func respawn() -> void:
 
 func finish() -> void:
 	invincible = true
+
+
+func print_position() -> void:
+	# Explanation at: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_format_string.html#padding
+	print("X = %s.%03d, Y = %s.%03d" % [position.x, subpixels.x, position.y, subpixels.y])

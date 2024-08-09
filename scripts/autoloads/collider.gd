@@ -61,8 +61,18 @@ func rect_and_circle_overlap(rect: Rect2, circle_pos: Vector2, circle_radius: fl
 
 
 # Larger functions.
-func push_out_of_walls(dynamic_rect: Rect2, given_walls: Array[Rect2]) -> Vector2:
-	var proposed_movement: Vector2 = Vector2.ZERO
+func push_out_of_walls(hitbox: Rect2, subpixels: Vector2i, given_walls: Array[Rect2]) -> Vector2:
+	var limit: Vector2i
+	
+	var intersections: Array[Rect2]
+	
+	
+	return Vector2.ZERO
+
+
+
+func dont_use(dynamic_rect: Rect2, given_walls: Array[Rect2]) -> Vector2:
+	var proposed_movement: Vector2 = get_center(dynamic_rect)
 	
 	var half_size: float = dynamic_rect.size.x / 2
 	
