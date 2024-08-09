@@ -14,9 +14,9 @@ enum subpixel {
 # Movement
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 
-var speed: float = 1
+var speed: int = 1000 # One pixel per tick is 1,000
 var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner sliding.
-var velocity: Vector2
+var velocity: Vector2i
 
 # Physics
 var hitbox: Rect2 = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
@@ -47,16 +47,15 @@ func _ready() -> void:
 	respawn_timer.timeout.connect(respawn)
 	
 	GameLoop.movement_update.connect(movement_update)
-	#GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
-	
 	GlobalSignal.finish.connect(finish)
 
 
 func movement_update() -> void:
-	velocity = Vector2.ZERO
+	velocity = Vector2i.ZERO
 	
-	velocity.y += 0.5 # Conveyor effect
+	# Conveyor effect
+	velocity += Vector2i(0, 250)
 	
 	if not dead:
 		movement_direction.x = (int(Input.is_action_pressed("right")) \
@@ -70,11 +69,14 @@ func movement_update() -> void:
 	move(Collider.corner_slide(hitbox, Collider.walls, \
 			sliding_sensitivity, velocity, movement_direction) * speed)
 	
-	#move_to(Collider.push_out_of_walls(hitbox, Collider.walls))
+	#print(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
+	move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
+	
+	print_position()
 
 # Adds to the position using the subpixel system.
-func move(movement: Vector2) -> void:
-	subpixels += Vector2i(movement * 1000)
+func move(movement: Vector2i) -> void:
+	subpixels += movement
 	
 	while subpixels.x > subpixel.MAX:
 		subpixels.x -= subpixel.RANGE
@@ -95,8 +97,25 @@ func move(movement: Vector2) -> void:
 
 # Sets the position using the subpixel system.
 func move_to(given_position: Vector2) -> void:
-	position = floor(given_position)
-	subpixels = Vector2i((given_position - position) * 1000)
+	position = Vector2.ZERO
+	subpixels = given_position
+	
+	while subpixels.x > subpixel.MAX:
+		subpixels.x -= subpixel.RANGE
+		position.x += 1
+	while subpixels.x < subpixel.MIN:
+		subpixels.x += subpixel.RANGE
+		position.x -= 1
+	while subpixels.y > subpixel.MAX:
+		subpixels.y -= subpixel.RANGE
+		position.y += 1
+	while subpixels.y < subpixel.MIN:
+		subpixels.y += subpixel.RANGE
+		position.y -= 1
+	
+	position = round(position)
+	hitbox = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
+	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 
 
@@ -152,8 +171,6 @@ func update_timers() -> void:
 	
 	if respawn_animation.active == true:
 		$CanvasGroup.self_modulate.a = respawn_animation.get_progress()
-	
-	print_position()
 
 
 func respawn() -> void:

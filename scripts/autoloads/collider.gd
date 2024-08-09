@@ -17,6 +17,10 @@ var next_checkpoint_id: int = -1
 var next_coin_id: int = -1
 
 
+func foo(vec2i: Vector2i) -> void:
+	print(vec2i)
+
+
 # These functions return a unique ID for the given object type,
 # and create more space to store their information in corresponding arrays.
 func register_enemy_id(node: Node) -> int:
@@ -60,53 +64,74 @@ func rect_and_circle_overlap(rect: Rect2, circle_pos: Vector2, circle_radius: fl
 	return distance < circle_radius
 
 
-# Larger functions.
+
 func push_out_of_walls(hitbox: Rect2, subpixels: Vector2i, given_walls: Array[Rect2]) -> Vector2:
-	var limit: Vector2i
+	var proposed_position: Vector2i = get_center(hitbox) * 1000
+	var half_size: Vector2 = hitbox.size / 2
+	var post_processing_subpixels: Vector2i
 	
 	var intersections: Array[Rect2]
-	
-	
-	return Vector2.ZERO
-
-
-
-func dont_use(dynamic_rect: Rect2, given_walls: Array[Rect2]) -> Vector2:
-	var proposed_movement: Vector2 = get_center(dynamic_rect)
-	
-	var half_size: float = dynamic_rect.size.x / 2
-	
-	# Finding any intersected walls.
-	var intersections: Array[Rect2] = []
 	for wall: Rect2 in given_walls:
-		if dynamic_rect.intersects(wall):
-			intersections.append(Rect2(dynamic_rect.intersection(wall).position - \
-					get_center(dynamic_rect), dynamic_rect.intersection(wall).size))
+		if hitbox.intersects(wall):
+			var intersection: Rect2 = hitbox.intersection(wall)
+			intersection.position -= get_center(hitbox)
+			intersections.append(intersection)
 	
-	# Aborting in case of no wall intersections.
-	if intersections.size() == 0:
-		return Vector2.ZERO
+	var edge: Vector2i
 	
-	# Deciding how to push the player.
 	for intersection: Rect2 in intersections:
-		if proposed_movement.y == 0:
-			if intersection.size.x > intersection.size.y:
-				if intersection.position.y == -half_size:
-					proposed_movement.y += intersection.size.y
-				if intersection.end.y == half_size:
-					proposed_movement.y -= intersection.size.y
-		
-		if proposed_movement.x == 0:
+		if edge.x == 0:
+			# Case: Vertical intersection
 			if intersection.size.x < intersection.size.y:
-				if intersection.position.x == -half_size:
-					proposed_movement.x += intersection.size.x
-				if intersection.end.x == half_size:
-					proposed_movement.x -= intersection.size.x
+				if intersection.position.x == -half_size.x:
+					proposed_position.x += intersection.size.x * 1000
+					edge.x = -1
+				
+				if intersection.end.x == half_size.x:
+					proposed_position.x -= intersection.size.x * 1000
+					edge.x = 1
+		
+		if edge.y == 0:
+			# Case: Horizontal or square intersection
+			if intersection.size.x > intersection.size.y or \
+					intersection.size >= Vector2(4, 4):
+				if intersection.position.y == -half_size.y:
+					proposed_position.y += intersection.size.y * 1000
+					edge.y = -1
+				
+				if intersection.end.y == half_size.y:
+					proposed_position.y -= intersection.size.y * 1000
+					edge.y = 1
 	
-	return proposed_movement
+	if edge.x == 0:
+		proposed_position.x += subpixels.x
+	if edge.x == 1:
+		proposed_position.x += 999
+	if edge.y == 0:
+		proposed_position.y += subpixels.y
+	if edge.y == 1:
+		proposed_position.y += 999
+	
+	return proposed_position
 
 
-# WARNING: This function tends to melt people's brains, explore it at your own risk.
+
+
+
+
+# Danger zone below...
+
+
+
+
+
+# Continue at your own risk...
+
+
+
+
+
+# WARNING: This function is so complex that it tends to melt people's brains.
 func corner_slide(dynamic_rect: Rect2, given_walls: Array[Rect2], sensitivity: float, velocity: Vector2, controls: Vector2i) -> Vector2:
 	var player_movement: bool = false
 	
@@ -116,7 +141,7 @@ func corner_slide(dynamic_rect: Rect2, given_walls: Array[Rect2], sensitivity: f
 	elif velocity == Vector2.ZERO:
 		return Vector2.ZERO
 	else:
-		sensitivity *= 0.625
+		sensitivity *= 0.625 # Sensitivity is lower when not pressing anything.
 	
 	# Aborting in case of diagonal movement.
 	if player_movement == true:
@@ -217,5 +242,3 @@ func corner_slide(dynamic_rect: Rect2, given_walls: Array[Rect2], sensitivity: f
 				proposed_direction = -direction_checks[direction]["offset"]
 	
 	return proposed_direction
-
-
