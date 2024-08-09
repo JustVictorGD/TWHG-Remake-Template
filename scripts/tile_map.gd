@@ -1,4 +1,5 @@
 extends TileMap
 
 func _ready() -> void:
-	Collider.wall_positions = get_used_cells(0)
+	for cell: Vector2i in get_used_cells(0):
+		Collider.walls.append(Rect2(Vector2(cell.x * 48 - 3, cell.y * 48 - 3), Vector2(54, 54)))
