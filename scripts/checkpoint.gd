@@ -1,13 +1,15 @@
 extends ColorRect
 
 @export var type: types = types.CHECKPOINT
+@export var tracking: bool = false
 
 var state: states = states.NOT_SELECTED
 
 enum types {
 	CHECKPOINT,
 	START,
-	FINISH
+	FINISH,
+	START_AND_FINISH
 }
 
 enum states {
@@ -24,7 +26,7 @@ var id: int
 var hitbox: Rect2
 
 func _ready() -> void:
-	if type == types.START:
+	if is_start():
 		state = states.SELECTED
 	
 	id = Collider.register_checkpoint_id(self)
@@ -48,15 +50,22 @@ func update_timers() -> void:
 		color = lerp(FLASH_COLOR, ORIGINAL_COLOR, flash_animation.get_progress())
 
 
+func is_start() -> bool:
+	return type == types.START or type == types.START_AND_FINISH
+
+func is_finish() -> bool:
+	return type == types.FINISH or type == types.START_AND_FINISH
+
+
 func any_checkpoint_touched(_id: int) -> void:
-	if _id == id:
-		if state != states.SELECTED: # Checking if it can be selected
-			select()
-	else:
+	if _id != id:
 		state = states.NOT_SELECTED
 
 
 func anything_collected() -> void:
+	if tracking:
+		print(Collider.touched_checkpoint_ids, ", ", id)
+	
 	if state == states.SELECTED and self.id not in Collider.touched_checkpoint_ids:
 		state = states.UPDATED
 
@@ -67,13 +76,15 @@ func player_death() -> void:
 
 
 func select() -> void:
-	flash_animation.reset_and_play()
-	state = states.SELECTED
-	
-	if type == types.FINISH and AreaManager.money >= AreaManager.max_money and not AreaManager.finished:
-		SFX.play("Finish")
-		AreaManager.finished = true
-		GlobalSignal.finish.emit()
-	
-	else:
-		SFX.play("Checkpoint")
+	if state != states.SELECTED:
+		flash_animation.reset_and_play()
+		state = states.SELECTED
+		GlobalSignal.checkpoint_touched.emit(id)
+		
+		if AreaManager.money >= AreaManager.max_money and not \
+				AreaManager.finished and is_finish():
+			SFX.play("Finish")
+			AreaManager.finished = true
+			GlobalSignal.finish.emit()
+		else:
+			SFX.play("Checkpoint")

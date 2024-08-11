@@ -68,26 +68,27 @@ func rect_and_circle_overlap(rect: Rect2, circle_pos: Vector2, circle_radius: fl
 func push_out_of_walls(hitbox: Rect2, subpixels: Vector2i, given_walls: Array[Rect2]) -> Vector2:
 	var proposed_position: Vector2i = get_center(hitbox) * 1000
 	var half_size: Vector2 = hitbox.size / 2
-	var post_processing_subpixels: Vector2i
 	
-	var intersections: Array[Rect2]
+	var intersections: Array[Rect2] = []
 	for wall: Rect2 in given_walls:
 		if hitbox.intersects(wall):
 			var intersection: Rect2 = hitbox.intersection(wall)
 			intersection.position -= get_center(hitbox)
 			intersections.append(intersection)
 	
-	var edge: Vector2i
+	var edge: Vector2i = Vector2i.ZERO
 	
 	for intersection: Rect2 in intersections:
 		if edge.x == 0:
 			# Case: Vertical intersection
 			if intersection.size.x < intersection.size.y:
 				if intersection.position.x == -half_size.x:
+					@warning_ignore("narrowing_conversion")
 					proposed_position.x += intersection.size.x * 1000
 					edge.x = -1
 				
 				if intersection.end.x == half_size.x:
+					@warning_ignore("narrowing_conversion")
 					proposed_position.x -= intersection.size.x * 1000
 					edge.x = 1
 		
@@ -96,10 +97,12 @@ func push_out_of_walls(hitbox: Rect2, subpixels: Vector2i, given_walls: Array[Re
 			if intersection.size.x > intersection.size.y or \
 					intersection.size >= Vector2(4, 4):
 				if intersection.position.y == -half_size.y:
+					@warning_ignore("narrowing_conversion")
 					proposed_position.y += intersection.size.y * 1000
 					edge.y = -1
 				
 				if intersection.end.y == half_size.y:
+					@warning_ignore("narrowing_conversion")
 					proposed_position.y -= intersection.size.y * 1000
 					edge.y = 1
 	

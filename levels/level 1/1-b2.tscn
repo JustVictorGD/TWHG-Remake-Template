@@ -232,82 +232,81 @@ offset_left = 240.0
 offset_top = 816.0
 offset_right = 336.0
 offset_bottom = 912.0
-type = 1
 
 [node name="Finish" parent="Checkpoints" instance=ExtResource("3_8visq")]
 offset_left = 1200.0
 offset_top = 48.0
 offset_right = 1392.0
 offset_bottom = 240.0
-type = 2
+type = 3
 
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 408)
+position = Vector2(1248, 96)
 
 [node name="Coin2" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 408)
+position = Vector2(1296, 96)
 
 [node name="Coin3" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 408)
+position = Vector2(1344, 96)
 
 [node name="Coin4" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 456)
+position = Vector2(1248, 144)
 
 [node name="Coin5" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 456)
+position = Vector2(1296, 144)
 
 [node name="Coin6" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 456)
+position = Vector2(1344, 144)
 
 [node name="Coin7" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 504)
+position = Vector2(1248, 192)
 
 [node name="Coin8" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 504)
+position = Vector2(1296, 192)
 
 [node name="Coin9" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 504)
+position = Vector2(1344, 192)
 
 [node name="Coin11" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 552)
+position = Vector2(1368, 312)
 
 [node name="Coin12" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 552)
+position = Vector2(1416, 312)
 
 [node name="Coin14" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 600)
+position = Vector2(1416, 360)
 
 [node name="Coin15" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 600)
+position = Vector2(1464, 360)
 
 [node name="Coin16" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 648)
+position = Vector2(1368, 408)
 
 [node name="Coin17" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 648)
+position = Vector2(1416, 408)
 
 [node name="Coin18" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 648)
+position = Vector2(1464, 408)
 
 [node name="Coin19" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 696)
+position = Vector2(1368, 456)
 
 [node name="Coin20" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 696)
+position = Vector2(1416, 456)
 
 [node name="Coin21" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 696)
+position = Vector2(1464, 456)
 
 [node name="Coin22" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 744)
+position = Vector2(1416, 504)
 
 [node name="Coin23" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 744)
+position = Vector2(1464, 504)
 
 [node name="Coin24" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 600)
+position = Vector2(1368, 360)
 
 [node name="Enemies" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -394,10 +393,10 @@ position = Vector2(720, 0)
 position = Vector2(696, 0)
 
 [node name="BlueEnemy27" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
-position = Vector2(408, 840)
+position = Vector2(1464, 312)
 
 [node name="BlueEnemy28" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
-position = Vector2(1464, 744)
+position = Vector2(1368, 504)
 
 [node name="Group1" type="Node2D" parent="Enemies"]
 metadata/_edit_lock_ = true

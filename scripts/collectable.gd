@@ -21,13 +21,15 @@ func _init() -> void:
 
 func collect() -> void:
 	if state == states.UNCOLLECTED:
-		collect_animation.reset_and_play()
-		SFX.play(collect_sound)
-		
 		if Collider.touched_checkpoint_ids.size() == 0:
 			state = states.PICKED_UP
 		else:
 			state = states.SAVED
+		
+		collect_animation.reset_and_play()
+		SFX.play(collect_sound)
+		GlobalSignal.anything_collected.emit()
+		
 		extra_collect()
 
 func drop() -> void:
