@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="TWHG Remake Template"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://TWHG Remake Template.png"
+config/icon="res://assets/TWHG Remake Template.png"
 
 [autoload]
 
@@ -22,6 +22,7 @@ AreaManager="*res://scripts/autoloads/area_manager.gd"
 SFX="*res://scenes/sfx.tscn"
 GlobalSignal="*res://scripts/autoloads/global_signal.gd"
 Collider="*res://scripts/autoloads/collider.gd"
+Objects="*res://scripts/autoloads/objects.gd"
 
 [debug]
 

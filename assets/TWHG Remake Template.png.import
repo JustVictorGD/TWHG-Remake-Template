@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byancvbfvlbck"
-path="res://.godot/imported/TWHG Remake Template.png-d5d71922f64509b3607324939aaaee8d.ctex"
+path="res://.godot/imported/TWHG Remake Template.png-9afb3d21087bfeec018e69406b3f44e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TWHG Remake Template.png"
-dest_files=["res://.godot/imported/TWHG Remake Template.png-d5d71922f64509b3607324939aaaee8d.ctex"]
+source_file="res://assets/TWHG Remake Template.png"
+dest_files=["res://.godot/imported/TWHG Remake Template.png-9afb3d21087bfeec018e69406b3f44e3.ctex"]
 
 [params]
 

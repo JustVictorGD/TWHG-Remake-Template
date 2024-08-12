@@ -3,7 +3,7 @@ extends Collectable
 @export var lock_scale: bool = true
 @export var lock_rotation: bool = true
 
-const RADIUS: int = 13
+var radius: int = 13
 
 var id: int
 
