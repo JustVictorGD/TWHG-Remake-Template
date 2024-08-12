@@ -55,6 +55,13 @@ func point_in_rect(position: Vector2, rect: Rect2) -> bool:
 		return true
 	return false
 
+func point_in_rotated_rect(position: Vector2, rect: Rect2, rotation: float) -> bool:
+	position = position.rotated(-rotation)
+	rect.position = rect.position.rotated(-rotation)
+	if point_in_rect(position, rect):
+		return true
+	return false
+
 func rect_and_circle_overlap(rect: Rect2, circle_pos: Vector2, circle_radius: float) -> bool:
 	var closest_point: Vector2 = Vector2(NAN, NAN)
 	closest_point.x = clamp(circle_pos.x, rect.position.x, rect.end.x)
