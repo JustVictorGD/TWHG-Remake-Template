@@ -2,6 +2,8 @@ extends Node2D
 
 const PLAYER_SIZE: Vector2 = Vector2(42, 42)
 
+@export var speed: int = 1000 # One pixel per tick is 1,000
+@export var velocity: Vector2i = Vector2i(0, 0)
 @export_range(0, 41) var sliding_sensitivity: int = 32
 
 enum subpixel {
@@ -33,9 +35,7 @@ var last_checkpoint_area: String # Unused... for now.
 # Movement
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner sliding.
-var velocity: Vector2i
 
-var speed: int = 1000 # One pixel per tick is 1,000
 
 
 func _ready() -> void:
@@ -53,11 +53,6 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
-	velocity = Vector2i.ZERO
-	
-	# Conveyor effect
-	velocity += Vector2i(250, 0)
-	
 	if not dead:
 		movement_direction.x = (int(Input.is_action_pressed("right")) \
 				- int(Input.is_action_pressed("left")))
@@ -69,7 +64,6 @@ func movement_update() -> void:
 	
 	move(Collider.corner_slide(hitbox, Collider.walls, \
 			sliding_sensitivity, velocity, movement_direction) * speed)
-	
 	move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
 
 

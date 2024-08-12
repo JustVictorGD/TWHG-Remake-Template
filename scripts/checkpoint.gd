@@ -26,6 +26,9 @@ var id: int
 var hitbox: Rect2
 
 func _ready() -> void:
+	if type == types.START_AND_FINISH and AreaManager.money >= AreaManager.max_money:
+		select()
+	
 	if is_start():
 		state = states.SELECTED
 	

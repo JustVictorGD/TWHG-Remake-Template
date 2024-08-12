@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://assets/Floors/Blue Floor.png" id="2_uaan5"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://! favorites/checkpoint.tscn" id="3_8visq"]
 [ext_resource type="Script" path="res://! favorites/animation_player.gd" id="4_ujssf"]
-[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://! favorites/coin.tscn" id="5_3mxlm"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://! favorites/blue_enemy.tscn" id="6_i7507"]
 [ext_resource type="PackedScene" uid="uid://d11iiu0r66rbe" path="res://scenes/tile_map.tscn" id="7_mg4fx"]
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://! favorites/circle.tscn" id="7_v8775"]
@@ -293,72 +292,6 @@ offset_bottom = 240.0
 type = 3
 
 [node name="Coins" type="Node2D" parent="."]
-
-[node name="Coin" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1248, 96)
-
-[node name="Coin2" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1296, 96)
-
-[node name="Coin3" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1344, 96)
-
-[node name="Coin4" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1248, 144)
-
-[node name="Coin5" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1296, 144)
-
-[node name="Coin6" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1344, 144)
-
-[node name="Coin7" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1248, 192)
-
-[node name="Coin8" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1296, 192)
-
-[node name="Coin9" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1344, 192)
-
-[node name="Coin11" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 312)
-
-[node name="Coin12" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 312)
-
-[node name="Coin14" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 360)
-
-[node name="Coin15" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 360)
-
-[node name="Coin16" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 408)
-
-[node name="Coin17" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 408)
-
-[node name="Coin18" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 408)
-
-[node name="Coin19" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 456)
-
-[node name="Coin20" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 456)
-
-[node name="Coin21" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 456)
-
-[node name="Coin22" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1416, 504)
-
-[node name="Coin23" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1464, 504)
-
-[node name="Coin24" parent="Coins" instance=ExtResource("5_3mxlm")]
-position = Vector2(1368, 360)
 
 [node name="Enemies" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -722,7 +655,7 @@ script = ExtResource("4_ujssf")
 [node name="Circle2" parent="Circles" instance=ExtResource("7_v8775")]
 position = Vector2(768, 480)
 radius = 1.5
-object_count = 10
+object_count = 0
 object_type = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Circles/Circle2"]
