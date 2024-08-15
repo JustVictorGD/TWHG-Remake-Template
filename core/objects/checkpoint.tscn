@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf8htjaobfs6b"]
+
+[ext_resource type="Script" path="res://core/scripts/object_scripts/checkpoint.gd" id="1_f5or5"]
+
+[node name="Checkpoint" type="ColorRect" groups=["checkpoints"]]
+offset_right = 96.0
+offset_bottom = 96.0
+color = Color(0.643137, 0.996078, 0.639216, 1)
+script = ExtResource("1_f5or5")

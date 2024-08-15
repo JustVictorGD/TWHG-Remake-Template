@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfobwvq7x8k6i"]
+
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/assets/Blank pixel.png" id="1_2b3mu"]
+[ext_resource type="Script" path="res://core/scripts/object_scripts/circle.gd" id="1_rj8eg"]
+
+[node name="Circle" type="Node2D"]
+script = ExtResource("1_rj8eg")
+radius = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.501961, 0.227451, 1)
+scale = Vector2(20, 20)
+texture = ExtResource("1_2b3mu")

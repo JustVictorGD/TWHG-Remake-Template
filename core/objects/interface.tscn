@@ -1,0 +1,137 @@
+[gd_scene load_steps=5 format=3 uid="uid://jn6lkoo3vdrt"]
+
+[ext_resource type="Script" path="res://core/scripts/misc_scripts/interface.gd" id="1_5xmwe"]
+[ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/assets/Univers_Condensed_Regular.ttf" id="2_svcw7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aag45"]
+font = ExtResource("2_svcw7")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_xrp83"]
+font = ExtResource("2_svcw7")
+font_size = 32
+font_color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5xmwe")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 60.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 660.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 60.0
+offset_right = 160.0
+offset_bottom = 660.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1120.0
+offset_top = 60.0
+offset_right = 1160.0
+offset_bottom = 660.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 120.0
+offset_bottom = 660.0
+color = Color(0.12549, 0.12549, 0.501961, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1160.0
+offset_top = 60.0
+offset_right = 1280.0
+offset_bottom = 660.0
+color = Color(0.12549, 0.12549, 0.501961, 1)
+
+[node name="Area" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 416.0
+offset_bottom = 60.0
+text = "Level: 1-A1"
+label_settings = SubResource("LabelSettings_aag45")
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 960.0
+offset_bottom = 60.0
+text = "$ 727 / 727"
+label_settings = SubResource("LabelSettings_aag45")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Deaths" type="Label" parent="."]
+layout_mode = 0
+offset_left = 804.0
+offset_right = 1264.0
+offset_bottom = 60.0
+text = "Deaths: 65,536"
+label_settings = SubResource("LabelSettings_aag45")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Menu" type="Label" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 660.0
+offset_right = 160.0
+offset_bottom = 720.0
+text = "Menu"
+label_settings = SubResource("LabelSettings_aag45")
+vertical_alignment = 1
+
+[node name="BottomText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 660.0
+offset_right = 960.0
+offset_bottom = 720.0
+text = "\"Hi there!\""
+label_settings = SubResource("LabelSettings_aag45")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Label" parent="."]
+layout_mode = 0
+offset_left = 960.0
+offset_top = 660.0
+offset_right = 1220.0
+offset_bottom = 720.0
+text = "5:55:55"
+label_settings = SubResource("LabelSettings_aag45")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Timer2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1221.0
+offset_top = 663.0
+offset_right = 1329.0
+offset_bottom = 723.0
+text = ".239"
+label_settings = SubResource("LabelSettings_xrp83")
+vertical_alignment = 1

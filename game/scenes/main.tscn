@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://55jl8jvoqiur"]
+
+[ext_resource type="PackedScene" uid="uid://d0gfxmbqg5pi8" path="res://game/areas/level 1/1-b2.tscn" id="1_v25lx"]
+[ext_resource type="PackedScene" uid="uid://jn6lkoo3vdrt" path="res://core/objects/interface.tscn" id="2_n5jqu"]
+
+[node name="Main" type="Node2D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 160.0
+offset_top = 60.0
+offset_right = 1696.0
+offset_bottom = 1020.0
+scale = Vector2(0.625, 0.625)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1536, 960)
+render_target_update_mode = 4
+
+[node name="1-B2" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_v25lx")]
+
+[node name="Interface" parent="." instance=ExtResource("2_n5jqu")]
+metadata/_edit_lock_ = true
