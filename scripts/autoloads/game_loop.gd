@@ -23,6 +23,3 @@ func push_internal_frame() -> void:
 	movement_update.emit() # Player movement and enemy position update
 	collision_update.emit()
 	update_timers.emit()
-
-
-

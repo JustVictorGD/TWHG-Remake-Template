@@ -10,9 +10,9 @@ func _ready() -> void:
 	var start_checkpoints: PackedStringArray = []
 	
 	for checkpoint: ColorRect in Collider.checkpoints:
-		if checkpoint.type == checkpoint.types.START:
+		if checkpoint.is_start():
 			player.last_checkpoint_id = checkpoint.id
-			start_checkpoints.append(get_path_to(checkpoint))
+			start_checkpoints.append(self.name + "/" + str(get_path_to(checkpoint)))
 	
 	add_child(player)
 	

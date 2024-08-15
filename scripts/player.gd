@@ -112,9 +112,6 @@ func update_timers() -> void:
 	
 	if respawn_animation.active == true:
 		$CanvasGroup.self_modulate.a = respawn_animation.get_progress()
-	
-	print("FPS: ", Engine.get_frames_per_second())
-	#print_position()
 
 
 func respawn() -> void:

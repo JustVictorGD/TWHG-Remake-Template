@@ -7,6 +7,6 @@
 process_priority = 1
 script = ExtResource("1_sx0y5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BlueEnemy" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ftmg1")
