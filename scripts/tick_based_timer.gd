@@ -7,8 +7,6 @@ var active: bool = false
 var duration: int
 var remaining_time: int
 
-var new: bool = false
-
 func _init(_duration : int) -> void:
 	duration = _duration
 	remaining_time = duration
