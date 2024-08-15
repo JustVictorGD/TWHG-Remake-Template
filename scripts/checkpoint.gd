@@ -47,7 +47,7 @@ func movement_update() -> void:
 
 
 func update_timers() -> void:
-	flash_animation.tick()
+	flash_animation.tick_and_timeout()
 	
 	if flash_animation.active:
 		color = lerp(FLASH_COLOR, ORIGINAL_COLOR, flash_animation.get_progress())

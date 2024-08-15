@@ -53,8 +53,8 @@ func extra_save() -> void:
 
 
 func update_timers() -> void:
-	collect_animation.tick()
-	drop_animation.tick()
+	collect_animation.tick_and_timeout()
+	drop_animation.tick_and_timeout()
 	
 	if state != states.UNCOLLECTED:
 		if collect_animation.active:

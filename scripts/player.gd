@@ -101,9 +101,9 @@ func enemy_death() -> void:
 
 
 func update_timers() -> void:
-	respawn_timer.tick()
-	death_animation.tick()
-	respawn_animation.tick()
+	respawn_timer.tick_and_timeout()
+	death_animation.tick_and_timeout()
+	respawn_animation.tick_and_timeout()
 	
 	if death_animation.active:
 		$CanvasGroup.self_modulate.a = death_animation.get_progress_left()
@@ -113,6 +113,7 @@ func update_timers() -> void:
 	if respawn_animation.active == true:
 		$CanvasGroup.self_modulate.a = respawn_animation.get_progress()
 	
+	print("FPS: ", Engine.get_frames_per_second())
 	#print_position()
 
 
