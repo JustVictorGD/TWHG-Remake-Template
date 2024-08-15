@@ -44,6 +44,6 @@ func animation_update() -> void:
 	for i: int in range(children.size()):
 		if children[i] is Node2D:
 			if full_circle_mode:
-				children[i].position = Vector2(50 * radius, 0).rotated(lerp(0.0, arc, float(i) / object_count))
+				children[i].position = Vector2(48 * radius, 0).rotated(lerp(0.0, arc, float(i) / object_count))
 			else:
-				children[i].position = Vector2(50 * radius, 0).rotated(lerp(0.0, arc, float(i) / (object_count - 1)))
+				children[i].position = Vector2(48 * radius, 0).rotated(lerp(0.0, arc, float(i) / (object_count - 1)))
