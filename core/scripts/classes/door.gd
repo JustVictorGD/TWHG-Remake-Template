@@ -10,8 +10,9 @@ class_name Door
 ## Choose whether or not the gate fades away as it opens.
 @export var fade: bool = false
 
+@onready var timer: TickBasedTimer = TickBasedTimer.new(open_time)
+
 var is_triggered: bool = false
-var timer: TickBasedTimer = TickBasedTimer.new(open_time)
 
 var old_size: Vector2
 var old_position: Vector2
@@ -47,16 +48,18 @@ func update_timers() -> void:
 		if open_method == open_methods.UP:
 			size.y = old_size.y * ease(timer.get_progress_left(), -2) # Negative means IN-OUT easing 
 			
+			
 		elif open_method == open_methods.LEFT:
-			size.x = old_size.x * ease(timer.get_progress_left(), -2)
+			size.y = old_size.y * ease(timer.get_progress_left(), -2) 
+			rotation = -PI / 2
 			
 		elif open_method == open_methods.DOWN:
 			size.y = old_size.y * ease(timer.get_progress_left(), -2)
-			position.y = old_position.y + old_size.y * ease(timer.get_progress(), -2)
+			rotation = PI
 			
 		elif open_method == open_methods.RIGHT:
-			size.x = old_size.x * ease(timer.get_progress_left(), -2)
-			position.x = old_position.x + old_size.x * ease(timer.get_progress(), -2)
+			size.y = old_size.y * ease(timer.get_progress_left(), -2)
+			rotation = PI / 2
 			
 		elif open_method == open_methods.SHRINK:
 			@warning_ignore("narrowing_conversion")

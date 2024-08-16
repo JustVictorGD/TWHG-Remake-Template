@@ -16,7 +16,7 @@ func _ready() -> void:
 func extra_collect() -> void:
 	# Find door with matching ID and trigger it
 	for key_door: Solid in get_tree().get_nodes_in_group("key_doors"):
-		if key_door.key_id == id:
+		if key_door.key_id == key_id:
 			key_door.trigger_door()
 
 func checkpoint_touched(_id: int) -> void:
