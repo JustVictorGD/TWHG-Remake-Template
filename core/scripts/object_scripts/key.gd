@@ -1,6 +1,6 @@
 extends Collectable
 
-@onready var key_id: int = -1
+@export var key_id: int = -1
 var radius: int = 13
 var id: int # Not to be confused with the key_id,
 # this one is only for collision and collectable saving

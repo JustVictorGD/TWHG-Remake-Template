@@ -714,7 +714,6 @@ offset_left = 1200.0
 offset_top = 576.0
 offset_right = 1296.0
 offset_bottom = 672.0
-color = Color(1, 0.843137, 0, 1)
 money_requirement = 4
 show_text = false
 open_method = 1
