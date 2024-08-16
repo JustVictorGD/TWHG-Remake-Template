@@ -9,6 +9,7 @@ font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [node name="GoldDoor" type="ColorRect"]
+z_index = 6
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_gea2g")

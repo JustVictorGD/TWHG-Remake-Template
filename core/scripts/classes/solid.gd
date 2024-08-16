@@ -16,7 +16,6 @@ func _ready() -> void:
 	# WARNING: Please use a parent node to animate wall objects, because the AnimationPlayer overrides these changes.
 	size -= Vector2(6, 6)
 	position += Vector2(3, 3)
-	z_index = 1
 	
 	# Creates the outline
 	outline = ColorRect.new()

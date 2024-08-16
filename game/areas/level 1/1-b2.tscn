@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=4 uid="uid://d0gfxmbqg5pi8"]
+[gd_scene load_steps=27 format=4 uid="uid://d0gfxmbqg5pi8"]
 
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/area_script.gd" id="1_hg4mj"]
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="2_uaan5"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/objects/checkpoint.tscn" id="3_8visq"]
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/animation_player.gd" id="4_ujssf"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/objects/coin.tscn" id="5_h7jdv"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/objects/blue_enemy.tscn" id="6_i7507"]
 [ext_resource type="PackedScene" uid="uid://b3of87qe4oeld" path="res://core/objects/gold_door.tscn" id="7_cd51b"]
 [ext_resource type="PackedScene" uid="uid://b2nkmg44l3w64" path="res://core/objects/tile_map.tscn" id="7_mg4fx"]
@@ -12,18 +13,6 @@
 [sub_resource type="Animation" id="Animation_sswm3"]
 resource_name = "new_animation"
 loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Checkpoint:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(1248, 288), Vector2(1248, 576)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3yxiu"]
 _data = {
@@ -243,12 +232,6 @@ metadata/_edit_lock_ = true
 
 [node name="Moving1" type="Node2D" parent="Checkpoints"]
 
-[node name="Checkpoint" parent="Checkpoints/Moving1" instance=ExtResource("3_8visq")]
-offset_left = 1248.0
-offset_top = 288.0
-offset_right = 1344.0
-offset_bottom = 384.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Checkpoints/Moving1"]
 libraries = {
 "": SubResource("AnimationLibrary_3yxiu")
@@ -294,6 +277,78 @@ type = 3
 
 [node name="Coins" type="Node2D" parent="."]
 
+[node name="Coin" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(744, 456)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(792, 456)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(792, 504)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(744, 504)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(648, 360)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(696, 360)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(744, 360)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(792, 360)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(840, 360)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(888, 552)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(888, 504)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(888, 456)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(888, 408)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(648, 552)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(648, 504)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(648, 456)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(648, 408)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(888, 360)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(648, 600)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(696, 600)
+
+[node name="Coin25" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(744, 600)
+
+[node name="Coin26" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(792, 600)
+
+[node name="Coin27" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(840, 600)
+
+[node name="Coin28" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(888, 600)
+
 [node name="Circles" type="Node2D" parent="."]
 
 [node name="Circle" parent="Circles" instance=ExtResource("7_v8775")]
@@ -309,19 +364,6 @@ libraries = {
 "": SubResource("AnimationLibrary_lc2xd")
 }
 autoplay = "new_animation"
-script = ExtResource("4_ujssf")
-
-[node name="Circle2" parent="Circles" instance=ExtResource("7_v8775")]
-position = Vector2(768, 480)
-radius = 1.5
-object_count = 12
-object_type = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Circles/Circle2"]
-libraries = {
-"": SubResource("AnimationLibrary_lc2xd")
-}
-autoplay = "new_animation_2"
 script = ExtResource("4_ujssf")
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -431,19 +473,19 @@ script = ExtResource("4_ujssf")
 position = Vector2(504, 300)
 
 [node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-position = Vector2(552, 300)
+position = Vector2(600, 300)
 
 [node name="BlueEnemy3" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
 position = Vector2(696, 300)
 
 [node name="BlueEnemy4" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-position = Vector2(744, 300)
+position = Vector2(792, 300)
 
 [node name="BlueEnemy5" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
 position = Vector2(888, 300)
 
 [node name="BlueEnemy6" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-position = Vector2(936, 300)
+position = Vector2(984, 300)
 
 [node name="Group2" type="Node2D" parent="Enemies"]
 metadata/_edit_lock_ = true
@@ -456,19 +498,19 @@ autoplay = "new_animation"
 script = ExtResource("4_ujssf")
 
 [node name="BlueEnemy" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(600, 660)
+position = Vector2(552, 660)
 
 [node name="BlueEnemy2" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
 position = Vector2(648, 660)
 
 [node name="BlueEnemy3" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(792, 660)
+position = Vector2(744, 660)
 
 [node name="BlueEnemy4" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
 position = Vector2(840, 660)
 
 [node name="BlueEnemy5" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(984, 660)
+position = Vector2(936, 660)
 
 [node name="BlueEnemy6" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
 position = Vector2(1032, 660)
@@ -484,13 +526,13 @@ autoplay = "new_animation"
 script = ExtResource("4_ujssf")
 
 [node name="BlueEnemy" parent="Enemies/Group3" instance=ExtResource("6_i7507")]
-position = Vector2(492, 408)
+position = Vector2(492, 360)
 
 [node name="BlueEnemy2" parent="Enemies/Group3" instance=ExtResource("6_i7507")]
 position = Vector2(492, 456)
 
 [node name="BlueEnemy3" parent="Enemies/Group3" instance=ExtResource("6_i7507")]
-position = Vector2(492, 600)
+position = Vector2(492, 552)
 
 [node name="BlueEnemy4" parent="Enemies/Group3" instance=ExtResource("6_i7507")]
 position = Vector2(492, 648)
@@ -509,13 +551,13 @@ script = ExtResource("4_ujssf")
 position = Vector2(1044, 312)
 
 [node name="BlueEnemy2" parent="Enemies/Group4" instance=ExtResource("6_i7507")]
-position = Vector2(1044, 360)
+position = Vector2(1044, 408)
 
 [node name="BlueEnemy3" parent="Enemies/Group4" instance=ExtResource("6_i7507")]
 position = Vector2(1044, 504)
 
 [node name="BlueEnemy4" parent="Enemies/Group4" instance=ExtResource("6_i7507")]
-position = Vector2(1044, 552)
+position = Vector2(1044, 600)
 
 [node name="Group5" type="Node2D" parent="Enemies"]
 position = Vector2(240, 480)
@@ -672,9 +714,11 @@ offset_right = 1296.0
 offset_bottom = 672.0
 color = Color(1, 0.843137, 0, 1)
 money_requirement = 4
+show_text = false
 open_method = 1
 outline_color = Color(0.4, 0.34, 0, 1)
 
 [node name="TileMap" parent="." instance=ExtResource("7_mg4fx")]
+z_index = 6
 tile_map_data = PackedByteArray("AAABAAsAAAADAAEAAAAAAAsAAAACAAEAAAD//wsAAAABAAEAAAD//wwAAAABAAIAAAAAAAwAAAACAAIAAAABAAwAAAADAAIAAAABAA0AAAAFAAIAAAAAAA0AAAACAAIAAAD//w0AAAABAAIAAAD//w4AAAABAAMAAAAAAA4AAAACAAMAAAABAA4AAAAGAAEAAAACAA4AAAADAAIAAAACAA0AAAADAAEAAAABAA8AAAABAAIAAAABABAAAAABAAIAAAABABEAAAABAAIAAAABABIAAAABAAIAAAACABIAAAADAAIAAAACABMAAAAFAAIAAAACABQAAAACAAMAAAABABQAAAABAAMAAAABABMAAAABAAIAAAACABEAAAADAAIAAAACABAAAAADAAIAAAACAA8AAAADAAIAAAADABMAAAACAAEAAAAEABMAAAACAAEAAAAFABMAAAACAAEAAAAGABMAAAACAAEAAAAHABMAAAAJAAIAAAAIABMAAAACAAEAAAAJABMAAAACAAEAAAAKABMAAAACAAEAAAALABMAAAAGAAIAAAAMABMAAAACAAIAAAANABMAAAADAAIAAAAMABQAAAACAAMAAAALABQAAAACAAMAAAAKABQAAAACAAMAAAAJABQAAAACAAMAAAAIABQAAAACAAMAAAAHABQAAAACAAMAAAAGABQAAAACAAMAAAAFABQAAAACAAMAAAAEABQAAAACAAMAAAADABQAAAACAAMAAAAHABIAAAAAAAEAAAANABQAAAADAAMAAAANABIAAAADAAIAAAANABEAAAADAAIAAAANABAAAAADAAIAAAANAA8AAAAIAAEAAAAMABIAAAACAAIAAAAMABEAAAACAAIAAAAMABAAAAACAAIAAAAMAA8AAAACAAEAAAALABIAAAABAAIAAAALABEAAAABAAIAAAALABAAAAABAAIAAAALAA8AAAAEAAIAAAALAA4AAAAAAAEAAAANAA4AAAABAAEAAAAOAA4AAAADAAEAAAAOAA8AAAADAAMAAAAJAA8AAAADAAMAAAAJAA4AAAADAAIAAAAJAA0AAAADAAIAAAAJAAwAAAADAAEAAAAIAA8AAAACAAMAAAAIAA4AAAACAAIAAAAIAA0AAAAGAAIAAAAIAAwAAAABAAEAAAAHABAAAAAAAAMAAAAHAA8AAAAEAAEAAAAHAA4AAAABAAIAAAAHAA0AAAABAAEAAAAJAAcAAAADAAMAAAAJAAYAAAADAAIAAAAJAAUAAAADAAEAAAAIAAcAAAABAAMAAAAIAAYAAAAGAAEAAAAIAAUAAAAFAAIAAAAIAAQAAAADAAEAAAAHAAYAAAACAAMAAAAHAAUAAAACAAIAAAAHAAQAAAAFAAIAAAAGAAYAAAACAAMAAAAGAAUAAAACAAIAAAAGAAQAAAACAAIAAAAFAAYAAAACAAMAAAAFAAUAAAACAAIAAAAFAAQAAAACAAIAAAAEAAYAAAABAAMAAAAEAAUAAAABAAIAAAAEAAQAAAAGAAEAAAAHAAMAAAADAAEAAAAGAAMAAAACAAEAAAAFAAMAAAACAAEAAAAEAAMAAAACAAEAAAADAAQAAAACAAMAAAADAAMAAAAJAAIAAAACAAQAAAABAAMAAAACAAMAAAABAAEAAAADAAIAAAAAAAEAAAAAAAgAAAACAAMAAAAAAAcAAAACAAIAAAAAAAYAAAAFAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAADAAEAAAD//wgAAAABAAMAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAD//wMAAAABAAEAAAABAAgAAAADAAMAAAABAAcAAAADAAIAAAABAAYAAAAFAAAAAAACAAYAAAADAAAAAAAGAAAAAAAHAAEAAAAGAP//AAADAAEAAAAFAAAAAAABAAMAAAAFAP//AAABAAEAAAAGAAEAAAAAAAMAAAAIAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAALAAAAAAABAAMAAAALAP//AAABAAEAAAANAAUAAAACAAMAAAANAAQAAAAJAAEAAAANAAMAAAADAAIAAAANAAIAAAADAAIAAAANAAEAAAADAAIAAAANAAAAAAADAAIAAAANAP//AAADAAEAAAAMAAUAAAABAAMAAAAMAAQAAAAIAAMAAAAMAAMAAAABAAIAAAAMAAIAAAABAAIAAAAMAAEAAAABAAIAAAAMAAAAAAAGAAEAAAAMAP//AAACAAEAAAAOAAQAAAADAAEAAAAOAAUAAAADAAMAAAALAAQAAAABAAAAAAARAAUAAAAAAAMAAAARAAQAAAAEAAAAAAASAAQAAAAGAAMAAAASAAMAAAABAAEAAAATAAMAAAADAAEAAAATAAQAAAAJAAEAAAATAAUAAAABAAMAAAAUAAUAAAACAAMAAAAVAAUAAAACAAMAAAAWAAUAAAACAAIAAAAXAAUAAAAFAAEAAAAYAAUAAAAFAAMAAAAZAAUAAAADAAAAAAAYAAQAAAADAAIAAAAYAAMAAAADAAIAAAAYAAIAAAADAAEAAAAXAAIAAAABAAEAAAAXAAMAAAABAAIAAAAXAAQAAAAGAAIAAAAXAAYAAAADAAIAAAAXAAcAAAADAAMAAAAWAAcAAAABAAMAAAAWAAYAAAABAAIAAAAWAAQAAAACAAEAAAAVAAQAAAACAAEAAAAUAAQAAAACAAEAAAATAAAAAAADAAMAAAASAP//AAABAAEAAAASAAAAAAABAAMAAAATAP//AAADAAEAAAAVAAIAAAAAAAAAAAAeAAAAAAADAAIAAAAeAP//AAADAAEAAAAdAAAAAAAGAAEAAAAdAP//AAACAAEAAAAcAAAAAAACAAMAAAAcAP//AAACAAEAAAAbAAAAAAACAAMAAAAbAP//AAACAAEAAAAaAAAAAAACAAMAAAAaAP//AAACAAEAAAAZAAAAAAACAAMAAAAZAP//AAACAAEAAAAYAAAAAAACAAMAAAAYAP//AAACAAEAAAAXAAAAAAABAAMAAAAXAP//AAABAAEAAAAeAAUAAAACAAMAAAAeAAQAAAAFAAIAAAAeAAMAAAADAAIAAAAeAAIAAAADAAIAAAAeAAEAAAADAAIAAAAdAAUAAAAGAAMAAAAdAAQAAAABAAIAAAAdAAMAAAABAAIAAAAdAAIAAAABAAIAAAAdAAEAAAABAAIAAAAcAAUAAAABAAAAAAAgAAUAAAADAAMAAAAgAAQAAAADAAEAAAAfAAUAAAACAAMAAAAfAAQAAAACAAEAAAAgAA4AAAADAAEAAAAgAA8AAAADAAMAAAAfAA8AAAABAAMAAAAfAA4AAAABAAEAAAAgABIAAAADAAEAAAAgABMAAAADAAIAAAAgABQAAAADAAMAAAAfABQAAAACAAMAAAAfABMAAAAGAAIAAAAfABIAAAABAAEAAAAeABMAAAACAAEAAAAdABMAAAABAAEAAAAdABQAAAABAAMAAAAeABQAAAACAAMAAAAbABIAAAAAAAAAAAAWABQAAAADAAMAAAAWABMAAAADAAEAAAAVABQAAAACAAMAAAAVABMAAAACAAEAAAAUABQAAAACAAMAAAAUABMAAAAJAAIAAAATABQAAAACAAMAAAATABMAAAACAAEAAAASABQAAAABAAMAAAASABMAAAABAAEAAAAUABIAAAAAAAEAAAAWABEAAAAAAAAAAAASAA4AAAADAAEAAAARAA4AAAABAAEAAAARAA8AAAABAAMAAAASAA8AAAAJAAEAAAASABAAAAAEAAEAAAASABEAAAAAAAMAAAATABAAAAADAAMAAAATAA8AAAAFAAAAAAAUAA8AAAAGAAMAAAAVAA8AAAACAAMAAAAWAA8AAAADAAMAAAAWAA4AAAAIAAEAAAAVAA4AAAACAAEAAAAUAA4AAAABAAEAAAAXAA4AAAADAAMAAAAXAA0AAAADAAIAAAAXAAwAAAADAAEAAAAWAAwAAAABAAEAAAAWAA0AAAABAAIAAAA=")
 metadata/_edit_lock_ = true

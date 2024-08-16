@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/assets/Blank pixel.png" id="2_qubyp"]
 
 [node name="Player" type="Node2D"]
+z_index = 4
 script = ExtResource("1_sxbrj")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]

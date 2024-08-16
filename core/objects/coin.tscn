@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sfeanntnhuwr" path="res://core/assets/Coin.png" id="2_a33l2"]
 
 [node name="Coin" type="Node2D" groups=["coins"]]
+z_index = 2
 script = ExtResource("1_k1jfa")
 
 [node name="Coin" type="Sprite2D" parent="."]
