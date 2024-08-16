@@ -1,0 +1,23 @@
+extends Collectable
+
+@onready var key_id: int = -1
+var radius: int = 13
+var id: int # Not to be confused with the key_id,
+# this one is only for collision and collectable saving
+
+func _ready() -> void:
+	collect_sound = "Key"
+	
+	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
+	
+	# This is how collision (and assigning keys to doors) works here.
+	id = Collider.register_key_id(self)
+
+func extra_collect() -> void:
+	# Find door with matching ID and trigger it
+	for key_door: Solid in get_tree().get_nodes_in_group("key_doors"):
+		if key_door.key_id == id:
+			key_door.trigger_door()
+
+func checkpoint_touched(_id: int) -> void:
+	save()

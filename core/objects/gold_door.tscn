@@ -9,10 +9,12 @@ font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [node name="GoldDoor" type="ColorRect"]
-z_index = 6
+z_index = 5
 offset_right = 40.0
 offset_bottom = 40.0
+color = Color(1, 0.843137, 0, 1)
 script = ExtResource("1_gea2g")
+outline_color = Color(0.4, 0.341176, 0, 1)
 
 [node name="MoneyLeft" type="Label" parent="."]
 layout_mode = 1

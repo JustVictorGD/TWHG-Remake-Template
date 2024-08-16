@@ -55,7 +55,7 @@ func update_timers() -> void:
 			position.y = old_position.y + old_size.y * ease(timer.get_progress(), -2)
 			
 		elif open_method == open_methods.RIGHT:
-			size.x = old_size.x * timer.get_progress_left()
+			size.x = old_size.x * ease(timer.get_progress_left(), -2)
 			position.x = old_position.x + old_size.x * ease(timer.get_progress(), -2)
 			
 		elif open_method == open_methods.SHRINK:

@@ -83,6 +83,10 @@ func collision_update() -> void:
 	for enemy: Node2D in get_tree().get_nodes_in_group("enemies"):
 		if Collider.rect_and_circle_overlap(hitbox, enemy.global_position, enemy.radius) and not dead:
 			enemy_death()
+	
+	for key: Node2D in get_tree().get_nodes_in_group("keys"):
+		if Collider.rect_and_circle_overlap(hitbox, key.global_position, key.radius) and not dead:
+			key.collect()
 
 
 func collect_coin(id: int) -> void:

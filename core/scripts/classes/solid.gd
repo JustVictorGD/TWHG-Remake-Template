@@ -21,7 +21,7 @@ func _ready() -> void:
 	outline = ColorRect.new()
 	add_child(outline)
 	outline.color = outline_color
-	outline.z_as_relative = false
+	outline.z_index = -1
 	outline.position = -Vector2(self.outline_size, self.outline_size)
 	outline.size = Vector2(size.x + 2 * self.outline_size, size.y + 2 * self.outline_size)
 	

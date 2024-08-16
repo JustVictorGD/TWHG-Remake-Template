@@ -10,11 +10,13 @@ var player: Node2D
 var enemies: Array[Node] = []
 var coins: Array[Node] = []
 var checkpoints: Array[Node] = []
+var keys: Array[Node] = []
 
 # Assigning unique IDs to objects
 var next_enemy_id: int = -1
 var next_checkpoint_id: int = -1
 var next_coin_id: int = -1
+var next_key_id: int = -1
 
 
 func foo(vec2i: Vector2i) -> void:
@@ -38,6 +40,12 @@ func register_coin_id(node: Node) -> int:
 	next_coin_id += 1
 	AreaManager.max_money += 1
 	return next_coin_id
+
+func register_key_id(node: Node) -> int:
+	keys.append(node)
+	next_key_id += 1
+	return next_key_id
+
 
 
 # Purely convenient functions.
