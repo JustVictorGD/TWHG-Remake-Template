@@ -14,10 +14,14 @@ func _ready() -> void:
 	id = Collider.register_key_id(self)
 
 func extra_collect() -> void:
-	# Find door with matching ID and trigger it
 	for key_door: Solid in get_tree().get_nodes_in_group("key_doors"):
 		if key_door.key_id == key_id:
 			key_door.trigger_door()
+
+func extra_drop() -> void:
+	for key_door: Solid in get_tree().get_nodes_in_group("key_doors"):
+		if key_door.key_id == key_id:
+			key_door.untrigger_door()
 
 func checkpoint_touched(_id: int) -> void:
 	save()

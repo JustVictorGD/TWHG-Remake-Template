@@ -269,27 +269,16 @@ offset_left = 240.0
 offset_top = 816.0
 offset_right = 336.0
 offset_bottom = 912.0
+type = 1
 
 [node name="Finish" parent="Checkpoints" instance=ExtResource("3_8visq")]
 offset_left = 1200.0
 offset_top = 48.0
 offset_right = 1392.0
 offset_bottom = 240.0
-type = 3
+type = 2
 
 [node name="Coins" type="Node2D" parent="."]
-
-[node name="Coin" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(744, 456)
-
-[node name="Coin2" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(792, 456)
-
-[node name="Coin3" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(792, 504)
-
-[node name="Coin4" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(744, 504)
 
 [node name="Coin17" parent="Coins" instance=ExtResource("5_h7jdv")]
 position = Vector2(648, 360)
@@ -710,14 +699,13 @@ position = Vector2(0, 48)
 position = Vector2(-48, 48)
 
 [node name="GoldDoor" parent="." instance=ExtResource("7_cd51b")]
-offset_left = 1200.0
-offset_top = 576.0
-offset_right = 1296.0
-offset_bottom = 672.0
-money_requirement = 4
+offset_left = 1248.0
+offset_top = 240.0
+offset_right = 1344.0
+offset_bottom = 288.0
+money_requirement = 1
 show_text = false
 open_method = 1
-open_time = 1000
 outline_color = Color(0.4, 0.34, 0, 1)
 
 [node name="TileMap" parent="." instance=ExtResource("7_mg4fx")]
@@ -728,53 +716,17 @@ metadata/_edit_lock_ = true
 [node name="Keys" type="Node2D" parent="."]
 
 [node name="Key" parent="Keys" instance=ExtResource("10_l8d2y")]
-position = Vector2(1344, 336)
+position = Vector2(768, 480)
 key_id = 0
-tracking = true
-plays_sound = false
-
-[node name="Key2" parent="Keys" instance=ExtResource("10_l8d2y")]
-position = Vector2(1344, 432)
-key_id = 1
-tracking = true
-plays_sound = false
-
-[node name="Key3" parent="Keys" instance=ExtResource("10_l8d2y")]
-position = Vector2(1344, 528)
-key_id = 2
 tracking = true
 plays_sound = false
 
 [node name="KeyDoors" type="Node2D" parent="."]
 
-[node name="KeyDoor" parent="KeyDoors" instance=ExtResource("11_1d6nl")]
-offset_left = 1392.0
-offset_top = 288.0
-offset_right = 1488.0
-offset_bottom = 384.0
-key_id = 0
-open_time = 1000
-
-[node name="KeyDoor2" parent="KeyDoors" instance=ExtResource("11_1d6nl")]
-offset_left = 1392.0
-offset_top = 384.0
-offset_right = 1488.0
-offset_bottom = 480.0
-key_id = 1
-open_method = 0
-
-[node name="KeyDoor3" parent="KeyDoors" instance=ExtResource("11_1d6nl")]
-offset_left = 1392.0
-offset_top = 480.0
-offset_right = 1488.0
-offset_bottom = 576.0
-key_id = 2
-open_method = 1
-
 [node name="KeyDoor4" parent="KeyDoors" instance=ExtResource("11_1d6nl")]
-offset_left = 1200.0
-offset_top = 480.0
-offset_right = 1296.0
+offset_left = 1056.0
+offset_top = 384.0
+offset_right = 1152.0
 offset_bottom = 576.0
-key_id = 2
+key_id = 0
 open_method = 0

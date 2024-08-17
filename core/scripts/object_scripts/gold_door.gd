@@ -22,5 +22,8 @@ func extra_update_timers() -> void:
 	if money_requirement == 0:
 		money_requirement = AreaManager.max_money
 	
-	if AreaManager.money >= money_requirement:
+	if not is_triggered and AreaManager.money >= money_requirement:
 		trigger_door()
+	
+	if is_triggered and AreaManager.money < money_requirement:
+		untrigger_door()

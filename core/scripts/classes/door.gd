@@ -10,7 +10,8 @@ class_name Door
 ## Choose whether or not the gate fades away as it opens.
 @export var fade: bool = false
 
-@onready var timer: TickBasedTimer = TickBasedTimer.new(open_time)
+@onready var open_timer: TickBasedTimer = TickBasedTimer.new(open_time)
+@onready var close_timer: TickBasedTimer = TickBasedTimer.new(open_time)
 
 var is_triggered: bool = false
 
@@ -23,9 +24,14 @@ enum open_methods {
 	UP, LEFT, DOWN, RIGHT, SHRINK, NONE
 }
 
+func child_ready() -> void:
+	open_timer.timeout.connect(open_timeout)
+	
+	close_timer.reversed = true
+
 func trigger_door() -> void:
 	if not is_triggered:
-		timer.reset_and_play()
+		open_timer.reset_and_play()
 		can_collide = false
 		is_triggered = true
 		SFX.play("Door")
@@ -35,55 +41,61 @@ func trigger_door() -> void:
 		old_position = position
 		old_outline_size = outline_size
 		old_outline_position = outline.position
-		
 
-# func close_door() -> void:
-	# pass
+func untrigger_door() -> void:
+	if is_triggered:
+		can_collide = true
+		is_triggered = false
+		
+		if not fade:
+			modulate.a = 1
+		close_timer.reset_and_play()
+		
+		SFX.play("Door")
 
 func update_timers() -> void:
+	if is_triggered:
+		handle_animations(open_timer)
+	else:
+		handle_animations(close_timer)
+	
+	extra_update_timers()
+
+func handle_animations(timer: TickBasedTimer) -> void:
 	if timer.active:
-		timer.tick()
+		timer.tick_and_timeout()
 		
 		# AMAZING CODE!
 		if open_method == open_methods.UP:
-			size.y = old_size.y * ease(timer.get_progress_left(), -2) # Negative means IN-OUT easing 
+			size.y = old_size.y * ease(timer.get_progress_left(), -2) # Negative means IN-OUT easing
 			
 			
 		elif open_method == open_methods.LEFT:
-			size.y = old_size.y * ease(timer.get_progress_left(), -2) 
-			rotation = -PI / 2
+			size.x = old_size.x * ease(timer.get_progress_left(), -2) 
 			
 		elif open_method == open_methods.DOWN:
 			size.y = old_size.y * ease(timer.get_progress_left(), -2)
 			rotation = PI
 			
 		elif open_method == open_methods.RIGHT:
-			size.y = old_size.y * ease(timer.get_progress_left(), -2)
-			rotation = PI / 2
+			size.x = old_size.x * ease(timer.get_progress_left(), -2)
+			rotation = PI
 			
 		elif open_method == open_methods.SHRINK:
 			@warning_ignore("narrowing_conversion")
 			size = old_size * ease(timer.get_progress_left(), -2)
 			position = old_position + old_size * ease(timer.get_progress(), -2) / 2
-			
+		
 		elif open_method == open_methods.NONE:
 			if not fade:
 				modulate.a = 0
-		else:
-			push_error("No door open method chosen. Door won't open.")
 		
 		if fade:
 			modulate.a = timer.get_progress_left()
-		
-	else:
-		if is_triggered:
-			modulate.a = 0
-	
-	if timer.get_progress() == 1:
-		size = Vector2.ZERO
-		outline_size = 0
-	
-	extra_update_timers()
+
+func open_timeout() -> void:
+	print("A")
+	modulate.a = 0
 
 # Override these functions to add extra behaviour.
 func extra_update_timers() -> void:
