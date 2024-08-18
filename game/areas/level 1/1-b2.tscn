@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://d0gfxmbqg5pi8"]
+[gd_scene load_steps=30 format=4 uid="uid://d0gfxmbqg5pi8"]
 
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/area_script.gd" id="1_hg4mj"]
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="2_uaan5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/objects/circle.tscn" id="7_v8775"]
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/objects/key.tscn" id="10_l8d2y"]
 [ext_resource type="PackedScene" uid="uid://bmqdgv4kj688d" path="res://core/objects/key_door.tscn" id="11_1d6nl"]
+[ext_resource type="Script" path="res://wip_solids/solid_2.gd" id="11_7h33g"]
 
 [sub_resource type="Animation" id="Animation_sswm3"]
 resource_name = "new_animation"
@@ -265,9 +266,9 @@ offset_right = 192.0
 offset_bottom = 48.0
 
 [node name="Start" parent="Checkpoints" instance=ExtResource("3_8visq")]
-offset_left = 240.0
-offset_top = 816.0
-offset_right = 336.0
+offset_left = 384.0
+offset_top = 768.0
+offset_right = 528.0
 offset_bottom = 912.0
 type = 1
 
@@ -730,3 +731,107 @@ offset_right = 1152.0
 offset_bottom = 576.0
 key_id = 0
 open_method = 0
+
+[node name="Solid2" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 144.0
+offset_top = 672.0
+offset_right = 192.0
+offset_bottom = 720.0
+pivot_offset = Vector2(24, 24)
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+outline_color = Color(0.00392157, 0.27451, 0.788235, 1)
+fill_color = Color(0.470588, 0.858824, 1, 1)
+has_collision = true
+
+[node name="Solid3" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 144.0
+offset_top = 648.0
+offset_right = 192.0
+offset_bottom = 696.0
+pivot_offset = Vector2(24, 24)
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+outline_color = Color(0.435294, 0, 0.596078, 1)
+fill_color = Color(1, 0.607843, 1, 1)
+has_collision = true
+
+[node name="Solid4" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 144.0
+offset_top = 624.0
+offset_right = 192.0
+offset_bottom = 672.0
+pivot_offset = Vector2(24, 24)
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+outline_color = Color(0.6, 0, 0, 1)
+fill_color = Color(1, 0.61, 0.61, 1)
+has_collision = true
+
+[node name="Solid5" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 144.0
+offset_top = 624.0
+offset_right = 192.0
+offset_bottom = 648.0
+pivot_offset = Vector2(24, 12)
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+outline_color = Color(0.6, 0.27, 0, 1)
+fill_color = Color(1, 0.727, 0.61, 1)
+has_collision = true
+
+[node name="Solid6" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 288.0
+offset_top = 672.0
+offset_right = 336.0
+offset_bottom = 720.0
+pivot_offset = Vector2(24, 24)
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+outline_color = Color(0.00392157, 0.27451, 0.788235, 1)
+fill_color = Color(0.470588, 0.858824, 1, 1)
+has_collision = true
+
+[node name="Solid7" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 288.0
+offset_top = 648.0
+offset_right = 336.0
+offset_bottom = 696.0
+pivot_offset = Vector2(24, 24)
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+outline_color = Color(0.435294, 0, 0.596078, 1)
+fill_color = Color(1, 0.607843, 1, 1)
+has_collision = true
+
+[node name="Solid8" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 288.0
+offset_top = 624.0
+offset_right = 336.0
+offset_bottom = 672.0
+pivot_offset = Vector2(24, 24)
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+outline_color = Color(0.6, 0, 0, 1)
+fill_color = Color(1, 0.61, 0.61, 1)
+has_collision = true
+
+[node name="Solid9" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 288.0
+offset_top = 624.0
+offset_right = 336.0
+offset_bottom = 648.0
+pivot_offset = Vector2(24, 12)
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+outline_color = Color(0.6, 0.27, 0, 1)
+fill_color = Color(1, 0.727, 0.61, 1)
+has_collision = true

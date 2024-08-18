@@ -1,6 +1,7 @@
 extends Node
 
 signal animation_update
+signal wall_update
 signal movement_update
 signal collision_update
 signal update_timers
@@ -19,7 +20,8 @@ func _process(delta: float) -> void:
 		push_internal_frame()
 
 func push_internal_frame() -> void:
-	animation_update.emit() # Non-player object movement with AnimationPlayer
-	movement_update.emit() # Player movement and enemy position update
-	collision_update.emit()
+	animation_update.emit() # Reserved for AnimationPlayer
+	wall_update.emit() # Needs to be separate to avoid order of operation conflicts.
+	movement_update.emit() # Player's and other objects' movement.
+	collision_update.emit() # All the player/object checks are done now.
 	update_timers.emit()
