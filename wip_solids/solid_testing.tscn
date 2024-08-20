@@ -1,17 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://d371tsjs0wils"]
+[gd_scene load_steps=3 format=3 uid="uid://d371tsjs0wils"]
 
 [ext_resource type="Script" path="res://wip_solids/solid_2.gd" id="1_lagxy"]
+[ext_resource type="Texture2D" uid="uid://bc88pxrwckowb" path="res://core/assets/icon.svg" id="2_fo308"]
 
 [node name="SolidTesting" type="Node2D"]
 
 [node name="Solid2" type="ColorRect" parent="."]
-offset_left = 96.0
-offset_top = 48.0
-offset_right = 144.0
-offset_bottom = 96.0
-pivot_offset = Vector2(24, 24)
+z_index = 5
+offset_left = 288.0
+offset_right = 432.0
+offset_bottom = 144.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_lagxy")
-tracking = null
-outline_color = Color(0.4, 0, 0, 1)
+global_opacity = 0.362
+outline_color = Color(0, 0.4, 0, 1)
+fill_color = Color(0, 1, 0, 1)
+
+[node name="Solid3" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 480.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 192.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_lagxy")
+merge_sprite = true
+global_opacity = 0.277
+outline_color = Color(0, 0.4, 0, 1)
+fill_color = Color(0, 1, 0, 1)
+
+[node name="Solid5" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 720.0
+offset_top = 192.0
+offset_right = 816.0
+offset_bottom = 288.0
+rotation = 0.785397
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_lagxy")
+global_opacity = 0.53
+outline_color = Color(1, 1, 1, 1)
 fill_color = Color(1, 0, 0, 1)
+
+[node name="Solid4" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 720.0
+offset_top = 144.0
+offset_right = 816.0
+offset_bottom = 240.0
+rotation = 0.785397
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_lagxy")
+outline_color = Color(1, 1, 1, 1)
+fill_color = Color(1, 0, 0, 1)
+
+[node name="Solid6" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 384.0
+offset_top = 240.0
+offset_right = 480.0
+offset_bottom = 288.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_lagxy")
+merge_sprite = true
+global_opacity = 0.234
+outline_color = Color(1, 0, 0, 1)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="CanvasGroup2" type="CanvasGroup" parent="CanvasGroup"]
+self_modulate = Color(1, 1, 1, 0.321569)
+
+[node name="Icon" type="Sprite2D" parent="CanvasGroup/CanvasGroup2"]
+position = Vector2(216, 264)
+texture = ExtResource("2_fo308")
