@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://d0gfxmbqg5pi8"]
+[gd_scene load_steps=34 format=4 uid="uid://d0gfxmbqg5pi8"]
 
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/area_script.gd" id="1_hg4mj"]
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="2_uaan5"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/objects/key.tscn" id="10_l8d2y"]
 [ext_resource type="PackedScene" uid="uid://bmqdgv4kj688d" path="res://core/objects/key_door.tscn" id="11_1d6nl"]
 [ext_resource type="Script" path="res://wip_solids/solid_2.gd" id="11_7h33g"]
+[ext_resource type="Script" path="res://wip_solids/door_2.gd" id="13_l50s0"]
 
 [sub_resource type="Animation" id="Animation_sswm3"]
 resource_name = "new_animation"
@@ -763,6 +764,7 @@ offset_right = 1152.0
 offset_bottom = 576.0
 key_id = 0
 open_method = 0
+fade = true
 
 [node name="TileMap" parent="." instance=ExtResource("7_mg4fx")]
 z_index = 6
@@ -779,7 +781,6 @@ offset_right = 1272.0
 offset_bottom = 504.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-merge_sprite = null
 outline_color = Color(0, 0.37, 0.111, 1)
 fill_color = Color(0.66, 1, 0.6, 1)
 
@@ -791,7 +792,6 @@ offset_right = 1296.0
 offset_bottom = 552.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-merge_sprite = null
 outline_color = Color(0, 0.37, 0.111, 1)
 fill_color = Color(0.66, 1, 0.6, 1)
 
@@ -800,10 +800,9 @@ z_index = 5
 offset_left = 1296.0
 offset_top = 528.0
 offset_right = 1320.0
-offset_bottom = 600.0
+offset_bottom = 576.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-merge_sprite = null
 outline_color = Color(0, 0.37, 0.111, 1)
 fill_color = Color(0.66, 1, 0.6, 1)
 
@@ -815,7 +814,6 @@ offset_right = 1344.0
 offset_bottom = 552.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-merge_sprite = null
 outline_color = Color(0, 0.37, 0.111, 1)
 fill_color = Color(0.66, 1, 0.6, 1)
 
@@ -827,7 +825,6 @@ offset_right = 1368.0
 offset_bottom = 504.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-merge_sprite = null
 outline_color = Color(0, 0.37, 0.111, 1)
 fill_color = Color(0.66, 1, 0.6, 1)
 
@@ -839,7 +836,6 @@ offset_right = 1296.0
 offset_bottom = 504.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-merge_sprite = null
 outline_color = Color(0, 0.37, 0.111, 1)
 fill_color = Color(0.66, 1, 0.6, 1)
 
@@ -851,7 +847,6 @@ offset_right = 1344.0
 offset_bottom = 552.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-merge_sprite = null
 outline_color = Color(0, 0.37, 0.111, 1)
 fill_color = Color(0.66, 1, 0.6, 1)
 
@@ -863,7 +858,6 @@ offset_right = 1368.0
 offset_bottom = 504.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-merge_sprite = null
 outline_color = Color(0, 0.37, 0.111, 1)
 fill_color = Color(0.66, 1, 0.6, 1)
 
@@ -911,3 +905,187 @@ z_index = 16
 offset_right = 1536.0
 offset_bottom = 288.0
 color = Color(1, 1, 1, 0.0627451)
+
+[node name="Trees" type="Node2D" parent="."]
+z_index = 3
+
+[node name="Solid2" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 36.0
+offset_top = 276.0
+offset_right = 108.0
+offset_bottom = 372.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid3" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 72.0
+offset_top = 204.0
+offset_right = 204.0
+offset_bottom = 300.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid4" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 180.0
+offset_top = 288.0
+offset_right = 288.0
+offset_bottom = 348.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid5" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 240.0
+offset_top = 192.0
+offset_right = 360.0
+offset_bottom = 312.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid12" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 216.0
+offset_top = 108.0
+offset_right = 336.0
+offset_bottom = 228.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid6" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 300.0
+offset_top = 132.0
+offset_right = 408.0
+offset_bottom = 216.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid7" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 288.0
+offset_top = 612.0
+offset_right = 396.0
+offset_bottom = 696.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+
+[node name="Solid8" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 96.0
+offset_top = 660.0
+offset_right = 204.0
+offset_bottom = 744.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid13" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = -36.0
+offset_top = 516.0
+offset_right = 84.0
+offset_bottom = 624.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid14" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 24.0
+offset_top = 576.0
+offset_right = 156.0
+offset_bottom = 696.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid9" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 288.0
+offset_top = 888.0
+offset_right = 396.0
+offset_bottom = 972.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid10" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 360.0
+offset_top = 660.0
+offset_right = 516.0
+offset_bottom = 792.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Solid11" type="ColorRect" parent="Trees"]
+z_index = 5
+offset_left = 324.0
+offset_top = 744.0
+offset_right = 432.0
+offset_bottom = 840.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0, 1, 0, 1)
+has_collision = false
+
+[node name="Door13" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 120.0
+offset_bottom = 120.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("13_l50s0")
+open_time = 240
+global_opacity = 0.625
+fill_color = Color(1, 0, 0, 0.752941)
+metadata/_edit_use_anchors_ = false

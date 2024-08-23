@@ -1,76 +1,232 @@
 [gd_scene load_steps=3 format=3 uid="uid://d371tsjs0wils"]
 
 [ext_resource type="Script" path="res://wip_solids/solid_2.gd" id="1_lagxy"]
-[ext_resource type="Texture2D" uid="uid://bc88pxrwckowb" path="res://core/assets/icon.svg" id="2_fo308"]
+[ext_resource type="Script" path="res://wip_solids/door_2.gd" id="4_bavvt"]
 
 [node name="SolidTesting" type="Node2D"]
 
-[node name="Solid2" type="ColorRect" parent="."]
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D2"]
+offset_left = 96.0
+offset_top = 432.0
+offset_right = 480.0
+offset_bottom = 624.0
+metadata/_edit_lock_ = true
+
+[node name="Solid8" type="ColorRect" parent="."]
 z_index = 5
-offset_left = 288.0
-offset_right = 432.0
+offset_left = 432.0
+offset_top = 48.0
+offset_right = 528.0
 offset_bottom = 144.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_lagxy")
-global_opacity = 0.362
-outline_color = Color(0, 0.4, 0, 1)
-fill_color = Color(0, 1, 0, 1)
 
-[node name="Solid3" type="ColorRect" parent="."]
+[node name="Solid9" type="ColorRect" parent="."]
 z_index = 5
-offset_left = 480.0
-offset_top = 48.0
-offset_right = 624.0
+offset_left = 288.0
+offset_top = 192.0
+offset_right = 384.0
+offset_bottom = 288.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_lagxy")
+merge_sprite = true
+global_opacity = 0.425
+
+[node name="Door2" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 336.0
+offset_top = 96.0
+offset_right = 432.0
 offset_bottom = 192.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
-merge_sprite = true
-global_opacity = 0.277
-outline_color = Color(0, 0.4, 0, 1)
-fill_color = Color(0, 1, 0, 1)
-
-[node name="Solid5" type="ColorRect" parent="."]
-z_index = 5
-offset_left = 720.0
-offset_top = 192.0
-offset_right = 816.0
-offset_bottom = 288.0
-rotation = 0.785397
-color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
-global_opacity = 0.53
-outline_color = Color(1, 1, 1, 1)
+script = ExtResource("4_bavvt")
+open_time = 240
+global_opacity = 0.625
 fill_color = Color(1, 0, 0, 1)
 
-[node name="Solid4" type="ColorRect" parent="."]
-z_index = 5
-offset_left = 720.0
-offset_top = 144.0
-offset_right = 816.0
-offset_bottom = 240.0
-rotation = 0.785397
-color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
-outline_color = Color(1, 1, 1, 1)
-fill_color = Color(1, 0, 0, 1)
-
-[node name="Solid6" type="ColorRect" parent="."]
+[node name="Door3" type="ColorRect" parent="."]
 z_index = 5
 offset_left = 384.0
-offset_top = 240.0
+offset_top = 144.0
 offset_right = 480.0
-offset_bottom = 288.0
+offset_bottom = 240.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+global_opacity = 0.745
+fill_color = Color(1, 0, 0, 1)
+
+[node name="Door4" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 192.0
+offset_top = 48.0
+offset_right = 240.0
+offset_bottom = 240.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_method = 0
+open_time = 60
+merge_sprite = true
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
+
+[node name="Door5" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 144.0
+offset_top = 48.0
+offset_right = 192.0
+offset_bottom = 240.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_method = 1
+merge_sprite = true
+outline_color = Color(0.4, 0.2, 0, 1)
+fill_color = Color(1, 0.5, 0, 1)
+
+[node name="Door6" type="ColorRect" parent="."]
+
+[node name="Door7" type="ColorRect" parent="."]
+z_index = 5
+offset_top = 48.0
+offset_bottom = 48.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_time = 240
+merge_sprite = true
+outline_color = Color(0.2, 0.4, 0, 1)
+fill_color = Color(0.5, 1, 0, 1)
+
+[node name="Door8" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 96.0
+offset_top = 432.0
+offset_right = 192.0
+offset_bottom = 528.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_method = 1
+open_time = 480
+fade = true
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0.5, 1, 0, 1)
+metadata/_edit_use_anchors_ = false
+
+[node name="Door9" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 96.0
+offset_top = 528.0
+offset_right = 192.0
+offset_bottom = 624.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_method = 2
+open_time = 480
+fade = true
+fill_color = Color(0.5, 1, 0, 1)
+metadata/_edit_use_anchors_ = false
+
+[node name="Door10" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 192.0
+offset_top = 528.0
+offset_right = 288.0
+offset_bottom = 624.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_time = 480
+fade = true
+fill_color = Color(0.5, 1, 0, 1)
+metadata/_edit_use_anchors_ = false
+
+[node name="Door12" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 192.0
+offset_top = 432.0
+offset_right = 288.0
+offset_bottom = 528.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_method = 0
+open_time = 480
+fade = true
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0.5, 1, 0, 1)
+
+[node name="Door11" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 288.0
+offset_top = 432.0
+offset_right = 384.0
+offset_bottom = 528.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_method = 1
+open_time = 480
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0.5, 1, 0, 1)
+metadata/_edit_use_anchors_ = false
+
+[node name="Door13" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 288.0
+offset_top = 528.0
+offset_right = 384.0
+offset_bottom = 624.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_method = 2
+open_time = 480
+fill_color = Color(0.5, 1, 0, 1)
+metadata/_edit_use_anchors_ = false
+
+[node name="Door14" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 384.0
+offset_top = 528.0
+offset_right = 480.0
+offset_bottom = 624.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_time = 480
+fill_color = Color(0.5, 1, 0, 1)
+metadata/_edit_use_anchors_ = false
+
+[node name="Door15" type="ColorRect" parent="."]
+z_index = 5
+offset_left = 384.0
+offset_top = 432.0
+offset_right = 480.0
+offset_bottom = 528.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_bavvt")
+open_method = 0
+open_time = 480
+merge_sprite = true
+global_opacity = 0.5
+fill_color = Color(0.5, 1, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Solid3" type="ColorRect" parent="Node2D"]
+z_index = 5
+offset_left = 528.0
+offset_top = 384.0
+offset_right = 624.0
+offset_bottom = 480.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_lagxy")
-merge_sprite = true
-global_opacity = 0.234
-outline_color = Color(1, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
-
-[node name="CanvasGroup2" type="CanvasGroup" parent="CanvasGroup"]
-self_modulate = Color(1, 1, 1, 0.321569)
-
-[node name="Icon" type="Sprite2D" parent="CanvasGroup/CanvasGroup2"]
-position = Vector2(216, 264)
-texture = ExtResource("2_fo308")
+[node name="Solid2" type="ColorRect" parent="Node2D"]
+z_index = 5
+offset_left = 480.0
+offset_top = 336.0
+offset_right = 576.0
+offset_bottom = 432.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_lagxy")
+fill_color = Color(1, 0, 0, 1)

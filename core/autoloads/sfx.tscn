@@ -23,8 +23,12 @@ stream = ExtResource("4_phojv")
 [node name="Finish" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6rhof")
 
-[node name="Door" type="AudioStreamPlayer" parent="."]
+[node name="OpenDoor" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_k78t6")
+
+[node name="CloseDoor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_k78t6")
+volume_db = -10.0
 
 [node name="Key" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_wptrf")

@@ -34,7 +34,7 @@ func trigger_door() -> void:
 		open_timer.reset_and_play()
 		can_collide = false
 		is_triggered = true
-		SFX.play("Door")
+		SFX.play("OpenDoor")
 		
 		# Variables for animations
 		old_size = size
@@ -51,7 +51,7 @@ func untrigger_door() -> void:
 			modulate.a = 1
 		close_timer.reset_and_play()
 		
-		SFX.play("Door")
+		SFX.play("CloseDoor")
 
 func update_timers() -> void:
 	if is_triggered:
@@ -94,7 +94,6 @@ func handle_animations(timer: TickBasedTimer) -> void:
 			modulate.a = timer.get_progress_left()
 
 func open_timeout() -> void:
-	print("A")
 	modulate.a = 0
 
 # Override these functions to add extra behaviour.
