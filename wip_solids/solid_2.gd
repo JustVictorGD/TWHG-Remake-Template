@@ -2,6 +2,7 @@
 extends ColorRect
 class_name Solid2
 
+## Print certain debug information if there is any.
 @export var tracking: bool = false
 
 ## Allows global_opacity to be used to make the solid semi-transparent without
@@ -16,8 +17,9 @@ class_name Solid2
 @export var has_collision: bool = true
 
 @export_category("Outline width")
-@export_range(0, 65536) var outwards: int = 3
-@export_range(0, 65536) var inwards: int = 3
+@export_range(0, 65536) var outwards_width: int = 3
+@export_range(0, 65536) var inwards_width: int = 3
+var total_outline_width: int = outwards_width + inwards_width
 
 var canvas_group: CanvasGroup = CanvasGroup.new()
 var outline: ColorRect = ColorRect.new()
@@ -55,6 +57,7 @@ func _ready() -> void:
 
 
 func wall_update() -> void:
+	total_outline_width = outwards_width + inwards_width
 	canvas_group.self_modulate.a = global_opacity
 	outline.color = outline_color
 	fill.color = fill_color
@@ -68,11 +71,10 @@ func wall_update() -> void:
 
 
 func set_sprite_size(sprite: Rect2) -> void:
-	outline.position = sprite.position - Vector2(outwards, outwards)
-	outline.size = sprite.size + Vector2(outwards * 2, outwards * 2)
-	
-	fill.position = sprite.position + Vector2(inwards, inwards)
-	fill.size = sprite.size - Vector2(inwards * 2, inwards * 2)
+	outline.position = sprite.position - Vector2(outwards_width, outwards_width)
+	outline.size = sprite.size + Vector2(outwards_width, outwards_width) * 2
+	fill.position = outline.position + Vector2(total_outline_width, total_outline_width)
+	fill.size = outline.size - Vector2(total_outline_width, total_outline_width) * 2
 
 
 # Override this function to add more behavior.
