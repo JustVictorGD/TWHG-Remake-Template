@@ -1,13 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmqdgv4kj688d"]
+[gd_scene load_steps=2 format=3 uid="uid://ctie7hckoi342"]
 
-[ext_resource type="Script" path="res://core/scripts/object_scripts/key_door.gd" id="1_tb17j"]
+[ext_resource type="Script" path="res://core/scripts/object_scripts/key_door.gd" id="1_7ugfb"]
 
-[node name="KeyDoor" type="ColorRect" groups=["key_doors"]]
+[node name="KeyDoor2" type="ColorRect" groups=["key_doors"]]
 z_index = 5
-offset_left = -24.0
-offset_top = -24.0
-offset_right = 24.0
-offset_bottom = 24.0
-color = Color(0.6, 0.6, 0.6, 1)
-script = ExtResource("1_tb17j")
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_7ugfb")
+close_time = 120
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
+fill_color = Color(0.6, 0.6, 0.6, 1)

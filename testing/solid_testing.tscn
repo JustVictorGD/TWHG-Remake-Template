@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d371tsjs0wils"]
 
-[ext_resource type="Script" path="res://wip_solids/solid_2.gd" id="1_lagxy"]
-[ext_resource type="Script" path="res://wip_solids/door_2.gd" id="4_bavvt"]
+[ext_resource type="Script" path="res://core/scripts/classes/solid.gd" id="1_4eo0w"]
+[ext_resource type="Script" path="res://core/scripts/classes/door.gd" id="2_bcdbv"]
 
 [node name="SolidTesting" type="Node2D"]
 
@@ -18,7 +18,7 @@ offset_top = 48.0
 offset_right = 312.0
 offset_bottom = 144.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
+script = ExtResource("1_4eo0w")
 
 [node name="Solid9" type="ColorRect" parent="."]
 z_index = 5
@@ -27,7 +27,7 @@ offset_top = 192.0
 offset_right = 168.0
 offset_bottom = 288.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
+script = ExtResource("1_4eo0w")
 merge_sprite = true
 global_opacity = 0.265
 
@@ -38,10 +38,11 @@ offset_top = 96.0
 offset_right = 216.0
 offset_bottom = 192.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 3
 custom_method = Rect2(0.5, -0.5, 2, 0)
 open_time = 240
+close_time = 120
 global_opacity = 0.625
 fill_color = Color(1, 0, 0, 1)
 
@@ -52,9 +53,10 @@ offset_top = 144.0
 offset_right = 264.0
 offset_bottom = 240.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 3
 custom_method = Rect2(0.5, -0.5, 2, 0)
+close_time = 120
 global_opacity = 0.745
 fill_color = Color(1, 0, 0, 1)
 
@@ -65,10 +67,11 @@ z_index = 5
 offset_top = 48.0
 offset_bottom = 48.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 3
 custom_method = Rect2(0.5, -0.5, 2, 0)
 open_time = 240
+close_time = 120
 merge_sprite = true
 outline_color = Color(0.2, 0.4, 0, 1)
 fill_color = Color(0.5, 1, 0, 1)
@@ -80,10 +83,10 @@ offset_top = 288.0
 offset_right = 576.0
 offset_bottom = 384.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 1
 custom_method = Rect2(0.5, -0.5, 2, 0)
-open_time = 480
+close_time = 120
 fade = true
 merge_sprite = true
 global_opacity = 0.5
@@ -97,10 +100,10 @@ offset_top = 384.0
 offset_right = 576.0
 offset_bottom = 480.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 2
 custom_method = Rect2(0.5, -0.5, 2, 0)
-open_time = 480
+close_time = 120
 fade = true
 fill_color = Color(0.5, 1, 0, 1)
 metadata/_edit_use_anchors_ = false
@@ -112,10 +115,10 @@ offset_top = 384.0
 offset_right = 672.0
 offset_bottom = 480.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 3
 custom_method = Rect2(0.5, -0.5, 2, 0)
-open_time = 480
+close_time = 120
 fade = true
 fill_color = Color(0.5, 1, 0, 1)
 metadata/_edit_use_anchors_ = false
@@ -127,10 +130,10 @@ offset_top = 288.0
 offset_right = 768.0
 offset_bottom = 384.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 1
 custom_method = Rect2(0.5, -0.5, 2, 0)
-open_time = 480
+close_time = 120
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0.5, 1, 0, 1)
@@ -143,9 +146,9 @@ offset_top = 288.0
 offset_right = 672.0
 offset_bottom = 384.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 custom_method = Rect2(0.5, -0.5, 2, 0)
-open_time = 480
+close_time = 120
 fade = true
 merge_sprite = true
 global_opacity = 0.5
@@ -158,10 +161,10 @@ offset_top = 384.0
 offset_right = 768.0
 offset_bottom = 480.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 2
 custom_method = Rect2(0.5, -0.5, 2, 0)
-open_time = 480
+close_time = 120
 fill_color = Color(0.5, 1, 0, 1)
 metadata/_edit_use_anchors_ = false
 
@@ -172,10 +175,10 @@ offset_top = 384.0
 offset_right = 864.0
 offset_bottom = 480.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 3
 custom_method = Rect2(0.5, -0.5, 2, 0)
-open_time = 480
+close_time = 120
 fill_color = Color(0.5, 1, 0, 1)
 metadata/_edit_use_anchors_ = false
 
@@ -186,9 +189,9 @@ offset_top = 288.0
 offset_right = 864.0
 offset_bottom = 384.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 custom_method = Rect2(0.5, -0.5, 2, 0)
-open_time = 480
+close_time = 120
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0.5, 1, 0, 1)
@@ -200,10 +203,11 @@ offset_top = 288.0
 offset_right = 1272.0
 offset_bottom = 528.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 2
 custom_method = Rect2(0.5, -0.5, 2, 0)
 open_time = 480
+close_time = 120
 fill_color = Color(0.5, 1, 0, 1)
 metadata/_edit_use_anchors_ = false
 
@@ -214,9 +218,11 @@ offset_top = 216.0
 offset_right = 1104.0
 offset_bottom = 456.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 custom_method = Rect2(0.5, -0.5, 2, 0)
 open_time = 480
+close_time = 120
+tracking = true
 fill_color = Color(0.5, 1, 0, 1)
 metadata/_edit_use_anchors_ = false
 
@@ -227,24 +233,26 @@ offset_top = 336.0
 offset_right = 336.0
 offset_bottom = 432.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 4
 custom_method = Rect2(0.5, -1, 0, 4)
 open_time = 480
+close_time = 120
 fade = true
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
 fill_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="Door19" type="ColorRect" parent="."]
 z_index = 5
-offset_left = 432.0
-offset_top = 48.0
-offset_right = 528.0
-offset_bottom = 144.0
+offset_left = 216.0
+offset_top = 576.0
+offset_right = 312.0
+offset_bottom = 672.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 4
 open_time = 240
+close_time = 120
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
 fill_color = Color(0.6, 0.6, 0.6, 1)
 
@@ -255,24 +263,24 @@ offset_top = 48.0
 offset_right = 672.0
 offset_bottom = 144.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 4
-custom_method = Rect2(0, 0, 1, 1)
-open_time = 240
-fade = true
+custom_method = Rect2(0, 0.5, 1, 0)
+close_time = 120
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
 fill_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="Door20" type="ColorRect" parent="."]
 z_index = 5
-offset_left = 768.0
-offset_top = 96.0
-offset_right = 960.0
-offset_bottom = 192.0
+offset_left = 1008.0
+offset_top = 576.0
+offset_right = 1200.0
+offset_bottom = 672.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 4
 custom_method = Rect2(-0.5, 0.5, 2, 0)
+close_time = 120
 fade = true
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
 fill_color = Color(0.6, 0.6, 0.6, 1)
@@ -284,25 +292,26 @@ offset_top = 384.0
 offset_right = 192.0
 offset_bottom = 528.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 4
 custom_method = Rect2(0, 0, 0, 0)
 open_time = 240
+close_time = 120
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
 fill_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="Door25" type="ColorRect" parent="."]
 z_index = 5
 offset_left = 384.0
-offset_top = 600.0
+offset_top = 576.0
 offset_right = 960.0
-offset_bottom = 696.0
+offset_bottom = 672.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 4
-custom_method = Rect2(0, 0, 0, 0)
-open_time = 240
-fade = true
+custom_method = Rect2(-0.25, 0.5, 1.5, 0)
+open_time = 480
+close_time = 120
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
 fill_color = Color(0.6, 0.6, 0.6, 1)
 
@@ -317,7 +326,7 @@ offset_top = 192.0
 offset_right = 480.0
 offset_bottom = 504.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
+script = ExtResource("1_4eo0w")
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
 [node name="Solid6" type="ColorRect" parent="Node2D2"]
@@ -327,7 +336,7 @@ offset_top = 336.0
 offset_right = 48.0
 offset_bottom = 672.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
+script = ExtResource("1_4eo0w")
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
 [node name="Solid7" type="ColorRect" parent="Node2D2"]
@@ -337,7 +346,7 @@ offset_top = 336.0
 offset_right = 192.0
 offset_bottom = 384.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
+script = ExtResource("1_4eo0w")
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
 [node name="Solid3" type="ColorRect" parent="Node2D2"]
@@ -347,7 +356,7 @@ offset_top = 480.0
 offset_right = 888.0
 offset_bottom = 576.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
+script = ExtResource("1_4eo0w")
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
 [node name="Solid4" type="ColorRect" parent="Node2D2"]
@@ -357,7 +366,7 @@ offset_top = 240.0
 offset_right = 960.0
 offset_bottom = 576.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
+script = ExtResource("1_4eo0w")
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
 [node name="Solid5" type="ColorRect" parent="Node2D2"]
@@ -367,7 +376,27 @@ offset_top = 192.0
 offset_right = 960.0
 offset_bottom = 288.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("1_lagxy")
+script = ExtResource("1_4eo0w")
+fill_color = Color(0.701961, 0.701961, 1, 1)
+
+[node name="Solid8" type="ColorRect" parent="Node2D2"]
+z_index = 5
+offset_left = 480.0
+offset_top = 48.0
+offset_right = 576.0
+offset_bottom = 144.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_4eo0w")
+fill_color = Color(0.701961, 0.701961, 1, 1)
+
+[node name="Solid9" type="ColorRect" parent="Node2D2"]
+z_index = 5
+offset_left = 672.0
+offset_top = 48.0
+offset_right = 768.0
+offset_bottom = 144.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_4eo0w")
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
 [node name="Door22" type="ColorRect" parent="."]
@@ -377,10 +406,11 @@ offset_top = 72.0
 offset_right = 1176.0
 offset_bottom = 120.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 4
 custom_method = Rect2(1, 0, 0, 0)
 open_time = 240
+close_time = 120
 fill_color = Color(1, 0, 0, 1)
 
 [node name="Door23" type="ColorRect" parent="."]
@@ -390,8 +420,9 @@ offset_top = 72.0
 offset_right = 1176.0
 offset_bottom = 240.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("4_bavvt")
+script = ExtResource("2_bcdbv")
 open_method = 4
 custom_method = Rect2(1, 0, 0, 0)
 open_time = 240
+close_time = 120
 fill_color = Color(1, 0, 0, 1)

@@ -1,29 +1,23 @@
+@tool
 extends Door
 
+## Values above 0 define the requirement directly.
+## Values equal or less than 0 result in the requirement copying
+## the total amount of money and being offset by the set value.
 @export var money_requirement: int = 0
-@export var show_text: bool = true
 
-@onready var money_left_text: Label = $MoneyLeft
+func child_child_ready() -> void:
+	if not Engine.is_editor_hint():
+		GlobalSignal.coin_collected.connect(coin_collected)
+		GlobalSignal.player_respawn.connect(player_respawn)
+		
+		if money_requirement <= 0:
+			money_requirement += AreaManager.max_money
 
-var money_left: int
-
-func extra_update_timers() -> void:
-	money_left = money_requirement - AreaManager.money
-	if show_text:
-		money_left_text.text =  "$" + str(money_left)
-	else:
-		money_left_text.text = ""
-	
-	if money_left <= 0:
-		money_left_text.modulate.a = 0
-	else:
-		money_left_text.modulate.a = 1
-	
-	if money_requirement == 0:
-		money_requirement = AreaManager.max_money
-	
-	if not is_triggered and AreaManager.money >= money_requirement:
+func coin_collected() -> void:
+	if AreaManager.money >= money_requirement:
 		trigger_door()
-	
-	if is_triggered and AreaManager.money < money_requirement:
+
+func player_respawn() -> void:
+	if AreaManager.money < money_requirement:
 		untrigger_door()
