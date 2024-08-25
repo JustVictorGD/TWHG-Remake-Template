@@ -1,32 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3of87qe4oeld"]
+[gd_scene load_steps=2 format=3 uid="uid://emohoynp8joi"]
 
-[ext_resource type="Script" path="res://core/scripts/object_scripts/gold_door.gd" id="1_gea2g"]
-[ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/assets/Univers_Condensed_Regular.ttf" id="2_kwhqi"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_gb31h"]
-font = ExtResource("2_kwhqi")
-font_size = 50
-font_color = Color(0, 0, 0, 1)
+[ext_resource type="Script" path="res://core/scripts/object_scripts/gold_door.gd" id="1_6cnyy"]
 
 [node name="GoldDoor" type="ColorRect"]
 z_index = 5
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(1, 0.843137, 0, 1)
-script = ExtResource("1_gea2g")
-outline_color = Color(0.4, 0.341176, 0, 1)
-
-[node name="MoneyLeft" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "$???"
-label_settings = SubResource("LabelSettings_gb31h")
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 162
-clip_text = true
-text_overrun_behavior = 1
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_6cnyy")
+outline_color = Color(0.584314, 0.466667, 0, 1)
+fill_color = Color(1, 0.8, 0, 1)

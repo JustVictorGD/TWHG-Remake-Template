@@ -6,6 +6,8 @@ const PLAYER_SIZE: Vector2 = Vector2(42, 42)
 @export var velocity: Vector2i = Vector2i(0, 0)
 @export_range(0, 41) var sliding_sensitivity: int = 32
 
+@onready var sprite: CanvasGroup = $CanvasGroup
+
 enum subpixel {
 	MIN = 0, # Going below makes it loop to MAX.
 	DEFAULT = 500,
@@ -109,13 +111,15 @@ func update_timers() -> void:
 	death_animation.tick_and_timeout()
 	respawn_animation.tick_and_timeout()
 	
+	sprite.self_modulate.a = 1
+	
 	if death_animation.active:
-		$CanvasGroup.self_modulate.a = death_animation.get_progress_left()
+		sprite.self_modulate.a = death_animation.get_progress_left()
 	elif dead: # Short time after the animation ends
-		$CanvasGroup.self_modulate.a = 0
+		sprite.self_modulate.a = 0
 	
 	if respawn_animation.active == true:
-		$CanvasGroup.self_modulate.a = respawn_animation.get_progress()
+		sprite.self_modulate.a = respawn_animation.get_progress()
 
 
 func respawn() -> void:

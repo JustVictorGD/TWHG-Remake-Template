@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func extra_collect() -> void:
 	AreaManager.money += 1
+	GlobalSignal.coin_collected.emit()
 
 func extra_drop() -> void:
 	AreaManager.money -= 1

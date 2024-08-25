@@ -1,102 +1,140 @@
+@tool
 extends Solid
 class_name Door
 
-# ## Controls the starting state of the door. If this is false, the door will close when triggered, instead of opening.
-# @export var starts_closed: bool = true
+
 ## Controls the opening direction or style.
-@export var open_method: open_methods = open_methods.RIGHT
+@export var open_method: open_methods
+
+## Defines which shape the door will approach if open_method is set to CUSTOM.
+## In this context, the entire door goes from (0, 0) to (1, 1).
+@export var custom_method: Rect2 = Rect2(0.5, 0.5, 0, 0)
+
 ## Length of the opening animation in ticks (1/240 seconds).
 @export var open_time: int = 120
+
+## Length of the closing animation in ticks (1/240 seconds).
+@export var close_time: int = 60
+
 ## Choose whether or not the gate fades away as it opens.
 @export var fade: bool = false
 
-@onready var open_timer: TickBasedTimer = TickBasedTimer.new(open_time)
-@onready var close_timer: TickBasedTimer = TickBasedTimer.new(open_time)
-
-var is_triggered: bool = false
-
-var old_size: Vector2
-var old_position: Vector2
-var old_outline_size: int
-var old_outline_position: Vector2
-
 enum open_methods {
-	UP, LEFT, DOWN, RIGHT, SHRINK, NONE
+	UP, LEFT, DOWN, RIGHT, CUSTOM
 }
+# Internal values for the 4 open method presets.
+const UP_METHOD_TARGET: Rect2 = Rect2(0, 0, 1, 0)
+const LEFT_METHOD_TARGET: Rect2 = Rect2(0, 0, 0, 1)
+const DOWN_METHOD_TARGET: Rect2 = Rect2(0, 1, 1, 0)
+const RIGHT_METHOD_TARGET: Rect2 = Rect2(1, 0, 0, 1)
+
+# Adding @onready is required to make them react to the export variables.
+@onready var open_timer: TickBasedTimer = TickBasedTimer.new(open_time)
+@onready var close_timer: TickBasedTimer = TickBasedTimer.new(close_time)
+
+var triggered: bool = false
+
+
+#func _input(event: InputEvent) -> void:
+#	if event.is_action_pressed("up"):
+#		trigger_door()
+#	if event.is_action_pressed("down"):
+#		untrigger_door()
+
+
 
 func child_ready() -> void:
 	open_timer.timeout.connect(open_timeout)
+	close_timer.timeout.connect(close_timeout)
 	
 	close_timer.reversed = true
+	if not Engine.is_editor_hint():
+		GameLoop.update_timers.connect(update_timers)
+	
+	child_child_ready()
+
+# Override this function to add EVEN MORE behavior at creation.
+func child_child_ready() -> void:
+	pass
 
 func trigger_door() -> void:
-	if not is_triggered:
+	if not triggered:
+		close_timer.active = false
 		open_timer.reset_and_play()
-		can_collide = false
-		is_triggered = true
-		SFX.play("Door")
 		
-		# Variables for animations
-		old_size = size
-		old_position = position
-		old_outline_size = outline_size
-		old_outline_position = outline.position
+		SFX.play("OpenDoor")
+		triggered = true
 
 func untrigger_door() -> void:
-	if is_triggered:
-		can_collide = true
-		is_triggered = false
-		
-		if not fade:
-			modulate.a = 1
+	if triggered:
+		open_timer.active = false
 		close_timer.reset_and_play()
 		
-		SFX.play("Door")
+		SFX.play("CloseDoor")
+		triggered = false
 
-func update_timers() -> void:
-	if is_triggered:
-		handle_animations(open_timer)
-	else:
-		handle_animations(close_timer)
-	
-	extra_update_timers()
-
-func handle_animations(timer: TickBasedTimer) -> void:
-	if timer.active:
-		timer.tick_and_timeout()
-		
-		# AMAZING CODE!
-		if open_method == open_methods.UP:
-			size.y = old_size.y * ease(timer.get_progress_left(), -2) # Negative means IN-OUT easing
-			
-			
-		elif open_method == open_methods.LEFT:
-			size.x = old_size.x * ease(timer.get_progress_left(), -2) 
-			
-		elif open_method == open_methods.DOWN:
-			size.y = old_size.y * ease(timer.get_progress_left(), -2)
-			rotation = PI
-			
-		elif open_method == open_methods.RIGHT:
-			size.x = old_size.x * ease(timer.get_progress_left(), -2)
-			rotation = PI
-			
-		elif open_method == open_methods.SHRINK:
-			@warning_ignore("narrowing_conversion")
-			size = old_size * ease(timer.get_progress_left(), -2)
-			position = old_position + old_size * ease(timer.get_progress(), -2) / 2
-		
-		elif open_method == open_methods.NONE:
-			if not fade:
-				modulate.a = 0
-		
-		if fade:
-			modulate.a = timer.get_progress_left()
 
 func open_timeout() -> void:
-	print("A")
-	modulate.a = 0
+	close_timer.active = false
+	set_sprite_size(Rect2(Vector2.ZERO, Vector2(size.x, -6)))
 
-# Override these functions to add extra behaviour.
-func extra_update_timers() -> void:
-	pass
+func close_timeout() -> void:
+	open_timer.active = false
+
+
+func update_timers() -> void:
+	open_timer.tick_and_timeout()
+	close_timer.tick_and_timeout()
+	
+	handle_animation(open_timer)
+	handle_animation(close_timer)
+
+
+
+func sine_in(t: float) -> float:
+	return 1.0 - cos((t * PI) / 2.0)
+
+func sine_out(t: float) -> float:
+	return sin((t * PI) / 2.0)
+
+func sine_in_out(t: float) -> float:
+	return -0.5 * (cos(PI * t) - 1)
+
+
+
+func handle_animation(timer: TickBasedTimer) -> void:
+	if timer.active:
+		# Shortcut to make written code shorter.
+		var outwards: Vector2 = Vector2(outwards_width, outwards_width)
+		var original_rect: Rect2 = Rect2(-outwards, size + outwards * 2)
+		var target_rect: Rect2
+		
+		match open_method:
+			open_methods.UP:
+				target_rect = UP_METHOD_TARGET
+			open_methods.LEFT:
+				target_rect = LEFT_METHOD_TARGET
+			open_methods.DOWN:
+				target_rect = DOWN_METHOD_TARGET
+			open_methods.RIGHT:
+				target_rect = RIGHT_METHOD_TARGET
+			open_methods.CUSTOM:
+				target_rect = custom_method
+		
+		target_rect.position *= original_rect.size
+		target_rect.size *= original_rect.size
+		
+		target_rect.position -= outwards
+		
+		var interpolated_rect: Rect2 = Rect2(
+			lerp(original_rect.position, target_rect.position, sine_in(timer.get_progress())),
+			lerp(original_rect.size, target_rect.size, sine_in(timer.get_progress()))
+		)
+		
+		if fade:
+			set_merge_sprite(true)
+			canvas_group.self_modulate.a = global_opacity * sine_in(timer.get_progress_left())
+		
+		# I couldn't figure out how to make the animation perfect with
+		# the annoying outline offsets, so I had to make a new function.
+		set_outline_size(interpolated_rect)
