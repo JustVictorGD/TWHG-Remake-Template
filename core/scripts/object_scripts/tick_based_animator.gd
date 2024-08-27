@@ -1,4 +1,5 @@
 extends AnimationPlayer
+class_name TickBasedAnimator
 
 func _ready() -> void:
 	GameLoop.animation_update.connect(animation_update)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=4 uid="uid://d0gfxmbqg5pi8"]
+[gd_scene load_steps=41 format=4 uid="uid://d0gfxmbqg5pi8"]
 
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/area_script.gd" id="1_hg4mj"]
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="2_uaan5"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/checkpoint.tscn" id="3_8visq"]
+[ext_resource type="Script" path="res://core/scripts/misc_scripts/animation_player.gd" id="4_ujssf"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/coin.tscn" id="5_h7jdv"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/blue_enemy.tscn" id="6_i7507"]
 [ext_resource type="Script" path="res://core/scripts/object_scripts/tick_based_animator.gd" id="6_jic0f"]
@@ -267,33 +268,6 @@ _data = {
 "new_animation": SubResource("Animation_rtw32")
 }
 
-[sub_resource type="Animation" id="Animation_bj3x1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_6ji3t"]
 resource_name = "new_animation"
 length = 2.0
@@ -322,6 +296,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.707, 0.707), Vector2(1, 1), Vector2(0.707, 0.707), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bj3x1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7e6"]
@@ -368,25 +369,7 @@ _data = {
 "new_animation": SubResource("Animation_dt221")
 }
 
-[sub_resource type="Animation" id="Animation_trcub"]
-resource_name = "new_animation"
-length = 2.0
-loop_mode = 2
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_ubdws"]
+[sub_resource type="Animation" id="Animation_k7053"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -401,10 +384,27 @@ tracks/0/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxq0a"]
+[sub_resource type="Animation" id="Animation_ida6d"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqgq7"]
 _data = {
-"RESET": SubResource("Animation_ubdws"),
-"new_animation": SubResource("Animation_trcub")
+"RESET": SubResource("Animation_k7053"),
+"new_animation": SubResource("Animation_ida6d")
 }
 
 [node name="1-B2" type="Node2D"]
@@ -865,46 +865,14 @@ position = Vector2(1200, 480)
 key_id = 2
 tracking = true
 
-[node name="Doors" type="Node2D" parent="."]
-
-[node name="KeyDoors" type="Node2D" parent="Doors"]
-
-[node name="KeyDoor" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
-offset_left = 1056.0
-offset_top = 384.0
-offset_right = 1152.0
-offset_bottom = 576.0
-key_id = 2
-
-[node name="KeyDoor2" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
-offset_left = 720.0
-offset_top = 192.0
-offset_right = 816.0
-offset_bottom = 288.0
-key_id = 1
-open_method = 4
-
-[node name="KeyDoor3" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
-z_index = 6
-offset_left = 720.0
-offset_top = 672.0
-offset_right = 816.0
-offset_bottom = 768.0
-key_id = 0
-open_method = 4
-custom_method = Rect2(0.5, -0.5, 0, 2)
-fade = true
-
-[node name="GoldDoors" type="Node2D" parent="Doors"]
-
-[node name="GoldDoor" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor" parent="." instance=ExtResource("12_1mhss")]
 offset_left = 1224.0
 offset_top = 240.0
 offset_right = 1368.0
 offset_bottom = 336.0
 open_method = 1
 
-[node name="GoldDoor2" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor2" parent="." instance=ExtResource("12_1mhss")]
 offset_left = 672.0
 offset_top = 768.0
 offset_right = 768.0
@@ -913,7 +881,7 @@ money_requirement = 1
 open_method = 4
 custom_method = Rect2(0, 0, 0, 0)
 
-[node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor3" parent="." instance=ExtResource("12_1mhss")]
 offset_left = 768.0
 offset_top = 768.0
 offset_right = 864.0
@@ -922,7 +890,7 @@ money_requirement = 1
 open_method = 4
 custom_method = Rect2(1, 0, 0, 0)
 
-[node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor4" parent="." instance=ExtResource("12_1mhss")]
 offset_left = 672.0
 offset_top = 864.0
 offset_right = 768.0
@@ -931,7 +899,7 @@ money_requirement = 1
 open_method = 4
 custom_method = Rect2(0, 1, 0, 0)
 
-[node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor5" parent="." instance=ExtResource("12_1mhss")]
 offset_left = 768.0
 offset_top = 864.0
 offset_right = 864.0
@@ -939,6 +907,33 @@ offset_bottom = 960.0
 money_requirement = 1
 open_method = 4
 custom_method = Rect2(1, 1, 0, 0)
+
+[node name="KeyDoors" type="Node2D" parent="."]
+
+[node name="KeyDoor" parent="KeyDoors" instance=ExtResource("10_x5t53")]
+offset_left = 1056.0
+offset_top = 384.0
+offset_right = 1152.0
+offset_bottom = 576.0
+key_id = 2
+
+[node name="KeyDoor2" parent="KeyDoors" instance=ExtResource("10_x5t53")]
+offset_left = 720.0
+offset_top = 192.0
+offset_right = 816.0
+offset_bottom = 288.0
+key_id = 1
+open_method = 4
+
+[node name="KeyDoor3" parent="KeyDoors" instance=ExtResource("10_x5t53")]
+offset_left = 720.0
+offset_top = 672.0
+offset_right = 816.0
+offset_bottom = 768.0
+key_id = 0
+open_method = 4
+custom_method = Rect2(0.5, -0.5, 0, 2)
+fade = true
 
 [node name="TileMap" parent="." instance=ExtResource("7_mg4fx")]
 z_index = 6
@@ -1431,12 +1426,12 @@ has_collision = false
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="TickBasedAnimator" type="AnimationPlayer" parent="Glow"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
 libraries = {
-"": SubResource("AnimationLibrary_rxq0a")
+"": SubResource("AnimationLibrary_dqgq7")
 }
 autoplay = "new_animation"
-script = ExtResource("6_jic0f")
+script = ExtResource("4_ujssf")
 
 [node name="ColorRect" type="ColorRect" parent="Glow"]
 z_index = 16

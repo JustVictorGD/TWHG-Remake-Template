@@ -3,8 +3,8 @@ extends Node
 @export var coordinates: Vector2i
 @export var bottom_text: String = ""
 
-var player : Node = preload("res://core/objects/player.tscn").instantiate()
-var interface : Node = preload("res://core/objects/interface.tscn").instantiate()
+var player : Node = preload("res://core/game_objects/player.tscn").instantiate()
+var interface : Node = preload("res://core/game_objects/interface.tscn").instantiate()
 
 func _ready() -> void:
 	var start_checkpoints: PackedStringArray = []

@@ -36,7 +36,6 @@ func _ready() -> void:
 	outline.name = "Outline"
 	fill.name = "Fill"
 	
-	self.z_index = 5
 	color = Color.TRANSPARENT
 	
 	for child: Node in get_children():

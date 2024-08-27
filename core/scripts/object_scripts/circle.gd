@@ -28,9 +28,9 @@ func _ready() -> void:
 	# Loads the chosen object
 	var object: PackedScene
 	if object_type == obj.ENEMIES:
-		object = preload("res://core/objects/blue_enemy.tscn")
+		object = preload("res://core/game_objects/blue_enemy.tscn")
 	elif object_type == obj.COINS:
-		object = preload("res://core/objects/coin.tscn")
+		object = preload("res://core/game_objects/coin.tscn")
 	
 	# Creates the objects
 	for i: int in range(object_count):
