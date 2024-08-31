@@ -368,6 +368,21 @@ _data = {
 "new_animation": SubResource("Animation_dt221")
 }
 
+[sub_resource type="Animation" id="Animation_ubdws"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_trcub"]
 resource_name = "new_animation"
 length = 2.0
@@ -384,21 +399,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(2, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_ubdws"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rxq0a"]
@@ -611,6 +611,7 @@ autoplay = "new_animation"
 script = ExtResource("6_jic0f")
 
 [node name="BlueEnemy" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+modulate = Color(1, 1, 1, 0.498039)
 position = Vector2(504, 300)
 
 [node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
@@ -893,6 +894,7 @@ offset_bottom = 768.0
 key_id = 0
 open_method = 4
 custom_method = Rect2(0.5, -0.5, 0, 2)
+open_time = 1200
 fade = true
 
 [node name="GoldDoors" type="Node2D" parent="Doors"]
@@ -1473,3 +1475,11 @@ z_index = 16
 offset_right = 1536.0
 offset_bottom = 288.0
 color = Color(1, 1, 1, 0.0627451)
+
+[node name="Solid" type="ColorRect" parent="."]
+offset_left = 528.0
+offset_top = 384.0
+offset_right = 576.0
+offset_bottom = 432.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
