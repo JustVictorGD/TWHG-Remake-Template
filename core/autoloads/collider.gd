@@ -19,10 +19,6 @@ var next_coin_id: int = -1
 var next_key_id: int = -1
 
 
-func foo(vec2i: Vector2i) -> void:
-	print(vec2i)
-
-
 # These functions return a unique ID for the given object type,
 # and create more space to store their information in corresponding arrays.
 func register_enemy_id(node: Node) -> int:

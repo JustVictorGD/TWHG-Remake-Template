@@ -4,7 +4,7 @@ extends Node2D
 
 var radius: float = 7
 var id: int
-@onready var original_opacity = modulate.a
+@onready var original_opacity: float = modulate.a
 
 func _ready() -> void:
 	GameLoop.movement_update.connect(movement_update)

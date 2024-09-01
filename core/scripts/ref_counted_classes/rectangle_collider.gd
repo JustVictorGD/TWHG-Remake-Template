@@ -31,6 +31,7 @@ func intersects(shape: AbstractCollider) -> bool:
 			
 			return relative_point.distance_squared_to(nearest_point) < shape.radius ** 2
 		
+		
 		if shape is PointCollider:
 			var relative_point: Vector2 = shape.position - position
 			relative_point -= pivot_offset
@@ -42,18 +43,13 @@ func intersects(shape: AbstractCollider) -> bool:
 			
 			return relative_point > Vector2.ZERO and relative_point < size
 		
-		# GOD NO
+		
 		if shape is RectangleCollider:
-			# No rotation
 			if is_zero_approx(rotation) and is_zero_approx(shape.rotation):
 				return Rect2(position, size).intersects(Rect2(shape.position, shape.size))
 			
-			# ELSE.....
 			else:
-				var own_vertices: PackedVector2Array = get_vertices(Rect2(position, size), rotation, pivot_offset)
-				var other_vertices: PackedVector2Array = get_vertices(Rect2(shape.position, shape.size), shape.rotation, shape.pivot_offset)
-				
-				are_rectangles_colliding(own_vertices, other_vertices)
+				return are_rectangles_colliding(self, shape)
 	
 	return false
 
@@ -62,7 +58,9 @@ func intersects(shape: AbstractCollider) -> bool:
 
 
 # Separating Axis Theorem here we go.
-func are_rectangles_colliding(rect_1_vertices: Array, rect_2_vertices: Array) -> bool:
+func are_rectangles_colliding(rect_1: RectangleCollider, rect_2: RectangleCollider) -> bool:
+	var rect_1_vertices: PackedVector2Array = get_vertices(rect_1)
+	var rect_2_vertices: PackedVector2Array = get_vertices(rect_2)
 	var axes: PackedVector2Array = get_separating_axes(rect_1_vertices, rect_2_vertices)
 	
 	for axis: Vector2 in axes:
@@ -74,10 +72,16 @@ func are_rectangles_colliding(rect_1_vertices: Array, rect_2_vertices: Array) ->
 	
 	return true
 
+
+
 func overlap(range_1: Vector2, range_2: Vector2) -> bool:
 	return not (range_1.y < range_2.x or range_2.y < range_1.x)
 
-func get_vertices(rect: Rect2, rotation: float, pivot_offset: Vector2) -> PackedVector2Array:
+
+
+func get_vertices(shape: RectangleCollider) -> PackedVector2Array:
+	var rect: Rect2 = Rect2(shape.position, shape.size)
+	
 	var vertices: PackedVector2Array = [
 		Vector2(0, 0),
 		Vector2(rect.size.x, 0),
@@ -86,12 +90,14 @@ func get_vertices(rect: Rect2, rotation: float, pivot_offset: Vector2) -> Packed
 	]
 	
 	for i: int in range(vertices.size()):
-		vertices[i] -= pivot_offset
-		vertices[i] = vertices[i].rotated(rotation)
-		vertices[i] += pivot_offset
+		vertices[i] -= shape.pivot_offset
+		vertices[i] = vertices[i].rotated(shape.rotation)
+		vertices[i] += shape.pivot_offset
 		vertices[i] += rect.position
 	
 	return vertices
+
+
 
 func get_separating_axes(rect_1_vertices: PackedVector2Array, rect_2_vertices: PackedVector2Array) -> PackedVector2Array:
 	var rectangles: Array[Array] = [rect_1_vertices, rect_2_vertices]
@@ -104,6 +110,8 @@ func get_separating_axes(rect_1_vertices: PackedVector2Array, rect_2_vertices: P
 			axes.append(normal.normalized())
 	
 	return axes
+
+
 
 func project_rectangle(vertices: PackedVector2Array, axis: Vector2) -> Vector2:
 	var min_proj: float = INF
