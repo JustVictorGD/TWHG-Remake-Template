@@ -19,11 +19,7 @@ enum subpixel {
 var hitbox: Rect2 = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
 var test_box: Rect2 = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
-# Special states
-var invincible: bool = false # Death can't trigger
 var dead: bool = false # Invincible but disables movement and is temporary
-var ghost: bool = false # Ignore walls
-var flying: bool = false # Ignore terrains
 
 # Timers, used for fading the player in and out.
 var respawn_timer: TickBasedTimer = TickBasedTimer.new(120)
@@ -55,18 +51,21 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
+	var speed_hack_multiplier : int = int(AreaManager.speed_hacking) + 1
 	if not dead:
 		movement_direction.x = (int(Input.is_action_pressed("right")) \
 				- int(Input.is_action_pressed("left")))
 		movement_direction.y = (int(Input.is_action_pressed("down")) \
 				- int(Input.is_action_pressed("up")))
 		
-		move(movement_direction * speed)
+		move(movement_direction * speed * speed_hack_multiplier)
+		
 		move(velocity)
 	
-	move(Collider.corner_slide(hitbox, Collider.walls, \
-			sliding_sensitivity, velocity, movement_direction) * speed)
-	move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
+	if not AreaManager.ghost:
+		move(Collider.corner_slide(hitbox, Collider.walls, \
+				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
+		move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
 
 
 func collision_update() -> void:
@@ -84,7 +83,8 @@ func collision_update() -> void:
 	
 	for enemy: Node2D in get_tree().get_nodes_in_group("enemies"):
 		if Collider.rect_and_circle_overlap(hitbox, enemy.global_position, enemy.radius) and not dead:
-			enemy_death()
+			if not AreaManager.invincible:
+				enemy_death()
 	
 	for key: Node2D in get_tree().get_nodes_in_group("keys"):
 		if Collider.rect_and_circle_overlap(hitbox, key.global_position, key.radius) and not dead:
@@ -122,6 +122,18 @@ func update_timers() -> void:
 		sprite.self_modulate.a = respawn_animation.get_progress()
 
 
+# Using normal frames and not the tick system
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("speed_hack"):
+		toggle_speed_hack()
+		
+	if Input.is_action_just_pressed("invincibility"):
+		toggle_invincibility()
+		
+	if Input.is_action_just_pressed("ghost"):
+		toggle_ghost()
+
+
 func respawn() -> void:
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == last_checkpoint_id:
@@ -134,7 +146,7 @@ func respawn() -> void:
 
 
 func finish() -> void:
-	invincible = true
+	AreaManager.invincible = true
 
 
 func print_position() -> void:
@@ -187,3 +199,22 @@ func move_to(given_position: Vector2i) -> void:
 	position = round(position)
 	hitbox = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
 	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
+
+func toggle_speed_hack() -> void:
+	if AreaManager.speed_hacking:
+		AreaManager.speed_hacking = false
+	else:
+		AreaManager.speed_hacking = true
+
+func toggle_invincibility() -> void:
+	
+	if AreaManager.invincible:
+		AreaManager.invincible = false
+	else:
+		AreaManager.invincible = true
+
+func toggle_ghost() -> void:
+	if AreaManager.ghost:
+		AreaManager.ghost = false
+	else:
+		AreaManager.ghost = true

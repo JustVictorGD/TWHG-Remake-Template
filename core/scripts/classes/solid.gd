@@ -21,15 +21,19 @@ class_name Solid
 @export_range(0, 65536) var inwards_width: int = 3
 var total_outline_width: int = outwards_width + inwards_width
 
+# Components of the solid
 var canvas_group: CanvasGroup = CanvasGroup.new()
 var outline: ColorRect = ColorRect.new()
 var fill: ColorRect = ColorRect.new()
 
+# If false, doesn't call the set_sprite_size() function for better performance.
+var dynamic_size: bool = false
+
+# Misc
 var sprite_is_merged: bool = false
 var hitbox_index: int
+@onready var original_opacity: float = canvas_group.modulate.a
 
-## If false, doesn't call the set_sprite_size() function for better performance.
-var dynamic_size: bool = false
 
 func _ready() -> void:
 	canvas_group.name = "CanvasGroup"
@@ -64,8 +68,22 @@ func wall_update() -> void:
 	if dynamic_size or Engine.is_editor_hint():
 		set_sprite_size(Rect2(Vector2.ZERO, size))
 	
-	# Only play in game, not in editor.
 	if not Engine.is_editor_hint() and has_collision:
+	# Only play in game, not in editor.
+		if merge_sprite:
+			canvas_group.self_modulate.a = global_opacity
+		else:
+			fill.self_modulate.a = global_opacity
+			outline.self_modulate.a = global_opacity
+			
+		if has_collision and AreaManager.ghost:
+			if merge_sprite:
+				canvas_group.self_modulate.a = global_opacity * 0.5
+			else:
+				fill.self_modulate.a = global_opacity * 0.5
+				outline.self_modulate.a = global_opacity * 0.5
+		
+		
 		Collider.walls[hitbox_index] = Rect2(outline.position + self.position, outline.size)
 
 
@@ -114,8 +132,8 @@ func set_merge_sprite(suggest_merge: bool) -> void:
 		fill.z_index = 1
 		sprite_is_merged = false
 
-# Only happens in the Godot editor, not in game.
 func _process(delta: float) -> void:
+# Only happens in the Godot editor, not in game.
 	if Engine.is_editor_hint():
 		wall_update()
 		set_merge_sprite(merge_sprite)

@@ -611,6 +611,7 @@ autoplay = "new_animation"
 script = ExtResource("6_jic0f")
 
 [node name="BlueEnemy" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+modulate = Color(1, 1, 1, 0.498039)
 position = Vector2(504, 300)
 
 [node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
@@ -893,6 +894,7 @@ offset_bottom = 768.0
 key_id = 0
 open_method = 4
 custom_method = Rect2(0.5, -0.5, 0, 2)
+open_time = 1200
 fade = true
 
 [node name="GoldDoors" type="Node2D" parent="Doors"]
@@ -1473,3 +1475,11 @@ z_index = 16
 offset_right = 1536.0
 offset_bottom = 288.0
 color = Color(1, 1, 1, 0.0627451)
+
+[node name="Solid" type="ColorRect" parent="."]
+offset_left = 528.0
+offset_top = 384.0
+offset_right = 576.0
+offset_bottom = 432.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("11_7h33g")
