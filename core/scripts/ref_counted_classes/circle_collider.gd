@@ -11,17 +11,25 @@ func _init(_position: Vector2 = Vector2.ZERO, _radius: float = 0) -> void:
 func intersects(shape: AbstractCollider) -> bool:
 	if enabled and shape.enabled:
 		if shape is CircleCollider:
-			if position.distance_squared_to(shape.position) < (radius + shape.radius) ** 2:
-				return true
+			return position.distance_squared_to(shape.position) < (radius + shape.radius) ** 2
 		
 		elif shape is PointCollider:
-			if position.distance_squared_to(shape.position) <= radius ** 2:
-				return true
+			return position.distance_squared_to(shape.position) < radius ** 2
 		
-		# STILL NOT IMPLEMENTED.
 		elif shape is RectangleCollider:
+			var relative_point: Vector2 = position - shape.position
+			relative_point -= shape.pivot_offset
+			
 			if not is_zero_approx(shape.rotation):
-				position = position.rotated(-shape.rotation)
+				relative_point = relative_point.rotated(-shape.rotation)
+			
+			relative_point += shape.pivot_offset
+			
+			var nearest_point: Vector2 = Vector2(
+				clamp(relative_point.x, 0, shape.size.x),
+				clamp(relative_point.y, 0, shape.size.y))
+			
+			return relative_point.distance_squared_to(nearest_point) < radius ** 2
 		
 		else:
 			push_warning("You're attempting to check intersection with an unrecognized collider.")
