@@ -1,7 +1,8 @@
 extends Collectable
 
 @export var key_id: int = -1
-var radius: int = 13
+
+var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 13)
 var id: int # Not to be confused with the key_id,
 # this one is only for collision and collectable saving
 
@@ -25,3 +26,6 @@ func extra_drop() -> void:
 
 func checkpoint_touched(_id: int) -> void:
 	save()
+
+func movement_update() -> void:
+	hitbox.position = self.global_position

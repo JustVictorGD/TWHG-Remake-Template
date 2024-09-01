@@ -876,7 +876,7 @@ offset_top = 384.0
 offset_right = 1152.0
 offset_bottom = 576.0
 key_id = 2
-open_method = 1.0
+open_method = 1
 
 [node name="KeyDoor2" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
 offset_left = 720.0
@@ -884,7 +884,7 @@ offset_top = 192.0
 offset_right = 816.0
 offset_bottom = 288.0
 key_id = 1
-open_method = 1.0
+open_method = 1
 
 [node name="KeyDoor3" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
 z_index = 6
@@ -893,7 +893,7 @@ offset_top = 672.0
 offset_right = 816.0
 offset_bottom = 768.0
 key_id = 0
-open_method = 1.0
+open_method = 1
 custom_method = Rect2(0.5, -0.5, 0, 2)
 open_time = 1200
 fade = true
@@ -905,7 +905,7 @@ offset_left = 1224.0
 offset_top = 240.0
 offset_right = 1368.0
 offset_bottom = 336.0
-open_method = 1.0
+open_method = 1
 
 [node name="GoldDoor2" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
 offset_left = 672.0
@@ -913,7 +913,7 @@ offset_top = 768.0
 offset_right = 768.0
 offset_bottom = 864.0
 money_requirement = 1
-open_method = 1.0
+open_method = 1
 custom_method = Rect2(0, 0, 0, 0)
 
 [node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
@@ -922,7 +922,7 @@ offset_top = 768.0
 offset_right = 864.0
 offset_bottom = 864.0
 money_requirement = 1
-open_method = 1.0
+open_method = 1
 custom_method = Rect2(1, 0, 0, 0)
 
 [node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
@@ -931,7 +931,7 @@ offset_top = 864.0
 offset_right = 768.0
 offset_bottom = 960.0
 money_requirement = 1
-open_method = 1.0
+open_method = 1
 custom_method = Rect2(0, 1, 0, 0)
 
 [node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
@@ -940,7 +940,7 @@ offset_top = 864.0
 offset_right = 864.0
 offset_bottom = 960.0
 money_requirement = 1
-open_method = 1.0
+open_method = 1
 custom_method = Rect2(1, 1, 0, 0)
 
 [node name="TileMap" parent="." instance=ExtResource("7_mg4fx")]

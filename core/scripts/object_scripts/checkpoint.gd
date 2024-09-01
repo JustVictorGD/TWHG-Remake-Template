@@ -23,6 +23,8 @@ const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 
 var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
 var id: int
+
+var hitbox_2: RectangleCollider = RectangleCollider.new()
 var hitbox: Rect2
 
 func _ready() -> void:
@@ -37,6 +39,11 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
+	hitbox_2.position = self.global_position
+	hitbox_2.size = self.size
+	hitbox_2.rotation = self.rotation
+	hitbox_2.pivot_offset = self.pivot_offset
+	
 	hitbox = Rect2(round(global_position), round(size))
 
 

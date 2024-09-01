@@ -1,6 +1,6 @@
 extends Collectable
 
-var radius: int = 13
+var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 13)
 
 var id: int
 
@@ -20,3 +20,6 @@ func extra_drop() -> void:
 
 func checkpoint_touched(_id: int) -> void:
 	save()
+
+func movement_update() -> void:
+	hitbox.position = self.global_position

@@ -76,15 +76,17 @@ func rect_and_circle_overlap(rect: Rect2, circle_pos: Vector2, circle_radius: fl
 
 
 
-func push_out_of_walls(hitbox: Rect2, subpixels: Vector2i, given_walls: Array[Rect2]) -> Vector2:
-	var proposed_position: Vector2i = get_center(hitbox) * 1000
+func push_out_of_walls(hitbox: RectangleCollider, subpixels: Vector2i, given_walls: Array[Rect2]) -> Vector2:
+	var usable_hitbox: Rect2 = Rect2(hitbox.position, hitbox.size)
+	
+	var proposed_position: Vector2i = get_center(usable_hitbox) * 1000
 	var half_size: Vector2 = hitbox.size / 2
 	
 	var intersections: Array[Rect2] = []
 	for wall: Rect2 in given_walls:
-		if hitbox.intersects(wall):
-			var intersection: Rect2 = hitbox.intersection(wall)
-			intersection.position -= get_center(hitbox)
+		if usable_hitbox.intersects(wall):
+			var intersection: Rect2 = usable_hitbox.intersection(wall)
+			intersection.position -= get_center(usable_hitbox)
 			intersections.append(intersection)
 	
 	var edge: Vector2i = Vector2i.ZERO

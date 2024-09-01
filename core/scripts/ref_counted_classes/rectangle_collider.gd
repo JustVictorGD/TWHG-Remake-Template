@@ -59,8 +59,8 @@ func intersects(shape: AbstractCollider) -> bool:
 
 # Separating Axis Theorem here we go.
 func are_rectangles_colliding(rect_1: RectangleCollider, rect_2: RectangleCollider) -> bool:
-	var rect_1_vertices: PackedVector2Array = get_vertices(rect_1)
-	var rect_2_vertices: PackedVector2Array = get_vertices(rect_2)
+	var rect_1_vertices: PackedVector2Array = get_vertices()
+	var rect_2_vertices: PackedVector2Array = rect_2.get_vertices()
 	var axes: PackedVector2Array = get_separating_axes(rect_1_vertices, rect_2_vertices)
 	
 	for axis: Vector2 in axes:
@@ -79,8 +79,8 @@ func overlap(range_1: Vector2, range_2: Vector2) -> bool:
 
 
 
-func get_vertices(shape: RectangleCollider) -> PackedVector2Array:
-	var rect: Rect2 = Rect2(shape.position, shape.size)
+func get_vertices() -> PackedVector2Array:
+	var rect: Rect2 = Rect2(position, size)
 	
 	var vertices: PackedVector2Array = [
 		Vector2(0, 0),
@@ -90,13 +90,18 @@ func get_vertices(shape: RectangleCollider) -> PackedVector2Array:
 	]
 	
 	for i: int in range(vertices.size()):
-		vertices[i] -= shape.pivot_offset
-		vertices[i] = vertices[i].rotated(shape.rotation)
-		vertices[i] += shape.pivot_offset
+		vertices[i] -= pivot_offset
+		vertices[i] = vertices[i].rotated(rotation)
+		vertices[i] += pivot_offset
 		vertices[i] += rect.position
 	
 	return vertices
 
+
+
+func get_center() -> Vector2:
+	var vertices: PackedVector2Array = get_vertices()
+	return Vector2((vertices[0] + vertices[3]) / 2)
 
 
 func get_separating_axes(rect_1_vertices: PackedVector2Array, rect_2_vertices: PackedVector2Array) -> PackedVector2Array:
