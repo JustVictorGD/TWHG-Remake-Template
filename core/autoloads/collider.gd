@@ -7,10 +7,10 @@ var touched_checkpoint_ids: PackedInt32Array = []
 var walls: Array[Rect2] = []
 
 var player: Node2D
-var enemies: Array[Node] = []
-var coins: Array[Node] = []
-var checkpoints: Array[Node] = []
-var keys: Array[Node] = []
+var enemies: Array[Node2D] = []
+var coins: Array[Node2D] = []
+var checkpoints: Array[ColorRect] = []
+var keys: Array[Node2D] = []
 
 # Assigning unique IDs to objects
 var next_enemy_id: int = -1
@@ -148,7 +148,9 @@ func push_out_of_walls(hitbox: RectangleCollider, subpixels: Vector2i, given_wal
 
 
 # WARNING: This function is so complex that it tends to melt people's brains.
-func corner_slide(dynamic_rect: Rect2, given_walls: Array[Rect2], sensitivity: float, velocity: Vector2, controls: Vector2i) -> Vector2:
+func corner_slide(dynamic_rect: RectangleCollider, given_walls: Array[Rect2], sensitivity: float, velocity: Vector2, controls: Vector2i) -> Vector2:
+	var usable_rect: Rect2 = Rect2(dynamic_rect.position, dynamic_rect.size)
+	
 	var player_movement: bool = false
 	
 	if controls != Vector2i.ZERO:
@@ -170,16 +172,16 @@ func corner_slide(dynamic_rect: Rect2, given_walls: Array[Rect2], sensitivity: f
 	# Finding any intersected walls.
 	var intersections: Array[Rect2] = []
 	for wall: Rect2 in given_walls:
-		if dynamic_rect.intersects(wall):
-			intersections.append(Rect2(dynamic_rect.intersection(wall).position - \
-					get_center(dynamic_rect), dynamic_rect.intersection(wall).size))
+		if usable_rect.intersects(wall):
+			intersections.append(Rect2(usable_rect.intersection(wall).position - \
+					get_center(usable_rect), usable_rect.intersection(wall).size))
 	# Aborting in case of no wall intersections.
 	if intersections.size() == 0:
 		return Vector2.ZERO
 	
 	
 	# Setting up important collision points: Corners and their limits that disable them.
-	var half_size: float = dynamic_rect.size.x / 2
+	var half_size: float = usable_rect.size.x / 2
 	var toggles: Dictionary = {
 		"top_left_corner": false, "top_right_corner": false, "bottom_left_corner": false, "bottom_right_corner": false,
 		# First word is movement direction, second word decides which relevant corner to disable.

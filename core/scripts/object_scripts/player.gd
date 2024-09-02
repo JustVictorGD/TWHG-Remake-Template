@@ -16,9 +16,8 @@ enum subpixel {
 }
 
 # Physics
-var hitbox_2: RectangleCollider = RectangleCollider.new(Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE))
+@onready var hitbox_2: RectangleCollider = RectangleCollider.new(Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE))
 
-var hitbox: Rect2 = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
 var test_box: Rect2 = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 var dead: bool = false # Invincible but disables movement and is temporary
@@ -39,7 +38,7 @@ var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner slidi
 
 
 func _ready() -> void:
-	position = Collider.get_center(Collider.checkpoints[last_checkpoint_id].hitbox)
+	position = Collider.checkpoints[last_checkpoint_id].hitbox.get_center()
 	
 	Collider.player = self
 	
@@ -65,7 +64,7 @@ func movement_update() -> void:
 		move(velocity)
 	
 	if not AreaManager.ghost:
-		move(Collider.corner_slide(hitbox, Collider.walls, \
+		move(Collider.corner_slide(hitbox_2, Collider.walls, \
 				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
 		move_to(Collider.push_out_of_walls(hitbox_2, subpixels, Collider.walls))
 
@@ -77,7 +76,7 @@ func collision_update() -> void:
 		return
 	
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
-		if hitbox.intersects(checkpoint.hitbox):
+		if hitbox_2.intersects(checkpoint.hitbox):
 			checkpoint.select()
 			Collider.touched_checkpoint_ids.append(checkpoint.id)
 			last_checkpoint_id = checkpoint.id
@@ -141,7 +140,8 @@ func _process(_delta: float) -> void:
 func respawn() -> void:
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == last_checkpoint_id:
-			move_to(Collider.get_center(checkpoint.hitbox) * 1000 + Vector2(500, 500))
+			print(checkpoint.hitbox.get_center())
+			move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
 	
 	respawn_animation.reset_and_play()
 	GlobalSignal.player_respawn.emit()
