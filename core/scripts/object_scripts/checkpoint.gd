@@ -89,10 +89,10 @@ func select() -> void:
 		state = states.SELECTED
 		GlobalSignal.checkpoint_touched.emit(id)
 		
-		if AreaManager.money >= AreaManager.max_money and not \
-				AreaManager.finished and is_finish():
+		if GameManager.money >= GameManager.max_money and not \
+				GameManager.finished and is_finish():
 			SFX.play("Finish")
-			AreaManager.finished = true
+			GameManager.finished = true
 			GlobalSignal.finish.emit()
 		else:
 			SFX.play("Checkpoint")

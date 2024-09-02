@@ -12,11 +12,11 @@ func _ready() -> void:
 	id = Collider.register_coin_id(self)
 
 func extra_collect() -> void:
-	AreaManager.money += 1
+	GameManager.money += 1
 	GlobalSignal.coin_collected.emit()
 
 func extra_drop() -> void:
-	AreaManager.money -= 1
+	GameManager.money -= 1
 
 func checkpoint_touched(_id: int) -> void:
 	save()

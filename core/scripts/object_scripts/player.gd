@@ -52,7 +52,7 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
-	var speed_hack_multiplier : int = int(AreaManager.speed_hacking) + 1
+	var speed_hack_multiplier : int = int(GameManager.speed_hacking) + 1
 	if not dead:
 		movement_direction.x = (int(Input.is_action_pressed("right")) \
 				- int(Input.is_action_pressed("left")))
@@ -63,7 +63,7 @@ func movement_update() -> void:
 		
 		move(velocity)
 	
-	if not AreaManager.ghost:
+	if not GameManager.ghost:
 		move(Collider.corner_slide(hitbox_2, Collider.walls, \
 				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
 		move_to(Collider.push_out_of_walls(hitbox_2, subpixels, Collider.walls))
@@ -86,7 +86,7 @@ func collision_update() -> void:
 			coin.collect()
 	
 	for enemy: Node2D in get_tree().get_nodes_in_group("enemies"):
-		if not AreaManager.invincible and hitbox_2.intersects(enemy.hitbox):
+		if not GameManager.invincible and hitbox_2.intersects(enemy.hitbox):
 			enemy_death()
 	
 	for key: Node2D in get_tree().get_nodes_in_group("keys"):
@@ -100,7 +100,7 @@ func collect_coin(id: int) -> void:
 
 func enemy_death() -> void:
 	dead = true
-	AreaManager.deaths += 1
+	GameManager.deaths += 1
 	SFX.play("EnemyDeath")
 	
 	respawn_timer.reset_and_play()
@@ -150,7 +150,7 @@ func respawn() -> void:
 
 
 func finish() -> void:
-	AreaManager.invincible = true
+	GameManager.invincible = true
 
 
 func print_position() -> void:
@@ -210,20 +210,20 @@ func move_to(given_position: Vector2i) -> void:
 	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 func toggle_speed_hack() -> void:
-	if AreaManager.speed_hacking:
-		AreaManager.speed_hacking = false
+	if GameManager.speed_hacking:
+		GameManager.speed_hacking = false
 	else:
-		AreaManager.speed_hacking = true
+		GameManager.speed_hacking = true
 
 func toggle_invincibility() -> void:
 	
-	if AreaManager.invincible:
-		AreaManager.invincible = false
+	if GameManager.invincible:
+		GameManager.invincible = false
 	else:
-		AreaManager.invincible = true
+		GameManager.invincible = true
 
 func toggle_ghost() -> void:
-	if AreaManager.ghost:
-		AreaManager.ghost = false
+	if GameManager.ghost:
+		GameManager.ghost = false
 	else:
-		AreaManager.ghost = true
+		GameManager.ghost = true

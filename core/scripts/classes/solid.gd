@@ -76,7 +76,7 @@ func wall_update() -> void:
 			fill.self_modulate.a = global_opacity
 			outline.self_modulate.a = global_opacity
 			
-		if has_collision and AreaManager.ghost:
+		if has_collision and GameManager.ghost:
 			if merge_sprite:
 				canvas_group.self_modulate.a = global_opacity * 0.5
 			else:

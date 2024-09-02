@@ -34,7 +34,7 @@ func register_checkpoint_id(node: Node) -> int:
 func register_coin_id(node: Node) -> int:
 	coins.append(node)
 	next_coin_id += 1
-	AreaManager.max_money += 1
+	GameManager.max_money += 1
 	return next_coin_id
 
 func register_key_id(node: Node) -> int:

@@ -18,7 +18,7 @@ func movement_update() -> void:
 		global_scale = Vector2(1, 1)
 
 func _process(_delta: float) -> void:
-	if AreaManager.invincible:
+	if GameManager.invincible:
 		modulate.a = original_opacity * 0.5
 	else:
 		modulate.a = original_opacity
