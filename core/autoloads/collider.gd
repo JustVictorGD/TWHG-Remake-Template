@@ -7,20 +7,16 @@ var touched_checkpoint_ids: PackedInt32Array = []
 var walls: Array[Rect2] = []
 
 var player: Node2D
-var enemies: Array[Node] = []
-var coins: Array[Node] = []
-var checkpoints: Array[Node] = []
-var keys: Array[Node] = []
+var enemies: Array[Node2D] = []
+var coins: Array[Node2D] = []
+var checkpoints: Array[ColorRect] = []
+var keys: Array[Node2D] = []
 
 # Assigning unique IDs to objects
 var next_enemy_id: int = -1
 var next_checkpoint_id: int = -1
 var next_coin_id: int = -1
 var next_key_id: int = -1
-
-
-func foo(vec2i: Vector2i) -> void:
-	print(vec2i)
 
 
 # These functions return a unique ID for the given object type,
@@ -80,15 +76,17 @@ func rect_and_circle_overlap(rect: Rect2, circle_pos: Vector2, circle_radius: fl
 
 
 
-func push_out_of_walls(hitbox: Rect2, subpixels: Vector2i, given_walls: Array[Rect2]) -> Vector2:
-	var proposed_position: Vector2i = get_center(hitbox) * 1000
+func push_out_of_walls(hitbox: RectangleCollider, subpixels: Vector2i, given_walls: Array[Rect2]) -> Vector2:
+	var usable_hitbox: Rect2 = Rect2(hitbox.position, hitbox.size)
+	
+	var proposed_position: Vector2i = get_center(usable_hitbox) * 1000
 	var half_size: Vector2 = hitbox.size / 2
 	
 	var intersections: Array[Rect2] = []
 	for wall: Rect2 in given_walls:
-		if hitbox.intersects(wall):
-			var intersection: Rect2 = hitbox.intersection(wall)
-			intersection.position -= get_center(hitbox)
+		if usable_hitbox.intersects(wall):
+			var intersection: Rect2 = usable_hitbox.intersection(wall)
+			intersection.position -= get_center(usable_hitbox)
 			intersections.append(intersection)
 	
 	var edge: Vector2i = Vector2i.ZERO
@@ -150,7 +148,9 @@ func push_out_of_walls(hitbox: Rect2, subpixels: Vector2i, given_walls: Array[Re
 
 
 # WARNING: This function is so complex that it tends to melt people's brains.
-func corner_slide(dynamic_rect: Rect2, given_walls: Array[Rect2], sensitivity: float, velocity: Vector2, controls: Vector2i) -> Vector2:
+func corner_slide(dynamic_rect: RectangleCollider, given_walls: Array[Rect2], sensitivity: float, velocity: Vector2, controls: Vector2i) -> Vector2:
+	var usable_rect: Rect2 = Rect2(dynamic_rect.position, dynamic_rect.size)
+	
 	var player_movement: bool = false
 	
 	if controls != Vector2i.ZERO:
@@ -172,16 +172,16 @@ func corner_slide(dynamic_rect: Rect2, given_walls: Array[Rect2], sensitivity: f
 	# Finding any intersected walls.
 	var intersections: Array[Rect2] = []
 	for wall: Rect2 in given_walls:
-		if dynamic_rect.intersects(wall):
-			intersections.append(Rect2(dynamic_rect.intersection(wall).position - \
-					get_center(dynamic_rect), dynamic_rect.intersection(wall).size))
+		if usable_rect.intersects(wall):
+			intersections.append(Rect2(usable_rect.intersection(wall).position - \
+					get_center(usable_rect), usable_rect.intersection(wall).size))
 	# Aborting in case of no wall intersections.
 	if intersections.size() == 0:
 		return Vector2.ZERO
 	
 	
 	# Setting up important collision points: Corners and their limits that disable them.
-	var half_size: float = dynamic_rect.size.x / 2
+	var half_size: float = usable_rect.size.x / 2
 	var toggles: Dictionary = {
 		"top_left_corner": false, "top_right_corner": false, "bottom_left_corner": false, "bottom_right_corner": false,
 		# First word is movement direction, second word decides which relevant corner to disable.

@@ -23,11 +23,13 @@ const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 
 var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
 var id: int
-var hitbox: Rect2
+
+@onready var hitbox: RectangleCollider = RectangleCollider.new(Rect2(position, size), rotation, pivot_offset)
 
 func _ready() -> void:
+	print(name, " = ", hitbox.get_center())
+	
 	id = Collider.register_checkpoint_id(self)
-	hitbox = Rect2(global_position, size)
 	
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.update_timers.connect(update_timers)
@@ -37,7 +39,16 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
-	hitbox = Rect2(round(global_position), round(size))
+	var previous_rotation: float = rotation
+	
+	rotation = 0
+	
+	hitbox.position = self.global_position
+	hitbox.size = self.size
+	hitbox.rotation = previous_rotation
+	hitbox.pivot_offset = self.pivot_offset
+	
+	rotation = previous_rotation
 
 
 func update_timers() -> void:

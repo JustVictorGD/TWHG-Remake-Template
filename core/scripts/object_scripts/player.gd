@@ -16,7 +16,8 @@ enum subpixel {
 }
 
 # Physics
-var hitbox: Rect2 = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
+@onready var hitbox_2: RectangleCollider = RectangleCollider.new(Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE))
+
 var test_box: Rect2 = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 var dead: bool = false # Invincible but disables movement and is temporary
@@ -37,7 +38,7 @@ var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner slidi
 
 
 func _ready() -> void:
-	position = Collider.get_center(Collider.checkpoints[last_checkpoint_id].hitbox)
+	position = Collider.checkpoints[last_checkpoint_id].hitbox.get_center()
 	
 	Collider.player = self
 	
@@ -63,31 +64,33 @@ func movement_update() -> void:
 		move(velocity)
 	
 	if not AreaManager.ghost:
-		move(Collider.corner_slide(hitbox, Collider.walls, \
+		move(Collider.corner_slide(hitbox_2, Collider.walls, \
 				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
-		move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
+		move_to(Collider.push_out_of_walls(hitbox_2, subpixels, Collider.walls))
 
 
 func collision_update() -> void:
 	Collider.touched_checkpoint_ids.clear()
 	
+	if dead:
+		return
+	
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
-		if hitbox.intersects(checkpoint.hitbox):
+		if hitbox_2.intersects(checkpoint.hitbox):
 			checkpoint.select()
 			Collider.touched_checkpoint_ids.append(checkpoint.id)
 			last_checkpoint_id = checkpoint.id
 	
 	for coin: Node2D in get_tree().get_nodes_in_group("coins"):
-		if Collider.rect_and_circle_overlap(hitbox, coin.global_position, coin.radius):
+		if hitbox_2.intersects(coin.hitbox):
 			coin.collect()
 	
 	for enemy: Node2D in get_tree().get_nodes_in_group("enemies"):
-		if Collider.rect_and_circle_overlap(hitbox, enemy.global_position, enemy.radius) and not dead:
-			if not AreaManager.invincible:
-				enemy_death()
+		if not AreaManager.invincible and hitbox_2.intersects(enemy.hitbox):
+			enemy_death()
 	
 	for key: Node2D in get_tree().get_nodes_in_group("keys"):
-		if Collider.rect_and_circle_overlap(hitbox, key.global_position, key.radius) and not dead:
+		if hitbox_2.intersects(key.hitbox):
 			key.collect()
 
 
@@ -137,7 +140,8 @@ func _process(_delta: float) -> void:
 func respawn() -> void:
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == last_checkpoint_id:
-			move_to(Collider.get_center(checkpoint.hitbox) * 1000 + Vector2(500, 500))
+			print(checkpoint.hitbox.get_center())
+			move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
 	
 	respawn_animation.reset_and_play()
 	GlobalSignal.player_respawn.emit()
@@ -173,7 +177,9 @@ func move(movement: Vector2i) -> void:
 		position.y -= 1
 	
 	position = round(position)
-	hitbox = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
+	hitbox_2.position = position - PLAYER_SIZE / 2
+	hitbox_2.size = PLAYER_SIZE
+	
 	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 # Sets the position using the subpixel system.
@@ -197,7 +203,10 @@ func move_to(given_position: Vector2i) -> void:
 		position.y -= 1
 	
 	position = round(position)
-	hitbox = Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE)
+	
+	hitbox_2.position = position - PLAYER_SIZE / 2
+	hitbox_2.size = PLAYER_SIZE
+	
 	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 func toggle_speed_hack() -> void:
