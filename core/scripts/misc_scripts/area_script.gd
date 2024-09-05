@@ -3,6 +3,8 @@ extends Node
 @export var coordinates: Vector2i
 @export var bottom_text: String = ""
 
+@export var theme: AreaTheme
+
 var player : Node = preload("res://core/game_objects/player.tscn").instantiate()
 var interface : Node = preload("res://core/game_objects/interface.tscn").instantiate()
 
@@ -20,3 +22,9 @@ func _ready() -> void:
 		push_warning("More than one start checkpoint has been found, \
 				choosing the latest one in the scene tree. Paths to all start type checkpoints: ", \
 				start_checkpoints)
+	
+	GameLoop.collision_update.connect(collision_update)
+
+func collision_update() -> void:
+	if player.position.x < 21:
+		print("AAAA!")

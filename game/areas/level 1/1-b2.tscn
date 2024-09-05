@@ -1,6 +1,7 @@
-[gd_scene load_steps=40 format=4 uid="uid://d0gfxmbqg5pi8"]
+[gd_scene load_steps=41 format=4 uid="uid://d0gfxmbqg5pi8"]
 
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/area_script.gd" id="1_hg4mj"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://core/themes/blue_theme.tres" id="2_4uc24"]
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="2_uaan5"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/checkpoint.tscn" id="3_8visq"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/coin.tscn" id="5_h7jdv"]
@@ -409,6 +410,9 @@ _data = {
 
 [node name="1-B2" type="Node2D"]
 script = ExtResource("1_hg4mj")
+coordinates = Vector2i(2, 2)
+bottom_text = "\"Hi there\""
+theme = ExtResource("2_4uc24")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
