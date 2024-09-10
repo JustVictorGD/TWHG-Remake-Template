@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bf8htjaobfs6b"]
 
-[ext_resource type="Script" path="res://core/scripts/object_scripts/checkpoint.gd" id="1_f5or5"]
+[ext_resource type="Script" path="res://core/scripts/game_object_scripts/checkpoint.gd" id="1_f5or5"]
 
 [node name="Checkpoint" type="ColorRect" groups=["checkpoints"]]
 z_index = 1

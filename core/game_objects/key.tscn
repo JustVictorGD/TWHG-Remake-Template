@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0dbbdclyjpxo"]
 
-[ext_resource type="Script" path="res://core/scripts/object_scripts/key.gd" id="1_n7evj"]
+[ext_resource type="Script" path="res://core/scripts/game_object_scripts/key.gd" id="1_n7evj"]
 [ext_resource type="Texture2D" uid="uid://claldq5wno4ro" path="res://core/assets/Key 48.png" id="2_tvkth"]
 
 [node name="Key" type="Node2D" groups=["keys"]]

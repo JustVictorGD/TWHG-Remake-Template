@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ctie7hckoi342"]
 
-[ext_resource type="Script" path="res://core/scripts/object_scripts/key_door.gd" id="1_7ugfb"]
+[ext_resource type="Script" path="res://core/scripts/game_object_scripts/key_door.gd" id="1_7ugfb"]
 
 [node name="KeyDoor2" type="ColorRect" groups=["key_doors"]]
 z_index = 5

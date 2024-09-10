@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b13r5mkfmbmkm"]
+
+[ext_resource type="PackedScene" uid="uid://d0gfxmbqg5pi8" path="res://game/areas/level 1/1-b2.tscn" id="1_vm2a2"]
+
+[node name="Level1" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="1-A1" parent="." instance=ExtResource("1_vm2a2")]
+
+[node name="1-B1" parent="." instance=ExtResource("1_vm2a2")]
+position = Vector2(1536, 0)
+
+[node name="1-B2" parent="." instance=ExtResource("1_vm2a2")]
+position = Vector2(1536, 960)
+
+[node name="1-B3" parent="." instance=ExtResource("1_vm2a2")]
+position = Vector2(1536, 1920)

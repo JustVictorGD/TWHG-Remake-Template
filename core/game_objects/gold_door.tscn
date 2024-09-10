@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://emohoynp8joi"]
 
-[ext_resource type="Script" path="res://core/scripts/object_scripts/gold_door.gd" id="1_6cnyy"]
+[ext_resource type="Script" path="res://core/scripts/game_object_scripts/gold_door.gd" id="1_6cnyy"]
 
 [node name="GoldDoor" type="ColorRect"]
 z_index = 5

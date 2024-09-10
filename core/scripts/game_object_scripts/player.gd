@@ -37,6 +37,17 @@ var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner slidi
 
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("speed_hack"):
+		toggle_speed_hack()
+		
+	if event.is_action_pressed("invincibility"):
+		toggle_invincibility()
+		
+	if event.is_action_pressed("ghost"):
+		toggle_ghost()
+
+
 func _ready() -> void:
 	position = Collider.checkpoints[last_checkpoint_id].hitbox.get_center()
 	
@@ -52,7 +63,8 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
-	var speed_hack_multiplier : int = int(GameManager.speed_hacking) + 1
+	var speed_hack_multiplier: int = int(GameManager.speed_hacking) + 1
+	
 	if not dead:
 		movement_direction.x = (int(Input.is_action_pressed("right")) \
 				- int(Input.is_action_pressed("left")))
@@ -125,22 +137,9 @@ func update_timers() -> void:
 		sprite.self_modulate.a = respawn_animation.get_progress()
 
 
-# Using normal frames and not the tick system
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("speed_hack"):
-		toggle_speed_hack()
-		
-	if Input.is_action_just_pressed("invincibility"):
-		toggle_invincibility()
-		
-	if Input.is_action_just_pressed("ghost"):
-		toggle_ghost()
-
-
 func respawn() -> void:
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == last_checkpoint_id:
-			print(checkpoint.hitbox.get_center())
 			move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
 	
 	respawn_animation.reset_and_play()

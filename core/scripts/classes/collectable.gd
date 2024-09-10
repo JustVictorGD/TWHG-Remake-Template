@@ -4,9 +4,9 @@ class_name Collectable
 ## Print debug information. (WIP, does nothing)
 @export var tracking: bool = false
 ## Lock scale even if a parent changes its scale.
-@export var lock_scale: bool = true
+@export var lock_scale: bool = false
 ## Lock rotation even if a parent changes its rotation.
-@export var lock_rotation: bool = true
+@export var lock_rotation: bool = false
 ## Play sound when collected.
 @export var plays_sound: bool = true
 

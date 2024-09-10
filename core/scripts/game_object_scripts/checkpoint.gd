@@ -27,8 +27,6 @@ var id: int
 @onready var hitbox: RectangleCollider = RectangleCollider.new(Rect2(position, size), rotation, pivot_offset)
 
 func _ready() -> void:
-	print(name, " = ", hitbox.get_center())
-	
 	id = Collider.register_checkpoint_id(self)
 	
 	GameLoop.movement_update.connect(movement_update)
