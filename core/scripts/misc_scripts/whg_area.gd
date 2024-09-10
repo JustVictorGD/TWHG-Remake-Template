@@ -11,8 +11,8 @@ class_name WhgArea
 var player: Node = preload("res://core/game_objects/player.tscn").instantiate()
 
 func _ready() -> void:
-	owner.current_area = self
 	GameManager.area_bounds.append(bounding_box)
+	owner.change_area(self)
 	
 	var start_checkpoints: PackedStringArray = []
 	
@@ -28,7 +28,7 @@ func _ready() -> void:
 				choosing the latest one in the scene tree. Paths to all start type checkpoints: ", \
 				start_checkpoints)
 	
-	GameLoop.collision_update.connect(collision_update)
+	#GameLoop.collision_update.connect(collision_update)
 
 
 
