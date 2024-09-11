@@ -1,5 +1,5 @@
 extends Node2D
-class_name WhgArea
+class_name Area
 
 @export var coordinates: Vector2i
 @export var bottom_text: String = ""

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://btkfeugl6pbfp"]
 
-[ext_resource type="Script" path="res://core/scripts/misc_scripts/whg_area.gd" id="1_bwj0f"]
+[ext_resource type="Script" path="res://core/scripts/classes/area.gd" id="1_bwj0f"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://core/themes/blue_theme.tres" id="2_pw52b"]
 
 [node name="GameArea" type="Node2D"]

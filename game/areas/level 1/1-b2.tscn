@@ -1,6 +1,6 @@
 [gd_scene load_steps=41 format=4 uid="uid://d0gfxmbqg5pi8"]
 
-[ext_resource type="Script" path="res://core/scripts/misc_scripts/whg_area.gd" id="1_hg4mj"]
+[ext_resource type="Script" path="res://core/scripts/classes/area.gd" id="1_hg4mj"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://core/themes/blue_theme.tres" id="2_4uc24"]
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="2_uaan5"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/checkpoint.tscn" id="3_8visq"]
