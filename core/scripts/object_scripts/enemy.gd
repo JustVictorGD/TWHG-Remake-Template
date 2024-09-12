@@ -4,6 +4,7 @@ extends Node2D
 
 var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 7)
 var id: int
+# For cases when opacity is changed externally, like from invincibility
 @onready var original_opacity: float = modulate.a
 
 func _ready() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://jn6lkoo3vdrt"]
+[gd_scene load_steps=6 format=3 uid="uid://jn6lkoo3vdrt"]
 
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/interface.gd" id="1_5xmwe"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/assets/Univers_Condensed_Regular.ttf" id="2_svcw7"]
@@ -6,6 +6,11 @@
 [sub_resource type="LabelSettings" id="LabelSettings_aag45"]
 font = ExtResource("2_svcw7")
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_heuid"]
+font = ExtResource("2_svcw7")
+font_size = 30
+font_color = Color(1, 1, 1, 0.498039)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xrp83"]
 font = ExtResource("2_svcw7")
@@ -102,6 +107,16 @@ offset_right = 160.0
 offset_bottom = 720.0
 text = "Menu"
 label_settings = SubResource("LabelSettings_aag45")
+vertical_alignment = 1
+
+[node name="FPS" type="Label" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 660.0
+offset_right = 306.0
+offset_bottom = 720.0
+text = "??? FPS"
+label_settings = SubResource("LabelSettings_heuid")
 vertical_alignment = 1
 
 [node name="BottomText" type="Label" parent="."]
