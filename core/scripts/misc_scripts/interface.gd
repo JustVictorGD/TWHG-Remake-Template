@@ -52,6 +52,7 @@ func _process(_delta : float) -> void:
 	$Deaths.text = "Deaths: " + str(AreaManager.deaths)
 	$Timer.text = str(hours) + (":%02d:%02d" % [minutes, seconds])
 	$Timer2.text = ".%03d" % [ticks]
+	$FPS.text = str(Engine.get_frames_per_second()) + " FPS"
 	
 	if AreaManager.finished:
 		$Timer.modulate = Color.GOLD

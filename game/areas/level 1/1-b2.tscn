@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://d0gfxmbqg5pi8"]
+[gd_scene load_steps=34 format=4 uid="uid://d0gfxmbqg5pi8"]
 
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/area_script.gd" id="1_hg4mj"]
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="2_uaan5"]
@@ -48,160 +48,6 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_t1oa8"),
 "new_animation": SubResource("Animation_68scm")
-}
-
-[sub_resource type="Animation" id="Animation_ouv8q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_cbltf"]
-resource_name = "new_animation"
-length = 0.75
-loop_mode = 2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 360)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_syupp"]
-_data = {
-"RESET": SubResource("Animation_ouv8q"),
-"new_animation": SubResource("Animation_cbltf")
-}
-
-[sub_resource type="Animation" id="Animation_legs3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_r8ft8"]
-resource_name = "new_animation"
-length = 0.75
-loop_mode = 2
-step = 0.0625
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -360)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhdnx"]
-_data = {
-"RESET": SubResource("Animation_legs3"),
-"new_animation": SubResource("Animation_r8ft8")
-}
-
-[sub_resource type="Animation" id="Animation_edx1s"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_36yhl"]
-resource_name = "new_animation"
-length = 1.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(552, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc4bb"]
-_data = {
-"RESET": SubResource("Animation_edx1s"),
-"new_animation": SubResource("Animation_36yhl")
-}
-
-[sub_resource type="Animation" id="Animation_h4gfc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_e0y47"]
-resource_name = "new_animation"
-length = 1.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-552, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jfnk2"]
-_data = {
-"RESET": SubResource("Animation_h4gfc"),
-"new_animation": SubResource("Animation_e0y47")
 }
 
 [sub_resource type="Animation" id="Animation_0fenc"]
@@ -368,6 +214,43 @@ _data = {
 "new_animation": SubResource("Animation_dt221")
 }
 
+[sub_resource type="Animation" id="Animation_i0ar4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(504, 312)]
+}
+
+[sub_resource type="Animation" id="Animation_ukhjm"]
+resource_name = "new_animation"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(504, 312), Vector2(504, 504)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ypg5j"]
+_data = {
+"RESET": SubResource("Animation_i0ar4"),
+"new_animation": SubResource("Animation_ukhjm")
+}
+
 [sub_resource type="Animation" id="Animation_ubdws"]
 length = 0.001
 tracks/0/type = "value"
@@ -405,6 +288,44 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_ubdws"),
 "new_animation": SubResource("Animation_trcub")
+}
+
+[sub_resource type="Animation" id="Animation_waj54"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bltfe"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_51qu2"]
+_data = {
+"RESET": SubResource("Animation_waj54"),
+"new_animation": SubResource("Animation_bltfe")
 }
 
 [node name="1-B2" type="Node2D"]
@@ -463,9 +384,10 @@ offset_bottom = 240.0
 type = 2
 
 [node name="Coins" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Coin17" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(648, 360)
+position = Vector2(552, 360)
 
 [node name="Coin18" parent="Coins" instance=ExtResource("5_h7jdv")]
 position = Vector2(696, 360)
@@ -480,28 +402,28 @@ position = Vector2(792, 360)
 position = Vector2(840, 360)
 
 [node name="Coin9" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(888, 552)
+position = Vector2(936, 600)
 
 [node name="Coin10" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(888, 504)
+position = Vector2(984, 600)
 
 [node name="Coin11" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(888, 456)
+position = Vector2(984, 360)
 
 [node name="Coin12" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(888, 408)
+position = Vector2(936, 360)
 
 [node name="Coin13" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(648, 552)
+position = Vector2(600, 600)
 
 [node name="Coin14" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(648, 504)
+position = Vector2(552, 600)
 
 [node name="Coin15" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(648, 456)
+position = Vector2(600, 360)
 
 [node name="Coin16" parent="Coins" instance=ExtResource("5_h7jdv")]
-position = Vector2(648, 408)
+position = Vector2(648, 360)
 
 [node name="Coin22" parent="Coins" instance=ExtResource("5_h7jdv")]
 position = Vector2(888, 360)
@@ -561,6 +483,7 @@ position = Vector2(768, 156)
 position = Vector2(828, 96)
 
 [node name="Circles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Circle" parent="Circles" instance=ExtResource("7_v8775")]
 position = Vector2(768, 864)
@@ -601,107 +524,6 @@ position = Vector2(1416, 744)
 
 [node name="BlueEnemy32" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
 position = Vector2(1464, 840)
-
-[node name="Group1" type="Node2D" parent="Enemies"]
-metadata/_edit_lock_ = true
-
-[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
-libraries = {
-"": SubResource("AnimationLibrary_syupp")
-}
-autoplay = "new_animation"
-script = ExtResource("6_jic0f")
-
-[node name="BlueEnemy" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-modulate = Color(1, 1, 1, 0.498039)
-position = Vector2(504, 300)
-
-[node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-position = Vector2(600, 300)
-
-[node name="BlueEnemy3" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-position = Vector2(696, 300)
-
-[node name="BlueEnemy4" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-position = Vector2(792, 300)
-
-[node name="BlueEnemy5" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-position = Vector2(888, 300)
-
-[node name="BlueEnemy6" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
-position = Vector2(984, 300)
-
-[node name="Group2" type="Node2D" parent="Enemies"]
-metadata/_edit_lock_ = true
-
-[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
-libraries = {
-"": SubResource("AnimationLibrary_uhdnx")
-}
-autoplay = "new_animation"
-script = ExtResource("6_jic0f")
-
-[node name="BlueEnemy" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(552, 660)
-
-[node name="BlueEnemy2" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(648, 660)
-
-[node name="BlueEnemy3" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(744, 660)
-
-[node name="BlueEnemy4" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(840, 660)
-
-[node name="BlueEnemy5" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(936, 660)
-
-[node name="BlueEnemy6" parent="Enemies/Group2" instance=ExtResource("6_i7507")]
-position = Vector2(1032, 660)
-
-[node name="Group3" type="Node2D" parent="Enemies"]
-metadata/_edit_lock_ = true
-
-[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group3"]
-libraries = {
-"": SubResource("AnimationLibrary_hc4bb")
-}
-autoplay = "new_animation"
-script = ExtResource("6_jic0f")
-
-[node name="BlueEnemy" parent="Enemies/Group3" instance=ExtResource("6_i7507")]
-position = Vector2(492, 360)
-
-[node name="BlueEnemy2" parent="Enemies/Group3" instance=ExtResource("6_i7507")]
-position = Vector2(492, 456)
-
-[node name="BlueEnemy3" parent="Enemies/Group3" instance=ExtResource("6_i7507")]
-position = Vector2(492, 552)
-
-[node name="BlueEnemy4" parent="Enemies/Group3" instance=ExtResource("6_i7507")]
-position = Vector2(492, 648)
-
-[node name="Group4" type="Node2D" parent="Enemies"]
-metadata/_edit_lock_ = true
-
-[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group4"]
-libraries = {
-"": SubResource("AnimationLibrary_jfnk2")
-}
-autoplay = "new_animation"
-script = ExtResource("6_jic0f")
-
-[node name="BlueEnemy" parent="Enemies/Group4" instance=ExtResource("6_i7507")]
-position = Vector2(1044, 312)
-
-[node name="BlueEnemy2" parent="Enemies/Group4" instance=ExtResource("6_i7507")]
-position = Vector2(1044, 408)
-
-[node name="BlueEnemy3" parent="Enemies/Group4" instance=ExtResource("6_i7507")]
-position = Vector2(1044, 504)
-
-[node name="BlueEnemy4" parent="Enemies/Group4" instance=ExtResource("6_i7507")]
-position = Vector2(1044, 600)
 
 [node name="Group5" type="Node2D" parent="Enemies"]
 position = Vector2(240, 480)
@@ -851,10 +673,92 @@ position = Vector2(0, 48)
 [node name="BlueEnemy6" parent="Enemies/4-B4" instance=ExtResource("6_i7507")]
 position = Vector2(-48, 48)
 
+[node name="Group1" type="Node2D" parent="Enemies"]
+position = Vector2(504, 312)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
+libraries = {
+"": SubResource("AnimationLibrary_ypg5j")
+}
+autoplay = "new_animation"
+script = ExtResource("6_jic0f")
+
+[node name="BlueEnemy" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+
+[node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(48, 0)
+
+[node name="BlueEnemy3" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(96, 0)
+
+[node name="BlueEnemy4" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(144, 0)
+
+[node name="BlueEnemy5" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(192, 0)
+
+[node name="BlueEnemy6" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(240, 0)
+
+[node name="BlueEnemy7" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(288, 0)
+
+[node name="BlueEnemy8" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(336, 0)
+
+[node name="BlueEnemy9" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(384, 0)
+
+[node name="BlueEnemy10" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(432, 0)
+
+[node name="BlueEnemy11" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(480, 0)
+
+[node name="BlueEnemy12" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(528, 0)
+
+[node name="BlueEnemy13" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(48, 144)
+
+[node name="BlueEnemy24" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(0, 144)
+
+[node name="BlueEnemy14" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(96, 144)
+
+[node name="BlueEnemy15" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(144, 144)
+
+[node name="BlueEnemy16" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(192, 144)
+
+[node name="BlueEnemy17" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(240, 144)
+
+[node name="BlueEnemy18" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(288, 144)
+
+[node name="BlueEnemy19" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(336, 144)
+
+[node name="BlueEnemy20" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(384, 144)
+
+[node name="BlueEnemy21" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(432, 144)
+
+[node name="BlueEnemy22" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(480, 144)
+
+[node name="BlueEnemy23" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+position = Vector2(528, 144)
+
 [node name="Keys" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Key" parent="Keys" instance=ExtResource("10_l8d2y")]
-position = Vector2(768, 480)
+position = Vector2(768, 528)
 key_id = 0
 tracking = true
 
@@ -869,8 +773,10 @@ key_id = 2
 tracking = true
 
 [node name="Doors" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="KeyDoors" type="Node2D" parent="Doors"]
+metadata/_edit_lock_ = true
 
 [node name="KeyDoor" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
 offset_left = 1056.0
@@ -901,6 +807,7 @@ open_time = 1200
 fade = true
 
 [node name="GoldDoors" type="Node2D" parent="Doors"]
+metadata/_edit_lock_ = true
 
 [node name="GoldDoor" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
 offset_left = 1224.0
@@ -951,6 +858,7 @@ tile_map_data = PackedByteArray("AAABAAsAAAADAAEAAAAAAAsAAAACAAEAAAD//wsAAAABAAE
 metadata/_edit_lock_ = true
 
 [node name="Solids" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Solid" type="ColorRect" parent="Solids"]
 z_index = 5
@@ -1479,10 +1387,68 @@ offset_right = 1536.0
 offset_bottom = 288.0
 color = Color(1, 1, 1, 0.0627451)
 
-[node name="Solid" type="ColorRect" parent="."]
-offset_left = 528.0
-offset_top = 384.0
-offset_right = 576.0
-offset_bottom = 432.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+[node name="Spinner1" type="Node2D" parent="."]
+position = Vector2(576, 432)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Spinner1"]
+libraries = {
+"": SubResource("AnimationLibrary_51qu2")
+}
+autoplay = "new_animation"
+script = ExtResource("6_jic0f")
+
+[node name="BlueEnemy2" parent="Spinner1" instance=ExtResource("6_i7507")]
+position = Vector2(-72, -24)
+
+[node name="BlueEnemy3" parent="Spinner1" instance=ExtResource("6_i7507")]
+position = Vector2(-72, 24)
+
+[node name="BlueEnemy6" parent="Spinner1" instance=ExtResource("6_i7507")]
+position = Vector2(72, -24)
+
+[node name="BlueEnemy8" parent="Spinner1" instance=ExtResource("6_i7507")]
+position = Vector2(72, 24)
+
+[node name="Spinner2" type="Node2D" parent="."]
+position = Vector2(768, 528)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Spinner2"]
+libraries = {
+"": SubResource("AnimationLibrary_51qu2")
+}
+autoplay = "new_animation"
+script = ExtResource("6_jic0f")
+
+[node name="BlueEnemy2" parent="Spinner2" instance=ExtResource("6_i7507")]
+position = Vector2(-72, -24)
+
+[node name="BlueEnemy3" parent="Spinner2" instance=ExtResource("6_i7507")]
+position = Vector2(-72, 24)
+
+[node name="BlueEnemy6" parent="Spinner2" instance=ExtResource("6_i7507")]
+position = Vector2(72, -24)
+
+[node name="BlueEnemy8" parent="Spinner2" instance=ExtResource("6_i7507")]
+position = Vector2(72, 24)
+
+[node name="Spinner3" type="Node2D" parent="."]
+position = Vector2(960, 432)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Spinner3"]
+libraries = {
+"": SubResource("AnimationLibrary_51qu2")
+}
+autoplay = "new_animation"
+script = ExtResource("6_jic0f")
+
+[node name="BlueEnemy2" parent="Spinner3" instance=ExtResource("6_i7507")]
+position = Vector2(-72, 24)
+
+[node name="BlueEnemy3" parent="Spinner3" instance=ExtResource("6_i7507")]
+position = Vector2(-72, -24)
+
+[node name="BlueEnemy6" parent="Spinner3" instance=ExtResource("6_i7507")]
+position = Vector2(72, -24)
+
+[node name="BlueEnemy8" parent="Spinner3" instance=ExtResource("6_i7507")]
+position = Vector2(72, 24)
