@@ -12,14 +12,15 @@ var ticks: int = 0
 var total_ticks: int = 0
 
 func _process(delta: float) -> void:
-	time += delta
-	
-	while time > TICK_LENGTH:
-		time -= TICK_LENGTH
-		ticks += 1
-		total_ticks += 1
+	if not AreaManager.paused:
+		time += delta
 		
-		push_internal_frame()
+		while time > TICK_LENGTH:
+			time -= TICK_LENGTH
+			ticks += 1
+			total_ticks += 1
+			
+			push_internal_frame()
 
 func push_internal_frame() -> void:
 	animation_update.emit() # Reserved for AnimationPlayer

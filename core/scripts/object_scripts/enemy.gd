@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var lock_scale : bool = true
+@export var lock_scale : bool = false
 
 var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 7)
 var id: int

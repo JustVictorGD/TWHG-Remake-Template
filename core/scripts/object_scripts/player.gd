@@ -125,17 +125,6 @@ func update_timers() -> void:
 		sprite.self_modulate.a = respawn_animation.get_progress()
 
 
-# Using normal frames and not the tick system
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("speed_hack"):
-		toggle_speed_hack()
-		
-	if Input.is_action_just_pressed("invincibility"):
-		toggle_invincibility()
-		
-	if Input.is_action_just_pressed("ghost"):
-		toggle_ghost()
-
 
 func respawn() -> void:
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
@@ -208,22 +197,3 @@ func move_to(given_position: Vector2i) -> void:
 	hitbox_2.size = PLAYER_SIZE
 	
 	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
-
-func toggle_speed_hack() -> void:
-	if AreaManager.speed_hacking:
-		AreaManager.speed_hacking = false
-	else:
-		AreaManager.speed_hacking = true
-
-func toggle_invincibility() -> void:
-	
-	if AreaManager.invincible:
-		AreaManager.invincible = false
-	else:
-		AreaManager.invincible = true
-
-func toggle_ghost() -> void:
-	if AreaManager.ghost:
-		AreaManager.ghost = false
-	else:
-		AreaManager.ghost = true
