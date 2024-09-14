@@ -1,4 +1,5 @@
 extends Collectable
+class_name Coin
 
 var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 13)
 
@@ -8,8 +9,6 @@ func _ready() -> void:
 	collect_sound = "Coin"
 	
 	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
-	# This is how collision works here.
-	id = Collider.register_coin_id(self)
 
 func extra_collect() -> void:
 	GameManager.money += 1

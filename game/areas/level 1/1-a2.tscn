@@ -371,7 +371,6 @@ _data = {
 
 [node name="1-A2" type="Node2D"]
 script = ExtResource("1_mr4e3")
-coordinates = Vector2i(2, 2)
 bottom_text = "\"Hi there\""
 theme = ExtResource("2_c2ef8")
 
@@ -425,7 +424,6 @@ offset_right = 288.0
 offset_bottom = 864.0
 rotation = 0.785397
 pivot_offset = Vector2(48, 48)
-type = 1
 
 [node name="Finish" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
 offset_left = 1200.0

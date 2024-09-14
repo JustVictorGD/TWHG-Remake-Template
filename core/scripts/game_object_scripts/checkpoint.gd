@@ -1,4 +1,5 @@
 extends ColorRect
+class_name Checkpoint
 
 @export var type: types = types.CHECKPOINT
 @export var tracking: bool = false
@@ -24,16 +25,16 @@ const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
 var id: int
 
-@onready var hitbox: RectangleCollider = RectangleCollider.new(Rect2(position, size), rotation, pivot_offset)
+var hitbox: RectangleCollider = RectangleCollider.new()
 
 func _ready() -> void:
-	id = Collider.register_checkpoint_id(self)
-	
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.update_timers.connect(update_timers)
 	GlobalSignal.checkpoint_touched.connect(any_checkpoint_touched)
 	GlobalSignal.anything_collected.connect(anything_collected)
 	GlobalSignal.player_death.connect(player_death)
+	
+	movement_update()
 
 
 func movement_update() -> void:

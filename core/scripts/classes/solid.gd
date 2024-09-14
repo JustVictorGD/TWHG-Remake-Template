@@ -54,7 +54,7 @@ func _ready() -> void:
 		
 		if has_collision:
 			hitbox_index = Collider.walls.size()
-			Collider.walls.append(Rect2(NAN, NAN, NAN, NAN))
+			Collider.walls.append(Rect2(outline.position + self.global_position, outline.size))
 	
 	child_ready()
 
@@ -84,7 +84,7 @@ func wall_update() -> void:
 				outline.self_modulate.a = global_opacity * 0.5
 		
 		
-		Collider.walls[hitbox_index] = Rect2(outline.global_position + self.global_position, outline.size)
+		Collider.walls[hitbox_index] = Rect2(outline.position + self.global_position, outline.size)
 
 
 func set_sprite_size(sprite: Rect2) -> void:

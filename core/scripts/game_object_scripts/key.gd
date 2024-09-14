@@ -1,4 +1,5 @@
 extends Collectable
+class_name Key
 
 @export var key_id: int = -1
 
@@ -10,9 +11,6 @@ func _ready() -> void:
 	collect_sound = "Key"
 	
 	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
-	
-	# This is how collision (and assigning keys to doors) works here.
-	id = Collider.register_key_id(self)
 
 func extra_collect() -> void:
 	for key_door: Door in get_tree().get_nodes_in_group("key_doors"):

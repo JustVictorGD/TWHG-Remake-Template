@@ -16,7 +16,7 @@ enum subpixel {
 }
 
 # Physics
-@onready var hitbox: RectangleCollider = RectangleCollider.new(Rect2(position - PLAYER_SIZE / 2, PLAYER_SIZE))
+var hitbox: RectangleCollider = RectangleCollider.new()
 
 var test_box: Rect2 = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
@@ -49,10 +49,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
-	position = Collider.checkpoints[last_checkpoint_id].hitbox.get_center()
-	
-	Collider.player = self
-	
 	sliding_sensitivity += 1
 	respawn_timer.timeout.connect(respawn)
 	

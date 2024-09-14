@@ -410,7 +410,6 @@ _data = {
 
 [node name="1-B2" type="Node2D"]
 script = ExtResource("1_hg4mj")
-coordinates = Vector2i(2, 2)
 bottom_text = "\"Hi there\""
 theme = ExtResource("2_4uc24")
 
@@ -471,7 +470,6 @@ offset_left = 1200.0
 offset_top = 48.0
 offset_right = 1392.0
 offset_bottom = 240.0
-type = 2
 
 [node name="Coins" type="Node2D" parent="."]
 
