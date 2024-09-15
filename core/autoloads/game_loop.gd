@@ -12,7 +12,7 @@ var ticks: int = 0
 var total_ticks: int = 0
 
 func _process(delta: float) -> void:
-	if not AreaManager.paused:
+	if not GameManager.paused:
 		time += delta
 		
 		while time > TICK_LENGTH:

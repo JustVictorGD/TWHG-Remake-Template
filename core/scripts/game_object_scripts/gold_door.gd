@@ -10,9 +10,6 @@ func child_child_ready() -> void:
 	if not Engine.is_editor_hint():
 		GlobalSignal.coin_collected.connect(coin_collected)
 		GlobalSignal.player_respawn.connect(player_respawn)
-		
-		if money_requirement <= 0:
-			money_requirement += GameManager.max_money
 
 func coin_collected() -> void:
 	if GameManager.money >= money_requirement:

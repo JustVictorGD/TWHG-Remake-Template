@@ -32,10 +32,15 @@ func _ready() -> void:
 	for coin: Coin in get_tree().get_nodes_in_group("coins"):
 		coin.id = id_generation["coins"]
 		id_generation["coins"] += 1
+		GameManager.max_money += 1
 	
 	for key: Key in get_tree().get_nodes_in_group("key"):
 		key.id = id_generation["key"]
 		id_generation["key"] += 1
+	
+	for gold_door: Door in get_tree().get_nodes_in_group("gold_doors"):
+		if gold_door.money_requirement <= 0:
+			gold_door.money_requirement += GameManager.max_money
 	
 	var start_checkpoints: PackedStringArray = []
 	
@@ -43,8 +48,6 @@ func _ready() -> void:
 		Collider.checkpoints.append(checkpoint)
 		checkpoint.id = id_generation["checkpoints"]
 		id_generation["checkpoints"] += 1
-		GameManager.max_money += 1
-		
 		
 		if checkpoint.is_start():
 			player.last_checkpoint_id = checkpoint.id

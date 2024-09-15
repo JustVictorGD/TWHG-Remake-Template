@@ -136,10 +136,6 @@ func update_timers() -> void:
 		sprite.self_modulate.a = respawn_animation.get_progress()
 
 
-<<<<<<< HEAD:core/scripts/object_scripts/player.gd
-
-=======
->>>>>>> multi-area:core/scripts/game_object_scripts/player.gd
 func respawn() -> void:
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == last_checkpoint_id:
@@ -204,12 +200,6 @@ func move_to(given_position: Vector2i) -> void:
 	
 	global_position = round(global_position)
 	
-<<<<<<< HEAD:core/scripts/object_scripts/player.gd
-	hitbox_2.position = position - PLAYER_SIZE / 2
-	hitbox_2.size = PLAYER_SIZE
-	
-	test_box = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
-=======
 	hitbox.position = global_position - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
 
@@ -231,4 +221,3 @@ func toggle_ghost() -> void:
 		GameManager.ghost = false
 	else:
 		GameManager.ghost = true
->>>>>>> multi-area:core/scripts/game_object_scripts/player.gd

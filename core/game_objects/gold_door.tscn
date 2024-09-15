@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://core/scripts/game_object_scripts/gold_door.gd" id="1_6cnyy"]
 
-[node name="GoldDoor" type="ColorRect"]
+[node name="GoldDoor" type="ColorRect" groups=["gold_doors"]]
 z_index = 5
 offset_left = -48.0
 offset_top = -48.0
