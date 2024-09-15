@@ -53,10 +53,14 @@ func _ready() -> void:
 			player.move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
 			change_area(checkpoint.owner)
 	
+	
 	if start_checkpoints.size() > 1:
 		push_warning("More than one start checkpoint has been found, \
 				choosing the latest one in the scene tree. Paths to all start type checkpoints: ", \
 				start_checkpoints)
+	elif start_checkpoints.size() == 0:
+		push_error("No start checkpoint has been found! Placing the player at (0, 0) and not focusing on any area.")
+	
 	
 	add_child(player)
 

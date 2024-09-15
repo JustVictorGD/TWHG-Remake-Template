@@ -1,15 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://55jl8jvoqiur"]
+[gd_scene load_steps=3 format=3 uid="uid://55jl8jvoqiur"]
 
 [ext_resource type="Script" path="res://core/scripts/classes/level.gd" id="1_ivy3o"]
-[ext_resource type="PackedScene" uid="uid://d0gfxmbqg5pi8" path="res://game/areas/level 1/1-b2.tscn" id="1_v25lx"]
-[ext_resource type="PackedScene" uid="uid://ihcdg7j8edmp" path="res://game/areas/level 1/1-a2.tscn" id="3_5l7tb"]
+[ext_resource type="PackedScene" uid="uid://d0gfxmbqg5pi8" path="res://game/areas/level 1/1-b2.tscn" id="2_1jhwk"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_ivy3o")
 metadata/_edit_lock_ = true
 
-[node name="1-B2" parent="." instance=ExtResource("1_v25lx")]
-position = Vector2(504, 240)
-
-[node name="1-A2" parent="." instance=ExtResource("3_5l7tb")]
-position = Vector2(-1032, 240)
+[node name="1-B2" parent="." instance=ExtResource("2_1jhwk")]
+position = Vector2(-768, -480)

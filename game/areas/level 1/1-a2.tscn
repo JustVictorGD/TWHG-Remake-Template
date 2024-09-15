@@ -424,6 +424,7 @@ offset_right = 288.0
 offset_bottom = 864.0
 rotation = 0.785397
 pivot_offset = Vector2(48, 48)
+type = 1
 
 [node name="Finish" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
 offset_left = 1200.0

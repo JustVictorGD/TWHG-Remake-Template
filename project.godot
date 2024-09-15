@@ -38,6 +38,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
+[dotnet]
+
+project/assembly_name="TWHG Remake Template"
+
 [input]
 
 up={
@@ -82,7 +86,7 @@ ghost={
 
 [physics]
 
-common/max_physics_steps_per_frame=12
+common/max_physics_steps_per_frame=2
 
 [rendering]
 

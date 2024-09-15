@@ -14,11 +14,3 @@ var invincible: bool = false # Death can't trigger
 var ghost: bool = false # Ignore walls
 var flying: bool = false # Ignore terrains
 var speed_hacking: bool = false # Doubles speed
-
-var x: bool = true
-
-func _process(delta: float) -> void:
-	if x:
-		print("Area bounds: ", area_bounds)
-	
-	x = false

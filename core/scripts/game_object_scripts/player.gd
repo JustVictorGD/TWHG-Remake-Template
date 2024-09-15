@@ -1,6 +1,8 @@
 extends Node2D
 
 const PLAYER_SIZE: Vector2 = Vector2(42, 42)
+# Makes object collision checks only happen if time is a multiple of 4 ticks.
+const QUARTER_CHECKS: bool = true
 
 @export var speed: int = 1000 # One pixel per tick is 1,000
 @export var velocity: Vector2i = Vector2i(0, 0)
@@ -17,8 +19,6 @@ enum subpixel {
 
 # Physics
 var hitbox: RectangleCollider = RectangleCollider.new()
-
-var test_box: Rect2 = Rect2(position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 var dead: bool = false # Invincible but disables movement and is temporary
 
@@ -78,12 +78,15 @@ func movement_update() -> void:
 
 
 func collision_update() -> void:
+	if QUARTER_CHECKS and not GameLoop.ticks % 4 == 0:
+		return
+	
 	Collider.touched_checkpoint_ids.clear()
 	
 	if dead:
 		return
 	
-	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
+	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
 		if hitbox.intersects(checkpoint.hitbox):
 			checkpoint.select()
 			Collider.touched_checkpoint_ids.append(checkpoint.id)
@@ -174,8 +177,6 @@ func move(movement: Vector2i) -> void:
 	global_position = round(global_position)
 	hitbox.position = global_position - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
-	
-	test_box = Rect2(global_position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 # Sets the position using the subpixel system.
 func move_to(given_position: Vector2i) -> void:
@@ -201,8 +202,6 @@ func move_to(given_position: Vector2i) -> void:
 	
 	hitbox.position = global_position - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
-	
-	test_box = Rect2(global_position - PLAYER_SIZE, PLAYER_SIZE * 2)
 
 func toggle_speed_hack() -> void:
 	if GameManager.speed_hacking:

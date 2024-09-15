@@ -11,7 +11,9 @@ func _init(_position: Vector2 = Vector2.ZERO, _radius: float = 0) -> void:
 func intersects(shape: AbstractCollider) -> bool:
 	if enabled and shape.enabled:
 		if shape is CircleCollider:
-			return position.distance_squared_to(shape.position) < (radius + shape.radius) ** 2
+			if create_rect_with_radius(position, radius).intersects(\
+					create_rect_with_radius(shape.position, shape.radius)):
+				return position.distance_squared_to(shape.position) < (radius + shape.radius) ** 2
 		
 		elif shape is PointCollider:
 			return position.distance_squared_to(shape.position) < radius ** 2
