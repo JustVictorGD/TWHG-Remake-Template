@@ -37,17 +37,6 @@ var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner slidi
 
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("speed_hack"):
-		toggle_speed_hack()
-		
-	if event.is_action_pressed("invincibility"):
-		toggle_invincibility()
-		
-	if event.is_action_pressed("ghost"):
-		toggle_ghost()
-
-
 func _ready() -> void:
 	sliding_sensitivity += 1
 	respawn_timer.timeout.connect(respawn)
@@ -202,22 +191,3 @@ func move_to(given_position: Vector2i) -> void:
 	
 	hitbox.position = global_position - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
-
-func toggle_speed_hack() -> void:
-	if GameManager.speed_hacking:
-		GameManager.speed_hacking = false
-	else:
-		GameManager.speed_hacking = true
-
-func toggle_invincibility() -> void:
-	
-	if GameManager.invincible:
-		GameManager.invincible = false
-	else:
-		GameManager.invincible = true
-
-func toggle_ghost() -> void:
-	if GameManager.ghost:
-		GameManager.ghost = false
-	else:
-		GameManager.ghost = true

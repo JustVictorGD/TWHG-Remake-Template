@@ -18,16 +18,21 @@ var ghost: bool = false # Ignore walls
 var flying: bool = false # Ignore terrains
 var speed_hacking: bool = false # Doubles speed
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("speed_hack"):
-		GameManager.speed_hacking = not GameManager.speed_hacking
-		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("speed_hack"):
+		speed_hacking = not speed_hacking
+		print("Speed hack")
+		print()
 	
-	if Input.is_action_just_pressed("invincibility"):
-		GameManager.invincible = not GameManager.invincible
+	if event.is_action_pressed("invincibility"):
+		invincible = not invincible
+		print("Invincible")
+		print(invincible)
 	
-	if Input.is_action_just_pressed("ghost"):
-		GameManager.ghost = not GameManager.ghost
+	if event.is_action_pressed("ghost"):
+		ghost = not ghost
+		print("Ghost")
 	
-	if Input.is_action_just_pressed("pause"):
-		GameManager.paused = not GameManager.paused
+	if event.is_action_pressed("pause"):
+		paused = not paused
+		print("Pause")
