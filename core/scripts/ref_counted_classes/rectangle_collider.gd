@@ -17,6 +17,11 @@ func _init(bounding_box: Rect2 = Rect2(), _rotation: float = 0, _pivot_offset: V
 func intersects(shape: AbstractCollider) -> bool:
 	if enabled and shape.enabled:
 		if shape is CircleCollider:
+			if is_zero_approx(rotation) and not Rect2(position, size).intersects(create_rect_with_radius(shape.position, shape.radius)):
+				return false
+			elif not Rect2(position - size / 4, size * 1.5).intersects(create_rect_with_radius(shape.position, shape.radius)):
+				return false
+			
 			var relative_point: Vector2 = shape.position - position
 			relative_point -= pivot_offset
 			
@@ -47,6 +52,10 @@ func intersects(shape: AbstractCollider) -> bool:
 		if shape is RectangleCollider:
 			if is_zero_approx(rotation) and is_zero_approx(shape.rotation):
 				return Rect2(position, size).intersects(Rect2(shape.position, shape.size))
+			
+			elif not Rect2(position - size / 4, size * 1.5).intersects(\
+					Rect2(shape.position - shape.size / 4, shape.size * 1.5)):
+				return false
 			
 			else:
 				return are_rectangles_colliding(self, shape)

@@ -6,8 +6,25 @@
 [node name="CollisionTesting" type="Node2D"]
 script = ExtResource("1_osnom")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 240.0
+offset_top = 96.0
+offset_right = 432.0
+offset_bottom = 224.0
+pivot_offset = Vector2(96, 64)
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 144.0
+offset_top = 336.0
+offset_right = 336.0
+offset_bottom = 528.0
+rotation = 0.785398
+pivot_offset = Vector2(96, 96)
+color = Color(0, 1, 0, 1)
+
 [node name="BlueEnemy" parent="." instance=ExtResource("2_urwhs")]
-position = Vector2(72, 24)
+position = Vector2(264, 120)
 
 [node name="BlueEnemy2" parent="." instance=ExtResource("2_urwhs")]
 modulate = Color(1, 1, 1, 0.572549)
@@ -20,21 +37,3 @@ position = Vector2(120, 24)
 [node name="BlueEnemy4" parent="." instance=ExtResource("2_urwhs")]
 modulate = Color(1, 1, 1, 0.25098)
 position = Vector2(144, 24)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 432.0
-offset_top = 336.0
-offset_right = 624.0
-offset_bottom = 464.0
-rotation = 0.261799
-pivot_offset = Vector2(96, 64)
-color = Color(1, 0, 0, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 144.0
-offset_top = 336.0
-offset_right = 336.0
-offset_bottom = 528.0
-rotation = 0.785398
-pivot_offset = Vector2(96, 96)
-color = Color(0, 1, 0, 1)

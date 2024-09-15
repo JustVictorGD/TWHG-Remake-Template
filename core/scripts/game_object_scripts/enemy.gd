@@ -1,4 +1,5 @@
 extends Node2D
+class_name Enemy
 
 @export var lock_scale : bool = false
 
@@ -9,8 +10,6 @@ var id: int
 
 func _ready() -> void:
 	GameLoop.movement_update.connect(movement_update)
-	# This is how collision works here!
-	id = Collider.register_enemy_id(self)
 
 func movement_update() -> void:
 	hitbox.position = self.global_position
@@ -19,7 +18,7 @@ func movement_update() -> void:
 		global_scale = Vector2(1, 1)
 
 func _process(_delta: float) -> void:
-	if AreaManager.invincible:
+	if GameManager.invincible:
 		modulate.a = original_opacity * 0.5
 	else:
 		modulate.a = original_opacity

@@ -1,0 +1,985 @@
+[gd_scene load_steps=38 format=4 uid="uid://ihcdg7j8edmp"]
+
+[ext_resource type="Script" path="res://core/scripts/classes/area.gd" id="1_mr4e3"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://core/themes/blue_theme.tres" id="2_c2ef8"]
+[ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="3_wyorm"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/checkpoint.tscn" id="4_qjtpx"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/coin.tscn" id="5_lvcun"]
+[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/circle.tscn" id="6_684ek"]
+[ext_resource type="Script" path="res://core/scripts/game_object_scripts/tick_based_animator.gd" id="7_d0vdc"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/blue_enemy.tscn" id="8_5jp81"]
+[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/key.tscn" id="9_yo6v3"]
+[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/key_door.tscn" id="10_kc8cv"]
+[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/gold_door.tscn" id="11_kcurx"]
+[ext_resource type="PackedScene" uid="uid://b2nkmg44l3w64" path="res://core/game_objects/tile_map.tscn" id="12_qiybi"]
+[ext_resource type="Script" path="res://core/scripts/classes/solid.gd" id="13_qxe5v"]
+
+[sub_resource type="Animation" id="Animation_t1oa8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:arc_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_68scm"]
+resource_name = "new_animation"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:arc_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [0.0, 360.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hu2f0"]
+_data = {
+"RESET": SubResource("Animation_t1oa8"),
+"new_animation": SubResource("Animation_68scm")
+}
+
+[sub_resource type="Animation" id="Animation_ouv8q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cbltf"]
+resource_name = "new_animation"
+length = 0.75
+loop_mode = 2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_syupp"]
+_data = {
+"RESET": SubResource("Animation_ouv8q"),
+"new_animation": SubResource("Animation_cbltf")
+}
+
+[sub_resource type="Animation" id="Animation_legs3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r8ft8"]
+resource_name = "new_animation"
+length = 0.75
+loop_mode = 2
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhdnx"]
+_data = {
+"RESET": SubResource("Animation_legs3"),
+"new_animation": SubResource("Animation_r8ft8")
+}
+
+[sub_resource type="Animation" id="Animation_edx1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_36yhl"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(552, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc4bb"]
+_data = {
+"RESET": SubResource("Animation_edx1s"),
+"new_animation": SubResource("Animation_36yhl")
+}
+
+[sub_resource type="Animation" id="Animation_h4gfc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e0y47"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-552, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jfnk2"]
+_data = {
+"RESET": SubResource("Animation_h4gfc"),
+"new_animation": SubResource("Animation_e0y47")
+}
+
+[sub_resource type="Animation" id="Animation_0fenc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rtw32"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.707, 0.707), Vector2(1, 1), Vector2(0.707, 0.707), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1fkvn"]
+_data = {
+"RESET": SubResource("Animation_0fenc"),
+"new_animation": SubResource("Animation_rtw32")
+}
+
+[sub_resource type="Animation" id="Animation_bj3x1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6ji3t"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.707, 0.707), Vector2(1, 1), Vector2(0.707, 0.707), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7e6"]
+_data = {
+"RESET": SubResource("Animation_bj3x1"),
+"new_animation": SubResource("Animation_6ji3t")
+}
+
+[sub_resource type="Animation" id="Animation_rhsyr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dt221"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_04hee"]
+_data = {
+"RESET": SubResource("Animation_rhsyr"),
+"new_animation": SubResource("Animation_dt221")
+}
+
+[node name="1-A2" type="Node2D"]
+script = ExtResource("1_mr4e3")
+bottom_text = "\"Hi there\""
+theme = ExtResource("2_c2ef8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 32.0
+offset_bottom = 20.0
+scale = Vector2(48, 48)
+texture = ExtResource("3_wyorm")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Checkpoints" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
+offset_left = 384.0
+offset_top = 384.0
+offset_right = 480.0
+offset_bottom = 576.0
+rotation = -0.373897
+pivot_offset = Vector2(48, 96)
+
+[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
+offset_left = 384.0
+offset_top = 720.0
+offset_right = 528.0
+offset_bottom = 864.0
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
+offset_left = 864.0
+offset_top = 240.0
+offset_right = 912.0
+offset_bottom = 288.0
+
+[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
+offset_left = 576.0
+offset_top = 672.0
+offset_right = 624.0
+offset_bottom = 720.0
+
+[node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
+offset_left = 144.0
+offset_right = 192.0
+offset_bottom = 48.0
+
+[node name="Start" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
+offset_left = 192.0
+offset_top = 768.0
+offset_right = 288.0
+offset_bottom = 864.0
+rotation = 0.785397
+pivot_offset = Vector2(48, 48)
+type = 1
+
+[node name="Finish" parent="Checkpoints" instance=ExtResource("4_qjtpx")]
+offset_left = 1200.0
+offset_top = 48.0
+offset_right = 1392.0
+offset_bottom = 240.0
+type = 2
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin17" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(648, 360)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(696, 360)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(744, 360)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(792, 360)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(840, 360)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(888, 552)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(888, 504)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(888, 456)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(888, 408)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(648, 552)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(648, 504)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(648, 456)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(648, 408)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(888, 360)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(648, 600)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(696, 600)
+
+[node name="Coin25" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(744, 600)
+
+[node name="Coin26" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(792, 600)
+
+[node name="Coin27" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(840, 600)
+
+[node name="Coin28" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(888, 600)
+
+[node name="Coin29" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(744, 840)
+
+[node name="Coin30" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(792, 840)
+
+[node name="Coin31" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(744, 888)
+
+[node name="Coin32" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(792, 888)
+
+[node name="Coin33" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(984, 792)
+
+[node name="Coin34" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(1032, 792)
+
+[node name="Coin35" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(984, 840)
+
+[node name="Coin36" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(1032, 840)
+
+[node name="Coin37" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(768, 36)
+
+[node name="Coin38" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(708, 96)
+
+[node name="Coin39" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(768, 156)
+
+[node name="Coin40" parent="Coins" instance=ExtResource("5_lvcun")]
+position = Vector2(828, 96)
+
+[node name="Circles" type="Node2D" parent="."]
+
+[node name="Circle" parent="Circles" instance=ExtResource("6_684ek")]
+position = Vector2(768, 864)
+rotation = -3.14159
+radius = 1.5
+object_count = 10
+arc_degrees = 0.0
+full_circle_mode = false
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Circles/Circle"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_hu2f0")
+}
+autoplay = "new_animation"
+script = ExtResource("7_d0vdc")
+
+[node name="Enemies" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="StaticEnemies" type="Node2D" parent="Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="BlueEnemy27" parent="Enemies/StaticEnemies" instance=ExtResource("8_5jp81")]
+position = Vector2(1224, 360)
+
+[node name="BlueEnemy28" parent="Enemies/StaticEnemies" instance=ExtResource("8_5jp81")]
+position = Vector2(1272, 456)
+
+[node name="BlueEnemy29" parent="Enemies/StaticEnemies" instance=ExtResource("8_5jp81")]
+position = Vector2(1320, 552)
+
+[node name="BlueEnemy30" parent="Enemies/StaticEnemies" instance=ExtResource("8_5jp81")]
+position = Vector2(1368, 648)
+
+[node name="BlueEnemy31" parent="Enemies/StaticEnemies" instance=ExtResource("8_5jp81")]
+position = Vector2(1416, 744)
+
+[node name="BlueEnemy32" parent="Enemies/StaticEnemies" instance=ExtResource("8_5jp81")]
+position = Vector2(1464, 840)
+
+[node name="Group1" type="Node2D" parent="Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
+libraries = {
+"": SubResource("AnimationLibrary_syupp")
+}
+autoplay = "new_animation"
+script = ExtResource("7_d0vdc")
+
+[node name="BlueEnemy" parent="Enemies/Group1" instance=ExtResource("8_5jp81")]
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(504, 300)
+
+[node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("8_5jp81")]
+position = Vector2(600, 300)
+
+[node name="BlueEnemy3" parent="Enemies/Group1" instance=ExtResource("8_5jp81")]
+position = Vector2(696, 300)
+
+[node name="BlueEnemy4" parent="Enemies/Group1" instance=ExtResource("8_5jp81")]
+position = Vector2(792, 300)
+
+[node name="BlueEnemy5" parent="Enemies/Group1" instance=ExtResource("8_5jp81")]
+position = Vector2(888, 300)
+
+[node name="BlueEnemy6" parent="Enemies/Group1" instance=ExtResource("8_5jp81")]
+position = Vector2(984, 300)
+
+[node name="Group2" type="Node2D" parent="Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
+libraries = {
+"": SubResource("AnimationLibrary_uhdnx")
+}
+autoplay = "new_animation"
+script = ExtResource("7_d0vdc")
+
+[node name="BlueEnemy" parent="Enemies/Group2" instance=ExtResource("8_5jp81")]
+position = Vector2(552, 660)
+
+[node name="BlueEnemy2" parent="Enemies/Group2" instance=ExtResource("8_5jp81")]
+position = Vector2(648, 660)
+
+[node name="BlueEnemy3" parent="Enemies/Group2" instance=ExtResource("8_5jp81")]
+position = Vector2(744, 660)
+
+[node name="BlueEnemy4" parent="Enemies/Group2" instance=ExtResource("8_5jp81")]
+position = Vector2(840, 660)
+
+[node name="BlueEnemy5" parent="Enemies/Group2" instance=ExtResource("8_5jp81")]
+position = Vector2(936, 660)
+
+[node name="BlueEnemy6" parent="Enemies/Group2" instance=ExtResource("8_5jp81")]
+position = Vector2(1032, 660)
+
+[node name="Group3" type="Node2D" parent="Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group3"]
+libraries = {
+"": SubResource("AnimationLibrary_hc4bb")
+}
+autoplay = "new_animation"
+script = ExtResource("7_d0vdc")
+
+[node name="BlueEnemy" parent="Enemies/Group3" instance=ExtResource("8_5jp81")]
+position = Vector2(492, 360)
+
+[node name="BlueEnemy2" parent="Enemies/Group3" instance=ExtResource("8_5jp81")]
+position = Vector2(492, 456)
+
+[node name="BlueEnemy3" parent="Enemies/Group3" instance=ExtResource("8_5jp81")]
+position = Vector2(492, 552)
+
+[node name="BlueEnemy4" parent="Enemies/Group3" instance=ExtResource("8_5jp81")]
+position = Vector2(492, 648)
+
+[node name="Group4" type="Node2D" parent="Enemies"]
+metadata/_edit_lock_ = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group4"]
+libraries = {
+"": SubResource("AnimationLibrary_jfnk2")
+}
+autoplay = "new_animation"
+script = ExtResource("7_d0vdc")
+
+[node name="BlueEnemy" parent="Enemies/Group4" instance=ExtResource("8_5jp81")]
+position = Vector2(1044, 312)
+
+[node name="BlueEnemy2" parent="Enemies/Group4" instance=ExtResource("8_5jp81")]
+position = Vector2(1044, 408)
+
+[node name="BlueEnemy3" parent="Enemies/Group4" instance=ExtResource("8_5jp81")]
+position = Vector2(1044, 504)
+
+[node name="BlueEnemy4" parent="Enemies/Group4" instance=ExtResource("8_5jp81")]
+position = Vector2(1044, 600)
+
+[node name="Group5" type="Node2D" parent="Enemies"]
+position = Vector2(240, 480)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group5"]
+libraries = {
+"": SubResource("AnimationLibrary_1fkvn")
+}
+autoplay = "new_animation"
+script = ExtResource("7_d0vdc")
+
+[node name="BlueEnemy-3" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-120, 120)
+lock_scale = true
+
+[node name="BlueEnemy-2" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(120, -120)
+lock_scale = true
+
+[node name="BlueEnemy-1" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(120, 120)
+lock_scale = true
+
+[node name="BlueEnemy0" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-120, -120)
+lock_scale = true
+
+[node name="BlueEnemy1" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-96, 96)
+lock_scale = true
+
+[node name="BlueEnemy2" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(96, -96)
+lock_scale = true
+
+[node name="BlueEnemy3" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(96, 96)
+lock_scale = true
+
+[node name="BlueEnemy4" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-96, -96)
+lock_scale = true
+
+[node name="BlueEnemy5" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-72, 72)
+lock_scale = true
+
+[node name="BlueEnemy6" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(72, -72)
+lock_scale = true
+
+[node name="BlueEnemy7" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(72, 72)
+lock_scale = true
+
+[node name="BlueEnemy8" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-72, -72)
+lock_scale = true
+
+[node name="BlueEnemy9" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-48, 48)
+lock_scale = true
+
+[node name="BlueEnemy10" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(48, -48)
+lock_scale = true
+
+[node name="BlueEnemy11" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(48, 48)
+lock_scale = true
+
+[node name="BlueEnemy12" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-48, -48)
+lock_scale = true
+
+[node name="BlueEnemy13" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-24, 24)
+lock_scale = true
+
+[node name="BlueEnemy14" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(24, -24)
+lock_scale = true
+
+[node name="BlueEnemy15" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(24, 24)
+lock_scale = true
+
+[node name="BlueEnemy16" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+position = Vector2(-24, -24)
+lock_scale = true
+
+[node name="BlueEnemy17" parent="Enemies/Group5" instance=ExtResource("8_5jp81")]
+lock_scale = true
+
+[node name="Group6" type="Node2D" parent="Enemies"]
+position = Vector2(768, 96)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group6"]
+libraries = {
+"": SubResource("AnimationLibrary_mq7e6")
+}
+autoplay = "new_animation"
+script = ExtResource("7_d0vdc")
+
+[node name="BlueEnemy5" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(-72, 72)
+lock_scale = true
+
+[node name="BlueEnemy6" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(72, -72)
+lock_scale = true
+
+[node name="BlueEnemy7" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(72, 72)
+lock_scale = true
+
+[node name="BlueEnemy8" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(-72, -72)
+lock_scale = true
+
+[node name="BlueEnemy9" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(-48, 48)
+lock_scale = true
+
+[node name="BlueEnemy10" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(48, -48)
+lock_scale = true
+
+[node name="BlueEnemy11" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(48, 48)
+lock_scale = true
+
+[node name="BlueEnemy12" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(-48, -48)
+lock_scale = true
+
+[node name="BlueEnemy13" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(-24, 24)
+lock_scale = true
+
+[node name="BlueEnemy14" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(24, -24)
+lock_scale = true
+
+[node name="BlueEnemy15" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(24, 24)
+lock_scale = true
+
+[node name="BlueEnemy16" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+position = Vector2(-24, -24)
+lock_scale = true
+
+[node name="BlueEnemy17" parent="Enemies/Group6" instance=ExtResource("8_5jp81")]
+lock_scale = true
+
+[node name="4-B4" type="Node2D" parent="Enemies"]
+position = Vector2(504, 120)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/4-B4"]
+libraries = {
+"": SubResource("AnimationLibrary_04hee")
+}
+autoplay = "new_animation"
+script = ExtResource("7_d0vdc")
+
+[node name="BlueEnemy" parent="Enemies/4-B4" instance=ExtResource("8_5jp81")]
+position = Vector2(-48, -48)
+
+[node name="BlueEnemy2" parent="Enemies/4-B4" instance=ExtResource("8_5jp81")]
+position = Vector2(0, -48)
+
+[node name="BlueEnemy3" parent="Enemies/4-B4" instance=ExtResource("8_5jp81")]
+position = Vector2(48, -48)
+
+[node name="BlueEnemy4" parent="Enemies/4-B4" instance=ExtResource("8_5jp81")]
+position = Vector2(48, 48)
+
+[node name="BlueEnemy5" parent="Enemies/4-B4" instance=ExtResource("8_5jp81")]
+position = Vector2(0, 48)
+
+[node name="BlueEnemy6" parent="Enemies/4-B4" instance=ExtResource("8_5jp81")]
+position = Vector2(-48, 48)
+
+[node name="Keys" type="Node2D" parent="."]
+
+[node name="Key" parent="Keys" instance=ExtResource("9_yo6v3")]
+position = Vector2(768, 480)
+key_id = 0
+tracking = true
+
+[node name="Key2" parent="Keys" instance=ExtResource("9_yo6v3")]
+position = Vector2(552, 120)
+key_id = 1
+tracking = true
+
+[node name="Key3" parent="Keys" instance=ExtResource("9_yo6v3")]
+position = Vector2(1200, 480)
+key_id = 2
+tracking = true
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="KeyDoors" type="Node2D" parent="Doors"]
+
+[node name="KeyDoor" parent="Doors/KeyDoors" instance=ExtResource("10_kc8cv")]
+offset_left = 1056.0
+offset_top = 384.0
+offset_right = 1152.0
+offset_bottom = 576.0
+key_id = 2
+open_method = 1
+
+[node name="KeyDoor2" parent="Doors/KeyDoors" instance=ExtResource("10_kc8cv")]
+offset_left = 720.0
+offset_top = 192.0
+offset_right = 816.0
+offset_bottom = 288.0
+key_id = 1
+open_method = 1
+
+[node name="KeyDoor3" parent="Doors/KeyDoors" instance=ExtResource("10_kc8cv")]
+z_index = 6
+offset_left = 720.0
+offset_top = 672.0
+offset_right = 816.0
+offset_bottom = 768.0
+key_id = 0
+open_method = 1
+custom_method = Rect2(0.5, -0.5, 0, 2)
+open_time = 1200
+fade = true
+
+[node name="GoldDoors" type="Node2D" parent="Doors"]
+
+[node name="GoldDoor" parent="Doors/GoldDoors" instance=ExtResource("11_kcurx")]
+offset_left = 1224.0
+offset_top = 240.0
+offset_right = 1368.0
+offset_bottom = 336.0
+open_method = 1
+
+[node name="GoldDoor2" parent="Doors/GoldDoors" instance=ExtResource("11_kcurx")]
+offset_left = 672.0
+offset_top = 768.0
+offset_right = 768.0
+offset_bottom = 864.0
+money_requirement = 1
+custom_method = Rect2(0, 0, 0, 0)
+
+[node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("11_kcurx")]
+offset_left = 768.0
+offset_top = 768.0
+offset_right = 864.0
+offset_bottom = 864.0
+money_requirement = 1
+open_method = 3
+custom_method = Rect2(1, 0, 0, 0)
+
+[node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("11_kcurx")]
+offset_left = 672.0
+offset_top = 864.0
+offset_right = 768.0
+offset_bottom = 960.0
+money_requirement = 1
+open_method = 1
+custom_method = Rect2(0, 1, 0, 0)
+
+[node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("11_kcurx")]
+offset_left = 768.0
+offset_top = 864.0
+offset_right = 864.0
+offset_bottom = 960.0
+money_requirement = 1
+open_method = 2
+custom_method = Rect2(1, 1, 0, 0)
+
+[node name="TileMap" parent="." instance=ExtResource("12_qiybi")]
+z_index = 6
+tile_map_data = PackedByteArray("AAABAAsAAAADAAEAAAAAAAsAAAACAAEAAAD//wsAAAABAAEAAAD//wwAAAABAAIAAAAAAAwAAAACAAIAAAABAAwAAAADAAIAAAABAA0AAAAFAAIAAAAAAA0AAAACAAIAAAD//w0AAAABAAIAAAD//w4AAAABAAMAAAAAAA4AAAACAAMAAAABAA4AAAAGAAEAAAACAA4AAAADAAIAAAACAA0AAAADAAEAAAABAA8AAAABAAIAAAABABAAAAABAAIAAAABABEAAAABAAIAAAABABIAAAABAAIAAAACABIAAAADAAIAAAACABMAAAAFAAIAAAACABQAAAACAAMAAAABABQAAAABAAMAAAABABMAAAABAAIAAAACABEAAAADAAIAAAACABAAAAADAAIAAAACAA8AAAADAAIAAAADABMAAAACAAEAAAAEABMAAAACAAEAAAAFABMAAAACAAEAAAAGABMAAAACAAEAAAAHABMAAAAGAAIAAAAIABMAAAACAAIAAAAJABMAAAACAAIAAAAKABMAAAACAAIAAAALABMAAAACAAIAAAAMABMAAAACAAIAAAANABMAAAADAAIAAAAMABQAAAACAAMAAAALABQAAAACAAMAAAAKABQAAAACAAMAAAAJABQAAAACAAMAAAAIABQAAAACAAMAAAAHABQAAAACAAMAAAAGABQAAAACAAMAAAAFABQAAAACAAMAAAAEABQAAAACAAMAAAADABQAAAACAAMAAAANABQAAAADAAMAAAANABIAAAADAAIAAAANABEAAAADAAIAAAANABAAAAADAAIAAAANAA8AAAAIAAEAAAAMABIAAAACAAIAAAAMABEAAAACAAIAAAAMABAAAAACAAIAAAAMAA8AAAACAAEAAAALABIAAAAGAAIAAAALABEAAAABAAIAAAALABAAAAABAAIAAAALAA8AAAAEAAIAAAALAA4AAAAAAAEAAAANAA4AAAABAAEAAAAOAA4AAAADAAEAAAAOAA8AAAADAAMAAAAJAA4AAAADAAMAAAAJAA0AAAADAAIAAAAJAAwAAAADAAEAAAAIAA0AAAAGAAIAAAAIAAwAAAABAAEAAAAHAA4AAAABAAMAAAAHAA0AAAABAAEAAAAJAAcAAAADAAMAAAAJAAYAAAADAAIAAAAJAAUAAAADAAEAAAAIAAcAAAABAAMAAAAIAAYAAAAGAAEAAAAIAAUAAAAFAAIAAAAIAAQAAAADAAEAAAAHAAYAAAACAAMAAAAHAAUAAAACAAIAAAAHAAQAAAAFAAIAAAAGAAYAAAACAAMAAAAGAAUAAAACAAIAAAAGAAQAAAACAAIAAAAFAAYAAAACAAMAAAAFAAUAAAACAAIAAAAFAAQAAAACAAIAAAAEAAYAAAABAAMAAAAEAAUAAAABAAIAAAAEAAQAAAAGAAEAAAAHAAMAAAADAAEAAAAGAAMAAAACAAEAAAAFAAMAAAACAAEAAAAEAAMAAAACAAEAAAADAAQAAAACAAMAAAADAAMAAAAJAAIAAAACAAQAAAABAAMAAAACAAMAAAABAAEAAAADAAIAAAAAAAEAAAAAAAgAAAACAAMAAAAAAAcAAAACAAIAAAAAAAYAAAAFAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAADAAEAAAD//wgAAAABAAMAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAD//wMAAAABAAEAAAABAAgAAAADAAMAAAABAAcAAAADAAIAAAABAAYAAAAFAAAAAAACAAYAAAADAAAAAAAGAAAAAAAHAAEAAAAGAP//AAADAAEAAAAFAAAAAAABAAMAAAAFAP//AAABAAEAAAAGAAEAAAAAAAMAAAAIAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAALAAAAAAABAAMAAAALAP//AAABAAEAAAANAAUAAAACAAMAAAANAAQAAAAJAAEAAAANAAMAAAADAAIAAAANAAIAAAADAAIAAAANAAEAAAADAAIAAAANAAAAAAADAAIAAAANAP//AAADAAEAAAAMAAUAAAABAAMAAAAMAAQAAAAIAAMAAAAMAAMAAAABAAIAAAAMAAIAAAABAAIAAAAMAAEAAAABAAIAAAAMAAAAAAAGAAEAAAAMAP//AAACAAEAAAAOAAQAAAADAAEAAAAOAAUAAAADAAMAAAALAAQAAAABAAAAAAARAAUAAAAAAAMAAAARAAQAAAAEAAAAAAASAAQAAAAGAAMAAAASAAMAAAABAAIAAAATAAMAAAADAAIAAAATAAQAAAAJAAEAAAATAAUAAAABAAMAAAAUAAUAAAACAAMAAAAVAAUAAAACAAMAAAAWAAUAAAACAAIAAAAXAAUAAAACAAIAAAAYAAUAAAADAAIAAAAYAAQAAAADAAIAAAAYAAMAAAAHAAIAAAAYAAIAAAAAAAIAAAAXAAMAAAACAAEAAAAXAAQAAAACAAIAAAAXAAYAAAAFAAEAAAAXAAcAAAADAAMAAAAWAAcAAAABAAMAAAAWAAYAAAABAAIAAAAWAAQAAAAGAAIAAAAVAAQAAAACAAEAAAAUAAQAAAACAAEAAAATAAAAAAAFAAEAAAASAP//AAABAAEAAAASAAAAAAABAAIAAAATAP//AAACAAEAAAAeAAAAAAADAAIAAAAeAP//AAADAAEAAAAdAAAAAAAGAAEAAAAdAP//AAACAAEAAAAcAAAAAAACAAMAAAAcAP//AAACAAEAAAAbAAAAAAACAAMAAAAbAP//AAACAAEAAAAaAAAAAAACAAMAAAAaAP//AAACAAEAAAAZAAAAAAACAAMAAAAZAP//AAACAAEAAAAYAAAAAAAEAAEAAAAYAP//AAABAAEAAAAeAAUAAAACAAIAAAAeAAQAAAAFAAIAAAAeAAMAAAADAAIAAAAeAAIAAAADAAIAAAAeAAEAAAADAAIAAAAdAAUAAAABAAIAAAAdAAQAAAABAAIAAAAdAAMAAAABAAIAAAAdAAIAAAABAAIAAAAdAAEAAAABAAIAAAAgAAUAAAADAAIAAAAgAAQAAAADAAEAAAAfAAUAAAACAAIAAAAfAAQAAAACAAEAAAAgAA4AAAADAAEAAAAgAA8AAAADAAMAAAAfAA8AAAABAAMAAAAfAA4AAAABAAEAAAAgABIAAAADAAEAAAAgABMAAAADAAIAAAAgABQAAAADAAMAAAAfABQAAAACAAMAAAAfABMAAAAGAAIAAAAfABIAAAABAAEAAAAeABMAAAACAAEAAAAdABMAAAABAAEAAAAdABQAAAABAAMAAAAeABQAAAACAAMAAAAbABIAAAAAAAAAAAAWABQAAAADAAMAAAAWABMAAAADAAEAAAAVABQAAAACAAMAAAAVABMAAAACAAEAAAAUABQAAAACAAMAAAAUABMAAAAJAAIAAAATABQAAAACAAMAAAATABMAAAACAAEAAAASABQAAAABAAMAAAASABMAAAABAAEAAAAUABIAAAAAAAEAAAAWABEAAAAAAAAAAAASAA4AAAADAAEAAAARAA4AAAABAAEAAAARAA8AAAABAAMAAAASAA8AAAAJAAEAAAASABAAAAAEAAEAAAASABEAAAAAAAMAAAATABAAAAADAAMAAAATAA8AAAAFAAAAAAAUAA8AAAAGAAMAAAAVAA8AAAACAAMAAAAWAA8AAAADAAMAAAAWAA4AAAAIAAEAAAAVAA4AAAACAAEAAAAUAA4AAAABAAEAAAAXAA4AAAADAAMAAAAXAA0AAAADAAIAAAAXAAwAAAADAAEAAAAWAAwAAAABAAEAAAAWAA0AAAABAAIAAAASAAEAAAABAAIAAAASAAIAAAABAAIAAAATAAIAAAADAAIAAAATAAEAAAADAAIAAAAXAAEAAAABAAAAAAAYAAEAAAAHAAMAAAAWAAMAAAABAAEAAAAUAAAAAAADAAMAAAAUAAIAAAADAAAAAAAUAP//AAADAAEAAAAYAAYAAAADAAMAAAAdAAYAAAABAAMAAAAeAAYAAAACAAMAAAAfAAYAAAACAAMAAAAgAAYAAAADAAMAAAAIAA4AAAACAAMAAAAHABIAAAABAAEAAAAIABIAAAACAAEAAAAJABIAAAACAAEAAAAKABIAAAACAAEAAAA=")
+metadata/_edit_lock_ = true
+
+[node name="Solids" type="Node2D" parent="."]
+
+[node name="Solid" type="ColorRect" parent="Solids"]
+z_index = 5
+offset_left = 1176.0
+offset_top = 240.0
+offset_right = 1224.0
+offset_bottom = 336.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("13_qxe5v")
+fill_color = Color(0.701961, 0.701961, 1, 1)
+
+[node name="Solid2" type="ColorRect" parent="Solids"]
+z_index = 5
+offset_left = 1368.0
+offset_top = 240.0
+offset_right = 1416.0
+offset_bottom = 336.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("13_qxe5v")
+fill_color = Color(0.701961, 0.701961, 1, 1)
+
+[node name="Solid" type="ColorRect" parent="."]
+offset_left = 528.0
+offset_top = 432.0
+offset_right = 576.0
+offset_bottom = 480.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("13_qxe5v")

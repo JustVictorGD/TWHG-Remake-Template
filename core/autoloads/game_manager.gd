@@ -2,8 +2,12 @@ extends Node
 
 const AREA_SIZE: Vector2 = Vector2(32, 20)
 
+<<<<<<< HEAD:core/autoloads/area_manager.gd
 var paused: bool = false
 
+=======
+var area_bounds: Array[Rect2] = []
+>>>>>>> multi-area:core/autoloads/game_manager.gd
 var deaths: int = 0
 var max_money: int = 0
 var money: int = 0

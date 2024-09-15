@@ -12,12 +12,12 @@ func child_child_ready() -> void:
 		GlobalSignal.player_respawn.connect(player_respawn)
 		
 		if money_requirement <= 0:
-			money_requirement += AreaManager.max_money
+			money_requirement += GameManager.max_money
 
 func coin_collected() -> void:
-	if AreaManager.money >= money_requirement:
+	if GameManager.money >= money_requirement:
 		trigger_door()
 
 func player_respawn() -> void:
-	if AreaManager.money < money_requirement:
+	if GameManager.money < money_requirement:
 		untrigger_door()

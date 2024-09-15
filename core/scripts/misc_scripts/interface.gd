@@ -32,7 +32,7 @@ func _ready() -> void:
 		$ColorRect6.color = Color.html("303030")
 
 func update_timers() -> void:
-	if not AreaManager.finished:
+	if not GameManager.finished:
 		ticks += 1
 		
 		while ticks >= 240:
@@ -48,12 +48,12 @@ func update_timers() -> void:
 			hours += 1
 
 func _process(_delta : float) -> void:
-	$Money.text = "$ " + str(AreaManager.money) + " / " + str(AreaManager.max_money)
-	$Deaths.text = "Deaths: " + str(AreaManager.deaths)
+	$Money.text = "$ " + str(GameManager.money) + " / " + str(GameManager.max_money)
+	$Deaths.text = "Deaths: " + str(GameManager.deaths)
 	$Timer.text = str(hours) + (":%02d:%02d" % [minutes, seconds])
 	$Timer2.text = ".%03d" % [ticks]
 	$FPS.text = str(Engine.get_frames_per_second()) + " FPS"
 	
-	if AreaManager.finished:
+	if GameManager.finished:
 		$Timer.modulate = Color.GOLD
 		$Timer2.modulate = Color.GOLD

@@ -13,12 +13,13 @@ config_version=5
 config/name="TWHG Remake Template"
 run/main_scene="res://game/scenes/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+run/max_fps=60
 config/icon="res://core/assets/TWHG Remake Template.png"
 
 [autoload]
 
 GameLoop="*res://core/autoloads/game_loop.gd"
-AreaManager="*res://core/autoloads/area_manager.gd"
+GameManager="*res://core/autoloads/game_manager.gd"
 SFX="*res://core/autoloads/sfx.tscn"
 GlobalSignal="*res://core/autoloads/global_signal.gd"
 Collider="*res://core/autoloads/collider.gd"
@@ -36,6 +37,10 @@ gdscript/warnings/inferred_declaration=1
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="TWHG Remake Template"
 
 [input]
 
@@ -87,7 +92,7 @@ pause={
 
 [physics]
 
-common/max_physics_steps_per_frame=12
+common/max_physics_steps_per_frame=2
 
 [rendering]
 
