@@ -9,4 +9,4 @@ class_name Area
 @onready var bounding_box: Rect2 = Rect2(self.global_position, area_size * 48)
 
 func _ready() -> void:
-	GameManager.area_bounds.append(bounding_box)
+	GameManager.area_bounds[self] = bounding_box

@@ -20,6 +20,7 @@ var id_generation: Dictionary = {
 }
 
 func _ready() -> void:
+	GameLoop.collision_update.connect(collision_update)
 	add_child(camera)
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
@@ -73,6 +74,11 @@ func change_area(area: Area) -> void:
 	
 	camera.offset = area.bounding_box.position + area.bounding_box.size / 2
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func collision_update() -> void:
+	for i: int in range(GameManager.area_bounds.size()):
+		if GameManager.area_bounds.keys()[i] != current_area:
+			if Rect2(player.position, Vector2.ZERO).intersects(GameManager.area_bounds.values()[i]):
+				current_area = GameManager.area_bounds.keys()[i]
+				change_area(current_area)
+				
+				print("Change area")

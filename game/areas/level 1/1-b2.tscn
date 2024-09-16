@@ -340,10 +340,10 @@ offset_right = 192.0
 offset_bottom = 48.0
 
 [node name="Start" parent="Checkpoints" instance=ExtResource("3_8visq")]
-offset_left = 192.0
-offset_top = 768.0
-offset_right = 288.0
-offset_bottom = 864.0
+offset_left = 1248.0
+offset_top = 720.0
+offset_right = 1344.0
+offset_bottom = 816.0
 rotation = 0.785397
 pivot_offset = Vector2(48, 48)
 type = 1
@@ -454,6 +454,36 @@ position = Vector2(768, 156)
 [node name="Coin40" parent="Coins" instance=ExtResource("5_h7jdv")]
 position = Vector2(828, 96)
 
+[node name="Coin41" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1488, 528)
+
+[node name="Coin42" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1464, 504)
+
+[node name="Coin43" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1440, 480)
+
+[node name="Coin44" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1464, 552)
+
+[node name="Coin45" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1440, 576)
+
+[node name="Coin46" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1416, 528)
+
+[node name="Coin47" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1392, 504)
+
+[node name="Coin48" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1368, 480)
+
+[node name="Coin49" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1392, 552)
+
+[node name="Coin50" parent="Coins" instance=ExtResource("5_h7jdv")]
+position = Vector2(1368, 576)
+
 [node name="Circles" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
@@ -479,23 +509,11 @@ metadata/_edit_lock_ = true
 [node name="StaticEnemies" type="Node2D" parent="Enemies"]
 metadata/_edit_lock_ = true
 
-[node name="BlueEnemy27" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
-position = Vector2(1224, 360)
-
-[node name="BlueEnemy28" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
-position = Vector2(1272, 456)
-
-[node name="BlueEnemy29" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
-position = Vector2(1320, 552)
-
-[node name="BlueEnemy30" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy31" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
 position = Vector2(1368, 648)
 
-[node name="BlueEnemy31" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
-position = Vector2(1416, 744)
-
 [node name="BlueEnemy32" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
-position = Vector2(1464, 840)
+position = Vector2(1512, 840)
 
 [node name="Group5" type="Node2D" parent="Enemies"]
 position = Vector2(240, 480)
