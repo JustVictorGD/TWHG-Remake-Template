@@ -1,10 +1,12 @@
 extends AbstractCollider # Which then extends RefCounted.
 class_name RectangleCollider
 
+
 var position: Vector2
 var size: Vector2
 var rotation: float
 var pivot_offset: Vector2
+
 
 func _init(bounding_box: Rect2 = Rect2(), _rotation: float = 0, _pivot_offset: Vector2 = Vector2.ZERO) -> void:
 	position = bounding_box.position
@@ -12,6 +14,17 @@ func _init(bounding_box: Rect2 = Rect2(), _rotation: float = 0, _pivot_offset: V
 	rotation = _rotation
 	pivot_offset = _pivot_offset
 
+
+func _to_string() -> String:
+	var extra: String = ""
+	
+	if rotation != 0 or pivot_offset != Vector2.ZERO:
+		extra = str(", Rotation = ", rotation)
+	
+	if pivot_offset != Vector2.ZERO:
+		extra += str(", Pivot Offset = ", pivot_offset)
+	
+	return str("[Enabled: ", enabled, ", Bounding Box: ", Rect2(position, size), extra, "]")
 
 
 func intersects(shape: AbstractCollider) -> bool:
@@ -62,10 +75,6 @@ func intersects(shape: AbstractCollider) -> bool:
 	
 	return false
 
-
-
-
-
 # Separating Axis Theorem here we go.
 func are_rectangles_colliding(rect_1: RectangleCollider, rect_2: RectangleCollider) -> bool:
 	var rect_1_vertices: PackedVector2Array = get_vertices()
@@ -82,10 +91,8 @@ func are_rectangles_colliding(rect_1: RectangleCollider, rect_2: RectangleCollid
 	return true
 
 
-
 func overlap(range_1: Vector2, range_2: Vector2) -> bool:
 	return not (range_1.y < range_2.x or range_2.y < range_1.x)
-
 
 
 func get_vertices() -> PackedVector2Array:
@@ -107,7 +114,6 @@ func get_vertices() -> PackedVector2Array:
 	return vertices
 
 
-
 func get_center() -> Vector2:
 	var vertices: PackedVector2Array = get_vertices()
 	return Vector2((vertices[0] + vertices[3]) / 2)
@@ -124,7 +130,6 @@ func get_separating_axes(rect_1_vertices: PackedVector2Array, rect_2_vertices: P
 			axes.append(normal.normalized())
 	
 	return axes
-
 
 
 func project_rectangle(vertices: PackedVector2Array, axis: Vector2) -> Vector2:

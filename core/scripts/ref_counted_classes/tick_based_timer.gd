@@ -4,8 +4,8 @@ class_name TickBasedTimer
 signal timeout
 
 # You're meant to set these 2 properties manually!
-var reversed: bool = false
 var metronome: bool = false
+var reversed: bool = false
 
 # Ideally not these, though.
 var active: bool = false
@@ -13,9 +13,28 @@ var duration: int
 var remaining_time: int
 
 
-func _init(_duration : int) -> void:
+func _init(_duration: int, _metronome: bool = false, _reversed: bool = false) -> void:
 	duration = _duration
-	remaining_time = duration
+	metronome = _metronome
+	reversed = _reversed
+	
+	if not reversed:
+		remaining_time = duration
+
+
+func _to_string() -> String:
+	var extra: String = ""
+	
+	if metronome and reversed:
+		extra = ", Reversed Metronome"
+	
+	elif metronome:
+		extra = ", Metronome"
+	
+	elif reversed:
+		extra = ", Reversed"
+	
+	return str("[Active: ", active, ", Progress: ", remaining_time, "/", duration, extra, "]")
 
 
 func reset_and_play() -> void:

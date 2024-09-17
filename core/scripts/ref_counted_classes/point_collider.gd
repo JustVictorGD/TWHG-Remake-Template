@@ -6,6 +6,9 @@ var position: Vector2
 func _init(_position: Vector2 = Vector2.ZERO) -> void:
 	position = _position
 
+func _to_string() -> String:
+	return str("[Enabled: ", enabled, ", Position: ", position, "]")
+
 func intersects(shape: AbstractCollider) -> bool:
 	if enabled and shape.enabled:
 		if shape is CircleCollider:

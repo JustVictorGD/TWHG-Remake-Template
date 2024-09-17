@@ -21,6 +21,10 @@ var id_generation: Dictionary = {
 
 func _ready() -> void:
 	GameLoop.collision_update.connect(collision_update)
+	print(RectangleCollider.new(Rect2(0, 8, 16, 2), 0))
+	print(RectangleCollider.new(Rect2(0, 8, 16, 2), 45))
+	print(RectangleCollider.new(Rect2(0, 8, 16, 2), 45, Vector2(8, 1)))
+	print(RectangleCollider.new(Rect2(0, 8, 16, 2), 0, Vector2(8, 1)))
 	add_child(camera)
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
