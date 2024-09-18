@@ -7,6 +7,11 @@ var size: Vector2
 var rotation: float
 var pivot_offset: Vector2
 
+var end: Vector2 = position + size:
+	get:
+		return position + size
+	set(value):
+		size = value - position
 
 func _init(bounding_box: Rect2 = Rect2(), _rotation: float = 0, _pivot_offset: Vector2 = Vector2.ZERO) -> void:
 	position = bounding_box.position
