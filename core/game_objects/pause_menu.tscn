@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://btuvdtlg5u165"]
+
+[ext_resource type="Script" path="res://core/scripts/misc_scripts/pause_menu.gd" id="1_5rg1u"]
+[ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/assets/menu_button_style.tres" id="2_xh6v5"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 160.0
+offset_top = 60.0
+offset_right = 1120.0
+offset_bottom = 660.0
+script = ExtResource("1_5rg1u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="ReturnToGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 96.0
+offset_right = -664.0
+offset_bottom = -444.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xh6v5")
+theme_type_variation = &"FlatButton"
+text = "Return to Game"
+alignment = 0
+
+[node name="MusicToggle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 144.0
+offset_right = -736.0
+offset_bottom = -396.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xh6v5")
+theme_type_variation = &"FlatButton"
+text = "Music (on)"
+alignment = 0
+
+[node name="SFXToggle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 192.0
+offset_right = -736.0
+offset_bottom = -348.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xh6v5")
+theme_type_variation = &"FlatButton"
+text = "SFX (on)"
+alignment = 0

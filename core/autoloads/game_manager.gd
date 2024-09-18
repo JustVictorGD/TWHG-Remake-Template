@@ -1,15 +1,20 @@
 extends Node
 
+# Game properties
+var paused: bool = false # Toggled in game_manager and pause.gd
+var music_enabled: bool = true
+var sfx_enabled: bool = true
+
+# Level properties
+var max_money: int = 0
+
+# Area properties
 const AREA_SIZE: Vector2 = Vector2(32, 20)
-
-var paused: bool = false
-
 var area_bounds: Dictionary = {}
 
+# Player stats
 var deaths: int = 0
-var max_money: int = 0
 var money: int = 0
-
 var finished: bool = false
 
 # Special player states
@@ -34,5 +39,8 @@ func _input(event: InputEvent) -> void:
 		print("Ghost")
 	
 	if event.is_action_pressed("pause"):
-		paused = not paused
-		print("Pause")
+		toggle_pause()
+
+func toggle_pause() -> void:
+	paused = not paused
+	print("Pause")

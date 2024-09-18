@@ -18,6 +18,7 @@ var hours: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameLoop.update_timers.connect(update_timers)
+	$Menu.button_down.connect(menu_click)
 	
 	if area_theme == themes.BLUE:
 		pass
@@ -30,6 +31,9 @@ func _ready() -> void:
 	else:
 		$ColorRect5.color = Color.html("303030")
 		$ColorRect6.color = Color.html("303030")
+
+func menu_click() -> void:
+	GameManager.toggle_pause()
 
 func update_timers() -> void:
 	if not GameManager.finished:

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://jn6lkoo3vdrt"]
+[gd_scene load_steps=8 format=3 uid="uid://jn6lkoo3vdrt"]
 
 [ext_resource type="Script" path="res://core/scripts/misc_scripts/interface.gd" id="1_5xmwe"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/assets/Univers_Condensed_Regular.ttf" id="2_svcw7"]
+[ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/assets/menu_button_style.tres" id="3_1ytlt"]
+[ext_resource type="PackedScene" uid="uid://btuvdtlg5u165" path="res://core/game_objects/pause_menu.tscn" id="3_l5642"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_aag45"]
 font = ExtResource("2_svcw7")
@@ -99,15 +101,16 @@ label_settings = SubResource("LabelSettings_aag45")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Menu" type="Label" parent="."]
+[node name="Menu" type="Button" parent="."]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 660.0
 offset_right = 160.0
 offset_bottom = 720.0
+theme = ExtResource("3_1ytlt")
+theme_override_font_sizes/font_size = 40
 text = "Menu"
-label_settings = SubResource("LabelSettings_aag45")
-vertical_alignment = 1
+alignment = 0
 
 [node name="FPS" type="Label" parent="."]
 layout_mode = 0
@@ -150,3 +153,5 @@ offset_bottom = 723.0
 text = ".239"
 label_settings = SubResource("LabelSettings_xrp83")
 vertical_alignment = 1
+
+[node name="Control" parent="." instance=ExtResource("3_l5642")]
