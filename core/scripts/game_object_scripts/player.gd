@@ -1,4 +1,5 @@
 extends Node2D
+class_name Player
 
 const PLAYER_SIZE: Vector2 = Vector2(42, 42)
 # Makes object collision checks only happen if time is a multiple of 4 ticks.
