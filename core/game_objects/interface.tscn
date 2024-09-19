@@ -154,4 +154,4 @@ text = ".239"
 label_settings = SubResource("LabelSettings_xrp83")
 vertical_alignment = 1
 
-[node name="Control" parent="." instance=ExtResource("3_l5642")]
+[node name="PauseMenu" parent="." instance=ExtResource("3_l5642")]

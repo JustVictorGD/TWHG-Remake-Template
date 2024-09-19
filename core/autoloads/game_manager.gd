@@ -1,9 +1,7 @@
 extends Node
 
 # Game properties
-var paused: bool = false # Toggled in game_manager and pause.gd
-var music_enabled: bool = true
-var sfx_enabled: bool = true
+var paused: bool = false
 
 # Level properties
 var max_money: int = 0

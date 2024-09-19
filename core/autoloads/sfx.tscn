@@ -13,22 +13,29 @@ script = ExtResource("1_mivbn")
 
 [node name="EnemyDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_e4xx7")
+bus = &"SFX"
 
 [node name="Checkpoint" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lkdm5")
+bus = &"SFX"
 
 [node name="Coin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_phojv")
+bus = &"SFX"
 
 [node name="Finish" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6rhof")
+bus = &"SFX"
 
 [node name="OpenDoor" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_k78t6")
+bus = &"SFX"
 
 [node name="CloseDoor" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_k78t6")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="Key" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_wptrf")
+bus = &"SFX"
