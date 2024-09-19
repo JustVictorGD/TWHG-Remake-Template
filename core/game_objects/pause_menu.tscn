@@ -1,0 +1,173 @@
+[gd_scene load_steps=4 format=3 uid="uid://btuvdtlg5u165"]
+
+[ext_resource type="Script" path="res://core/scripts/misc_scripts/pause_menu.gd" id="1_5rg1u"]
+[ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/assets/menu_button_style.tres" id="2_xh6v5"]
+
+[sub_resource type="Theme" id="Theme_ddqyr"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 160.0
+offset_top = 60.0
+offset_right = 1120.0
+offset_bottom = 660.0
+script = ExtResource("1_5rg1u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.752941)
+
+[node name="ReturnToGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 108.0
+offset_right = -664.0
+offset_bottom = -456.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xh6v5")
+theme_type_variation = &"FlatButton"
+text = "Return to Game"
+alignment = 0
+
+[node name="MusicToggle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 148.0
+offset_right = -672.0
+offset_bottom = -416.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xh6v5")
+theme_type_variation = &"FlatButton"
+text = "Music"
+alignment = 0
+
+[node name="State" type="Label" parent="MusicToggle"]
+layout_mode = 0
+offset_left = 184.0
+offset_right = 232.0
+offset_bottom = 36.0
+theme = SubResource("Theme_ddqyr")
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+text = "(on)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SFXToggle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 220.0
+offset_right = -672.0
+offset_bottom = -344.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xh6v5")
+theme_type_variation = &"FlatButton"
+text = "SFX"
+alignment = 0
+
+[node name="State" type="Label" parent="SFXToggle"]
+offset_left = 184.0
+offset_right = 232.0
+offset_bottom = 36.0
+theme = SubResource("Theme_ddqyr")
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+text = "(on)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MaxFPS" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 300.0
+offset_right = -672.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xh6v5")
+theme_type_variation = &"FlatButton"
+text = "Max FPS"
+alignment = 0
+
+[node name="State" type="Label" parent="MaxFPS"]
+offset_left = 184.0
+offset_right = 232.0
+offset_bottom = 36.0
+theme = SubResource("Theme_ddqyr")
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+text = "(60)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 52.0
+offset_right = 192.0
+offset_bottom = 100.0
+theme = ExtResource("2_xh6v5")
+theme_override_font_sizes/font_size = 35
+text = "Paused"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 188.0
+offset_right = 288.0
+offset_bottom = 204.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Volume1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 176.0
+offset_right = 116.0
+offset_bottom = 212.0
+theme = ExtResource("2_xh6v5")
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+text = "Volume"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SFXVolumeSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 264.0
+offset_right = 288.0
+offset_bottom = 280.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Volume2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 252.0
+offset_right = 116.0
+offset_bottom = 288.0
+theme = ExtResource("2_xh6v5")
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+text = "Volume"
+horizontal_alignment = 2
+vertical_alignment = 1
