@@ -18,6 +18,9 @@ func intersects(shape: AbstractCollider) -> bool:
 			return false # Infinitely small points can have no intersection.
 		
 		elif shape is RectangleCollider:
+			if is_zero_approx(shape.rotation):
+				return Rect2(position, Vector2.ZERO).intersects(Rect2(shape.position, shape.size))
+			
 			var relative_point: Vector2 = position - shape.position
 			relative_point -= shape.pivot_offset
 			if not is_zero_approx(shape.rotation): relative_point = relative_point.rotated(-shape.rotation)

@@ -4,7 +4,9 @@ class_name Level
 # On a 1280x720 pixel viewport.
 const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 
-var player: Node2D = preload("res://core/game_objects/player.tscn").instantiate()
+var areas: Array[Area] = []
+
+var player: Player = preload("res://core/game_objects/player.tscn").instantiate()
 var interface: Control = preload("res://core/game_objects/interface.tscn").instantiate()
 var canvas_layer: CanvasLayer = CanvasLayer.new()
 var camera: Camera2D = Camera2D.new()
@@ -19,12 +21,8 @@ var id_generation: Dictionary = {
 	"checkpoints": 0,
 }
 
+
 func _ready() -> void:
-	GameLoop.collision_update.connect(collision_update)
-	print(RectangleCollider.new(Rect2(0, 8, 16, 2), 0))
-	print(RectangleCollider.new(Rect2(0, 8, 16, 2), 45))
-	print(RectangleCollider.new(Rect2(0, 8, 16, 2), 45, Vector2(8, 1)))
-	print(RectangleCollider.new(Rect2(0, 8, 16, 2), 0, Vector2(8, 1)))
 	add_child(camera)
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
@@ -61,7 +59,6 @@ func _ready() -> void:
 			player.move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
 			change_area(checkpoint.owner)
 	
-	
 	if start_checkpoints.size() > 1:
 		push_warning("More than one start checkpoint has been found, \
 				choosing the latest one in the scene tree. Paths to all start type checkpoints: ", \
@@ -71,18 +68,23 @@ func _ready() -> void:
 	
 	
 	add_child(player)
+	GameLoop.collision_update.connect(collision_update)
+	
+	print(get_children(true))
+
+
 
 func change_area(area: Area) -> void:
+	current_area = area
+	
 	camera.zoom.x = PLAYABLE_WINDOW.size.x / (area.area_size.x * 48)
 	camera.zoom.y = camera.zoom.x
-	
-	camera.offset = area.bounding_box.position + area.bounding_box.size / 2
+	camera.offset = area.boundary.position + area.boundary.size / 2
+
+
 
 func collision_update() -> void:
-	for i: int in range(GameManager.area_bounds.size()):
-		if GameManager.area_bounds.keys()[i] != current_area:
-			if Rect2(player.position, Vector2.ZERO).intersects(GameManager.area_bounds.values()[i]):
-				current_area = GameManager.area_bounds.keys()[i]
-				change_area(current_area)
-				
-				print("Change area")
+	for area: Area in areas:
+		if area != current_area:
+			if Rect2(player.position, Vector2.ZERO).intersects(area.boundary):
+				change_area(area)

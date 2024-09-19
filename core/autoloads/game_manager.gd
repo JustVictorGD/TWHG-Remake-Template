@@ -7,7 +7,6 @@ var paused: bool = false
 var max_money: int = 0
 
 # Area properties
-const AREA_SIZE: Vector2 = Vector2(32, 20)
 var area_bounds: Dictionary = {}
 
 # Player stats

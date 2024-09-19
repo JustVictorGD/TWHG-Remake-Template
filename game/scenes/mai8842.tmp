@@ -8,17 +8,8 @@
 script = ExtResource("1_ivy3o")
 metadata/_edit_lock_ = true
 
-[node name="SmallRoom" parent="." instance=ExtResource("3_qyyxh")]
-position = Vector2(-1536, -672)
-
-[node name="SmallRoom2" parent="." instance=ExtResource("3_qyyxh")]
-position = Vector2(768, -192)
-
-[node name="SmallRoom3" parent="." instance=ExtResource("3_qyyxh")]
-position = Vector2(-384, -960)
-
-[node name="SmallRoom4" parent="." instance=ExtResource("3_qyyxh")]
-position = Vector2(-384, 480)
-
 [node name="MainRoom" parent="." instance=ExtResource("2_1jhwk")]
 position = Vector2(-768, -480)
+
+[node name="SmallRoom" parent="." instance=ExtResource("3_qyyxh")]
+position = Vector2(768, -192)
