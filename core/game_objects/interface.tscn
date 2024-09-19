@@ -144,7 +144,7 @@ label_settings = SubResource("LabelSettings_aag45")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Timer2" type="Label" parent="."]
+[node name="TickTimer" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1221.0
 offset_top = 663.0

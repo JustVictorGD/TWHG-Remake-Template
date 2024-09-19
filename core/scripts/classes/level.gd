@@ -80,6 +80,8 @@ func change_area(area: Area) -> void:
 	camera.zoom.x = PLAYABLE_WINDOW.size.x / (area.area_size.x * 48)
 	camera.zoom.y = camera.zoom.x
 	camera.offset = area.boundary.position + area.boundary.size / 2
+	
+	interface.area.text = str("Level: 1-", area.displayed_coordinates)
 
 
 
