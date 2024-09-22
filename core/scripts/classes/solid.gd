@@ -129,11 +129,11 @@ func set_merge_sprite(suggest_merge: bool) -> void:
 		
 		self.add_child(outline)
 		self.add_child(fill)
-		fill.z_index = 1
+		outline.z_index = -1
 		sprite_is_merged = false
 
 func _process(delta: float) -> void:
-# Only happens in the Godot editor, not in game.
+	# Only happens in the Godot editor, not in game.
 	if Engine.is_editor_hint():
 		wall_update()
 		set_merge_sprite(merge_sprite)

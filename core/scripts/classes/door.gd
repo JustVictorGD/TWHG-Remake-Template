@@ -35,13 +35,6 @@ const RIGHT_METHOD_TARGET: Rect2 = Rect2(1, 0, 0, 1)
 var triggered: bool = false
 
 
-#func _input(event: InputEvent) -> void:
-#	if event.is_action_pressed("up"):
-#		trigger_door()
-#	if event.is_action_pressed("down"):
-#		untrigger_door()
-
-
 
 func child_ready() -> void:
 	open_timer.timeout.connect(open_timeout)

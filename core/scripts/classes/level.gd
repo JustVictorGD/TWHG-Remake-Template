@@ -4,6 +4,7 @@ class_name Level
 # On a 1280x720 pixel viewport.
 const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 
+var frozen_areas: Array[Area] = []
 var areas: Array[Area] = []
 
 var player: Player = preload("res://core/game_objects/player.tscn").instantiate()
@@ -26,7 +27,7 @@ func _ready() -> void:
 	add_child(camera)
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
-	
+	camera.zoom = Vector2(0.625, 0.625)
 	
 	for enemy: Enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.id = id_generation["enemies"]
@@ -57,7 +58,7 @@ func _ready() -> void:
 			start_checkpoints.append(self.name + "/" + str(get_path_to(checkpoint)))
 			
 			player.move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
-			change_area(checkpoint.owner)
+			change_area(checkpoint.owner.id)
 	
 	if start_checkpoints.size() > 1:
 		push_warning("More than one start checkpoint has been found, \
@@ -66,27 +67,40 @@ func _ready() -> void:
 	elif start_checkpoints.size() == 0:
 		push_error("No start checkpoint has been found! Placing the player at (0, 0) and not focusing on any area.")
 	
-	
 	add_child(player)
 	GameLoop.collision_update.connect(collision_update)
-	
-	print(get_children(true))
 
+ 
 
-
-func change_area(area: Area) -> void:
-	current_area = area
+func change_area(area_id: int) -> void:
+	for existing_area: Area in get_tree().get_nodes_in_group("areas"):
+		existing_area.queue_free()
 	
-	camera.zoom.x = PLAYABLE_WINDOW.size.x / (area.area_size.x * 48)
-	camera.zoom.y = camera.zoom.x
-	camera.offset = area.boundary.position + area.boundary.size / 2
+	var chosen_area: Area = frozen_areas[area_id].duplicate()
 	
-	interface.area.text = str("Level: 1-", area.displayed_coordinates)
+	chosen_area.name = frozen_areas[area_id].name
+	
+	add_child(chosen_area)
+	
+	current_area = chosen_area
+	current_area.id = area_id
+	
+	#camera.zoom.x = PLAYABLE_WINDOW.size.x / (chosen_area.area_size.x * 48)
+	#camera.zoom.y = camera.zoom.x
+	#camera.offset = chosen_area.boundary.position + chosen_area.boundary.size / 2
+	
+	interface.area.text = str("Level: 1-", chosen_area.displayed_coordinates)
+	
+	print("Change area")
+	print(camera.zoom)
+	print(camera.offset)
+	
+	print(get_children())
 
 
 
 func collision_update() -> void:
-	for area: Area in areas:
-		if area != current_area:
+	for area: Area in frozen_areas:
+		if area.id != current_area.id:
 			if Rect2(player.position, Vector2.ZERO).intersects(area.boundary):
-				change_area(area)
+				change_area(area.id)
