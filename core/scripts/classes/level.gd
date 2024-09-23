@@ -14,6 +14,8 @@ var camera: Camera2D = Camera2D.new()
 
 var current_area: Area
 
+var area_data: Array[Dictionary] = []
+var packed_areas: Array[PackedScene] = []
 
 var id_generation: Dictionary = {
 	"enemies": 0,
@@ -27,7 +29,30 @@ func _ready() -> void:
 	add_child(camera)
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
-	camera.zoom = Vector2(0.625, 0.625)
+	camera.zoom = Vector2(0.25, 0.25)
+	
+	# Set up area_data
+	for area: Area in get_tree().get_nodes_in_group("areas"):
+		packed_areas.append(load(area.scene_file_path))
+		
+		area_data.append(
+			{
+				"node": {
+					"bounding_box": Rect2(area.global_position, area.area_size * 48),
+					"file_path": area.scene_file_path,
+					"position_offset": Vector2(area.global_position),
+					"displayed_coordinates": area.displayed_coordinates
+				},
+				"collectable_states": {
+					"coins": [],
+					"keys": [],
+				},
+				"checkpoints": []
+			}
+		)
+	
+	print(area_data)
+	print(packed_areas)
 	
 	for enemy: Enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.id = id_generation["enemies"]
@@ -76,31 +101,25 @@ func change_area(area_id: int) -> void:
 	for existing_area: Area in get_tree().get_nodes_in_group("areas"):
 		existing_area.queue_free()
 	
-	var chosen_area: Area = frozen_areas[area_id].duplicate()
+	var chosen_area: Area = packed_areas[area_id].instantiate()
+	var area_info: Dictionary = area_data[area_id]["node"]
 	
-	chosen_area.name = frozen_areas[area_id].name
-	
-	add_child(chosen_area)
-	
+	chosen_area.global_position = area_info["position_offset"]
 	current_area = chosen_area
 	current_area.id = area_id
 	
-	#camera.zoom.x = PLAYABLE_WINDOW.size.x / (chosen_area.area_size.x * 48)
-	#camera.zoom.y = camera.zoom.x
-	#camera.offset = chosen_area.boundary.position + chosen_area.boundary.size / 2
+	add_child(chosen_area)
 	
-	interface.area.text = str("Level: 1-", chosen_area.displayed_coordinates)
+	camera.zoom.x = PLAYABLE_WINDOW.size.x / area_info["bounding_box"].size.x
+	camera.zoom.y = camera.zoom.x
+	camera.offset = area_info["bounding_box"].position + area_info["bounding_box"].size / 2
 	
-	print("Change area")
-	print(camera.zoom)
-	print(camera.offset)
-	
-	print(get_children())
+	interface.area.text = str("Level: 1-", area_info["displayed_coordinates"])
 
 
 
 func collision_update() -> void:
-	for area: Area in frozen_areas:
-		if area.id != current_area.id:
-			if Rect2(player.position, Vector2.ZERO).intersects(area.boundary):
-				change_area(area.id)
+	for i: int in range(area_data.size()):
+		if i != current_area.id:
+			if Rect2(player.position, Vector2.ZERO).intersects(area_data[i]["node"]["bounding_box"]):
+				change_area(i)
