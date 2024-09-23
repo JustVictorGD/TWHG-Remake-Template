@@ -8,6 +8,7 @@ var id: int
 # For cases when opacity is changed externally, like from invincibility
 @onready var original_opacity: float = modulate.a
 
+
 func _ready() -> void:
 	GameLoop.movement_update.connect(movement_update)
 
@@ -16,6 +17,7 @@ func movement_update() -> void:
 	
 	if lock_scale:
 		global_scale = Vector2(1, 1)
+
 
 func _process(_delta: float) -> void:
 	if GameManager.invincible:

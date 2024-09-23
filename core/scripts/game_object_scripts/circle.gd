@@ -10,8 +10,8 @@ extends Node
 ## If this is false, then there will be an object at the start and at the end of the arc. However, if arc_degrees = 360, then the start and end overlap and the object count looks like it's reduced by 1. Changing this to true will make the circle work like in Edit1 and Edit3.
 @export var full_circle_mode : bool = true
 
-var arc : float
-var children : Array[Node]
+var arc: float
+var children: Array[Node]
 
 enum obj {
 	ENEMIES,

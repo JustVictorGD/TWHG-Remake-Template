@@ -5,9 +5,9 @@ class_name Player
 #region Properties
 
 
-const PLAYER_SIZE: Vector2 = Vector2(42, 42)
 # Makes object collision checks only happen if time is a multiple of 4 ticks.
 const QUARTER_CHECKS: bool = true
+const PLAYER_SIZE: Vector2 = Vector2(42, 42)
 
 @export var speed: int = 1000 # One pixel per tick is 1,000
 @export var velocity: Vector2i = Vector2i(0, 0)
@@ -22,10 +22,10 @@ enum subpixel {
 	RANGE = 1000
 }
 
-# Physics
+# Physics and movement
 var hitbox: RectangleCollider = RectangleCollider.new()
-
-var dead: bool = false # Invincible but disables movement and is temporary
+var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
+var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner sliding.
 
 # Timers, used for fading the player in and out.
 var respawn_timer: TickBasedTimer = TickBasedTimer.new(120)
@@ -34,11 +34,8 @@ var respawn_animation: TickBasedTimer = TickBasedTimer.new(24)
 
 # Respawning
 var last_checkpoint_id: int = -1
-var last_checkpoint_area: String # Unused... for now.
-
-# Movement
-var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
-var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner sliding.
+var last_checkpoint_area: int # Unused... for now.
+var dead: bool = false # Invincible but disables movement and is temporary
 
 
 #endregion

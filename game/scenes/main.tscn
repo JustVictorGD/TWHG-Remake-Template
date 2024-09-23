@@ -8,6 +8,10 @@
 script = ExtResource("1_ivy3o")
 metadata/_edit_lock_ = true
 
+[node name="MainRoom" parent="." instance=ExtResource("2_1jhwk")]
+position = Vector2(-768, -480)
+displayed_coordinates = "A1"
+
 [node name="SmallRoom" parent="." instance=ExtResource("3_qyyxh")]
 position = Vector2(-1536, -672)
 displayed_coordinates = "Z1"
@@ -23,7 +27,3 @@ displayed_coordinates = "A0"
 [node name="SmallRoom4" parent="." instance=ExtResource("3_qyyxh")]
 position = Vector2(-384, 480)
 displayed_coordinates = "A2"
-
-[node name="MainRoom" parent="." instance=ExtResource("2_1jhwk")]
-position = Vector2(-768, -480)
-displayed_coordinates = "A1"

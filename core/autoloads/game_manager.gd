@@ -20,6 +20,7 @@ var ghost: bool = false # Ignore walls
 var flying: bool = false # Ignore terrains
 var speed_hacking: bool = false # Doubles speed
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("speed_hack"):
 		speed_hacking = not speed_hacking
