@@ -1,6 +1,10 @@
 extends Node2D
 class_name Player
 
+
+#region Properties
+
+
 const PLAYER_SIZE: Vector2 = Vector2(42, 42)
 # Makes object collision checks only happen if time is a multiple of 4 ticks.
 const QUARTER_CHECKS: bool = true
@@ -37,6 +41,11 @@ var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner sliding.
 
 
+#endregion
+
+
+#region Game Loop
+
 
 func _ready() -> void:
 	sliding_sensitivity += 1
@@ -46,6 +55,7 @@ func _ready() -> void:
 	GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
 	GlobalSignal.finish.connect(finish)
+
 
 
 func movement_update() -> void:
@@ -65,6 +75,7 @@ func movement_update() -> void:
 		move(Collider.corner_slide(hitbox, Collider.walls, \
 				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
 		move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
+
 
 
 func collision_update() -> void:
@@ -95,20 +106,6 @@ func collision_update() -> void:
 			key.collect()
 
 
-func collect_coin(id: int) -> void:
-	GlobalSignal.coin_collected.emit(id)
-
-
-func enemy_death() -> void:
-	dead = true
-	GameManager.deaths += 1
-	SFX.play("EnemyDeath")
-	
-	respawn_timer.reset_and_play()
-	death_animation.reset_and_play()
-	
-	GlobalSignal.player_death.emit()
-
 
 func update_timers() -> void:
 	respawn_timer.tick_and_timeout()
@@ -126,6 +123,27 @@ func update_timers() -> void:
 		sprite.self_modulate.a = respawn_animation.get_progress()
 
 
+#endregion
+
+
+#region Gameplay Functions
+
+
+func collect_coin(id: int) -> void:
+	GlobalSignal.coin_collected.emit(id)
+
+
+func enemy_death() -> void:
+	dead = true
+	GameManager.deaths += 1
+	SFX.play("EnemyDeath")
+	
+	respawn_timer.reset_and_play()
+	death_animation.reset_and_play()
+	
+	GlobalSignal.player_death.emit()
+
+
 func respawn() -> void:
 	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == last_checkpoint_id:
@@ -141,10 +159,15 @@ func finish() -> void:
 	GameManager.invincible = true
 
 
+#endregion
+
+
+#region Special Position Handling
+
+
 func print_position() -> void:
 	# Weird formatting explained at: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_format_string.html#padding
 	print("X = %s.%03d, Y = %s.%03d" % [position.x, subpixels.x, position.y, subpixels.y])
-
 
 
 # Adds to the position using the subpixel system.
@@ -167,6 +190,7 @@ func move(movement: Vector2i) -> void:
 	global_position = round(global_position)
 	hitbox.position = global_position - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
+
 
 # Sets the position using the subpixel system.
 func move_to(given_position: Vector2i) -> void:
@@ -192,3 +216,6 @@ func move_to(given_position: Vector2i) -> void:
 	
 	hitbox.position = global_position - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
+
+
+#endregion
