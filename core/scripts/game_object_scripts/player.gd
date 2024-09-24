@@ -41,6 +41,11 @@ var dead: bool = false # Invincible but disables movement and is temporary
 #endregion
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("teleport"):
+		move_to(get_global_mouse_position() * 1000)
+
+
 #region Game Loop
 
 
