@@ -61,6 +61,8 @@ func change_area(area_id: int) -> void:
 	for existing_area: Area in get_tree().get_nodes_in_group("areas"):
 		existing_area.queue_free()
 	
+	Collider.walls.clear()
+	
 	var chosen_area: Area = packed_areas[area_id].instantiate()
 	var area_info: Dictionary = area_data[area_id]["node"]
 	
