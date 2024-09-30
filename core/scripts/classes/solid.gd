@@ -14,12 +14,28 @@ class_name Solid
 @export_range(0, 1) var global_opacity: float = 1
 @export var outline_color: Color = Color.BLACK
 @export var fill_color: Color = Color.WHITE
-@export var has_collision: bool = true
+@export var start_with_collision: bool = true
+
 
 @export_category("Outline width")
 @export_range(0, 65536) var outwards_width: int = 3
 @export_range(0, 65536) var inwards_width: int = 3
-var total_outline_width: int = outwards_width + inwards_width
+
+
+var has_collision: bool = true:
+	set(value):
+		has_collision = value
+		if not Engine.is_editor_hint():
+			Collider.togglable_walls[hitbox_index]["has_collision"] = value
+	get:
+		return has_collision
+
+
+
+
+var total_outline_width: int:
+	get: return outwards_width + inwards_width
+
 
 # Components of the solid
 var canvas_group: CanvasGroup = CanvasGroup.new()
@@ -33,6 +49,7 @@ var dynamic_size: bool = false
 var sprite_is_merged: bool = false
 var hitbox_index: int
 @onready var original_opacity: float = canvas_group.modulate.a
+
 
 
 func _ready() -> void:
@@ -50,13 +67,19 @@ func _ready() -> void:
 	set_sprite_size(Rect2(Vector2.ZERO, size))
 	
 	if not Engine.is_editor_hint():
-		GameLoop.wall_update.connect(wall_update)
+		hitbox_index = Collider.togglable_walls.size()
+		# 9 quintillion pixels to the left and up
+		Collider.togglable_walls.append({
+			"bounding_box": Rect2(outline.position + self.global_position, outline.size),
+			"has_collision": has_collision
+		})
 		
-		if has_collision:
-			hitbox_index = Collider.walls.size()
-			Collider.walls.append(Rect2(outline.position + self.global_position, outline.size))
+		GameLoop.wall_update.connect(wall_update)
+	
+	has_collision = start_with_collision
 	
 	child_ready()
+
 
 
 func wall_update() -> void:
@@ -82,9 +105,7 @@ func wall_update() -> void:
 			else:
 				fill.self_modulate.a = global_opacity * 0.5
 				outline.self_modulate.a = global_opacity * 0.5
-		
-		
-		Collider.walls[hitbox_index] = Rect2(outline.position + self.global_position, outline.size)
+
 
 
 func set_sprite_size(sprite: Rect2) -> void:
@@ -93,16 +114,24 @@ func set_sprite_size(sprite: Rect2) -> void:
 	fill.position = outline.position + Vector2(total_outline_width, total_outline_width)
 	fill.size = outline.size - Vector2(total_outline_width, total_outline_width) * 2
 
+
+
 func set_outline_size(sprite: Rect2) -> void:
+	if tracking:
+		print(outwards_width)
+		print(inwards_width)
+	
 	outline.position = sprite.position
 	outline.size = sprite.size
 	fill.position = outline.position + Vector2(total_outline_width, total_outline_width)
 	fill.size = outline.size - Vector2(total_outline_width, total_outline_width) * 2
 
 
+
 # Override this function to add more behavior.
 func child_ready() -> void:
 	pass
+
 
 
 func set_merge_sprite(suggest_merge: bool) -> void:
@@ -131,6 +160,8 @@ func set_merge_sprite(suggest_merge: bool) -> void:
 		self.add_child(fill)
 		outline.z_index = -1
 		sprite_is_merged = false
+
+
 
 func _process(delta: float) -> void:
 	# Only happens in the Godot editor, not in game.

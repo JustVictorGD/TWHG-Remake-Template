@@ -10,7 +10,9 @@ var id: int
 
 
 func _ready() -> void:
-	GameLoop.movement_update.connect(movement_update)
+	if not GameLoop.movement_update.is_connected(movement_update):
+		GameLoop.movement_update.connect(movement_update)
+
 
 func movement_update() -> void:
 	hitbox.position = self.global_position

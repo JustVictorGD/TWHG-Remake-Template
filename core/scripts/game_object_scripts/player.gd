@@ -77,6 +77,7 @@ func movement_update() -> void:
 		move(Collider.corner_slide(hitbox, Collider.walls, \
 				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
 		move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
+		move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.get_solids()))
 
 
 

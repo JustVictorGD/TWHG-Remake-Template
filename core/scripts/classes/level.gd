@@ -62,6 +62,7 @@ func change_area(area_id: int) -> void:
 		existing_area.queue_free()
 	
 	Collider.walls.clear()
+	Collider.togglable_walls.clear()
 	
 	var chosen_area: Area = packed_areas[area_id].instantiate()
 	var area_info: Dictionary = area_data[area_id]["node"]

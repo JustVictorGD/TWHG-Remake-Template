@@ -46,9 +46,13 @@ func child_ready() -> void:
 	
 	child_child_ready()
 
+
+
 # Override this function to add EVEN MORE behavior at creation.
 func child_child_ready() -> void:
 	pass
+
+
 
 func trigger_door() -> void:
 	if not triggered:
@@ -57,6 +61,10 @@ func trigger_door() -> void:
 		
 		SFX.play("OpenDoor")
 		triggered = true
+		
+		Collider.togglable_walls[hitbox_index]["has_collision"] = false
+
+
 
 func untrigger_door() -> void:
 	if triggered:
@@ -65,14 +73,20 @@ func untrigger_door() -> void:
 		
 		SFX.play("CloseDoor")
 		triggered = false
+		
+		Collider.togglable_walls[hitbox_index]["has_collision"] = true
+
 
 
 func open_timeout() -> void:
 	close_timer.active = false
 	set_sprite_size(Rect2(Vector2.ZERO, Vector2(size.x, -6)))
 
+
+
 func close_timeout() -> void:
 	open_timer.active = false
+
 
 
 func update_timers() -> void:

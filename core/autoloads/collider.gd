@@ -6,6 +6,10 @@ const WALL_SIZE: Vector2 = Vector2(54, 54)
 var touched_checkpoint_ids: PackedInt32Array = []
 var walls: Array[Rect2] = []
 
+# Key = bounding box: Rect2
+# Value = has_collision: bool
+var togglable_walls: Array[Dictionary] = []
+
 var checkpoints: Array[ColorRect] = []
 
 # Assigning unique IDs to objects
@@ -15,6 +19,14 @@ var next_coin_id: int = -1
 var next_key_id: int = -1
 
 
+func get_solids() -> Array[Rect2]:
+	var array: Array[Rect2] = []
+	
+	for solid: Dictionary in togglable_walls:
+		if solid["has_collision"]:
+			array.append(solid["bounding_box"])
+	
+	return array
 
 
 func get_center(rect: Rect2) -> Vector2:
