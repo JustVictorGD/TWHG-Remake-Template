@@ -83,6 +83,7 @@ text = "SFX"
 alignment = 0
 
 [node name="State" type="Label" parent="SFXToggle"]
+layout_mode = 0
 offset_left = 184.0
 offset_right = 232.0
 offset_bottom = 36.0
@@ -109,6 +110,7 @@ text = "Max FPS"
 alignment = 0
 
 [node name="State" type="Label" parent="MaxFPS"]
+layout_mode = 0
 offset_left = 184.0
 offset_right = 232.0
 offset_bottom = 36.0

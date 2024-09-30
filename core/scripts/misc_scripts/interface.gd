@@ -42,7 +42,7 @@ func _ready() -> void:
 		$ColorRect6.color = Color.html("303030")
 
 func menu_click() -> void:
-	GameManager.toggle_pause()
+	GameManager.paused = not GameManager.paused
 
 func update_timers() -> void:
 	if not GameManager.finished:

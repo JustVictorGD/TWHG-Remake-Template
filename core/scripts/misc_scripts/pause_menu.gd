@@ -18,7 +18,7 @@ func _ready() -> void:
 	$SFXVolumeSlider.value_changed.connect(sfx_value_changed)
 
 func return_to_game_click() -> void:
-	GameManager.toggle_pause()
+	GameManager.paused = not GameManager.paused
 
 func music_click() -> void:
 	AudioServer.set_bus_mute(music_index, not AudioServer.is_bus_mute(music_index))
