@@ -1,18 +1,18 @@
 [gd_scene load_steps=32 format=4 uid="uid://c1bhjs030vqlv"]
 
-[ext_resource type="Script" path="res://core/scripts/classes/area.gd" id="1_hg4mj"]
-[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://core/themes/blue_theme.tres" id="2_4uc24"]
-[ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/assets/Floors/Blue Floor.png" id="2_uaan5"]
-[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/checkpoint.tscn" id="3_8visq"]
-[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/coin.tscn" id="5_h7jdv"]
-[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/blue_enemy.tscn" id="6_i7507"]
-[ext_resource type="Script" path="res://core/scripts/game_object_scripts/tick_based_animator.gd" id="6_jic0f"]
-[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/circle.tscn" id="7_v8775"]
-[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/key.tscn" id="10_l8d2y"]
-[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/key_door.tscn" id="10_x5t53"]
-[ext_resource type="Script" path="res://core/scripts/classes/solid.gd" id="11_7h33g"]
-[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/gold_door.tscn" id="12_1mhss"]
-[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/tile_map/solid_tile_set.tscn" id="14_vao61"]
+[ext_resource type="Script" path="res://core/special_objects/level/area.gd" id="1_hg4mj"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_4uc24"]
+[ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/misc_assets/images/Blue Floor.png" id="2_uaan5"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="3_8visq"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/common_objects/collectables/coin/coin.tscn" id="5_h7jdv"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="6_i7507"]
+[ext_resource type="Script" path="res://core/special_objects/tick_based_animator.gd" id="6_jic0f"]
+[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/common_objects/other/circle/circle.tscn" id="7_v8775"]
+[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/common_objects/collectables/key/key.tscn" id="10_l8d2y"]
+[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/common_objects/solids/key_door/key_door.tscn" id="10_x5t53"]
+[ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="11_7h33g"]
+[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/common_objects/solids/gold_door/gold_door.tscn" id="12_1mhss"]
+[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="14_vao61"]
 
 [sub_resource type="Animation" id="Animation_t1oa8"]
 length = 0.001
@@ -839,7 +839,7 @@ offset_left = 1224.0
 offset_top = 240.0
 offset_right = 1368.0
 offset_bottom = 336.0
-open_method = 1
+open_method = 4
 
 [node name="GoldDoor2" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
 offset_left = 672.0
@@ -847,7 +847,7 @@ offset_top = 768.0
 offset_right = 768.0
 offset_bottom = 864.0
 money_requirement = 1
-custom_method = Rect2(0, 0, 0, 0)
+open_method = 4
 
 [node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
 offset_left = 768.0
@@ -855,26 +855,23 @@ offset_top = 768.0
 offset_right = 864.0
 offset_bottom = 864.0
 money_requirement = 2
-open_method = 3
-custom_method = Rect2(1, 0, 0, 0)
+open_method = 4
 
 [node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
 offset_left = 672.0
 offset_top = 864.0
 offset_right = 768.0
 offset_bottom = 960.0
-money_requirement = -38
-open_method = 1
-custom_method = Rect2(0, 1, 0, 0)
+money_requirement = 3
+open_method = 4
 
 [node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
 offset_left = 768.0
 offset_top = 864.0
 offset_right = 864.0
 offset_bottom = 960.0
-money_requirement = -39
-open_method = 2
-custom_method = Rect2(1, 1, 0, 0)
+money_requirement = 4
+open_method = 4
 
 [node name="Solids" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -887,17 +884,7 @@ offset_right = 1224.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
-fill_color = Color(0.701961, 0.701961, 1, 1)
-
-[node name="Solid3" type="ColorRect" parent="Solids"]
-z_index = 6
-offset_left = 1056.0
-offset_top = 144.0
-offset_right = 1104.0
-offset_bottom = 240.0
-rotation = 0.523598
-color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+outline_color = Color(0.282353, 0.282353, 0.4, 1)
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
 [node name="Solid2" type="ColorRect" parent="Solids"]
@@ -908,6 +895,7 @@ offset_right = 1416.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("11_7h33g")
+outline_color = Color(0.282353, 0.282353, 0.4, 1)
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
 [node name="Trees" type="Node2D" parent="."]
@@ -1421,6 +1409,6 @@ color = Color(1, 1, 1, 0.0627451)
 
 [node name="SolidTileSet" parent="." instance=ExtResource("14_vao61")]
 tile_map_data = PackedByteArray("AAAOAAQAAQAAAAAAAAAOAAUAAQAAAAAAAAANAAUAAQAAAAAAAAANAAQAAQAAAAAAAAAMAAUAAQAAAAAAAAAMAAQAAQAAAAAAAAANAAMAAQAAAAAAAAANAAIAAQAAAAAAAAANAAEAAQAAAAAAAAANAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAEAAQAAAAAAAAAMAAIAAQAAAAAAAAAMAAMAAQAAAAAAAAALAAQAAQAAAAAAAAAKAAIAAQAAAAAAAAAIAAcAAQAAAAAAAAAIAAYAAQAAAAAAAAAIAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAJAAYAAQAAAAAAAAAJAAcAAQAAAAAAAAAIAAQAAQAAAAAAAAAHAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAADAAQAAQAAAAAAAAACAAQAAQAAAAAAAAACAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAGAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAADAAIAAQAAAAAAAAAHAAYAAQAAAAAAAAAHAAUAAQAAAAAAAAAGAAYAAQAAAAAAAAAGAAUAAQAAAAAAAAAFAAYAAQAAAAAAAAAFAAUAAQAAAAAAAAAEAAYAAQAAAAAAAAAEAAUAAQAAAAAAAAAIAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAGAP//AQAAAAAAAAAFAP//AQAAAAAAAAADAP//AQAAAAAAAAAEAP//AQAAAAAAAAACAP//AQAAAAAAAAABAP//AQAAAAAAAAAAAP//AQAAAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAALAP//AQAAAAAAAAAMAP//AQAAAAAAAAANAP//AQAAAAAAAAASAP//AQAAAAAAAAATAP//AQAAAAAAAAAUAAAAAQAAAAAAAAATAAAAAQAAAAAAAAAUAP//AQAAAAAAAAAeAAAAAQAAAAAAAAAeAP//AQAAAAAAAAAdAAAAAQAAAAAAAAAdAP//AQAAAAAAAAAcAAAAAQAAAAAAAAAcAP//AQAAAAAAAAAbAAAAAQAAAAAAAAAbAP//AQAAAAAAAAAaAAAAAQAAAAAAAAAaAP//AQAAAAAAAAAZAAAAAQAAAAAAAAAZAP//AQAAAAAAAAAYAAAAAQAAAAAAAAAYAP//AQAAAAAAAAAeAAYAAQAAAAAAAAAeAAUAAQAAAAAAAAAeAAQAAQAAAAAAAAAeAAMAAQAAAAAAAAAeAAIAAQAAAAAAAAAeAAEAAQAAAAAAAAAdAAYAAQAAAAAAAAAdAAUAAQAAAAAAAAAdAAQAAQAAAAAAAAAdAAMAAQAAAAAAAAAdAAIAAQAAAAAAAAAdAAEAAQAAAAAAAAAfAAYAAQAAAAAAAAAfAAUAAQAAAAAAAAAfAAQAAQAAAAAAAAAgAAQAAQAAAAAAAAAgAAUAAQAAAAAAAAAgAAYAAQAAAAAAAAAYAAYAAQAAAAAAAAAYAAUAAQAAAAAAAAAYAAQAAQAAAAAAAAAYAAMAAQAAAAAAAAAYAAIAAQAAAAAAAAAYAAEAAQAAAAAAAAAXAAEAAQAAAAAAAAAXAAMAAQAAAAAAAAAXAAQAAQAAAAAAAAAXAAUAAQAAAAAAAAAXAAYAAQAAAAAAAAAXAAcAAQAAAAAAAAAWAAcAAQAAAAAAAAAWAAYAAQAAAAAAAAAWAAUAAQAAAAAAAAAWAAQAAQAAAAAAAAAWAAMAAQAAAAAAAAAVAAQAAQAAAAAAAAAUAAQAAQAAAAAAAAATAAQAAQAAAAAAAAATAAUAAQAAAAAAAAAUAAUAAQAAAAAAAAAVAAUAAQAAAAAAAAASAAQAAQAAAAAAAAARAAQAAQAAAAAAAAARAAUAAQAAAAAAAAASAAMAAQAAAAAAAAATAAMAAQAAAAAAAAATAAIAAQAAAAAAAAAUAAIAAQAAAAAAAAATAAEAAQAAAAAAAAASAAAAAQAAAAAAAAASAAEAAQAAAAAAAAASAAIAAQAAAAAAAAAXAA4AAQAAAAAAAAAXAA0AAQAAAAAAAAAXAAwAAQAAAAAAAAAWAA4AAQAAAAAAAAAWAA0AAQAAAAAAAAAWAAwAAQAAAAAAAAAWAA8AAQAAAAAAAAAVAA8AAQAAAAAAAAAVAA4AAQAAAAAAAAAUAA8AAQAAAAAAAAAUAA4AAQAAAAAAAAAfAA8AAQAAAAAAAAAfAA4AAQAAAAAAAAAgAA8AAQAAAAAAAAAgAA4AAQAAAAAAAAAgABQAAQAAAAAAAAAgABMAAQAAAAAAAAAgABIAAQAAAAAAAAAfABQAAQAAAAAAAAAfABMAAQAAAAAAAAAfABIAAQAAAAAAAAAeABQAAQAAAAAAAAAeABMAAQAAAAAAAAAdABQAAQAAAAAAAAAdABMAAQAAAAAAAAAcABQAAQAAAAAAAAAcABMAAQAAAAAAAAAbABQAAQAAAAAAAAAaABQAAQAAAAAAAAAaABMAAQAAAAAAAAAZABQAAQAAAAAAAAAZABMAAQAAAAAAAAAYABQAAQAAAAAAAAAYABMAAQAAAAAAAAAXABQAAQAAAAAAAAAXABMAAQAAAAAAAAAWABQAAQAAAAAAAAAWABMAAQAAAAAAAAAVABQAAQAAAAAAAAAVABMAAQAAAAAAAAAUABQAAQAAAAAAAAAUABMAAQAAAAAAAAATABQAAQAAAAAAAAATABMAAQAAAAAAAAASABQAAQAAAAAAAAASABMAAQAAAAAAAAAUABIAAQAAAAAAAAAWABEAAQAAAAAAAAAbABIAAQAAAAAAAAAbABMAAQAAAAAAAAASABEAAQAAAAAAAAASABAAAQAAAAAAAAASAA8AAQAAAAAAAAASAA4AAQAAAAAAAAATABAAAQAAAAAAAAATAA8AAQAAAAAAAAARAA8AAQAAAAAAAAARAA4AAQAAAAAAAAAOAA8AAQAAAAAAAAAOAA4AAQAAAAAAAAANAA8AAQAAAAAAAAANAA4AAQAAAAAAAAANABMAAQAAAAAAAAANABIAAQAAAAAAAAANABEAAQAAAAAAAAANABAAAQAAAAAAAAAMABMAAQAAAAAAAAAMABIAAQAAAAAAAAAMABEAAQAAAAAAAAAMABAAAQAAAAAAAAAMAA8AAQAAAAAAAAALABMAAQAAAAAAAAALABIAAQAAAAAAAAALABEAAQAAAAAAAAALABAAAQAAAAAAAAALAA8AAQAAAAAAAAALAA4AAQAAAAAAAAANABQAAQAAAAAAAAAMABQAAQAAAAAAAAALABQAAQAAAAAAAAAKABQAAQAAAAAAAAAKABMAAQAAAAAAAAAKABIAAQAAAAAAAAAJABQAAQAAAAAAAAAJABMAAQAAAAAAAAAJABIAAQAAAAAAAAAIABQAAQAAAAAAAAAIABMAAQAAAAAAAAAIABIAAQAAAAAAAAAHABQAAQAAAAAAAAAHABMAAQAAAAAAAAAHABIAAQAAAAAAAAAGABQAAQAAAAAAAAAGABMAAQAAAAAAAAAFABQAAQAAAAAAAAAFABMAAQAAAAAAAAAEABQAAQAAAAAAAAAEABMAAQAAAAAAAAADABQAAQAAAAAAAAADABMAAQAAAAAAAAACABQAAQAAAAAAAAACABMAAQAAAAAAAAABABQAAQAAAAAAAAABABMAAQAAAAAAAAACABIAAQAAAAAAAAACABEAAQAAAAAAAAACABAAAQAAAAAAAAACAA8AAQAAAAAAAAACAA4AAQAAAAAAAAACAA0AAQAAAAAAAAABABIAAQAAAAAAAAABABEAAQAAAAAAAAABABAAAQAAAAAAAAABAA8AAQAAAAAAAAABAA4AAQAAAAAAAAABAA0AAQAAAAAAAAABAAwAAQAAAAAAAAABAAsAAQAAAAAAAAABAAoAAQAAAAAAAAABAAkAAQAAAAAAAAABAAgAAQAAAAAAAAABAAcAAQAAAAAAAAABAAYAAQAAAAAAAAAAAA4AAQAAAAAAAAAAAA0AAQAAAAAAAAAAAAwAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAoAAQAAAAAAAAAAAAkAAQAAAAAAAAAAAAgAAQAAAAAAAAAAAAcAAQAAAAAAAAAAAAYAAQAAAAAAAAD//w4AAQAAAAAAAAD//w0AAQAAAAAAAAD//wwAAQAAAAAAAAD//wsAAQAAAAAAAAD//woAAQAAAAAAAAD//wkAAQAAAAAAAAD//wgAAQAAAAAAAAD//wcAAQAAAAAAAAD//wYAAQAAAAAAAAACAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wUAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAA=")
-outline_color = Color(0, 0, 1, 1)
-fill_color = Color(0, 1, 1, 0.305882)
+outline_color = Color(0.282353, 0.282353, 0.4, 1)
+fill_color = Color(0.701961, 0.701961, 1, 1)
 metadata/_edit_lock_ = true

@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://br20utobbc302"]
+
+[ext_resource type="Script" path="res://weird/tester.gd" id="1_osnom"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="2_urwhs"]
+
+[node name="CollisionTesting" type="Node2D"]
+script = ExtResource("1_osnom")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 240.0
+offset_top = 96.0
+offset_right = 432.0
+offset_bottom = 224.0
+pivot_offset = Vector2(96, 64)
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 144.0
+offset_top = 336.0
+offset_right = 336.0
+offset_bottom = 528.0
+rotation = 0.785398
+pivot_offset = Vector2(96, 96)
+color = Color(0, 1, 0, 1)
+
+[node name="BlueEnemy" parent="." instance=ExtResource("2_urwhs")]
+position = Vector2(264, 120)
+
+[node name="BlueEnemy2" parent="." instance=ExtResource("2_urwhs")]
+modulate = Color(1, 1, 1, 0.572549)
+position = Vector2(96, 24)
+
+[node name="BlueEnemy3" parent="." instance=ExtResource("2_urwhs")]
+modulate = Color(1, 1, 1, 0.439216)
+position = Vector2(120, 24)
+
+[node name="BlueEnemy4" parent="." instance=ExtResource("2_urwhs")]
+modulate = Color(1, 1, 1, 0.25098)
+position = Vector2(144, 24)

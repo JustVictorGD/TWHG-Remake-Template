@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b1ip8y004rknx"]
+
+[ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="1_3pqoq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1lccg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cyax"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kxf18"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g0plt"]
+
+[resource]
+default_font = ExtResource("1_3pqoq")
+default_font_size = 25
+Button/colors/font_focus_color = Color(0.87451, 0.87451, 0.87451, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_1lccg")
+Button/styles/hover = SubResource("StyleBoxEmpty_6cyax")
+Button/styles/normal = SubResource("StyleBoxEmpty_kxf18")
+Button/styles/pressed = SubResource("StyleBoxEmpty_g0plt")

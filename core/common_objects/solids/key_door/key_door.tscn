@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctie7hckoi342"]
+
+[ext_resource type="Script" path="res://core/common_objects/solids/key_door/key_door.gd" id="1_7ugfb"]
+
+[node name="KeyDoor2" type="ColorRect" groups=["key_doors"]]
+z_index = 5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_7ugfb")
+outline_color = Color(0.266667, 0.266667, 0.266667, 1)
+fill_color = Color(0.6, 0.6, 0.6, 1)

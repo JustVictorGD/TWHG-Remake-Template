@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AreaTheme" load_steps=2 format=3 uid="uid://dcnwlk7ew7avh"]
+
+[ext_resource type="Script" path="res://game/themes/area_theme.gd" id="1_uymet"]
+
+[resource]
+script = ExtResource("1_uymet")
+wall_outline = Color(0, 0, 0, 1)
+wall_fill = null
+tile_1 = null
+tile_2 = null
+enemy_outline = null
+enemy_fill = null
+gold_outline = null
+gold_fill = null
+key_outline = null
+key_fill = null

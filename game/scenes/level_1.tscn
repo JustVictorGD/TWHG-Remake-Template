@@ -1,17 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://b13r5mkfmbmkm"]
+[gd_scene load_steps=4 format=3 uid="uid://55jl8jvoqiur"]
 
-[ext_resource type="PackedScene" uid="uid://d0gfxmbqg5pi8" path="res://game/areas/level 1/1-b2.tscn" id="1_vm2a2"]
+[ext_resource type="Script" path="res://core/special_objects/level/level.gd" id="1_v5ohe"]
+[ext_resource type="PackedScene" uid="uid://c1bhjs030vqlv" path="res://game/areas/level 1/main_room.tscn" id="2_uvjns"]
+[ext_resource type="PackedScene" uid="uid://ihcdg7j8edmp" path="res://game/areas/level 1/small_room.tscn" id="3_h8dlu"]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_v5ohe")
 metadata/_edit_lock_ = true
 
-[node name="1-A1" parent="." instance=ExtResource("1_vm2a2")]
+[node name="MainRoom" parent="." instance=ExtResource("2_uvjns")]
+position = Vector2(-768, -480)
+displayed_coordinates = "A1"
 
-[node name="1-B1" parent="." instance=ExtResource("1_vm2a2")]
-position = Vector2(1536, 0)
+[node name="SmallRoom" parent="." instance=ExtResource("3_h8dlu")]
+position = Vector2(-1536, -672)
+displayed_coordinates = "Z1"
 
-[node name="1-B2" parent="." instance=ExtResource("1_vm2a2")]
-position = Vector2(1536, 960)
+[node name="SmallRoom2" parent="." instance=ExtResource("3_h8dlu")]
+position = Vector2(768, -192)
+displayed_coordinates = "B1"
 
-[node name="1-B3" parent="." instance=ExtResource("1_vm2a2")]
-position = Vector2(1536, 1920)
+[node name="SmallRoom3" parent="." instance=ExtResource("3_h8dlu")]
+position = Vector2(-384, -960)
+displayed_coordinates = "A0"
+
+[node name="SmallRoom4" parent="." instance=ExtResource("3_h8dlu")]
+position = Vector2(-384, 480)
+displayed_coordinates = "A2"

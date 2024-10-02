@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2tu2qgth8he6"]
+
+[ext_resource type="Script" path="res://core/common_objects/other/enemy/enemy.gd" id="1_0mjwl"]
+[ext_resource type="Texture2D" uid="uid://cpb0p4mpunkvm" path="res://core/common_objects/other/enemy/Blue Enemy.png" id="2_b8xd4"]
+
+[node name="BlueEnemy" type="Node2D" groups=["enemies"]]
+process_priority = 1
+script = ExtResource("1_0mjwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_b8xd4")

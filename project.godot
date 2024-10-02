@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="TWHG Remake Template"
-run/main_scene="res://game/scenes/main.tscn"
+run/main_scene="res://game/scenes/level_1.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
-config/icon="res://core/assets/TWHG Remake Template.png"
+config/icon="res://core/misc_assets/images/TWHG Remake Template.png"
 
 [audio]
 
-buses/default_bus_layout="res://core/assets/default_bus_layout.tres"
+buses/default_bus_layout="res://core/misc_assets/resources/default_bus_layout.tres"
 
 [autoload]
 
