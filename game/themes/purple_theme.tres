@@ -4,13 +4,14 @@
 
 [resource]
 script = ExtResource("1_uymet")
-wall_outline = Color(0, 0, 0, 1)
-wall_fill = null
-tile_1 = null
-tile_2 = null
-enemy_outline = null
-enemy_fill = null
-gold_outline = null
-gold_fill = null
-key_outline = null
-key_fill = null
+wall_outline = Color(0.294118, 0.239216, 0.4, 1)
+wall_fill = Color(0.745098, 0.6, 1, 1)
+tile_1 = Color(0.901961, 0.862745, 0.984314, 1)
+tile_2 = Color(0.992157, 0.968627, 1, 1)
+enemy_outline = Color(0.235294, 0, 0.47451, 1)
+enemy_fill = Color(0.6, 0, 1, 1)
+gold_outline = Color(0.584, 0.467, 0, 1)
+gold_fill = Color(1, 0.8, 0, 1)
+key_outline = Color(0.267, 0.267, 0.267, 1)
+key_fill = Color(0.6, 0.6, 0.6, 1)
+pit = Color(0, 0, 0, 1)

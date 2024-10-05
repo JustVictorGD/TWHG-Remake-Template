@@ -1,8 +1,14 @@
 @tool
 extends TileMapLayer
 
+## If the node's owner is a node of the "Area" type, the area's theme gets
+## referenced instead of the wall's outline and fill colors being set manually.
+@export var copy_area_theme: bool = true
+## Gets overridden if "copy_area_theme" is on.
 @export var outline_color: Color = Color.BLACK
+## Gets overridden if "copy_area_theme" is on.
 @export var fill_color: Color = Color.WHITE
+
 
 @onready var outline: TileMapLayer = $Outline
 @onready var fill: TileMapLayer = $Fill
@@ -25,9 +31,14 @@ func _process(delta: float) -> void:
 		else:
 			modulate.a = 1
 	
-	
-	outline.modulate = outline_color
-	fill.modulate = fill_color
+	if copy_area_theme:
+		if owner is Area:
+			if owner.theme != null:
+				outline.modulate = owner.theme.wall_outline
+				fill.modulate = owner.theme.wall_fill
+	else:
+		outline.modulate = outline_color
+		fill.modulate = fill_color
 	
 	var current_cells: Array[Vector2i] = get_used_cells()
 	

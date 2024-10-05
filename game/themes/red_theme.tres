@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AreaTheme" load_steps=2 format=3 uid="uid://bvirr7nvp5wjo"]
+
+[ext_resource type="Script" path="res://game/themes/area_theme.gd" id="1_6pyd6"]
+
+[resource]
+script = ExtResource("1_6pyd6")
+wall_outline = Color(0.4, 0.223529, 0.223529, 1)
+wall_fill = Color(1, 0.556863, 0.556863, 1)
+tile_1 = Color(0.976471, 0.866667, 0.866667, 1)
+tile_2 = Color(1, 0.968627, 0.968627, 1)
+enemy_outline = Color(0.4, 0, 0, 1)
+enemy_fill = Color(1, 0, 0, 1)
+gold_outline = Color(0.584, 0.467, 0, 1)
+gold_fill = Color(1, 0.8, 0, 1)
+key_outline = Color(0.267, 0.267, 0.267, 1)
+key_fill = Color(0.6, 0.6, 0.6, 1)
+pit = Color(0, 0, 0, 1)
