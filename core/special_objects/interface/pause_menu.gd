@@ -11,6 +11,7 @@ func _ready() -> void:
 	$MusicToggle.button_down.connect(music_click)
 	$SFXToggle.button_down.connect(sfx_click)
 	$MaxFPS.button_down.connect(max_fps_click)
+	$MovementType.button_down.connect(movement_type_click)
 	
 	music_index = AudioServer.get_bus_index("Music")
 	sfx_index = AudioServer.get_bus_index("SFX")
@@ -52,6 +53,14 @@ func max_fps_click() -> void:
 	Engine.max_fps = fps_values[fps_value_index]
 	
 	$MaxFPS/State.text = "(" + str(Engine.max_fps) + ")"
+
+func movement_type_click() -> void:
+	GameManager.snappy_movement = not GameManager.snappy_movement
+	
+	if GameManager.snappy_movement:
+		$MovementType/State.text = "Snappy"
+	else:
+		$MovementType/State.text = "Default"
 
 func music_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(music_index, linear_to_db(value))

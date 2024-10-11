@@ -2,6 +2,7 @@ extends Node
 
 # Game properties
 var paused: bool = false
+var snappy_movement: bool = false
 
 # Level properties
 var max_money: int = 0

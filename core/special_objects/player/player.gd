@@ -25,7 +25,7 @@ enum subpixel {
 # Physics and movement
 var hitbox: RectangleCollider = RectangleCollider.new()
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
-var movement_direction: Vector2 = Vector2.ZERO # Primarily used for corner sliding.
+var movement_direction: Vector2 = Vector2.ZERO
 
 # Timers, used for fading the player in and out.
 var respawn_timer: TickBasedTimer = TickBasedTimer.new(120)
@@ -37,13 +37,54 @@ var last_checkpoint_id: int = -1
 var last_checkpoint_area: int # Unused... for now.
 var dead: bool = false # Invincible but disables movement and is temporary
 
-
 #endregion
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("teleport"):
-		move_to(get_global_mouse_position() * 1000)
+func _input(_event: InputEvent) -> void:
+	handle_key_press(GameManager.snappy_movement)
+	
+	if not dead:
+		if Input.is_action_pressed("teleport"):
+			move_to(get_global_mouse_position() * 1000)
+		
+
+func handle_key_press(snappy_movement: bool) -> void:
+	if snappy_movement:
+		# Horizontal
+		# Normal movement
+		if Input.is_action_just_pressed("left"):
+			movement_direction.x = -1
+		if Input.is_action_just_pressed("right"):
+			movement_direction.x = 1
+		# Release while holding opposite direction
+		if Input.is_action_just_released("left") and Input.is_action_pressed("right"):
+			movement_direction.x = 1
+		if Input.is_action_just_released("right") and Input.is_action_pressed("left"):
+			movement_direction.x = -1
+		# Nothing held
+		if not Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
+			movement_direction.x = 0
+		
+		# Vertical
+		# Normal movement
+		if Input.is_action_just_pressed("up"):
+			movement_direction.y = -1
+		if Input.is_action_just_pressed("down"):
+			movement_direction.y = 1
+		# Release while holding opposite direction
+		if Input.is_action_just_released("up") and Input.is_action_pressed("down"):
+			movement_direction.y = 1
+		if Input.is_action_just_released("down") and Input.is_action_pressed("up"):
+			movement_direction.y = -1
+		# Nothing held
+		if not Input.is_action_pressed("up") and not Input.is_action_pressed("down"):
+			movement_direction.y = 0
+	else:
+		movement_direction.x = (int(Input.is_action_pressed("right")) \
+				- int(Input.is_action_pressed("left")))
+		movement_direction.y = (int(Input.is_action_pressed("down")) \
+				- int(Input.is_action_pressed("up")))
+	
 
 
 #region Game Loop
@@ -59,25 +100,17 @@ func _ready() -> void:
 	GlobalSignal.finish.connect(finish)
 
 
-
 func movement_update() -> void:
 	var speed_hack_multiplier: int = int(GameManager.speed_hacking) + 1
 	
 	if not dead:
-		movement_direction.x = (int(Input.is_action_pressed("right")) \
-				- int(Input.is_action_pressed("left")))
-		movement_direction.y = (int(Input.is_action_pressed("down")) \
-				- int(Input.is_action_pressed("up")))
-		
 		move(movement_direction * speed * speed_hack_multiplier)
-		
 		move(velocity)
 	
 	if not GameManager.ghost:
 		move(Collider.corner_slide(hitbox, Collider.walls, \
 				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
 		move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
-
 
 
 func collision_update() -> void:
