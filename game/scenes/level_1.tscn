@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://55jl8jvoqiur"]
 
-[ext_resource type="Script" path="res://core/special_objects/level/level.gd" id="1_v5ohe"]
+[ext_resource type="Script" path="res://core/system/scene/level.gd" id="1_v5ohe"]
 [ext_resource type="PackedScene" uid="uid://c1bhjs030vqlv" path="res://game/areas/level 1/main_room.tscn" id="2_uvjns"]
 [ext_resource type="PackedScene" uid="uid://ihcdg7j8edmp" path="res://game/areas/level 1/small_room.tscn" id="3_h8dlu"]
 
@@ -10,7 +10,6 @@ metadata/_edit_lock_ = true
 
 [node name="MainRoom" parent="." instance=ExtResource("2_uvjns")]
 position = Vector2(-768, -480)
-displayed_coordinates = "A1"
 
 [node name="SmallRoom" parent="." instance=ExtResource("3_h8dlu")]
 position = Vector2(-1536, -672)

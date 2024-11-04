@@ -50,6 +50,7 @@ func _ready() -> void:
 	GameLoop.collision_update.connect(collision_update)
 
 
+
 func collision_update() -> void:
 	for i: int in range(area_data.size()):
 		if i != current_area.id:
@@ -57,9 +58,15 @@ func collision_update() -> void:
 				change_area(i)
 
 
+
 func change_area(area_id: int) -> void:
+	print("area changed")
+	
 	for existing_area: Area in get_tree().get_nodes_in_group("areas"):
 		existing_area.queue_free()
+	
+	for element: int in id_generation.values():
+		element = 0
 	
 	Collider.walls.clear()
 	
@@ -77,6 +84,9 @@ func change_area(area_id: int) -> void:
 	camera.offset = area_info["bounding_box"].position + area_info["bounding_box"].size / 2
 	
 	interface.area.text = str("Level: 1-", area_info["displayed_coordinates"])
+	
+	process_objects()
+	#process_checkpoints()
 
 
 #endregion
@@ -112,8 +122,10 @@ func create_area_dictionaries() -> void:
 		)
  
 
+
 func set_area_data(area_id: int, object_type_plural: String, state: int) -> void:
 	area_data[area_id]["collectable_states"][object_type_plural].append(state)
+
 
 
 func process_objects() -> void:
@@ -135,6 +147,7 @@ func process_objects() -> void:
 	for gold_door: GoldDoor in get_tree().get_nodes_in_group("gold_doors"):
 		if gold_door.money_requirement <= 0:
 			gold_door.money_requirement += GameManager.max_money
+
 
 
 func process_checkpoints() -> void:

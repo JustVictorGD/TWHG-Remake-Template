@@ -1,8 +1,8 @@
 [gd_scene load_steps=32 format=4 uid="uid://c1bhjs030vqlv"]
 
-[ext_resource type="Script" path="res://core/special_objects/level/area.gd" id="1_hg4mj"]
+[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_hg4mj"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_kk380"]
 [ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/misc_assets/images/Blue Floor.png" id="2_uaan5"]
-[ext_resource type="Resource" uid="uid://bvirr7nvp5wjo" path="res://game/themes/red_theme.tres" id="2_uy5nh"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="3_8visq"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/common_objects/collectables/coin/coin.tscn" id="5_h7jdv"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="6_i7507"]
@@ -293,8 +293,9 @@ _data = {
 
 [node name="MainRoom" type="Node2D"]
 script = ExtResource("1_hg4mj")
-bottom_text = "\"Hi there\""
-theme = ExtResource("2_uy5nh")
+displayed_coordinates = "A1"
+bottom_text = "\"Middle area.\""
+theme = ExtResource("2_kk380")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
