@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=4 uid="uid://cqaqxbbo5mla6"]
+
+[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_3o1ei"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_pbtqy"]
+[ext_resource type="Script" path="res://core/special_objects/folder_2d.gd" id="3_ivdn3"]
+[ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/misc_assets/images/Blue Floor.png" id="4_nu1gx"]
+[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="5_joj78"]
+[ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="6_pnra0"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="7_rgh5d"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="8_awqji"]
+[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/common_objects/other/circle/circle.tscn" id="9_xdiei"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/common_objects/collectables/coin/coin.tscn" id="10_r0ypm"]
+[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/common_objects/collectables/key/key.tscn" id="11_dapgg"]
+[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/common_objects/solids/gold_door/gold_door.tscn" id="12_n3jb1"]
+[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/common_objects/solids/key_door/key_door.tscn" id="13_t8yun"]
+
+[node name="TemplateLevel" type="Node2D" node_paths=PackedStringArray("floors", "walls", "checkpoints", "enemies", "coins", "keys", "gold_doors", "key_doors") groups=["area"]]
+script = ExtResource("1_3o1ei")
+theme = ExtResource("2_pbtqy")
+floors = NodePath("Floors")
+walls = NodePath("Walls")
+checkpoints = NodePath("Checkpoints")
+enemies = NodePath("Enemies")
+coins = NodePath("Coins")
+keys = NodePath("Keys")
+gold_doors = NodePath("GoldDoors")
+key_doors = NodePath("KeyDoors")
+
+[node name="Decoration" type="Node2D" parent="."]
+editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
+script = ExtResource("3_ivdn3")
+
+[node name="Floors" type="Node2D" parent="."]
+script = ExtResource("3_ivdn3")
+
+[node name="TextureRect" type="TextureRect" parent="Floors"]
+z_index = -64
+texture_filter = 1
+offset_right = 32.0
+offset_bottom = 20.0
+scale = Vector2(48, 48)
+texture = ExtResource("4_nu1gx")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+script = ExtResource("3_ivdn3")
+
+[node name="SolidTileSet" parent="Walls" instance=ExtResource("5_joj78")]
+tile_map_data = PackedByteArray("AAAgAAAAAQAAAAAAAAAgAP//AQAAAAAAAAAfAAAAAQAAAAAAAAAfAP//AQAAAAAAAAAeAAAAAQAAAAAAAAAeAP//AQAAAAAAAAAdAAAAAQAAAAAAAAAdAP//AQAAAAAAAAAcAAAAAQAAAAAAAAAcAP//AQAAAAAAAAAbAAAAAQAAAAAAAAAbAP//AQAAAAAAAAAaAAAAAQAAAAAAAAAaAP//AQAAAAAAAAAZAAAAAQAAAAAAAAAZAP//AQAAAAAAAAAYAAAAAQAAAAAAAAAYAP//AQAAAAAAAAAXAAAAAQAAAAAAAAAXAP//AQAAAAAAAAAWAAAAAQAAAAAAAAAWAP//AQAAAAAAAAAVAAAAAQAAAAAAAAAVAP//AQAAAAAAAAAUAAAAAQAAAAAAAAAUAP//AQAAAAAAAAATAAAAAQAAAAAAAAATAP//AQAAAAAAAAASAAAAAQAAAAAAAAASAP//AQAAAAAAAAARAAAAAQAAAAAAAAARAP//AQAAAAAAAAAOAAAAAQAAAAAAAAAOAP//AQAAAAAAAAANAAAAAQAAAAAAAAANAP//AQAAAAAAAAAMAAAAAQAAAAAAAAAMAP//AQAAAAAAAAALAAAAAQAAAAAAAAALAP//AQAAAAAAAAAKAAAAAQAAAAAAAAAKAP//AQAAAAAAAAAJAAAAAQAAAAAAAAAJAP//AQAAAAAAAAAIAAAAAQAAAAAAAAAIAP//AQAAAAAAAAAHAAAAAQAAAAAAAAAHAP//AQAAAAAAAAAGAAAAAQAAAAAAAAAGAP//AQAAAAAAAAAFAAAAAQAAAAAAAAAFAP//AQAAAAAAAAAEAAAAAQAAAAAAAAAEAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAP//AQAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAABAAAAAQAAAAAAAAABAP//AQAAAAAAAAAAAAAAAQAAAAAAAAAAAP//AQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAAgABQAAQAAAAAAAAAgABMAAQAAAAAAAAAgABIAAQAAAAAAAAAgABEAAQAAAAAAAAAgABAAAQAAAAAAAAAgAA8AAQAAAAAAAAAgAA4AAQAAAAAAAAAgAA0AAQAAAAAAAAAgAAwAAQAAAAAAAAAgAAsAAQAAAAAAAAAgAAgAAQAAAAAAAAAgAAcAAQAAAAAAAAAgAAYAAQAAAAAAAAAgAAUAAQAAAAAAAAAgAAQAAQAAAAAAAAAgAAMAAQAAAAAAAAAgAAIAAQAAAAAAAAAgAAEAAQAAAAAAAAAfABQAAQAAAAAAAAAfABMAAQAAAAAAAAAfABIAAQAAAAAAAAAfABEAAQAAAAAAAAAfABAAAQAAAAAAAAAfAA8AAQAAAAAAAAAfAA4AAQAAAAAAAAAfAA0AAQAAAAAAAAAfAAwAAQAAAAAAAAAfAAsAAQAAAAAAAAAfAAgAAQAAAAAAAAAfAAcAAQAAAAAAAAAfAAYAAQAAAAAAAAAfAAUAAQAAAAAAAAAfAAQAAQAAAAAAAAAfAAMAAQAAAAAAAAAfAAIAAQAAAAAAAAAfAAEAAQAAAAAAAAAeABQAAQAAAAAAAAAeABMAAQAAAAAAAAAdABQAAQAAAAAAAAAdABMAAQAAAAAAAAAcABQAAQAAAAAAAAAcABMAAQAAAAAAAAAbABQAAQAAAAAAAAAbABMAAQAAAAAAAAAaABQAAQAAAAAAAAAaABMAAQAAAAAAAAAZABQAAQAAAAAAAAAZABMAAQAAAAAAAAAYABQAAQAAAAAAAAAYABMAAQAAAAAAAAAXABQAAQAAAAAAAAAXABMAAQAAAAAAAAAWABQAAQAAAAAAAAAWABMAAQAAAAAAAAAVABQAAQAAAAAAAAAVABMAAQAAAAAAAAAUABQAAQAAAAAAAAAUABMAAQAAAAAAAAATABQAAQAAAAAAAAATABMAAQAAAAAAAAASABQAAQAAAAAAAAASABMAAQAAAAAAAAARABQAAQAAAAAAAAARABMAAQAAAAAAAAAOABQAAQAAAAAAAAAOABMAAQAAAAAAAAANABQAAQAAAAAAAAANABMAAQAAAAAAAAAMABQAAQAAAAAAAAAMABMAAQAAAAAAAAALABQAAQAAAAAAAAALABMAAQAAAAAAAAAKABQAAQAAAAAAAAAKABMAAQAAAAAAAAAJABQAAQAAAAAAAAAJABMAAQAAAAAAAAAIABQAAQAAAAAAAAAIABMAAQAAAAAAAAAHABQAAQAAAAAAAAAHABMAAQAAAAAAAAAGABQAAQAAAAAAAAAGABMAAQAAAAAAAAAFABQAAQAAAAAAAAAFABMAAQAAAAAAAAAEABQAAQAAAAAAAAAEABMAAQAAAAAAAAADABQAAQAAAAAAAAADABMAAQAAAAAAAAACABQAAQAAAAAAAAACABMAAQAAAAAAAAABABQAAQAAAAAAAAABABMAAQAAAAAAAAAAABQAAQAAAAAAAAAAABMAAQAAAAAAAAD//xQAAQAAAAAAAAD//xMAAQAAAAAAAAAAABIAAQAAAAAAAAAAABEAAQAAAAAAAAAAABAAAQAAAAAAAAAAAA8AAQAAAAAAAAAAAA4AAQAAAAAAAAAAAA0AAQAAAAAAAAAAAAwAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAgAAQAAAAAAAAAAAAcAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAEAAQAAAAAAAAD//xIAAQAAAAAAAAD//xEAAQAAAAAAAAD//xAAAQAAAAAAAAD//w8AAQAAAAAAAAD//w4AAQAAAAAAAAD//w0AAQAAAAAAAAD//wwAAQAAAAAAAAD//wsAAQAAAAAAAAD//wgAAQAAAAAAAAD//wcAAQAAAAAAAAD//wYAAQAAAAAAAAD//wUAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAA=")
+
+[node name="Solid" type="ColorRect" parent="Walls"]
+offset_left = 864.0
+offset_top = 576.0
+offset_right = 912.0
+offset_bottom = 624.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("6_pnra0")
+outline_color = Color(0.623429, 0.00048949, 0.669374, 1)
+fill_color = Color(0.965606, 0.559224, 0.856285, 1)
+
+[node name="Checkpoints" type="Node2D" parent="."]
+script = ExtResource("3_ivdn3")
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("7_rgh5d")]
+offset_left = 720.0
+offset_top = 432.0
+offset_right = 816.0
+offset_bottom = 528.0
+type = 1
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("3_ivdn3")
+
+[node name="BlueEnemy" parent="Enemies" instance=ExtResource("8_awqji")]
+position = Vector2(648, 360)
+
+[node name="Circle" parent="Enemies" instance=ExtResource("9_xdiei")]
+position = Vector2(504, 360)
+radius = 1.0
+object_count = 7
+
+[node name="Coins" type="Node2D" parent="."]
+script = ExtResource("3_ivdn3")
+
+[node name="Coin" parent="Coins" instance=ExtResource("10_r0ypm")]
+position = Vector2(648, 600)
+
+[node name="Keys" type="Node2D" parent="."]
+script = ExtResource("3_ivdn3")
+
+[node name="Key" parent="Keys" instance=ExtResource("11_dapgg")]
+position = Vector2(888, 360)
+
+[node name="GoldDoors" type="Node2D" parent="."]
+script = ExtResource("3_ivdn3")
+
+[node name="GoldDoor" parent="GoldDoors" instance=ExtResource("12_n3jb1")]
+offset_left = 480.0
+offset_top = 528.0
+offset_right = 576.0
+offset_bottom = 624.0
+
+[node name="KeyDoors" type="Node2D" parent="."]
+script = ExtResource("3_ivdn3")
+
+[node name="KeyDoor" parent="KeyDoors" instance=ExtResource("13_t8yun")]
+offset_left = 960.0
+offset_top = 336.0
+offset_right = 1056.0
+offset_bottom = 432.0

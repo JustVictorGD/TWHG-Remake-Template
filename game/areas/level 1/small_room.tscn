@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="6_enew8"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="8_5jp81"]
 
-[node name="SmallRoom" type="Node2D"]
+[node name="SmallRoom" type="Node2D" groups=["area"]]
 script = ExtResource("1_mr4e3")
 bottom_text = "\"Hi there\""
 theme = ExtResource("2_c2ef8")

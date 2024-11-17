@@ -702,7 +702,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(1, 0, 0, 1)
 sources/0 = SubResource("TileSetAtlasSource_jmj4c")
 
-[node name="SolidTileSet" type="TileMapLayer"]
+[node name="TileBasedWall" type="TileMapLayer"]
 self_modulate = Color(1, 1, 1, 0.188235)
 z_index = 6
 tile_set = SubResource("TileSet_3tfq3")

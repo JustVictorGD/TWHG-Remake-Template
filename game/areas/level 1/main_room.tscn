@@ -291,7 +291,7 @@ _data = {
 "new_animation": SubResource("Animation_trcub")
 }
 
-[node name="MainRoom" type="Node2D"]
+[node name="MainRoom" type="Node2D" groups=["area"]]
 script = ExtResource("1_hg4mj")
 displayed_coordinates = "A1"
 bottom_text = "\"Middle area.\""

@@ -15,7 +15,7 @@ var current_area: Area
 
 # Trans-dimensional nodes
 var player: Player = preload("res://core/special_objects/player/player.tscn").instantiate()
-var interface: Control = preload("res://core/special_objects/interface/interface.tscn").instantiate()
+var interface: Interface = preload("res://core/special_objects/interface/interface.tscn").instantiate()
 var canvas_layer: CanvasLayer = CanvasLayer.new()
 var camera: Camera2D = Camera2D.new()
 
@@ -39,6 +39,10 @@ func _ready() -> void:
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
 	camera.zoom = Vector2(0.25, 0.25)
+	
+	for node: Node in get_tree().get_nodes_in_group("area"):
+		if node is Area:
+			node.process_ids()
 	
 	
 	create_area_dictionaries()
@@ -84,6 +88,7 @@ func change_area(area_id: int) -> void:
 	camera.offset = area_info["bounding_box"].position + area_info["bounding_box"].size / 2
 	
 	interface.area.text = str("Level: 1-", area_info["displayed_coordinates"])
+	interface.bottom_text.text = area_info["bottom_text"]
 	
 	process_objects()
 	#process_checkpoints()
@@ -111,7 +116,8 @@ func create_area_dictionaries() -> void:
 					"bounding_box": Rect2(area.global_position, area.area_size * 48),
 					"file_path": area.scene_file_path,
 					"position_offset": Vector2(area.global_position),
-					"displayed_coordinates": area.displayed_coordinates
+					"displayed_coordinates": area.displayed_coordinates,
+					"bottom_text": area.bottom_text
 				},
 				"collectable_states": {
 					"coins": [],

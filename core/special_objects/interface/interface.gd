@@ -1,4 +1,5 @@
 extends Control
+class_name Interface
 
 enum themes {
 	BLUE,
