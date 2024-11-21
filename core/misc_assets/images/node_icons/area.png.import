@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c11qt5f8dkklx"
-path="res://.godot/imported/Area 16.png-d2c0fb2451cdb433e2e34a9147f42b56.ctex"
+path="res://.godot/imported/area.png-fe02ee3e2d6c09c9ae1e4b5e36118273.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/misc_assets/images/node_icons/Area 16.png"
-dest_files=["res://.godot/imported/Area 16.png-d2c0fb2451cdb433e2e34a9147f42b56.ctex"]
+source_file="res://core/misc_assets/images/node_icons/area.png"
+dest_files=["res://.godot/imported/area.png-fe02ee3e2d6c09c9ae1e4b5e36118273.ctex"]
 
 [params]
 

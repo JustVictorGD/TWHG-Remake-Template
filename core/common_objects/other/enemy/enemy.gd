@@ -1,4 +1,4 @@
-@icon("res://core/misc_assets/images/node_icons/Enemy 16.png")
+@icon("res://core/misc_assets/images/node_icons/enemy.png")
 extends Node2D
 class_name Enemy
 

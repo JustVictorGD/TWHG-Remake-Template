@@ -1,3 +1,4 @@
 {
-	"test": 42
+	"1": "res://game/levels/stage_1/1.tscn",
+	"2": "res://game/areas/level 1/main_room.tscn"
 }

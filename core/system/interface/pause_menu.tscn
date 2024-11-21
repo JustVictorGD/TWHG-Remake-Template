@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://btuvdtlg5u165"]
 
-[ext_resource type="Script" path="res://core/special_objects/interface/pause_menu.gd" id="1_eyytm"]
+[ext_resource type="Script" path="res://core/system/interface/pause_menu.gd" id="1_eyytm"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="2_g15fw"]
 
 [sub_resource type="Theme" id="Theme_ddqyr"]
