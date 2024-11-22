@@ -1,4 +1,5 @@
 {
-	"1": "res://game/levels/stage_1/1.tscn",
-	"2": "res://game/areas/level 1/main_room.tscn"
+	"1": "res://game/levels/template.tscn",
+	"2": "res://game/levels/stage_1/main_room.tscn",
+	"3": "res://game/levels/stage_1/small_room.tscn",
 }

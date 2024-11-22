@@ -1,18 +1,18 @@
 [gd_scene load_steps=32 format=4 uid="uid://c1bhjs030vqlv"]
 
-[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_hg4mj"]
-[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_kk380"]
-[ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/misc_assets/images/Blue Floor.png" id="2_uaan5"]
-[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="3_8visq"]
-[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/common_objects/collectables/coin/coin.tscn" id="5_h7jdv"]
-[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="6_i7507"]
-[ext_resource type="Script" path="res://core/special_objects/tick_based_animator.gd" id="6_jic0f"]
-[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/common_objects/other/circle/circle.tscn" id="7_v8775"]
-[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/common_objects/collectables/key/key.tscn" id="10_l8d2y"]
-[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/common_objects/solids/key_door/key_door.tscn" id="10_x5t53"]
-[ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="11_7h33g"]
-[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/common_objects/solids/gold_door/gold_door.tscn" id="12_1mhss"]
-[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="14_vao61"]
+[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_ttfq5"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_r1hm6"]
+[ext_resource type="Texture2D" uid="uid://do5n0llfexv0p" path="res://core/misc_assets/images/Blue Floor.png" id="3_lj75m"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="4_3uxk1"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/common_objects/collectables/coin/coin.tscn" id="5_ujh7a"]
+[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/common_objects/other/circle/circle.tscn" id="6_72w4j"]
+[ext_resource type="Script" path="res://core/special_objects/tick_based_animator.gd" id="7_8uesn"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="8_v7h88"]
+[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/common_objects/collectables/key/key.tscn" id="9_uqk8l"]
+[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/common_objects/solids/key_door/key_door.tscn" id="10_k0gxq"]
+[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/common_objects/solids/gold_door/gold_door.tscn" id="11_x8hxl"]
+[ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="12_bcmw2"]
+[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="13_0s7js"]
 
 [sub_resource type="Animation" id="Animation_t1oa8"]
 length = 0.001
@@ -292,10 +292,10 @@ _data = {
 }
 
 [node name="MainRoom" type="Node2D" groups=["area"]]
-script = ExtResource("1_hg4mj")
+script = ExtResource("1_ttfq5")
 displayed_coordinates = "A1"
 bottom_text = "\"Middle area.\""
-theme = ExtResource("2_kk380")
+theme = ExtResource("2_r1hm6")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -303,14 +303,14 @@ texture_filter = 1
 offset_right = 32.0
 offset_bottom = 20.0
 scale = Vector2(48, 48)
-texture = ExtResource("2_uaan5")
+texture = ExtResource("3_lj75m")
 stretch_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Checkpoints" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("3_8visq")]
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("4_3uxk1")]
 offset_left = 384.0
 offset_top = 384.0
 offset_right = 480.0
@@ -318,30 +318,30 @@ offset_bottom = 576.0
 rotation = -0.373897
 pivot_offset = Vector2(48, 96)
 
-[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("3_8visq")]
+[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("4_3uxk1")]
 offset_left = 384.0
 offset_top = 720.0
 offset_right = 528.0
 offset_bottom = 864.0
 
-[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("3_8visq")]
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("4_3uxk1")]
 offset_left = 864.0
 offset_top = 240.0
 offset_right = 912.0
 offset_bottom = 288.0
 
-[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("3_8visq")]
+[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("4_3uxk1")]
 offset_left = 576.0
 offset_top = 672.0
 offset_right = 624.0
 offset_bottom = 720.0
 
-[node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("3_8visq")]
+[node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("4_3uxk1")]
 offset_left = 144.0
 offset_top = 48.0
 offset_right = 192.0
 
-[node name="Start" parent="Checkpoints" instance=ExtResource("3_8visq")]
+[node name="Start" parent="Checkpoints" instance=ExtResource("4_3uxk1")]
 offset_left = 192.0
 offset_top = 768.0
 offset_right = 288.0
@@ -350,7 +350,7 @@ rotation = 0.785397
 pivot_offset = Vector2(48, 48)
 type = 1
 
-[node name="Finish" parent="Checkpoints" instance=ExtResource("3_8visq")]
+[node name="Finish" parent="Checkpoints" instance=ExtResource("4_3uxk1")]
 offset_left = 1200.0
 offset_top = 48.0
 offset_right = 1392.0
@@ -360,136 +360,136 @@ type = 2
 [node name="Coins" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Coin17" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin17" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(552, 360)
 
-[node name="Coin18" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin18" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(696, 360)
 
-[node name="Coin19" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin19" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(744, 360)
 
-[node name="Coin20" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin20" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(792, 360)
 
-[node name="Coin21" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin21" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(840, 360)
 
-[node name="Coin9" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin9" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(936, 600)
 
-[node name="Coin10" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin10" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(984, 600)
 
-[node name="Coin11" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin11" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(984, 360)
 
-[node name="Coin12" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin12" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(936, 360)
 
-[node name="Coin13" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin13" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(600, 600)
 
-[node name="Coin14" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin14" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(552, 600)
 
-[node name="Coin15" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin15" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(600, 360)
 
-[node name="Coin16" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin16" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(648, 360)
 
-[node name="Coin22" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin22" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(888, 360)
 
-[node name="Coin23" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin23" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(648, 600)
 
-[node name="Coin24" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin24" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(696, 600)
 
-[node name="Coin25" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin25" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(744, 600)
 
-[node name="Coin26" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin26" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(792, 600)
 
-[node name="Coin27" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin27" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(840, 600)
 
-[node name="Coin28" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin28" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(888, 600)
 
-[node name="Coin29" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin29" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(744, 840)
 
-[node name="Coin30" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin30" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(792, 840)
 
-[node name="Coin31" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin31" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(744, 888)
 
-[node name="Coin32" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin32" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(792, 888)
 
-[node name="Coin33" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin33" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(984, 792)
 
-[node name="Coin34" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin34" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1032, 792)
 
-[node name="Coin35" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin35" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(984, 840)
 
-[node name="Coin36" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin36" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1032, 840)
 
-[node name="Coin37" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin37" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(768, 36)
 
-[node name="Coin38" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin38" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(708, 96)
 
-[node name="Coin39" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin39" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(768, 156)
 
-[node name="Coin40" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin40" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(828, 96)
 
-[node name="Coin41" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin41" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1488, 528)
 
-[node name="Coin42" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin42" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1464, 504)
 
-[node name="Coin43" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin43" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1440, 480)
 
-[node name="Coin44" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin44" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1464, 552)
 
-[node name="Coin45" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin45" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1440, 576)
 
-[node name="Coin46" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin46" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1416, 528)
 
-[node name="Coin47" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin47" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1392, 504)
 
-[node name="Coin48" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin48" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1368, 480)
 
-[node name="Coin49" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin49" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1392, 552)
 
-[node name="Coin50" parent="Coins" instance=ExtResource("5_h7jdv")]
+[node name="Coin50" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1368, 576)
 
 [node name="Circles" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Circle" parent="Circles" instance=ExtResource("7_v8775")]
+[node name="Circle" parent="Circles" instance=ExtResource("6_72w4j")]
 position = Vector2(768, 864)
 rotation = -3.14159
 radius = 1.5
@@ -503,7 +503,7 @@ libraries = {
 "": SubResource("AnimationLibrary_hu2f0")
 }
 autoplay = "new_animation"
-script = ExtResource("6_jic0f")
+script = ExtResource("7_8uesn")
 
 [node name="Enemies" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -511,10 +511,10 @@ metadata/_edit_lock_ = true
 [node name="StaticEnemies" type="Node2D" parent="Enemies"]
 metadata/_edit_lock_ = true
 
-[node name="BlueEnemy31" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy31" parent="Enemies/StaticEnemies" instance=ExtResource("8_v7h88")]
 position = Vector2(1368, 648)
 
-[node name="BlueEnemy32" parent="Enemies/StaticEnemies" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy32" parent="Enemies/StaticEnemies" instance=ExtResource("8_v7h88")]
 position = Vector2(1512, 840)
 
 [node name="Group5" type="Node2D" parent="Enemies"]
@@ -525,89 +525,89 @@ libraries = {
 "": SubResource("AnimationLibrary_1fkvn")
 }
 autoplay = "new_animation"
-script = ExtResource("6_jic0f")
+script = ExtResource("7_8uesn")
 
-[node name="BlueEnemy-3" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy-3" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-120, 120)
 lock_scale = true
 
-[node name="BlueEnemy-2" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy-2" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(120, -120)
 lock_scale = true
 
-[node name="BlueEnemy-1" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy-1" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(120, 120)
 lock_scale = true
 
-[node name="BlueEnemy0" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy0" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-120, -120)
 lock_scale = true
 
-[node name="BlueEnemy1" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy1" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-96, 96)
 lock_scale = true
 
-[node name="BlueEnemy2" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy2" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(96, -96)
 lock_scale = true
 
-[node name="BlueEnemy3" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy3" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(96, 96)
 lock_scale = true
 
-[node name="BlueEnemy4" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy4" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-96, -96)
 lock_scale = true
 
-[node name="BlueEnemy5" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy5" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-72, 72)
 lock_scale = true
 
-[node name="BlueEnemy6" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy6" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(72, -72)
 lock_scale = true
 
-[node name="BlueEnemy7" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy7" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(72, 72)
 lock_scale = true
 
-[node name="BlueEnemy8" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy8" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-72, -72)
 lock_scale = true
 
-[node name="BlueEnemy9" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy9" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-48, 48)
 lock_scale = true
 
-[node name="BlueEnemy10" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy10" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(48, -48)
 lock_scale = true
 
-[node name="BlueEnemy11" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy11" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(48, 48)
 lock_scale = true
 
-[node name="BlueEnemy12" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy12" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-48, -48)
 lock_scale = true
 
-[node name="BlueEnemy13" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy13" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-24, 24)
 lock_scale = true
 
-[node name="BlueEnemy14" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy14" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(24, -24)
 lock_scale = true
 
-[node name="BlueEnemy15" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy15" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(24, 24)
 lock_scale = true
 
-[node name="BlueEnemy16" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy16" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 position = Vector2(-24, -24)
 lock_scale = true
 
-[node name="BlueEnemy17" parent="Enemies/Group5" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy17" parent="Enemies/Group5" instance=ExtResource("8_v7h88")]
 lock_scale = true
 
 [node name="Group6" type="Node2D" parent="Enemies"]
@@ -618,57 +618,57 @@ libraries = {
 "": SubResource("AnimationLibrary_mq7e6")
 }
 autoplay = "new_animation"
-script = ExtResource("6_jic0f")
+script = ExtResource("7_8uesn")
 
-[node name="BlueEnemy5" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy5" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(-72, 72)
 lock_scale = true
 
-[node name="BlueEnemy6" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy6" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(72, -72)
 lock_scale = true
 
-[node name="BlueEnemy7" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy7" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(72, 72)
 lock_scale = true
 
-[node name="BlueEnemy8" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy8" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(-72, -72)
 lock_scale = true
 
-[node name="BlueEnemy9" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy9" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(-48, 48)
 lock_scale = true
 
-[node name="BlueEnemy10" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy10" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(48, -48)
 lock_scale = true
 
-[node name="BlueEnemy11" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy11" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(48, 48)
 lock_scale = true
 
-[node name="BlueEnemy12" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy12" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(-48, -48)
 lock_scale = true
 
-[node name="BlueEnemy13" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy13" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(-24, 24)
 lock_scale = true
 
-[node name="BlueEnemy14" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy14" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(24, -24)
 lock_scale = true
 
-[node name="BlueEnemy15" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy15" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(24, 24)
 lock_scale = true
 
-[node name="BlueEnemy16" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy16" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 position = Vector2(-24, -24)
 lock_scale = true
 
-[node name="BlueEnemy17" parent="Enemies/Group6" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy17" parent="Enemies/Group6" instance=ExtResource("8_v7h88")]
 lock_scale = true
 
 [node name="4-B4" type="Node2D" parent="Enemies"]
@@ -679,24 +679,24 @@ libraries = {
 "": SubResource("AnimationLibrary_04hee")
 }
 autoplay = "new_animation"
-script = ExtResource("6_jic0f")
+script = ExtResource("7_8uesn")
 
-[node name="BlueEnemy" parent="Enemies/4-B4" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy" parent="Enemies/4-B4" instance=ExtResource("8_v7h88")]
 position = Vector2(-48, -48)
 
-[node name="BlueEnemy2" parent="Enemies/4-B4" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy2" parent="Enemies/4-B4" instance=ExtResource("8_v7h88")]
 position = Vector2(0, -48)
 
-[node name="BlueEnemy3" parent="Enemies/4-B4" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy3" parent="Enemies/4-B4" instance=ExtResource("8_v7h88")]
 position = Vector2(48, -48)
 
-[node name="BlueEnemy4" parent="Enemies/4-B4" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy4" parent="Enemies/4-B4" instance=ExtResource("8_v7h88")]
 position = Vector2(48, 48)
 
-[node name="BlueEnemy5" parent="Enemies/4-B4" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy5" parent="Enemies/4-B4" instance=ExtResource("8_v7h88")]
 position = Vector2(0, 48)
 
-[node name="BlueEnemy6" parent="Enemies/4-B4" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy6" parent="Enemies/4-B4" instance=ExtResource("8_v7h88")]
 position = Vector2(-48, 48)
 
 [node name="Group1" type="Node2D" parent="Enemies"]
@@ -707,93 +707,93 @@ libraries = {
 "": SubResource("AnimationLibrary_ypg5j")
 }
 autoplay = "new_animation"
-script = ExtResource("6_jic0f")
+script = ExtResource("7_8uesn")
 
-[node name="BlueEnemy" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 
-[node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(48, 0)
 
-[node name="BlueEnemy3" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy3" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(96, 0)
 
-[node name="BlueEnemy4" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy4" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(144, 0)
 
-[node name="BlueEnemy5" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy5" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(192, 0)
 
-[node name="BlueEnemy6" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy6" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(240, 0)
 
-[node name="BlueEnemy7" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy7" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(288, 0)
 
-[node name="BlueEnemy8" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy8" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(336, 0)
 
-[node name="BlueEnemy9" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy9" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(384, 0)
 
-[node name="BlueEnemy10" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy10" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(432, 0)
 
-[node name="BlueEnemy11" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy11" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(480, 0)
 
-[node name="BlueEnemy12" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy12" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(528, 0)
 
-[node name="BlueEnemy13" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy13" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(48, 144)
 
-[node name="BlueEnemy24" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy24" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(0, 144)
 
-[node name="BlueEnemy14" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy14" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(96, 144)
 
-[node name="BlueEnemy15" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy15" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(144, 144)
 
-[node name="BlueEnemy16" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy16" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(192, 144)
 
-[node name="BlueEnemy17" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy17" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(240, 144)
 
-[node name="BlueEnemy18" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy18" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(288, 144)
 
-[node name="BlueEnemy19" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy19" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(336, 144)
 
-[node name="BlueEnemy20" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy20" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(384, 144)
 
-[node name="BlueEnemy21" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy21" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(432, 144)
 
-[node name="BlueEnemy22" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy22" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(480, 144)
 
-[node name="BlueEnemy23" parent="Enemies/Group1" instance=ExtResource("6_i7507")]
+[node name="BlueEnemy23" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(528, 144)
 
 [node name="Keys" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Key" parent="Keys" instance=ExtResource("10_l8d2y")]
+[node name="Key" parent="Keys" instance=ExtResource("9_uqk8l")]
 position = Vector2(768, 528)
 key_id = 0
 tracking = true
 
-[node name="Key2" parent="Keys" instance=ExtResource("10_l8d2y")]
+[node name="Key2" parent="Keys" instance=ExtResource("9_uqk8l")]
 position = Vector2(552, 120)
 key_id = 1
 tracking = true
 
-[node name="Key3" parent="Keys" instance=ExtResource("10_l8d2y")]
+[node name="Key3" parent="Keys" instance=ExtResource("9_uqk8l")]
 position = Vector2(1200, 480)
 key_id = 2
 tracking = true
@@ -804,7 +804,7 @@ metadata/_edit_lock_ = true
 [node name="KeyDoors" type="Node2D" parent="Doors"]
 metadata/_edit_lock_ = true
 
-[node name="KeyDoor" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
+[node name="KeyDoor" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 offset_left = 1056.0
 offset_top = 384.0
 offset_right = 1152.0
@@ -812,7 +812,7 @@ offset_bottom = 576.0
 key_id = 2
 open_method = 1
 
-[node name="KeyDoor2" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
+[node name="KeyDoor2" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 offset_left = 720.0
 offset_top = 192.0
 offset_right = 816.0
@@ -820,7 +820,7 @@ offset_bottom = 288.0
 key_id = 1
 open_method = 1
 
-[node name="KeyDoor3" parent="Doors/KeyDoors" instance=ExtResource("10_x5t53")]
+[node name="KeyDoor3" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 z_index = 6
 offset_left = 720.0
 offset_top = 672.0
@@ -835,14 +835,14 @@ fade = true
 [node name="GoldDoors" type="Node2D" parent="Doors"]
 metadata/_edit_lock_ = true
 
-[node name="GoldDoor" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 offset_left = 1224.0
 offset_top = 240.0
 offset_right = 1368.0
 offset_bottom = 336.0
 open_method = 4
 
-[node name="GoldDoor2" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor2" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 offset_left = 672.0
 offset_top = 768.0
 offset_right = 768.0
@@ -850,7 +850,7 @@ offset_bottom = 864.0
 money_requirement = 1
 open_method = 4
 
-[node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 offset_left = 768.0
 offset_top = 768.0
 offset_right = 864.0
@@ -858,7 +858,7 @@ offset_bottom = 864.0
 money_requirement = 2
 open_method = 4
 
-[node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 offset_left = 672.0
 offset_top = 864.0
 offset_right = 768.0
@@ -866,7 +866,7 @@ offset_bottom = 960.0
 money_requirement = 3
 open_method = 4
 
-[node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("12_1mhss")]
+[node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 offset_left = 768.0
 offset_top = 864.0
 offset_right = 864.0
@@ -884,7 +884,7 @@ offset_top = 240.0
 offset_right = 1224.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 outline_color = Color(0.282353, 0.282353, 0.4, 1)
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
@@ -895,7 +895,7 @@ offset_top = 240.0
 offset_right = 1416.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 outline_color = Color(0.282353, 0.282353, 0.4, 1)
 fill_color = Color(0.701961, 0.701961, 1, 1)
 
@@ -912,7 +912,7 @@ offset_top = 276.0
 offset_right = 108.0
 offset_bottom = 372.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -925,7 +925,7 @@ offset_top = 204.0
 offset_right = 204.0
 offset_bottom = 300.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -938,7 +938,7 @@ offset_top = 288.0
 offset_right = 288.0
 offset_bottom = 348.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -951,7 +951,7 @@ offset_top = 192.0
 offset_right = 360.0
 offset_bottom = 312.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -964,7 +964,7 @@ offset_top = 108.0
 offset_right = 336.0
 offset_bottom = 228.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -977,7 +977,7 @@ offset_top = 132.0
 offset_right = 408.0
 offset_bottom = 216.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -990,7 +990,7 @@ offset_top = 612.0
 offset_right = 396.0
 offset_bottom = 696.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1003,7 +1003,7 @@ offset_top = 660.0
 offset_right = 204.0
 offset_bottom = 744.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1016,7 +1016,7 @@ offset_top = 516.0
 offset_right = 84.0
 offset_bottom = 624.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1029,7 +1029,7 @@ offset_top = 576.0
 offset_right = 156.0
 offset_bottom = 696.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1042,7 +1042,7 @@ offset_top = 948.0
 offset_right = 192.0
 offset_bottom = 1032.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1055,7 +1055,7 @@ offset_top = 876.0
 offset_right = 60.0
 offset_bottom = 960.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1068,7 +1068,7 @@ offset_top = 912.0
 offset_right = 120.0
 offset_bottom = 1032.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1081,7 +1081,7 @@ offset_top = 660.0
 offset_right = 516.0
 offset_bottom = 792.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1094,7 +1094,7 @@ offset_top = 720.0
 offset_right = 552.0
 offset_bottom = 816.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1107,7 +1107,7 @@ offset_top = 684.0
 offset_right = 852.0
 offset_bottom = 756.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1120,7 +1120,7 @@ offset_top = 708.0
 offset_right = 780.0
 offset_bottom = 792.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1133,7 +1133,7 @@ offset_top = 840.0
 offset_right = 696.0
 offset_bottom = 912.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1146,7 +1146,7 @@ offset_top = 744.0
 offset_right = 708.0
 offset_bottom = 864.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1159,7 +1159,7 @@ offset_top = 648.0
 offset_right = 1164.0
 offset_bottom = 744.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1172,7 +1172,7 @@ offset_top = 792.0
 offset_right = 984.0
 offset_bottom = 876.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1185,7 +1185,7 @@ offset_top = 900.0
 offset_right = 1224.0
 offset_bottom = 984.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1198,7 +1198,7 @@ offset_top = 924.0
 offset_right = 1032.0
 offset_bottom = 1008.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1211,7 +1211,7 @@ offset_top = 696.0
 offset_right = 1092.0
 offset_bottom = 828.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1224,7 +1224,7 @@ offset_top = 864.0
 offset_right = 1152.0
 offset_bottom = 996.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1237,7 +1237,7 @@ offset_top = 936.0
 offset_right = 636.0
 offset_bottom = 1008.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1250,7 +1250,7 @@ offset_top = 900.0
 offset_right = 1416.0
 offset_bottom = 972.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1263,7 +1263,7 @@ offset_top = 624.0
 offset_right = 1560.0
 offset_bottom = 696.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1276,7 +1276,7 @@ offset_top = 276.0
 offset_right = 1560.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1289,7 +1289,7 @@ offset_top = 132.0
 offset_right = 1584.0
 offset_bottom = 228.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1302,7 +1302,7 @@ offset_top = 204.0
 offset_right = 1572.0
 offset_bottom = 300.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1315,7 +1315,7 @@ offset_top = 648.0
 offset_right = 1524.0
 offset_bottom = 744.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1328,7 +1328,7 @@ offset_top = 840.0
 offset_right = 1452.0
 offset_bottom = 948.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1341,7 +1341,7 @@ offset_top = 732.0
 offset_right = 1500.0
 offset_bottom = 864.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1354,7 +1354,7 @@ offset_top = 900.0
 offset_right = 1572.0
 offset_bottom = 972.0
 color = Color(1, 1, 1, 0)
-script = ExtResource("11_7h33g")
+script = ExtResource("12_bcmw2")
 merge_sprite = true
 global_opacity = 0.5
 fill_color = Color(0, 1, 0, 1)
@@ -1370,7 +1370,7 @@ libraries = {
 "": SubResource("AnimationLibrary_rxq0a")
 }
 autoplay = "new_animation"
-script = ExtResource("6_jic0f")
+script = ExtResource("7_8uesn")
 
 [node name="ColorRect" type="ColorRect" parent="Glow"]
 z_index = 16
@@ -1408,6 +1408,6 @@ offset_right = 1536.0
 offset_bottom = 288.0
 color = Color(1, 1, 1, 0.0627451)
 
-[node name="SolidTileSet" parent="." instance=ExtResource("14_vao61")]
+[node name="SolidTileSet" parent="." instance=ExtResource("13_0s7js")]
 tile_map_data = PackedByteArray("AAACAAQAAAABAAMAAAACAAMAAAABAAEAAAAeABQAAAACAAMAAAAeABMAAAACAAEAAAADAAIAAAAAAAEAAAADAAMAAAAIAAIAAAADAAQAAAACAAMAAAAHAAYAAAACAAMAAAAHAAUAAAACAAIAAAAHAAQAAAAFAAIAAAAHAAMAAAADAAEAAAAGAAYAAAACAAMAAAAGAAUAAAACAAIAAAAGAAQAAAACAAIAAAAGAAMAAAACAAEAAAAFAAYAAAACAAMAAAAFAAUAAAACAAIAAAAFAAQAAAACAAIAAAAFAAMAAAACAAEAAAAEAAYAAAABAAMAAAAEAAUAAAABAAIAAAAEAAQAAAAGAAEAAAAEAAMAAAACAAEAAAAJAAcAAAADAAMAAAAJAAYAAAADAAIAAAAJAAUAAAADAAEAAAAIAAUAAAAFAAIAAAAIAAYAAAAGAAEAAAAIAAcAAAABAAMAAAAIAAQAAAADAAEAAAAIAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAGAAEAAAAAAAMAAAAGAAAAAAAHAAEAAAAGAP//AAADAAEAAAAFAP//AAACAAEAAAAFAAAAAAACAAMAAAAEAAAAAAACAAMAAAAEAP//AAACAAEAAAADAP//AAACAAEAAAACAP//AAACAAEAAAABAP//AAACAAEAAAAAAP//AAACAAEAAAD/////AAABAAEAAAADAAAAAAACAAMAAAACAAAAAAACAAMAAAABAAAAAAACAAMAAAAAAAAAAAACAAMAAAD//wAAAAABAAMAAAAAAA4AAAACAAMAAAAAAA0AAAACAAIAAAAAAAwAAAACAAIAAAAAAAsAAAACAAIAAAAAAAoAAAACAAIAAAAAAAkAAAACAAIAAAAAAAgAAAACAAIAAAAAAAcAAAACAAIAAAAAAAYAAAAFAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAADAAEAAAD//w4AAAABAAMAAAD//w0AAAABAAIAAAD//wwAAAABAAIAAAD//wsAAAABAAIAAAD//woAAAABAAIAAAD//wkAAAABAAIAAAD//wgAAAABAAIAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAD//wMAAAABAAEAAAACAAYAAAADAAAAAAACABQAAAACAAMAAAACABMAAAAFAAIAAAACABIAAAADAAIAAAACABEAAAADAAIAAAACABAAAAADAAIAAAACAA8AAAADAAIAAAACAA4AAAADAAIAAAACAA0AAAADAAEAAAABABQAAAABAAMAAAABABMAAAABAAIAAAABABIAAAABAAIAAAABABEAAAABAAIAAAABABAAAAABAAIAAAABAA8AAAABAAIAAAABAA4AAAAGAAEAAAABAA0AAAAFAAIAAAABAAYAAAAFAAAAAAABAAcAAAADAAIAAAABAAgAAAADAAIAAAABAAkAAAADAAIAAAABAAoAAAADAAIAAAABAAsAAAADAAIAAAABAAwAAAADAAIAAAANABQAAAADAAMAAAANABMAAAADAAIAAAAMABQAAAACAAMAAAAMABMAAAACAAIAAAALABQAAAACAAMAAAALABMAAAACAAIAAAAKABQAAAACAAMAAAAKABMAAAACAAIAAAAJABQAAAACAAMAAAAJABMAAAACAAIAAAAIABQAAAACAAMAAAAIABMAAAACAAIAAAAHABQAAAACAAMAAAAHABMAAAAGAAIAAAAGABQAAAACAAMAAAAGABMAAAACAAEAAAAFABQAAAACAAMAAAAFABMAAAACAAEAAAAEABQAAAACAAMAAAAEABMAAAACAAEAAAADABQAAAACAAMAAAADABMAAAACAAEAAAANABIAAAADAAIAAAAMABIAAAACAAIAAAALABIAAAAGAAIAAAAKABIAAAACAAEAAAAJABIAAAACAAEAAAAIABIAAAACAAEAAAAHABIAAAABAAEAAAALABEAAAABAAIAAAALABAAAAABAAIAAAALAA8AAAAEAAIAAAALAA4AAAAAAAEAAAANABEAAAADAAIAAAANABAAAAADAAIAAAAMABEAAAACAAIAAAAMABAAAAACAAIAAAAMAA8AAAACAAEAAAAOAA8AAAADAAMAAAAOAA4AAAADAAEAAAANAA8AAAAJAAEAAAANAA4AAAABAAEAAAAWAA8AAAADAAMAAAAWAA4AAAAJAAEAAAAVAA8AAAACAAMAAAAVAA4AAAACAAEAAAAUAA8AAAAGAAMAAAAUAA4AAAABAAEAAAATAA8AAAAFAAAAAAASAA8AAAAJAAAAAAASAA4AAAADAAEAAAARAA8AAAABAAMAAAARAA4AAAABAAEAAAASABEAAAAAAAMAAAASABAAAAAEAAEAAAATABAAAAADAAMAAAAWABEAAAAAAAAAAAAUABIAAAAAAAEAAAAbABIAAAAAAAEAAAAgAA8AAAADAAMAAAAgAA4AAAADAAEAAAAfAA8AAAABAAMAAAAfAA4AAAABAAEAAAAgABQAAAADAAMAAAAgABMAAAADAAIAAAAgABIAAAADAAEAAAAfABQAAAACAAMAAAAfABMAAAAGAAIAAAAfABIAAAABAAEAAAAdABQAAAACAAMAAAAdABMAAAACAAEAAAAcABQAAAACAAMAAAAcABMAAAACAAEAAAAbABQAAAACAAMAAAAbABMAAAAIAAIAAAAaABQAAAACAAMAAAAaABMAAAACAAEAAAAZABQAAAACAAMAAAAZABMAAAACAAEAAAAYABQAAAACAAMAAAAYABMAAAACAAEAAAAXABQAAAACAAMAAAAXABMAAAACAAEAAAAWABQAAAACAAMAAAAWABMAAAACAAEAAAAVABQAAAACAAMAAAAVABMAAAACAAEAAAAUABQAAAACAAMAAAAUABMAAAAIAAIAAAATABQAAAACAAMAAAATABMAAAACAAEAAAASABQAAAABAAMAAAASABMAAAABAAEAAAAWAAMAAAABAAEAAAAWAAQAAAAGAAIAAAAWAAUAAAAGAAEAAAAXAAYAAAAFAAEAAAAYAAYAAAADAAMAAAAYAAUAAAADAAIAAAAYAAQAAAADAAIAAAAYAAMAAAAHAAIAAAAXAAMAAAACAAEAAAAXAAQAAAACAAIAAAAXAAUAAAACAAIAAAAWAAYAAAABAAIAAAAWAAcAAAABAAMAAAAXAAcAAAADAAMAAAAYAP//AAABAAEAAAAYAAAAAAAEAAEAAAAYAAEAAAAHAAQAAAAYAAIAAAAAAAIAAAAXAAEAAAABAAAAAAAZAP//AAACAAEAAAAZAAAAAAACAAMAAAAaAAAAAAACAAMAAAAbAAAAAAACAAMAAAAcAAAAAAACAAMAAAAdAAAAAAAGAAEAAAAeAAAAAAADAAIAAAAeAP//AAADAAEAAAAdAP//AAACAAEAAAAcAP//AAACAAEAAAAbAP//AAACAAEAAAAaAP//AAACAAEAAAAgAAQAAAADAAEAAAAfAAQAAAACAAEAAAAfAAUAAAACAAIAAAAfAAYAAAACAAMAAAAgAAYAAAADAAMAAAAgAAUAAAADAAIAAAAeAAUAAAACAAIAAAAdAAUAAAABAAIAAAAdAAYAAAABAAMAAAAeAAYAAAACAAMAAAAeAAQAAAAFAAIAAAAeAAMAAAADAAIAAAAdAAMAAAABAAIAAAAdAAIAAAABAAIAAAAdAAEAAAABAAIAAAAeAAEAAAADAAIAAAAeAAIAAAADAAIAAAAdAAQAAAABAAIAAAAUAAQAAAACAAEAAAATAAQAAAAJAAAAAAATAAMAAAADAAIAAAATAAIAAAAFAAQAAAAUAAIAAAADAAAAAAATAAEAAAADAAIAAAATAAAAAAAFAAEAAAAUAAAAAAADAAMAAAASAAQAAAAGAAMAAAASAAMAAAABAAIAAAASAAIAAAABAAIAAAASAAEAAAABAAIAAAASAAAAAAABAAIAAAASAP//AAABAAEAAAATAP//AAACAAEAAAAUAP//AAADAAEAAAAVAAQAAAACAAEAAAAVAAUAAAACAAMAAAAUAAUAAAACAAMAAAATAAUAAAABAAMAAAARAAQAAAAEAAAAAAARAAUAAAAAAAMAAAALAAQAAAABAAAAAAAMAAQAAAAGAAQAAAAMAAUAAAABAAMAAAANAAUAAAACAAMAAAAOAAUAAAADAAMAAAAOAAQAAAADAAEAAAANAAQAAAAFAAIAAAAMAAMAAAABAAIAAAAMAAIAAAABAAIAAAAMAAEAAAABAAIAAAAMAAAAAAAGAAEAAAALAAAAAAABAAMAAAALAP//AAABAAEAAAAMAP//AAACAAEAAAANAP//AAADAAEAAAANAAAAAAADAAIAAAANAAEAAAADAAIAAAANAAIAAAADAAIAAAANAAMAAAADAAIAAAAXAA4AAAADAAMAAAAXAA0AAAADAAIAAAAXAAwAAAADAAEAAAAWAAwAAAABAAEAAAAWAA0AAAABAAIAAAA=")
 metadata/_edit_lock_ = true

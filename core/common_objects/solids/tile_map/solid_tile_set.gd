@@ -19,12 +19,13 @@ var previous_cells: Array[Vector2i] = []
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		for cell: Vector2i in get_used_cells():
-			Collider.walls.append(Rect2(
+			World.walls.append(Rect2(
 				Vector2(cell.x * 48 - 3, cell.y * 48 - 3) + global_position,
 				Vector2(54, 54)))
 
 
 func _process(delta: float) -> void:
+	# Not in the scene editor, only properly in game.
 	if not Engine.is_editor_hint():
 		if GameManager.ghost:
 			modulate.a = 0.5

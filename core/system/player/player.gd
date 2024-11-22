@@ -108,9 +108,9 @@ func movement_update() -> void:
 		move(velocity)
 	
 	if not GameManager.ghost:
-		move(Collider.corner_slide(hitbox, Collider.walls, \
+		move(Collider.corner_slide(hitbox, World.walls, \
 				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
-		move_to(Collider.push_out_of_walls(hitbox, subpixels, Collider.walls))
+		move_to(Collider.push_out_of_walls(hitbox, subpixels, World.walls))
 
 
 func collision_update() -> void:

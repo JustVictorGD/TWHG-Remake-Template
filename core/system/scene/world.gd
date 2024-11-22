@@ -5,14 +5,19 @@ class_name World
 # 1280x720 pixel viewport.
 const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 
-# Used for level switching.
-var connections: Dictionary = json_to_dict("res://game/levels/connections.json")
-var current_level: Area = null
+# Tracking objects.
+static var walls: Array[Rect2] = []
 
+# Important nodes.
 var canvas_layer: CanvasLayer = CanvasLayer.new()
 var interface: Interface = preload("res://core/system/interface/interface.tscn").instantiate()
 var camera: Camera2D = Camera2D.new()
 var player: Player = preload("res://core/system/player/player.tscn").instantiate()
+
+# Level switching.
+var connections: Dictionary = json_to_dict("res://game/levels/connections.json")
+var current_level: Area = null
+
 
 
 func _input(event: InputEvent) -> void:
@@ -21,6 +26,9 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("2"):
 		switch_level("2")
+	
+	if event.is_action_pressed("3"):
+		switch_level("3")
 
 
 func _ready() -> void:
@@ -49,6 +57,8 @@ func switch_level(key: Variant) -> void:
 		if current_level != null:
 			current_level.queue_free()
 		
+		walls.clear()
+		
 		var something: String = connections[key]
 		
 		current_level = load(something).instantiate()
@@ -56,10 +66,14 @@ func switch_level(key: Variant) -> void:
 		add_child(current_level)
 		focus_camera(current_level)
 		
-		for node: Node in get_tree().get_nodes_in_group("checkpoints"):
-			if node is Checkpoint:
-				if node.is_start():
-					player.position = node.position
+		
+		var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
+		
+		for i: int in range(checkpoints.size()):
+			checkpoints[i].id = i
+			
+			if checkpoints[i].is_start():
+				player.position = checkpoints[i].position
 
 
 static func try_get(array: Array, index: int) -> Variant:

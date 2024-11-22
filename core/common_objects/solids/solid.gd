@@ -53,8 +53,8 @@ func _ready() -> void:
 		GameLoop.wall_update.connect(wall_update)
 		
 		if has_collision:
-			hitbox_index = Collider.walls.size()
-			Collider.walls.append(Rect2(outline.position + self.global_position, outline.size))
+			hitbox_index = World.walls.size()
+			World.walls.append(Rect2(outline.position + self.global_position, outline.size))
 	
 	child_ready()
 
@@ -84,7 +84,7 @@ func wall_update() -> void:
 				outline.self_modulate.a = global_opacity * 0.5
 		
 		
-		Collider.walls[hitbox_index] = Rect2(outline.position + self.global_position, outline.size)
+		World.walls[hitbox_index] = Rect2(outline.position + self.global_position, outline.size)
 
 
 func set_sprite_size(sprite: Rect2) -> void:

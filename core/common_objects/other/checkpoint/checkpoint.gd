@@ -23,7 +23,7 @@ const ORIGINAL_COLOR: Color = Color(0.643, 0.996, 0.639)
 const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 
 var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
-var id: int
+var id: int = -1
 
 var hitbox: RectangleCollider = RectangleCollider.new()
 
