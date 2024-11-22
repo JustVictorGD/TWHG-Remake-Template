@@ -3,8 +3,7 @@ class_name Checkpoint
 
 @export var type: types = types.CHECKPOINT
 
-## Debug purposes. You wouldn't want every single instance to print messages.
-@export var tracking: bool = false
+
 
 ## If the checkpoint is a finish and is used to win the level, this value
 ## will be used as a shortcut to warp to another level. Check the file
@@ -14,6 +13,10 @@ class_name Checkpoint
 
 ## Measured in ticks. 1 second = 240 ticks.
 @export var warp_delay: int = 240
+
+## If this checkpoint is a finish, using it to win will turn
+## the timer golden and will not lead to another level.
+@export var final_destination: bool = false
 
 @onready var warp_timer: TickBasedTimer = TickBasedTimer.new(warp_delay)
 var state: states = states.NOT_SELECTED
@@ -85,9 +88,6 @@ func any_checkpoint_touched(_id: int) -> void:
 
 
 func anything_collected() -> void:
-	if tracking:
-		print(Collider.touched_checkpoint_ids, ", ", id)
-	
 	if state == states.SELECTED and self.id not in Collider.touched_checkpoint_ids:
 		state = states.UPDATED
 
@@ -105,14 +105,19 @@ func select() -> void:
 		
 		if is_finish() and World.collected_money >= World.money_requirement \
 				and not GameManager.finished:
-			SFX.play("Finish")
-			GameManager.finished = true
-			GlobalSignal.finish.emit()
-			
-			warp_timer.reset_and_play()
+			win()
 		
 		else:
 			SFX.play("Checkpoint")
+
+
+func win() -> void:
+	SFX.play("Finish")
+	warp_timer.reset_and_play()
+	
+	if final_destination:
+		GlobalSignal.finish.emit()
+		GameManager.finished = true
 
 
 func warp_level() -> void:

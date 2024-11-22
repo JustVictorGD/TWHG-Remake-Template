@@ -76,6 +76,8 @@ func switch_level(key: String) -> void:
 			
 			if checkpoints[i].is_start():
 				player.position = checkpoints[i].position
+	else:
+		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 
 
 static func try_get(array: Array, index: int) -> Variant:
