@@ -206,6 +206,7 @@ func print_position() -> void:
 
 
 # Adds to the position using the subpixel system.
+# This function uses subpixels. Multiply any input in pixels by 1000.
 func move(movement: Vector2i) -> void:
 	subpixels += movement
 	
@@ -228,6 +229,7 @@ func move(movement: Vector2i) -> void:
 
 
 # Sets the position using the subpixel system.
+# This function uses subpixels. Multiply any input in pixels by 1000.
 func move_to(given_position: Vector2i) -> void:
 	global_position = given_position / 1000
 	

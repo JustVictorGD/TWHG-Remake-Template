@@ -1030,7 +1030,7 @@ sources/0 = SubResource("TileSetAtlasSource_jmj4c")
 
 [node name="TileBasedWall" type="TileMapLayer"]
 self_modulate = Color(1, 1, 1, 0.188235)
-z_index = 6
+z_index = 7
 tile_set = SubResource("TileSet_3tfq3")
 collision_enabled = false
 script = ExtResource("2_2hxhm")

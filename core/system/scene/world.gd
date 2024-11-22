@@ -75,7 +75,7 @@ func switch_level(key: String) -> void:
 			checkpoints[i].id = i
 			
 			if checkpoints[i].is_start():
-				player.position = checkpoints[i].position
+				player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
 	else:
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 
