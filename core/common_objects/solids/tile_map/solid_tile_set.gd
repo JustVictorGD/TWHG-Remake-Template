@@ -9,6 +9,8 @@ extends TileMapLayer
 ## Gets overridden if "copy_area_theme" is on.
 @export var fill_color: Color = Color.WHITE
 
+## If true, it will keep updating its values in game every frame.
+@export var constant_check: bool = false
 
 @onready var outline: TileMapLayer = $Outline
 @onready var fill: TileMapLayer = $Fill
@@ -22,6 +24,8 @@ func _ready() -> void:
 			World.walls.append(Rect2(
 				Vector2(cell.x * 48 - 3, cell.y * 48 - 3) + global_position,
 				Vector2(54, 54)))
+	
+	update_tiles()
 
 
 func _process(delta: float) -> void:
@@ -32,6 +36,11 @@ func _process(delta: float) -> void:
 		else:
 			modulate.a = 1
 	
+	if constant_check or Engine.is_editor_hint():
+		update_tiles()
+
+
+func update_tiles() -> void:
 	if copy_area_theme:
 		if owner is Area:
 			if owner.theme != null:

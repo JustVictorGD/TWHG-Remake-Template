@@ -20,10 +20,6 @@ level_code = "1-1"
 bottom_text = "BOTTOM TEXT"
 theme = ExtResource("2_pbtqy")
 
-[node name="Decoration" type="Node2D" parent="."]
-editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
-script = ExtResource("3_ivdn3")
-
 [node name="Floors" type="Node2D" parent="."]
 script = ExtResource("3_ivdn3")
 
@@ -99,3 +95,7 @@ offset_left = 960.0
 offset_top = 336.0
 offset_right = 1056.0
 offset_bottom = 432.0
+
+[node name="Decoration" type="Node2D" parent="."]
+editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
+script = ExtResource("3_ivdn3")

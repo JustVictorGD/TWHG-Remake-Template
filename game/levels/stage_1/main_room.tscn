@@ -307,6 +307,7 @@ offset_right = 32.0
 offset_bottom = 20.0
 grow_horizontal = 1
 grow_vertical = 1
+metadata/_edit_lock_ = true
 
 [node name="Checkpoints" type="Node2D" parent="."]
 script = ExtResource("4_gna1d")

@@ -4,6 +4,9 @@ extends Control
 @export var invert_pattern: bool = false
 @export var copy_area_theme: bool = true
 
+## If true, it will keep updating its colors and size every frame in game.
+@export var constant_check: bool = false
+
 @export var color_1: Color = Color(0.75, 0.75, 0.75)
 @export var color_2: Color = Color.WHITE
 
@@ -18,32 +21,42 @@ var old_color_1: Color
 var old_color_2: Color
 var old_invert_pattern: bool
 
-func _process(_delta: float) -> void:
-	# The texture can't get any smaller than 2x2 anyway, and (0,0) size is annoying.
-	if size.x < 2:
-		size.x = 2
-	if size.y < 2:
-		size.y = 2
-	
-	if invert_pattern != old_invert_pattern:
-		if invert_pattern:
-			tile_1 = $Tile2
-			tile_2 = $Tile1
-		if not invert_pattern:
-			tile_1 = $Tile1
-			tile_2 = $Tile2
-	
-	if size != old_size:
-		tile_1.size = size
-		tile_2.size = size
-	
-	old_size = size
-	old_color_1 = color_1
-	old_color_2 = color_2
-	old_invert_pattern = invert_pattern
+
+func _ready() -> void:
+	tile_1.size = size
+	tile_2.size = size
 	
 	refresh_color_1()
 	refresh_color_2()
+
+
+func _process(_delta: float) -> void:
+	if constant_check or Engine.is_editor_hint():
+		# The texture can't get any smaller than 2x2 anyway, and (0,0) size is annoying.
+		if size.x < 2:
+			size.x = 2
+		if size.y < 2:
+			size.y = 2
+		
+		if invert_pattern != old_invert_pattern:
+			if invert_pattern:
+				tile_1 = $Tile2
+				tile_2 = $Tile1
+			if not invert_pattern:
+				tile_1 = $Tile1
+				tile_2 = $Tile2
+		
+		if size != old_size:
+			tile_1.size = size
+			tile_2.size = size
+		
+		old_size = size
+		old_color_1 = color_1
+		old_color_2 = color_2
+		old_invert_pattern = invert_pattern
+		
+		refresh_color_1()
+		refresh_color_2()
 
 
 func refresh_color_1() -> void:

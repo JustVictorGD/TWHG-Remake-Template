@@ -93,6 +93,7 @@ func set_sprite_size(sprite: Rect2) -> void:
 	fill.position = outline.position + Vector2(total_outline_width, total_outline_width)
 	fill.size = outline.size - Vector2(total_outline_width, total_outline_width) * 2
 
+
 func set_outline_size(sprite: Rect2) -> void:
 	outline.position = sprite.position
 	outline.size = sprite.size
@@ -131,6 +132,7 @@ func set_merge_sprite(suggest_merge: bool) -> void:
 		self.add_child(fill)
 		outline.z_index = -1
 		sprite_is_merged = false
+
 
 func _process(delta: float) -> void:
 	# Only happens in the Godot editor, not in game.
