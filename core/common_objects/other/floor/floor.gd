@@ -61,14 +61,14 @@ func _process(_delta: float) -> void:
 
 
 func refresh_color_1() -> void:
-	if copy_area_theme and owner is Area:
+	if copy_area_theme and owner is Area and owner.theme != null:
 		tile_1.modulate = owner.theme.tile_1
 	else:
 		tile_1.modulate = color_1
 
 
 func refresh_color_2() -> void:
-	if copy_area_theme and owner is Area:
+	if copy_area_theme and owner is Area and owner.theme != null:
 		tile_2.modulate = owner.theme.tile_2
 	else:
 		tile_2.modulate = color_2

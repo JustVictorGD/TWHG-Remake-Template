@@ -18,12 +18,13 @@ var id: int
 # For cases when opacity is changed externally, like from invincibility
 @onready var original_opacity: float = modulate.a
 
-@onready var outline: Sprite2D = $Outline
-@onready var fill: Sprite2D = $Fill
+@onready var canvas_group: CanvasGroup = $CanvasGroup
+@onready var outline: Sprite2D = $CanvasGroup/Outline
+@onready var fill: Sprite2D = $CanvasGroup/Fill
 
 
 func _ready() -> void:
-	update_colors()
+	update_colors(Engine.is_editor_hint())
 	
 	if not Engine.is_editor_hint():
 		GameLoop.movement_update.connect(movement_update)
@@ -37,20 +38,29 @@ func movement_update() -> void:
 
 
 func _process(_delta: float) -> void:
-	if constant_check or Engine.is_editor_hint():
-		update_colors()
+	if constant_check:
+		update_colors(false)
+	if Engine.is_editor_hint():
+		update_colors(true)
 	
 	if not Engine.is_editor_hint():
 		if GameManager.invincible:
-			modulate.a = original_opacity * 0.5
+			canvas_group.self_modulate.a = original_opacity * 0.5
 		else:
-			modulate.a = original_opacity
+			canvas_group.self_modulate.a = original_opacity
 
 
-func update_colors() -> void:
-	if copy_area_theme and owner is Area:
-		outline.modulate = owner.theme.enemy_outline
-		fill.modulate = owner.theme.enemy_fill
+func update_colors(in_editor: bool) -> void:
+	var theme: AreaTheme
+	
+	if in_editor:
+		theme = owner.theme
+	else:
+		theme = World.current_level.theme
+	
+	if copy_area_theme and theme != null:
+		outline.modulate = theme.enemy_outline
+		fill.modulate = theme.enemy_fill
 	else:
 		outline.modulate = outline_color
 		fill.modulate = fill_color
