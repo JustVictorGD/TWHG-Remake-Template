@@ -52,6 +52,9 @@ func child_child_ready() -> void:
 
 func trigger_door() -> void:
 	if not triggered:
+		has_collision = false
+		World.walls[hitbox_index] = Rect2(2**63 * -1, 2**63 * -1, 0, 0)
+		
 		close_timer.active = false
 		open_timer.reset_and_play()
 		
@@ -60,6 +63,7 @@ func trigger_door() -> void:
 
 func untrigger_door() -> void:
 	if triggered:
+		has_collision = true
 		open_timer.active = false
 		close_timer.reset_and_play()
 		
