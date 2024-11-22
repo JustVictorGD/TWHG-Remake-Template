@@ -72,7 +72,7 @@ offset_right = 1280.0
 offset_bottom = 660.0
 color = Color(0.12549, 0.12549, 0.501961, 1)
 
-[node name="Area" type="Label" parent="."]
+[node name="LevelCode" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0
 offset_right = 416.0
@@ -153,5 +153,13 @@ offset_bottom = 723.0
 text = ".239"
 label_settings = SubResource("LabelSettings_xrp83")
 vertical_alignment = 1
+
+[node name="Flash" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 60.0
+offset_right = 1120.0
+offset_bottom = 660.0
+color = Color(1, 1, 1, 0)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_l5642")]

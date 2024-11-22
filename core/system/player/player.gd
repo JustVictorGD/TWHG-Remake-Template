@@ -128,15 +128,15 @@ func collision_update() -> void:
 			Collider.touched_checkpoint_ids.append(checkpoint.id)
 			last_checkpoint_id = checkpoint.id
 	
-	for coin: Node2D in get_tree().get_nodes_in_group("coins"):
+	for coin: Coin in get_tree().get_nodes_in_group("coins"):
 		if hitbox.intersects(coin.hitbox):
 			coin.collect()
 	
-	for enemy: Node2D in get_tree().get_nodes_in_group("enemies"):
+	for enemy: Enemy in get_tree().get_nodes_in_group("enemies"):
 		if not GameManager.invincible and hitbox.intersects(enemy.hitbox):
 			enemy_death()
 	
-	for key: Node2D in get_tree().get_nodes_in_group("keys"):
+	for key: Key in get_tree().get_nodes_in_group("keys"):
 		if hitbox.intersects(key.hitbox):
 			key.collect()
 

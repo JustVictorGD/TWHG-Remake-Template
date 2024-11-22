@@ -16,6 +16,8 @@
 
 [node name="TemplateLevel" type="Node2D" groups=["area"]]
 script = ExtResource("1_3o1ei")
+level_code = "1-1"
+bottom_text = "BOTTOM TEXT"
 theme = ExtResource("2_pbtqy")
 
 [node name="Decoration" type="Node2D" parent="."]
@@ -26,7 +28,6 @@ script = ExtResource("3_ivdn3")
 script = ExtResource("3_ivdn3")
 
 [node name="TextureRect" type="TextureRect" parent="Floors"]
-modulate = Color(1, 1, 1, 0.45098)
 z_index = -64
 texture_filter = 1
 offset_right = 32.0
@@ -60,7 +61,8 @@ offset_left = 720.0
 offset_top = 432.0
 offset_right = 816.0
 offset_bottom = 528.0
-type = 1
+type = 3
+level_warp = "2"
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_ivdn3")

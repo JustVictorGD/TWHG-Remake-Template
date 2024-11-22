@@ -5,8 +5,14 @@ class_name World
 # 1280x720 pixel viewport.
 const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 
-# Tracking objects.
+## Enter a key from "res://game/connections.json" here, and the associated
+## file path will be loaded if it's an area scene.
+@export var starting_level: String
+
+# Tracking objects and game state.
 static var walls: Array[Rect2] = []
+static var collected_money: int = 0
+static var money_requirement: int = 0
 
 # Important nodes.
 var canvas_layer: CanvasLayer = CanvasLayer.new()
@@ -15,20 +21,8 @@ var camera: Camera2D = Camera2D.new()
 var player: Player = preload("res://core/system/player/player.tscn").instantiate()
 
 # Level switching.
-var connections: Dictionary = json_to_dict("res://game/levels/connections.json")
-var current_level: Area = null
-
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("1"):
-		switch_level("1")
-	
-	if event.is_action_pressed("2"):
-		switch_level("2")
-	
-	if event.is_action_pressed("3"):
-		switch_level("3")
+var connections: Dictionary = json_to_dict("res://game/connections.json")
+static var current_level: Area = null
 
 
 func _ready() -> void:
@@ -38,6 +32,10 @@ func _ready() -> void:
 	add_child(player)
 	
 	focus_camera(current_level)
+	
+	GlobalSignal.switch_level.connect(switch_level)
+	
+	switch_level("1")
 
 
 func focus_camera(area: Area) -> void:
@@ -52,20 +50,24 @@ func focus_camera(area: Area) -> void:
 	camera.offset = area.position + Vector2(area.area_size) / 2 * 48
 
 
-func switch_level(key: Variant) -> void:
+func switch_level(key: String) -> void:
 	if connections.has(key):
 		if current_level != null:
 			current_level.queue_free()
 		
+		GlobalSignal.level_switched.emit()
+		
+		current_level = load(connections[key]).instantiate()
+		
+		GameManager.finished = false
+		GameManager.invincible = false
+		
+		collected_money = 0
+		money_requirement = 0
+		
 		walls.clear()
-		
-		var something: String = connections[key]
-		
-		current_level = load(something).instantiate()
-		
 		add_child(current_level)
 		focus_camera(current_level)
-		
 		
 		var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
 		

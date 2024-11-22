@@ -2,8 +2,20 @@ extends ColorRect
 class_name Checkpoint
 
 @export var type: types = types.CHECKPOINT
+
+## Debug purposes. You wouldn't want every single instance to print messages.
 @export var tracking: bool = false
 
+## If the checkpoint is a finish and is used to win the level, this value
+## will be used as a shortcut to warp to another level. Check the file
+## "res://game/connections.json" for the list of key-value pairs. If a valid
+## key is entered in this field, it will load the corresponding file path.
+@export var level_warp: String = ""
+
+## Measured in ticks. 1 second = 240 ticks.
+@export var warp_delay: int = 240
+
+@onready var warp_timer: TickBasedTimer = TickBasedTimer.new(warp_delay)
 var state: states = states.NOT_SELECTED
 
 enum types {
@@ -35,6 +47,8 @@ func _ready() -> void:
 	GlobalSignal.player_death.connect(player_death)
 	
 	movement_update()
+	
+	warp_timer.timeout.connect(warp_level)
 
 
 func movement_update() -> void:
@@ -52,6 +66,7 @@ func movement_update() -> void:
 
 func update_timers() -> void:
 	flash_animation.tick_and_timeout()
+	warp_timer.tick_and_timeout()
 	
 	if flash_animation.active:
 		color = lerp(FLASH_COLOR, ORIGINAL_COLOR, flash_animation.get_progress())
@@ -88,10 +103,18 @@ func select() -> void:
 		state = states.SELECTED
 		GlobalSignal.checkpoint_touched.emit(id)
 		
-		if GameManager.money >= GameManager.max_money and not \
-				GameManager.finished and is_finish():
+		if is_finish() and World.collected_money >= World.money_requirement \
+				and not GameManager.finished:
 			SFX.play("Finish")
 			GameManager.finished = true
 			GlobalSignal.finish.emit()
+			
+			warp_timer.reset_and_play()
+		
 		else:
 			SFX.play("Checkpoint")
+
+
+func warp_level() -> void:
+	if level_warp != "":
+		GlobalSignal.switch_level.emit(level_warp)
