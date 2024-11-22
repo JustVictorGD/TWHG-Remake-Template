@@ -16,10 +16,10 @@ var player: Player = preload("res://core/system/player/player.tscn").instantiate
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("up"):
+	if event.is_action_pressed("1"):
 		switch_level("1")
 	
-	if event.is_action_pressed("down"):
+	if event.is_action_pressed("2"):
 		switch_level("2")
 
 
@@ -46,8 +46,6 @@ func focus_camera(area: Area) -> void:
 
 func switch_level(key: Variant) -> void:
 	if connections.has(key):
-		print("Loading... \"", key, "\": \"", connections[key], "\"")
-		
 		if current_level != null:
 			current_level.queue_free()
 		
@@ -59,10 +57,8 @@ func switch_level(key: Variant) -> void:
 		focus_camera(current_level)
 		
 		for node: Node in get_tree().get_nodes_in_group("checkpoints"):
-			print(node.name)
 			if node is Checkpoint:
 				if node.is_start():
-					print("Start found")
 					player.position = node.position
 
 
