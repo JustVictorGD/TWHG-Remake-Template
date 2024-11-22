@@ -5,6 +5,7 @@ extends Control
 @export var copy_area_theme: bool = true
 
 ## If true, it will keep updating its colors and size every frame in game.
+## May cost some performance but allows themes that gradually change.
 @export var constant_check: bool = false
 
 @export var color_1: Color = Color(0.75, 0.75, 0.75)

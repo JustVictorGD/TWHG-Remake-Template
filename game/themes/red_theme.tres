@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_6pyd6")
-wall_outline = Color(0.4, 0.223529, 0.223529, 1)
+wall_outline = Color(0.4, 0.282353, 0.282353, 1)
 wall_fill = Color(1, 0.556863, 0.556863, 1)
 tile_1 = Color(0.976471, 0.866667, 0.866667, 1)
 tile_2 = Color(1, 0.968627, 0.968627, 1)

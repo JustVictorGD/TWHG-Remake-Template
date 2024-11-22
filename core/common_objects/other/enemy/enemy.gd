@@ -1,17 +1,33 @@
+@tool
 @icon("res://core/misc_assets/images/node_icons/enemy.png")
 extends Node2D
 class_name Enemy
 
-@export var lock_scale : bool = false
+## If true, it will keep updating its colors and size every frame in game.
+## May cost some performance but allows themes that gradually change.
+@export var constant_check: bool = false
+@export var lock_scale: bool = false
+
+@export var copy_area_theme: bool = true
+
+@export var outline_color: Color = Color(0, 0, 0.4)
+@export var fill_color: Color = Color(0, 0, 1)
 
 var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 7)
 var id: int
 # For cases when opacity is changed externally, like from invincibility
 @onready var original_opacity: float = modulate.a
 
+@onready var outline: Sprite2D = $Outline
+@onready var fill: Sprite2D = $Fill
+
 
 func _ready() -> void:
-	GameLoop.movement_update.connect(movement_update)
+	update_colors()
+	
+	if not Engine.is_editor_hint():
+		GameLoop.movement_update.connect(movement_update)
+
 
 func movement_update() -> void:
 	hitbox.position = self.global_position
@@ -21,7 +37,20 @@ func movement_update() -> void:
 
 
 func _process(_delta: float) -> void:
-	if GameManager.invincible:
-		modulate.a = original_opacity * 0.5
+	if constant_check or Engine.is_editor_hint():
+		update_colors()
+	
+	if not Engine.is_editor_hint():
+		if GameManager.invincible:
+			modulate.a = original_opacity * 0.5
+		else:
+			modulate.a = original_opacity
+
+
+func update_colors() -> void:
+	if copy_area_theme and owner is Area:
+		outline.modulate = owner.theme.enemy_outline
+		fill.modulate = owner.theme.enemy_fill
 	else:
-		modulate.a = original_opacity
+		outline.modulate = outline_color
+		fill.modulate = fill_color
