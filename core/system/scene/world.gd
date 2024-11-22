@@ -35,7 +35,7 @@ func _ready() -> void:
 	
 	GlobalSignal.switch_level.connect(switch_level)
 	
-	switch_level("1")
+	switch_level(starting_level)
 
 
 func focus_camera(area: Area) -> void:
@@ -55,6 +55,8 @@ func switch_level(key: String) -> void:
 		if current_level != null:
 			current_level.queue_free()
 		
+		walls.clear()
+		
 		GlobalSignal.level_switched.emit()
 		
 		current_level = load(connections[key]).instantiate()
@@ -65,7 +67,7 @@ func switch_level(key: String) -> void:
 		collected_money = 0
 		money_requirement = 0
 		
-		walls.clear()
+		
 		add_child(current_level)
 		focus_camera(current_level)
 		

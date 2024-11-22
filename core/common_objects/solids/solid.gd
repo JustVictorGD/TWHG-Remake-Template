@@ -84,7 +84,7 @@ func wall_update() -> void:
 				outline.self_modulate.a = global_opacity * 0.5
 		
 		
-		World.walls[hitbox_index] = Rect2(outline.position + self.global_position, outline.size)
+		#World.walls[hitbox_index] = Rect2(outline.position + self.global_position, outline.size)
 
 
 func set_sprite_size(sprite: Rect2) -> void:

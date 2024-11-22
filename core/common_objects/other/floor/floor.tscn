@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b50tx58s1c4hm" path="res://core/common_objects/other/floor/rotated_void_diagonal.png" id="3_fvef5"]
 
 [node name="Floor" type="Control"]
+z_index = -64
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

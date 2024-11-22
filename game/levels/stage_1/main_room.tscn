@@ -825,7 +825,7 @@ offset_top = 384.0
 offset_right = 1152.0
 offset_bottom = 576.0
 key_id = 2
-open_method = 1
+open_method = 4
 
 [node name="KeyDoor2" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 offset_left = 720.0
@@ -833,7 +833,8 @@ offset_top = 192.0
 offset_right = 816.0
 offset_bottom = 288.0
 key_id = 1
-open_method = 1
+open_method = 4
+custom_method = Rect2(0.5, -0.5, 0, 2)
 
 [node name="KeyDoor3" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 offset_left = 720.0
@@ -905,8 +906,8 @@ offset_right = 1224.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
-outline_color = Color(0.282353, 0.282353, 0.4, 1)
-fill_color = Color(0.701961, 0.701961, 1, 1)
+outline_color = Color(0.294118, 0.239216, 0.4, 1)
+fill_color = Color(0.745098, 0.6, 1, 1)
 
 [node name="Solid2" type="ColorRect" parent="Solids"]
 z_index = 7
@@ -916,8 +917,8 @@ offset_right = 1416.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
-outline_color = Color(0.282353, 0.282353, 0.4, 1)
-fill_color = Color(0.701961, 0.701961, 1, 1)
+outline_color = Color(0.294118, 0.239216, 0.4, 1)
+fill_color = Color(0.745098, 0.6, 1, 1)
 
 [node name="Trees" type="Node2D" parent="."]
 visible = false

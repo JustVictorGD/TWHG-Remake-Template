@@ -1,15 +1,6 @@
 extends Control
 class_name Interface
 
-enum themes {
-	BLUE,
-	PURPLE,
-	RED,
-	BLACK
-}
-
-var area_theme: themes = themes.BLUE
-
 # Time
 var ticks: int = 0
 var seconds: int = 0
@@ -25,6 +16,7 @@ var hours: int = 0
 @onready var timer: Label = $Timer
 @onready var tick_timer: Label = $TickTimer
 
+@onready var sides: Control = $Sides
 @onready var flash: ColorRect = $Flash
 
 var flash_timer: TickBasedTimer = TickBasedTimer.new(120)
@@ -36,18 +28,6 @@ func _ready() -> void:
 	
 	flash_timer.reset_and_play()
 	GlobalSignal.level_switched.connect(flash_timer.reset_and_play)
-	
-	if area_theme == themes.BLUE:
-		pass
-	elif area_theme == themes.PURPLE:
-		$ColorRect5.color = Color.html("502080")
-		$ColorRect6.color = Color.html("502080")
-	elif area_theme == themes.RED:
-		$ColorRect5.color = Color.html("602020")
-		$ColorRect6.color = Color.html("602020")
-	else:
-		$ColorRect5.color = Color.html("303030")
-		$ColorRect6.color = Color.html("303030")
 
 
 func menu_click() -> void:
@@ -95,3 +75,6 @@ func _process(_delta : float) -> void:
 		tick_timer.modulate = Color.WHITE
 	
 	flash.color.a = flash_timer.get_progress_left()
+	
+	if World.current_level.theme != null:
+		sides.modulate = World.current_level.theme.interface_sides
