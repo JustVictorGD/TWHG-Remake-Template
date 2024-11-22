@@ -12,6 +12,7 @@ var current_level: Area = null
 var canvas_layer: CanvasLayer = CanvasLayer.new()
 var interface: Interface = preload("res://core/system/interface/interface.tscn").instantiate()
 var camera: Camera2D = Camera2D.new()
+var player: Player = preload("res://core/system/player/player.tscn").instantiate()
 
 
 func _input(event: InputEvent) -> void:
@@ -26,6 +27,7 @@ func _ready() -> void:
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
 	add_child(camera)
+	add_child(player)
 	
 	focus_camera(current_level)
 
@@ -55,6 +57,13 @@ func switch_level(key: Variant) -> void:
 		
 		add_child(current_level)
 		focus_camera(current_level)
+		
+		for node: Node in get_tree().get_nodes_in_group("checkpoints"):
+			print(node.name)
+			if node is Checkpoint:
+				if node.is_start():
+					print("Start found")
+					player.position = node.position
 
 
 static func try_get(array: Array, index: int) -> Variant:

@@ -46,17 +46,7 @@ func _process(delta: float) -> void:
 	if current_cells == previous_cells:
 		return
 	
-	outline.clear()
-	fill.clear()
-	
-	for cell: Vector2i in current_cells:
-		if cell not in previous_cells:
-			pass
-		
-		outline.set_cell(cell, 0, Vector2i(0, 0))
-		fill.set_cell(cell, 0, Vector2i(0, 0))
-	
-	outline.set_cells_terrain_connect(current_cells, 0, 0)
-	fill.set_cells_terrain_connect(current_cells, 0, 0)
+	fill.tile_map_data = self.tile_map_data
+	outline.tile_map_data = self.tile_map_data
 	
 	previous_cells = current_cells
