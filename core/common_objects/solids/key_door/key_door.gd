@@ -1,3 +1,4 @@
+@icon("res://core/misc_assets/images/node_icons/key_door.png")
 @tool
 extends Door
 

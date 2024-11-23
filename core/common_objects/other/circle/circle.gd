@@ -1,3 +1,4 @@
+@icon("res://core/misc_assets/images/node_icons/circle.png")
 extends Node
 ## Radius from the circle object, where the objects will be created.
 @export var radius : float = 1

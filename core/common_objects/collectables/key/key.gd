@@ -1,3 +1,4 @@
+@icon("res://core/misc_assets/images/node_icons/key.png")
 extends Collectable
 class_name Key
 
