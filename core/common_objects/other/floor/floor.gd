@@ -1,4 +1,5 @@
 @tool
+@icon("res://core/misc_assets/images/node_icons/floor.png")
 extends Control
 
 @export var invert_pattern: bool = false

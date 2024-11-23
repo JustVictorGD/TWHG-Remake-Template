@@ -1,3 +1,4 @@
+@icon("res://core/misc_assets/images/node_icons/checkpoint.png")
 extends ColorRect
 class_name Checkpoint
 
