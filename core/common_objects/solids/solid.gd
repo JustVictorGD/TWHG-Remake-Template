@@ -1,3 +1,4 @@
+@icon("res://core/misc_assets/images/node_icons/solid.png")
 @tool
 extends ColorRect
 class_name Solid

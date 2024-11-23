@@ -1,3 +1,4 @@
+@icon("res://core/misc_assets/images/node_icons/gold_door.png")
 @tool
 extends Door
 class_name GoldDoor
