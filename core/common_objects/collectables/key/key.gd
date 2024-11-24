@@ -1,9 +1,10 @@
+@icon("res://core/misc_assets/images/node_icons/key.png")
 extends Collectable
 class_name Key
 
 @export var key_id: int = -1
 
-var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 13)
+var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 21)
 var id: int # Not to be confused with the key_id,
 # this one is only for collision and collectable saving
 

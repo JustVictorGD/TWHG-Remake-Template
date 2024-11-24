@@ -9,6 +9,8 @@ extends TileMapLayer
 ## Gets overridden if "copy_area_theme" is on.
 @export var fill_color: Color = Color.WHITE
 
+## If true, it will keep updating its values in game every frame.
+@export var constant_check: bool = false
 
 @onready var outline: TileMapLayer = $Outline
 @onready var fill: TileMapLayer = $Fill
@@ -19,18 +21,26 @@ var previous_cells: Array[Vector2i] = []
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		for cell: Vector2i in get_used_cells():
-			Collider.walls.append(Rect2(
+			World.walls.append(Rect2(
 				Vector2(cell.x * 48 - 3, cell.y * 48 - 3) + global_position,
 				Vector2(54, 54)))
+	
+	update_tiles()
 
 
 func _process(delta: float) -> void:
+	# Not in the scene editor, only properly in game.
 	if not Engine.is_editor_hint():
 		if GameManager.ghost:
 			modulate.a = 0.5
 		else:
 			modulate.a = 1
 	
+	if constant_check or Engine.is_editor_hint():
+		update_tiles()
+
+
+func update_tiles() -> void:
 	if copy_area_theme:
 		if owner is Area:
 			if owner.theme != null:
@@ -46,17 +56,7 @@ func _process(delta: float) -> void:
 	if current_cells == previous_cells:
 		return
 	
-	outline.clear()
-	fill.clear()
-	
-	for cell: Vector2i in current_cells:
-		if cell not in previous_cells:
-			pass
-		
-		outline.set_cell(cell, 0, Vector2i(0, 0))
-		fill.set_cell(cell, 0, Vector2i(0, 0))
-	
-	outline.set_cells_terrain_connect(current_cells, 0, 0)
-	fill.set_cells_terrain_connect(current_cells, 0, 0)
+	fill.tile_map_data = self.tile_map_data
+	outline.tile_map_data = self.tile_map_data
 	
 	previous_cells = current_cells

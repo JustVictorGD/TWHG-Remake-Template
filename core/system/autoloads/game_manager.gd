@@ -4,15 +4,8 @@ extends Node
 var paused: bool = false
 var snappy_movement: bool = false
 
-# Level properties
-var max_money: int = 0
-
-# Area properties
-var area_bounds: Dictionary = {}
-
 # Player stats
 var deaths: int = 0
-var money: int = 0
 var finished: bool = false
 
 # Special player states

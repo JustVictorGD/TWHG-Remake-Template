@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://55jl8jvoqiur"]
+
+[ext_resource type="Script" path="res://core/system/scene/world.gd" id="1_vvjqr"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_vvjqr")
+starting_level = "1"
+metadata/_edit_lock_ = true

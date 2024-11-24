@@ -19,3 +19,4 @@ class_name AreaTheme
 @export var key_fill: Color = Color(0.6, 0.6, 0.6)
 
 @export var pit: Color = Color.BLACK
+@export var interface_sides: Color = Color(0.2, 0.2, 0.2)

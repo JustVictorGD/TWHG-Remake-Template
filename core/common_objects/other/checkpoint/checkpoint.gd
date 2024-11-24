@@ -1,9 +1,25 @@
+@icon("res://core/misc_assets/images/node_icons/checkpoint.png")
 extends ColorRect
 class_name Checkpoint
 
 @export var type: types = types.CHECKPOINT
-@export var tracking: bool = false
 
+
+
+## If the checkpoint is a finish and is used to win the level, this value
+## will be used as a shortcut to warp to another level. Check the file
+## "res://game/connections.json" for the list of key-value pairs. If a valid
+## key is entered in this field, it will load the corresponding file path.
+@export var level_warp: String = ""
+
+## Measured in ticks. 1 second = 240 ticks.
+@export var warp_delay: int = 240
+
+## If this checkpoint is a finish, using it to win will turn
+## the timer golden and will not lead to another level.
+@export var final_destination: bool = false
+
+@onready var warp_timer: TickBasedTimer = TickBasedTimer.new(warp_delay)
 var state: states = states.NOT_SELECTED
 
 enum types {
@@ -23,7 +39,7 @@ const ORIGINAL_COLOR: Color = Color(0.643, 0.996, 0.639)
 const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 
 var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
-var id: int
+var id: int = -1
 
 var hitbox: RectangleCollider = RectangleCollider.new()
 
@@ -35,6 +51,8 @@ func _ready() -> void:
 	GlobalSignal.player_death.connect(player_death)
 	
 	movement_update()
+	
+	warp_timer.timeout.connect(warp_level)
 
 
 func movement_update() -> void:
@@ -52,6 +70,7 @@ func movement_update() -> void:
 
 func update_timers() -> void:
 	flash_animation.tick_and_timeout()
+	warp_timer.tick_and_timeout()
 	
 	if flash_animation.active:
 		color = lerp(FLASH_COLOR, ORIGINAL_COLOR, flash_animation.get_progress())
@@ -70,9 +89,6 @@ func any_checkpoint_touched(_id: int) -> void:
 
 
 func anything_collected() -> void:
-	if tracking:
-		print(Collider.touched_checkpoint_ids, ", ", id)
-	
 	if state == states.SELECTED and self.id not in Collider.touched_checkpoint_ids:
 		state = states.UPDATED
 
@@ -88,10 +104,23 @@ func select() -> void:
 		state = states.SELECTED
 		GlobalSignal.checkpoint_touched.emit(id)
 		
-		if GameManager.money >= GameManager.max_money and not \
-				GameManager.finished and is_finish():
-			SFX.play("Finish")
-			GameManager.finished = true
-			GlobalSignal.finish.emit()
+		if is_finish() and World.collected_money >= World.money_requirement \
+				and not GameManager.finished:
+			win()
+		
 		else:
 			SFX.play("Checkpoint")
+
+
+func win() -> void:
+	SFX.play("Finish")
+	warp_timer.reset_and_play()
+	
+	if final_destination:
+		GlobalSignal.finish.emit()
+		GameManager.finished = true
+
+
+func warp_level() -> void:
+	if level_warp != "":
+		GlobalSignal.switch_level.emit(level_warp)
