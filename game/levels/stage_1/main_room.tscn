@@ -826,6 +826,16 @@ offset_right = 1152.0
 offset_bottom = 576.0
 key_id = 2
 open_method = 4
+custom_method = Rect2(0.5, 0.5, 0, 0)
+open_time = 120
+close_time = 60
+fade = false
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="KeyDoor2" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 offset_left = 720.0
@@ -835,6 +845,15 @@ offset_bottom = 288.0
 key_id = 1
 open_method = 4
 custom_method = Rect2(0.5, -0.5, 0, 2)
+open_time = 120
+close_time = 60
+fade = false
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="KeyDoor3" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 offset_left = 720.0
@@ -845,7 +864,14 @@ key_id = 0
 open_method = 1
 custom_method = Rect2(0.5, -0.5, 0, 2)
 open_time = 1200
+close_time = 60
 fade = true
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="GoldDoors" type="Node2D" parent="Doors"]
 script = ExtResource("4_gna1d")
@@ -856,7 +882,18 @@ offset_left = 1224.0
 offset_top = 240.0
 offset_right = 1368.0
 offset_bottom = 336.0
+money_requirement = 0
 open_method = 4
+custom_method = Rect2(0.5, 0.5, 0, 0)
+open_time = 120
+close_time = 60
+fade = false
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="GoldDoor2" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -866,6 +903,16 @@ offset_right = 768.0
 offset_bottom = 864.0
 money_requirement = 1
 open_method = 4
+custom_method = Rect2(0.5, 0.5, 0, 0)
+open_time = 120
+close_time = 60
+fade = false
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -875,6 +922,16 @@ offset_right = 864.0
 offset_bottom = 864.0
 money_requirement = 2
 open_method = 4
+custom_method = Rect2(0.5, 0.5, 0, 0)
+open_time = 120
+close_time = 60
+fade = false
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -884,6 +941,16 @@ offset_right = 768.0
 offset_bottom = 960.0
 money_requirement = 3
 open_method = 4
+custom_method = Rect2(0.5, 0.5, 0, 0)
+open_time = 120
+close_time = 60
+fade = false
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -893,6 +960,16 @@ offset_right = 864.0
 offset_bottom = 960.0
 money_requirement = 4
 open_method = 4
+custom_method = Rect2(0.5, 0.5, 0, 0)
+open_time = 120
+close_time = 60
+fade = false
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solids" type="Node2D" parent="."]
 script = ExtResource("4_gna1d")
@@ -906,8 +983,14 @@ offset_right = 1224.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
 outline_color = Color(0.294118, 0.239216, 0.4, 1)
 fill_color = Color(0.745098, 0.6, 1, 1)
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid2" type="ColorRect" parent="Solids"]
 z_index = 7
@@ -917,8 +1000,14 @@ offset_right = 1416.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
+merge_sprite = false
+global_opacity = 1.0
 outline_color = Color(0.294118, 0.239216, 0.4, 1)
 fill_color = Color(0.745098, 0.6, 1, 1)
+has_collision = true
+outwards_width = 3
+inwards_width = 3
 
 [node name="Trees" type="Node2D" parent="."]
 visible = false
@@ -935,10 +1024,14 @@ offset_right = 108.0
 offset_bottom = 372.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid3" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -948,10 +1041,14 @@ offset_right = 204.0
 offset_bottom = 300.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid4" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -961,10 +1058,14 @@ offset_right = 288.0
 offset_bottom = 348.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid5" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -974,10 +1075,14 @@ offset_right = 360.0
 offset_bottom = 312.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid12" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -987,10 +1092,14 @@ offset_right = 336.0
 offset_bottom = 228.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid6" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1000,10 +1109,14 @@ offset_right = 408.0
 offset_bottom = 216.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid7" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1013,10 +1126,14 @@ offset_right = 396.0
 offset_bottom = 696.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid8" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1026,10 +1143,14 @@ offset_right = 204.0
 offset_bottom = 744.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid13" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1039,10 +1160,14 @@ offset_right = 84.0
 offset_bottom = 624.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid14" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1052,10 +1177,14 @@ offset_right = 156.0
 offset_bottom = 696.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid21" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1065,10 +1194,14 @@ offset_right = 192.0
 offset_bottom = 1032.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid23" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1078,10 +1211,14 @@ offset_right = 60.0
 offset_bottom = 960.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid24" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1091,10 +1228,14 @@ offset_right = 120.0
 offset_bottom = 1032.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid10" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1104,10 +1245,14 @@ offset_right = 516.0
 offset_bottom = 792.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid11" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1117,10 +1262,14 @@ offset_right = 552.0
 offset_bottom = 816.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid15" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1130,10 +1279,14 @@ offset_right = 852.0
 offset_bottom = 756.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid18" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1143,10 +1296,14 @@ offset_right = 780.0
 offset_bottom = 792.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid16" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1156,10 +1313,14 @@ offset_right = 696.0
 offset_bottom = 912.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid17" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1169,10 +1330,14 @@ offset_right = 708.0
 offset_bottom = 864.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid26" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1182,10 +1347,14 @@ offset_right = 1164.0
 offset_bottom = 744.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid27" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1195,10 +1364,14 @@ offset_right = 984.0
 offset_bottom = 876.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid28" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1208,10 +1381,14 @@ offset_right = 1224.0
 offset_bottom = 984.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid29" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1221,10 +1398,14 @@ offset_right = 1032.0
 offset_bottom = 1008.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid25" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1234,10 +1415,14 @@ offset_right = 1092.0
 offset_bottom = 828.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid30" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1247,10 +1432,14 @@ offset_right = 1152.0
 offset_bottom = 996.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid19" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1260,10 +1449,14 @@ offset_right = 636.0
 offset_bottom = 1008.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid31" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1273,10 +1466,14 @@ offset_right = 1416.0
 offset_bottom = 972.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid32" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1286,10 +1483,14 @@ offset_right = 1560.0
 offset_bottom = 696.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid37" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1299,10 +1500,14 @@ offset_right = 1560.0
 offset_bottom = 336.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid39" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1312,10 +1517,14 @@ offset_right = 1584.0
 offset_bottom = 228.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid38" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1325,10 +1534,14 @@ offset_right = 1572.0
 offset_bottom = 300.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid33" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1338,10 +1551,14 @@ offset_right = 1524.0
 offset_bottom = 744.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid34" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1351,10 +1568,14 @@ offset_right = 1452.0
 offset_bottom = 948.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid35" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1364,10 +1585,14 @@ offset_right = 1500.0
 offset_bottom = 864.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Solid36" type="ColorRect" parent="Trees"]
 z_index = 5
@@ -1377,10 +1602,14 @@ offset_right = 1572.0
 offset_bottom = 972.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
+tracking = false
 merge_sprite = true
 global_opacity = 0.5
+outline_color = Color(0, 0, 0, 1)
 fill_color = Color(0, 1, 0, 1)
 has_collision = false
+outwards_width = 3
+inwards_width = 3
 
 [node name="Glow" type="Node2D" parent="."]
 visible = false
