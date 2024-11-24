@@ -4,8 +4,6 @@ class_name AltSolid
 
 const PIXEL: PackedScene = preload("res://core/common_objects/solids/pixel.tscn")
 
-@export var nullify: bool = false
-
 ## Only recommended to turn on when using themes that gradually change color.
 @export var dynamic_color: bool = false
 ## Turning this on will prevent the solid from existing collision wise at all.
@@ -28,13 +26,21 @@ var left: Sprite2D = PIXEL.instantiate()
 var bottom: Sprite2D = PIXEL.instantiate()
 var right: Sprite2D = PIXEL.instantiate()
 
-var outwards_vector: Vector2:
+var outwards_2d: Vector2:
 	get:
 		return Vector2(outwards_width, outwards_width)
 
 var outer_bound: Rect2:
 	get:
-		return Rect2(-outwards_vector, size + outwards_vector * 2)
+		return Rect2(-outwards_2d, size + outwards_2d * 2)
+
+var global_bound: Rect2:
+	get:
+		return Rect2(-outwards_2d + position, size + outwards_2d * 2)
+
+var total_width: float:
+	get:
+		return outwards_width + inwards_width
 
 var hitbox_index: int
 
@@ -61,24 +67,29 @@ func _ready() -> void:
 	
 	if not decorative and not in_editor:
 		hitbox_index = World.walls.size()
-		World.walls.append(Rect2(outer_bound.position + position, outer_bound.size))
-		
-		GameLoop.wall_update.connect(wall_update)
-		
-		if nullify:
-			nullify_hitbox()
-
-
-func wall_update() -> void:
-	pass
+		World.walls.append(global_bound)
 
 
 func change_shape(rect: Rect2) -> void:
-	var inwards_vector: Vector2 = Vector2(inwards_width, inwards_width)
-	var inner: Rect2 = Rect2(inwards_vector, size - inwards_vector * 2)
+	rect.size.x = clamp(rect.size.x, 0, INF)
+	rect.size.y = clamp(rect.size.y, 0, INF)
 	
-	inner.size.x = clamp(inner.size.x, 0, INF)
-	inner.size.y = clamp(inner.size.y, 0, INF)
+	var inwards_2d: Vector2 = Vector2(inwards_width, inwards_width) * 2
+	
+	var inner: Rect2 = Rect2(
+		rect.position + inwards_2d,
+		rect.size - inwards_2d * 2
+	)
+	
+	if inner.size.x <= 0:
+		inner.size.x = 0
+		if inner.end.x > rect.end.x:
+			inner.position.x = rect.end.x
+	
+	if inner.size.y <= 0:
+		inner.size.y = 0
+		if inner.end.y > rect.end.y:
+			inner.position.y = rect.end.y
 	
 	transform_pixel(fill, inner)
 	# I don't see a convenient pattern so I have to do things manually like this.
