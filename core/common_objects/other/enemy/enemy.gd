@@ -18,14 +18,18 @@ var id: int
 # For cases when opacity is changed externally, like from invincibility
 @onready var original_opacity: float = modulate.a
 
+var in_editor: bool:
+	get:
+		return Engine.is_editor_hint()
+
 @onready var outline: Sprite2D = $Outline
 @onready var fill: Sprite2D = $Fill
 
 
 func _ready() -> void:
-	update_colors(Engine.is_editor_hint())
+	update_colors()
 	
-	if not Engine.is_editor_hint():
+	if not in_editor:
 		GameLoop.movement_update.connect(movement_update)
 
 
@@ -37,26 +41,21 @@ func movement_update() -> void:
 
 
 func _process(_delta: float) -> void:
-	if constant_check:
-		update_colors(false)
-	if Engine.is_editor_hint():
-		update_colors(true)
+	if constant_check or in_editor:
+		update_colors()
 	
-	if not Engine.is_editor_hint():
+	if not in_editor:
 		if GameManager.invincible:
 			modulate.a = original_opacity * 0.5
 		else:
 			modulate.a = original_opacity
 
 
-func update_colors(in_editor: bool) -> void:
+func update_colors() -> void:
 	var theme: AreaTheme
 	
 	if owner is Area:
-		if in_editor:
-			theme = owner.theme
-		else:
-			theme = World.current_level.theme
+		theme = owner.theme
 	
 	if copy_area_theme and theme != null:
 		outline.modulate = theme.enemy_outline

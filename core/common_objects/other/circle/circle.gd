@@ -1,5 +1,7 @@
 @icon("res://core/misc_assets/images/node_icons/circle.png")
 extends Node
+class_name Circle
+
 ## Radius from the circle object, where the objects will be created.
 @export var radius : float = 1
 ## Amount of objects, which the circle will create.
@@ -36,8 +38,15 @@ func _ready() -> void:
 	# Creates the objects
 	for i: int in range(object_count):
 		var new_object : Node2D = object.instantiate()
+		
 		add_child(new_object)
 		children.append(new_object)
+		
+		if owner is Area:
+			new_object.owner = self.owner
+			
+			if object_type == obj.ENEMIES:
+				new_object.update_colors()
 
 func animation_update() -> void:
 	arc = deg_to_rad(arc_degrees)
