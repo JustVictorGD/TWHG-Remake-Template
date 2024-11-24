@@ -244,7 +244,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(504, 312), Vector2(504, 504)]
+"values": [Vector2(504, 300), Vector2(504, 516)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ypg5j"]
@@ -713,6 +713,7 @@ position = Vector2(-48, 48)
 [node name="Group1" type="Node2D" parent="Enemies"]
 position = Vector2(504, 312)
 script = ExtResource("4_gna1d")
+metadata/_edit_group_ = true
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
 libraries = {
@@ -731,18 +732,6 @@ position = Vector2(96, 0)
 
 [node name="BlueEnemy4" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(144, 0)
-
-[node name="BlueEnemy5" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
-position = Vector2(192, 0)
-
-[node name="BlueEnemy6" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
-position = Vector2(240, 0)
-
-[node name="BlueEnemy7" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
-position = Vector2(288, 0)
-
-[node name="BlueEnemy8" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
-position = Vector2(336, 0)
 
 [node name="BlueEnemy9" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(384, 0)
@@ -768,18 +757,6 @@ position = Vector2(96, 144)
 [node name="BlueEnemy15" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(144, 144)
 
-[node name="BlueEnemy16" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
-position = Vector2(192, 144)
-
-[node name="BlueEnemy17" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
-position = Vector2(240, 144)
-
-[node name="BlueEnemy18" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
-position = Vector2(288, 144)
-
-[node name="BlueEnemy19" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
-position = Vector2(336, 144)
-
 [node name="BlueEnemy20" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(384, 144)
 
@@ -791,6 +768,43 @@ position = Vector2(480, 144)
 
 [node name="BlueEnemy23" parent="Enemies/Group1" instance=ExtResource("8_v7h88")]
 position = Vector2(528, 144)
+
+[node name="Group2" type="Node2D" parent="Enemies"]
+position = Vector2(504, 312)
+script = ExtResource("4_gna1d")
+metadata/_edit_group_ = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
+libraries = {
+"": SubResource("AnimationLibrary_ypg5j")
+}
+autoplay = "new_animation"
+script = ExtResource("7_8uesn")
+start_time = 240
+
+[node name="BlueEnemy9" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
+position = Vector2(192, 0)
+
+[node name="BlueEnemy10" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
+position = Vector2(240, 0)
+
+[node name="BlueEnemy11" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
+position = Vector2(288, 0)
+
+[node name="BlueEnemy12" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
+position = Vector2(336, 0)
+
+[node name="BlueEnemy20" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
+position = Vector2(192, 144)
+
+[node name="BlueEnemy21" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
+position = Vector2(240, 144)
+
+[node name="BlueEnemy22" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
+position = Vector2(288, 144)
+
+[node name="BlueEnemy23" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
+position = Vector2(336, 144)
 
 [node name="Keys" type="Node2D" parent="."]
 script = ExtResource("4_gna1d")
@@ -866,6 +880,7 @@ offset_right = 768.0
 offset_bottom = 864.0
 money_requirement = 1
 open_method = 4
+custom_method = Rect2(0, 0, 0, 0)
 
 [node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -875,6 +890,7 @@ offset_right = 864.0
 offset_bottom = 864.0
 money_requirement = 2
 open_method = 4
+custom_method = Rect2(1, 0, 0, 0)
 
 [node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -884,6 +900,7 @@ offset_right = 768.0
 offset_bottom = 960.0
 money_requirement = 3
 open_method = 4
+custom_method = Rect2(0, 1, 0, 0)
 
 [node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -893,6 +910,7 @@ offset_right = 864.0
 offset_bottom = 960.0
 money_requirement = 4
 open_method = 4
+custom_method = Rect2(1, 1, 0, 0)
 
 [node name="Solids" type="Node2D" parent="."]
 script = ExtResource("4_gna1d")
@@ -923,6 +941,7 @@ outline_color = Color(0.294118, 0.239216, 0.4, 1)
 fill_color = Color(0.745098, 0.6, 1, 1)
 
 [node name="Glow" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
 script = ExtResource("4_gna1d")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -938,36 +957,24 @@ script = ExtResource("7_8uesn")
 z_index = 16
 offset_right = 1536.0
 offset_bottom = 48.0
-color = Color(1, 1, 1, 0.12549)
+color = Color(1, 1, 1, 0.376471)
 
 [node name="ColorRect2" type="ColorRect" parent="Glow"]
 z_index = 16
 offset_right = 1536.0
 offset_bottom = 96.0
-color = Color(1, 1, 1, 0.12549)
+color = Color(1, 1, 1, 0.282353)
 
 [node name="ColorRect3" type="ColorRect" parent="Glow"]
 z_index = 16
 offset_right = 1536.0
 offset_bottom = 144.0
-color = Color(1, 1, 1, 0.12549)
+color = Color(1, 1, 1, 0.188235)
 
 [node name="ColorRect4" type="ColorRect" parent="Glow"]
 z_index = 16
 offset_right = 1536.0
 offset_bottom = 192.0
-color = Color(1, 1, 1, 0.0627451)
-
-[node name="ColorRect5" type="ColorRect" parent="Glow"]
-z_index = 16
-offset_right = 1536.0
-offset_bottom = 240.0
-color = Color(1, 1, 1, 0.0627451)
-
-[node name="ColorRect6" type="ColorRect" parent="Glow"]
-z_index = 16
-offset_right = 1536.0
-offset_bottom = 288.0
 color = Color(1, 1, 1, 0.0627451)
 
 [node name="SolidTileSet" parent="." instance=ExtResource("13_0s7js")]
