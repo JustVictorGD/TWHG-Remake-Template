@@ -9,7 +9,9 @@ class_name GoldDoor
 @export var money_requirement: int = 0
 
 
-func child_child_ready() -> void:
+func _ready() -> void:
+	super()
+	
 	if not Engine.is_editor_hint():
 		GlobalSignal.coin_collected.connect(coin_collected)
 		GlobalSignal.player_respawn.connect(player_respawn)

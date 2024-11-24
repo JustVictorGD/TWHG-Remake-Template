@@ -1,5 +1,5 @@
 @tool
-extends AltSolid
+extends Solid
 class_name Door
 
 ## Debug purposes.

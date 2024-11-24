@@ -165,7 +165,7 @@ _data = {
 [node name="TemplateLevel" type="Node2D" groups=["area"]]
 script = ExtResource("1_msdjo")
 level_code = "1-1"
-bottom_text = "BOTTOM TEXT"
+bottom_text = "Boy oh boy."
 theme = ExtResource("2_ktm7x")
 
 [node name="Floors" type="Node2D" parent="."]

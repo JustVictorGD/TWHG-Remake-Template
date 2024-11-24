@@ -295,7 +295,7 @@ _data = {
 [node name="MainRoom" type="Node2D" groups=["area"]]
 script = ExtResource("1_ttfq5")
 level_code = "1-2"
-bottom_text = "Overgrowth"
+bottom_text = "Kewl, purple!"
 theme = ExtResource("2_q60q2")
 metadata/_edit_lock_ = true
 
@@ -462,31 +462,31 @@ position = Vector2(768, 156)
 position = Vector2(828, 96)
 
 [node name="Coin41" parent="Coins" instance=ExtResource("5_ujh7a")]
-position = Vector2(1488, 528)
+position = Vector2(1392, 528)
 
 [node name="Coin42" parent="Coins" instance=ExtResource("5_ujh7a")]
-position = Vector2(1464, 504)
+position = Vector2(1416, 504)
 
 [node name="Coin43" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1440, 480)
 
 [node name="Coin44" parent="Coins" instance=ExtResource("5_ujh7a")]
-position = Vector2(1464, 552)
+position = Vector2(1416, 552)
 
 [node name="Coin45" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1440, 576)
 
 [node name="Coin46" parent="Coins" instance=ExtResource("5_ujh7a")]
-position = Vector2(1416, 528)
+position = Vector2(1320, 528)
 
 [node name="Coin47" parent="Coins" instance=ExtResource("5_ujh7a")]
-position = Vector2(1392, 504)
+position = Vector2(1344, 504)
 
 [node name="Coin48" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1368, 480)
 
 [node name="Coin49" parent="Coins" instance=ExtResource("5_ujh7a")]
-position = Vector2(1392, 552)
+position = Vector2(1344, 552)
 
 [node name="Coin50" parent="Coins" instance=ExtResource("5_ujh7a")]
 position = Vector2(1368, 576)
@@ -523,7 +523,7 @@ metadata/_edit_lock_ = true
 position = Vector2(1368, 648)
 
 [node name="BlueEnemy32" parent="Enemies/StaticEnemies" instance=ExtResource("8_v7h88")]
-position = Vector2(1512, 840)
+position = Vector2(1320, 696)
 
 [node name="Group5" type="Node2D" parent="Enemies"]
 position = Vector2(240, 480)
@@ -898,492 +898,31 @@ open_method = 4
 script = ExtResource("4_gna1d")
 metadata/_edit_lock_ = true
 
-[node name="Solid" type="ColorRect" parent="Solids"]
+[node name="Solid" type="Control" parent="Solids"]
 z_index = 7
+layout_mode = 3
+anchors_preset = 0
 offset_left = 1176.0
 offset_top = 240.0
 offset_right = 1224.0
 offset_bottom = 336.0
-color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
 outline_color = Color(0.294118, 0.239216, 0.4, 1)
 fill_color = Color(0.745098, 0.6, 1, 1)
 
-[node name="Solid2" type="ColorRect" parent="Solids"]
+[node name="Solid2" type="Control" parent="Solids"]
 z_index = 7
+layout_mode = 3
+anchors_preset = 0
 offset_left = 1368.0
 offset_top = 240.0
 offset_right = 1416.0
 offset_bottom = 336.0
-color = Color(1, 1, 1, 0)
 script = ExtResource("12_bcmw2")
 outline_color = Color(0.294118, 0.239216, 0.4, 1)
 fill_color = Color(0.745098, 0.6, 1, 1)
 
-[node name="Trees" type="Node2D" parent="."]
-visible = false
-z_index = 3
-script = ExtResource("4_gna1d")
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="Solid2" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 36.0
-offset_top = 276.0
-offset_right = 108.0
-offset_bottom = 372.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid3" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 72.0
-offset_top = 204.0
-offset_right = 204.0
-offset_bottom = 300.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid4" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 180.0
-offset_top = 288.0
-offset_right = 288.0
-offset_bottom = 348.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid5" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 240.0
-offset_top = 192.0
-offset_right = 360.0
-offset_bottom = 312.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid12" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 216.0
-offset_top = 108.0
-offset_right = 336.0
-offset_bottom = 228.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid6" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 300.0
-offset_top = 132.0
-offset_right = 408.0
-offset_bottom = 216.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid7" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 288.0
-offset_top = 612.0
-offset_right = 396.0
-offset_bottom = 696.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid8" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 96.0
-offset_top = 660.0
-offset_right = 204.0
-offset_bottom = 744.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid13" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = -36.0
-offset_top = 516.0
-offset_right = 84.0
-offset_bottom = 624.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid14" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 24.0
-offset_top = 576.0
-offset_right = 156.0
-offset_bottom = 696.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid21" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 84.0
-offset_top = 948.0
-offset_right = 192.0
-offset_bottom = 1032.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid23" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = -36.0
-offset_top = 876.0
-offset_right = 60.0
-offset_bottom = 960.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid24" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = -24.0
-offset_top = 912.0
-offset_right = 120.0
-offset_bottom = 1032.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid10" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 360.0
-offset_top = 660.0
-offset_right = 516.0
-offset_bottom = 792.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid11" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 444.0
-offset_top = 720.0
-offset_right = 552.0
-offset_bottom = 816.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid15" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 756.0
-offset_top = 684.0
-offset_right = 852.0
-offset_bottom = 756.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid18" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 660.0
-offset_top = 708.0
-offset_right = 780.0
-offset_bottom = 792.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid16" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 624.0
-offset_top = 840.0
-offset_right = 696.0
-offset_bottom = 912.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid17" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 612.0
-offset_top = 744.0
-offset_right = 708.0
-offset_bottom = 864.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid26" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1032.0
-offset_top = 648.0
-offset_right = 1164.0
-offset_bottom = 744.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid27" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 876.0
-offset_top = 792.0
-offset_right = 984.0
-offset_bottom = 876.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid28" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1116.0
-offset_top = 900.0
-offset_right = 1224.0
-offset_bottom = 984.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid29" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 924.0
-offset_top = 924.0
-offset_right = 1032.0
-offset_bottom = 1008.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid25" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 936.0
-offset_top = 696.0
-offset_right = 1092.0
-offset_bottom = 828.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid30" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 996.0
-offset_top = 864.0
-offset_right = 1152.0
-offset_bottom = 996.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid19" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 540.0
-offset_top = 936.0
-offset_right = 636.0
-offset_bottom = 1008.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid31" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1320.0
-offset_top = 900.0
-offset_right = 1416.0
-offset_bottom = 972.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid32" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1476.0
-offset_top = 624.0
-offset_right = 1560.0
-offset_bottom = 696.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid37" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1500.0
-offset_top = 276.0
-offset_right = 1560.0
-offset_bottom = 336.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid39" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1512.0
-offset_top = 132.0
-offset_right = 1584.0
-offset_bottom = 228.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid38" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1476.0
-offset_top = 204.0
-offset_right = 1572.0
-offset_bottom = 300.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid33" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1452.0
-offset_top = 648.0
-offset_right = 1524.0
-offset_bottom = 744.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid34" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1368.0
-offset_top = 840.0
-offset_right = 1452.0
-offset_bottom = 948.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid35" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1404.0
-offset_top = 732.0
-offset_right = 1500.0
-offset_bottom = 864.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
-[node name="Solid36" type="ColorRect" parent="Trees"]
-z_index = 5
-offset_left = 1500.0
-offset_top = 900.0
-offset_right = 1572.0
-offset_bottom = 972.0
-color = Color(1, 1, 1, 0)
-script = ExtResource("12_bcmw2")
-merge_sprite = true
-global_opacity = 0.5
-fill_color = Color(0, 1, 0, 1)
-has_collision = false
-
 [node name="Glow" type="Node2D" parent="."]
-visible = false
 script = ExtResource("4_gna1d")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -1432,5 +971,5 @@ offset_bottom = 288.0
 color = Color(1, 1, 1, 0.0627451)
 
 [node name="SolidTileSet" parent="." instance=ExtResource("13_0s7js")]
-tile_map_data = PackedByteArray("AAACAAQAAAABAAMAAAACAAMAAAABAAEAAAAeABQAAAACAAMAAAAeABMAAAACAAEAAAADAAIAAAAAAAEAAAADAAMAAAAIAAIAAAADAAQAAAACAAMAAAAHAAYAAAACAAMAAAAHAAUAAAACAAIAAAAHAAQAAAAFAAIAAAAHAAMAAAADAAEAAAAGAAYAAAACAAMAAAAGAAUAAAACAAIAAAAGAAQAAAACAAIAAAAGAAMAAAACAAEAAAAFAAYAAAACAAMAAAAFAAUAAAACAAIAAAAFAAQAAAACAAIAAAAFAAMAAAACAAEAAAAEAAYAAAABAAMAAAAEAAUAAAABAAIAAAAEAAQAAAAGAAEAAAAEAAMAAAACAAEAAAAJAAcAAAADAAMAAAAJAAYAAAADAAIAAAAJAAUAAAADAAEAAAAIAAUAAAAFAAIAAAAIAAYAAAAGAAEAAAAIAAcAAAABAAMAAAAIAAQAAAADAAEAAAAIAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAGAAEAAAAAAAMAAAAGAAAAAAAHAAEAAAAGAP//AAADAAEAAAAFAP//AAACAAEAAAAFAAAAAAACAAMAAAAEAAAAAAACAAMAAAAEAP//AAACAAEAAAADAP//AAACAAEAAAACAP//AAACAAEAAAABAP//AAACAAEAAAAAAP//AAACAAEAAAD/////AAABAAEAAAADAAAAAAACAAMAAAACAAAAAAACAAMAAAABAAAAAAACAAMAAAAAAAAAAAACAAMAAAD//wAAAAABAAMAAAAAAA4AAAACAAMAAAAAAA0AAAACAAIAAAAAAAwAAAACAAIAAAAAAAsAAAACAAIAAAAAAAoAAAACAAIAAAAAAAkAAAACAAIAAAAAAAgAAAACAAIAAAAAAAcAAAACAAIAAAAAAAYAAAAFAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAADAAEAAAD//w4AAAABAAMAAAD//w0AAAABAAIAAAD//wwAAAABAAIAAAD//wsAAAABAAIAAAD//woAAAABAAIAAAD//wkAAAABAAIAAAD//wgAAAABAAIAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAD//wMAAAABAAEAAAACAAYAAAADAAAAAAACABQAAAACAAMAAAACABMAAAAFAAIAAAACABIAAAADAAIAAAACABEAAAADAAIAAAACABAAAAADAAIAAAACAA8AAAADAAIAAAACAA4AAAADAAIAAAACAA0AAAADAAEAAAABABQAAAABAAMAAAABABMAAAABAAIAAAABABIAAAABAAIAAAABABEAAAABAAIAAAABABAAAAABAAIAAAABAA8AAAABAAIAAAABAA4AAAAGAAEAAAABAA0AAAAFAAIAAAABAAYAAAAFAAAAAAABAAcAAAADAAIAAAABAAgAAAADAAIAAAABAAkAAAADAAIAAAABAAoAAAADAAIAAAABAAsAAAADAAIAAAABAAwAAAADAAIAAAANABQAAAADAAMAAAANABMAAAADAAIAAAAMABQAAAACAAMAAAAMABMAAAACAAIAAAALABQAAAACAAMAAAALABMAAAACAAIAAAAKABQAAAACAAMAAAAKABMAAAACAAIAAAAJABQAAAACAAMAAAAJABMAAAACAAIAAAAIABQAAAACAAMAAAAIABMAAAACAAIAAAAHABQAAAACAAMAAAAHABMAAAAGAAIAAAAGABQAAAACAAMAAAAGABMAAAACAAEAAAAFABQAAAACAAMAAAAFABMAAAACAAEAAAAEABQAAAACAAMAAAAEABMAAAACAAEAAAADABQAAAACAAMAAAADABMAAAACAAEAAAANABIAAAADAAIAAAAMABIAAAACAAIAAAALABIAAAAGAAIAAAAKABIAAAACAAEAAAAJABIAAAACAAEAAAAIABIAAAACAAEAAAAHABIAAAABAAEAAAALABEAAAABAAIAAAALABAAAAABAAIAAAALAA8AAAAEAAIAAAALAA4AAAAAAAEAAAANABEAAAADAAIAAAANABAAAAADAAIAAAAMABEAAAACAAIAAAAMABAAAAACAAIAAAAMAA8AAAACAAEAAAAOAA8AAAADAAMAAAAOAA4AAAADAAEAAAANAA8AAAAJAAEAAAANAA4AAAABAAEAAAAWAA8AAAADAAMAAAAWAA4AAAAJAAEAAAAVAA8AAAACAAMAAAAVAA4AAAACAAEAAAAUAA8AAAAGAAMAAAAUAA4AAAABAAEAAAATAA8AAAAFAAAAAAASAA8AAAAJAAAAAAASAA4AAAADAAEAAAARAA8AAAABAAMAAAARAA4AAAABAAEAAAASABEAAAAAAAMAAAASABAAAAAEAAEAAAATABAAAAADAAMAAAAWABEAAAAAAAAAAAAUABIAAAAAAAEAAAAbABIAAAAAAAEAAAAgAA8AAAADAAMAAAAgAA4AAAADAAEAAAAfAA8AAAABAAMAAAAfAA4AAAABAAEAAAAgABQAAAADAAMAAAAgABMAAAADAAIAAAAgABIAAAADAAEAAAAfABQAAAACAAMAAAAfABMAAAAGAAIAAAAfABIAAAABAAEAAAAdABQAAAACAAMAAAAdABMAAAACAAEAAAAcABQAAAACAAMAAAAcABMAAAACAAEAAAAbABQAAAACAAMAAAAbABMAAAAIAAIAAAAaABQAAAACAAMAAAAaABMAAAACAAEAAAAZABQAAAACAAMAAAAZABMAAAACAAEAAAAYABQAAAACAAMAAAAYABMAAAACAAEAAAAXABQAAAACAAMAAAAXABMAAAACAAEAAAAWABQAAAACAAMAAAAWABMAAAACAAEAAAAVABQAAAACAAMAAAAVABMAAAACAAEAAAAUABQAAAACAAMAAAAUABMAAAAIAAIAAAATABQAAAACAAMAAAATABMAAAACAAEAAAASABQAAAABAAMAAAASABMAAAABAAEAAAAWAAMAAAABAAEAAAAWAAQAAAAGAAIAAAAWAAUAAAAGAAEAAAAXAAYAAAAFAAEAAAAYAAYAAAADAAMAAAAYAAUAAAADAAIAAAAYAAQAAAADAAIAAAAYAAMAAAAHAAIAAAAXAAMAAAACAAEAAAAXAAQAAAACAAIAAAAXAAUAAAACAAIAAAAWAAYAAAABAAIAAAAWAAcAAAABAAMAAAAXAAcAAAADAAMAAAAYAP//AAABAAEAAAAYAAAAAAAEAAEAAAAYAAEAAAAHAAQAAAAYAAIAAAAAAAIAAAAXAAEAAAABAAAAAAAZAP//AAACAAEAAAAZAAAAAAACAAMAAAAaAAAAAAACAAMAAAAbAAAAAAACAAMAAAAcAAAAAAACAAMAAAAdAAAAAAAGAAEAAAAeAAAAAAADAAIAAAAeAP//AAADAAEAAAAdAP//AAACAAEAAAAcAP//AAACAAEAAAAbAP//AAACAAEAAAAaAP//AAACAAEAAAAgAAQAAAADAAEAAAAfAAQAAAACAAEAAAAfAAUAAAACAAIAAAAfAAYAAAACAAMAAAAgAAYAAAADAAMAAAAgAAUAAAADAAIAAAAeAAUAAAACAAIAAAAdAAUAAAABAAIAAAAdAAYAAAABAAMAAAAeAAYAAAACAAMAAAAeAAQAAAAFAAIAAAAeAAMAAAADAAIAAAAdAAMAAAABAAIAAAAdAAIAAAABAAIAAAAdAAEAAAABAAIAAAAeAAEAAAADAAIAAAAeAAIAAAADAAIAAAAdAAQAAAABAAIAAAAUAAQAAAACAAEAAAATAAQAAAAJAAAAAAATAAMAAAADAAIAAAATAAIAAAAFAAQAAAAUAAIAAAADAAAAAAATAAEAAAADAAIAAAATAAAAAAAFAAEAAAAUAAAAAAADAAMAAAASAAQAAAAGAAMAAAASAAMAAAABAAIAAAASAAIAAAABAAIAAAASAAEAAAABAAIAAAASAAAAAAABAAIAAAASAP//AAABAAEAAAATAP//AAACAAEAAAAUAP//AAADAAEAAAAVAAQAAAACAAEAAAAVAAUAAAACAAMAAAAUAAUAAAACAAMAAAATAAUAAAABAAMAAAARAAQAAAAEAAAAAAARAAUAAAAAAAMAAAALAAQAAAABAAAAAAAMAAQAAAAGAAQAAAAMAAUAAAABAAMAAAANAAUAAAACAAMAAAAOAAUAAAADAAMAAAAOAAQAAAADAAEAAAANAAQAAAAFAAIAAAAMAAMAAAABAAIAAAAMAAIAAAABAAIAAAAMAAEAAAABAAIAAAAMAAAAAAAGAAEAAAALAAAAAAABAAMAAAALAP//AAABAAEAAAAMAP//AAACAAEAAAANAP//AAADAAEAAAANAAAAAAADAAIAAAANAAEAAAADAAIAAAANAAIAAAADAAIAAAANAAMAAAADAAIAAAAXAA4AAAADAAMAAAAXAA0AAAADAAIAAAAXAAwAAAADAAEAAAAWAAwAAAABAAEAAAAWAA0AAAABAAIAAAA=")
+tile_map_data = PackedByteArray("AAACAAQAAAABAAMAAAACAAMAAAABAAEAAAAeABQAAAACAAMAAAAeABMAAAACAAEAAAADAAIAAAAAAAEAAAADAAMAAAAIAAIAAAADAAQAAAACAAMAAAAHAAYAAAACAAMAAAAHAAUAAAACAAIAAAAHAAQAAAAFAAIAAAAHAAMAAAADAAEAAAAGAAYAAAACAAMAAAAGAAUAAAACAAIAAAAGAAQAAAACAAIAAAAGAAMAAAACAAEAAAAFAAYAAAACAAMAAAAFAAUAAAACAAIAAAAFAAQAAAACAAIAAAAFAAMAAAACAAEAAAAEAAYAAAABAAMAAAAEAAUAAAABAAIAAAAEAAQAAAAGAAEAAAAEAAMAAAACAAEAAAAJAAcAAAADAAMAAAAJAAYAAAADAAIAAAAJAAUAAAADAAEAAAAIAAUAAAAFAAIAAAAIAAYAAAAGAAEAAAAIAAcAAAABAAMAAAAIAAQAAAADAAEAAAAIAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAGAAEAAAAAAAMAAAAGAAAAAAAHAAEAAAAGAP//AAAFAAAAAAAFAP//AAACAAEAAAAFAAAAAAACAAMAAAAEAAAAAAACAAMAAAAEAP//AAACAAEAAAADAP//AAACAAEAAAACAP//AAACAAEAAAABAP//AAACAAEAAAAAAP//AAACAAEAAAD/////AAABAAEAAAADAAAAAAACAAMAAAACAAAAAAACAAMAAAABAAAAAAACAAMAAAAAAAAAAAAFAAEAAAD//wAAAAABAAIAAAAAAA4AAAACAAMAAAAAAA0AAAACAAIAAAAAAAwAAAACAAIAAAAAAAsAAAACAAIAAAAAAAoAAAACAAIAAAAAAAkAAAACAAIAAAAAAAgAAAACAAIAAAAAAAcAAAACAAIAAAAAAAYAAAAFAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAADAAIAAAD//w4AAAABAAMAAAD//w0AAAABAAIAAAD//wwAAAABAAIAAAD//wsAAAABAAIAAAD//woAAAABAAIAAAD//wkAAAABAAIAAAD//wgAAAABAAIAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAD//wMAAAABAAIAAAACAAYAAAADAAAAAAACABQAAAACAAMAAAACABMAAAAFAAIAAAACABIAAAADAAIAAAACABEAAAADAAIAAAACABAAAAADAAIAAAACAA8AAAADAAIAAAACAA4AAAADAAIAAAACAA0AAAADAAEAAAABABQAAAABAAMAAAABABMAAAABAAIAAAABABIAAAABAAIAAAABABEAAAABAAIAAAABABAAAAABAAIAAAABAA8AAAABAAIAAAABAA4AAAAGAAEAAAABAA0AAAAFAAIAAAABAAYAAAAFAAAAAAABAAcAAAADAAIAAAABAAgAAAADAAIAAAABAAkAAAADAAIAAAABAAoAAAADAAIAAAABAAsAAAADAAIAAAABAAwAAAADAAIAAAANABQAAAAFAAMAAAANABMAAAADAAIAAAAMABQAAAACAAMAAAAMABMAAAACAAIAAAALABQAAAACAAMAAAALABMAAAACAAIAAAAKABQAAAACAAMAAAAKABMAAAACAAIAAAAJABQAAAACAAMAAAAJABMAAAACAAIAAAAIABQAAAACAAMAAAAIABMAAAACAAIAAAAHABQAAAACAAMAAAAHABMAAAAGAAIAAAAGABQAAAACAAMAAAAGABMAAAACAAEAAAAFABQAAAACAAMAAAAFABMAAAACAAEAAAAEABQAAAACAAMAAAAEABMAAAACAAEAAAADABQAAAACAAMAAAADABMAAAACAAEAAAANABIAAAADAAIAAAAMABIAAAACAAIAAAALABIAAAAGAAIAAAAKABIAAAACAAEAAAAJABIAAAACAAEAAAAIABIAAAACAAEAAAAHABIAAAABAAEAAAALABEAAAABAAIAAAALABAAAAABAAIAAAALAA8AAAAEAAIAAAALAA4AAAAAAAEAAAANABEAAAADAAIAAAANABAAAAADAAIAAAAMABEAAAACAAIAAAAMABAAAAACAAIAAAAMAA8AAAACAAEAAAAOAA8AAAADAAMAAAAOAA4AAAADAAEAAAANAA8AAAAJAAEAAAANAA4AAAABAAEAAAAWAA8AAAADAAMAAAAWAA4AAAAJAAEAAAAVAA8AAAACAAMAAAAVAA4AAAACAAEAAAAUAA8AAAAGAAMAAAAUAA4AAAABAAEAAAATAA8AAAAFAAAAAAASAA8AAAAJAAAAAAASAA4AAAADAAEAAAARAA8AAAABAAMAAAARAA4AAAABAAEAAAASABEAAAAAAAMAAAASABAAAAAEAAEAAAATABAAAAADAAMAAAAWABEAAAAAAAAAAAAUABIAAAAAAAEAAAAbABIAAAAAAAEAAAAgAA8AAAADAAIAAAAgAA4AAAADAAIAAAAfAA8AAAABAAIAAAAfAA4AAAABAAIAAAAgABQAAAADAAMAAAAgABMAAAADAAIAAAAgABIAAAADAAIAAAAfABQAAAACAAMAAAAfABMAAAAGAAIAAAAfABIAAAABAAIAAAAdABQAAAACAAMAAAAdABMAAAACAAEAAAAcABQAAAACAAMAAAAcABMAAAACAAEAAAAbABQAAAACAAMAAAAbABMAAAAIAAIAAAAaABQAAAACAAMAAAAaABMAAAACAAEAAAAZABQAAAACAAMAAAAZABMAAAACAAEAAAAYABQAAAACAAMAAAAYABMAAAACAAEAAAAXABQAAAACAAMAAAAXABMAAAACAAEAAAAWABQAAAACAAMAAAAWABMAAAACAAEAAAAVABQAAAACAAMAAAAVABMAAAACAAEAAAAUABQAAAACAAMAAAAUABMAAAAIAAIAAAATABQAAAACAAMAAAATABMAAAACAAEAAAASABQAAAAGAAMAAAASABMAAAABAAEAAAAWAAMAAAABAAEAAAAWAAQAAAAGAAIAAAAWAAUAAAAGAAEAAAAXAAYAAAAFAAEAAAAYAAYAAAADAAMAAAAYAAUAAAADAAIAAAAYAAQAAAADAAIAAAAYAAMAAAAHAAIAAAAXAAMAAAACAAEAAAAXAAQAAAACAAIAAAAXAAUAAAACAAIAAAAWAAYAAAABAAIAAAAWAAcAAAABAAMAAAAXAAcAAAADAAMAAAAYAP//AAAGAAAAAAAYAAAAAAAEAAEAAAAYAAEAAAAHAAQAAAAYAAIAAAAAAAIAAAAXAAEAAAABAAAAAAAZAP//AAACAAEAAAAZAAAAAAACAAMAAAAaAAAAAAACAAMAAAAbAAAAAAACAAMAAAAcAAAAAAACAAMAAAAdAAAAAAAGAAEAAAAeAAAAAAACAAIAAAAeAP//AAACAAEAAAAdAP//AAACAAEAAAAcAP//AAACAAEAAAAbAP//AAACAAEAAAAaAP//AAACAAEAAAAgAAQAAAADAAIAAAAfAAQAAAACAAIAAAAfAAUAAAACAAIAAAAfAAYAAAAGAAEAAAAgAAYAAAADAAIAAAAgAAUAAAADAAIAAAAeAAUAAAACAAIAAAAdAAUAAAABAAIAAAAdAAYAAAABAAMAAAAeAAYAAAACAAMAAAAeAAQAAAACAAIAAAAeAAMAAAACAAIAAAAdAAMAAAABAAIAAAAdAAIAAAABAAIAAAAdAAEAAAABAAIAAAAeAAEAAAACAAIAAAAeAAIAAAACAAIAAAAdAAQAAAABAAIAAAAUAAQAAAACAAEAAAATAAQAAAAJAAAAAAATAAMAAAADAAIAAAATAAIAAAAFAAQAAAAUAAIAAAADAAAAAAATAAEAAAADAAIAAAATAAAAAAAFAAEAAAAUAAAAAAADAAMAAAASAAQAAAAGAAMAAAASAAMAAAABAAIAAAASAAIAAAABAAIAAAASAAEAAAABAAIAAAASAAAAAAABAAIAAAASAP//AAAGAAAAAAATAP//AAACAAEAAAAUAP//AAAFAAAAAAAVAAQAAAACAAEAAAAVAAUAAAACAAMAAAAUAAUAAAACAAMAAAATAAUAAAABAAMAAAARAAQAAAAEAAAAAAARAAUAAAAAAAMAAAALAAQAAAABAAAAAAAMAAQAAAAGAAQAAAAMAAUAAAABAAMAAAANAAUAAAACAAMAAAAOAAUAAAADAAMAAAAOAAQAAAADAAEAAAANAAQAAAAFAAIAAAAMAAMAAAABAAIAAAAMAAIAAAABAAIAAAAMAAEAAAABAAIAAAAMAAAAAAAGAAEAAAALAAAAAAABAAMAAAALAP//AAAGAAAAAAAMAP//AAACAAEAAAANAP//AAAFAAAAAAANAAAAAAADAAIAAAANAAEAAAADAAIAAAANAAIAAAADAAIAAAANAAMAAAADAAIAAAAXAA4AAAADAAMAAAAXAA0AAAADAAIAAAAXAAwAAAADAAEAAAAWAAwAAAABAAEAAAAWAA0AAAABAAIAAAAAAAIAAAADAAIAAAAAAAEAAAADAAIAAAD//wEAAAABAAIAAAD//wIAAAABAAIAAAAKAP//AAACAAAAAAAJAP//AAACAAAAAAAIAP//AAACAAAAAAAHAP//AAACAAAAAAAVAP//AAACAAAAAAAWAP//AAACAAAAAAAXAP//AAACAAAAAAARAP//AAACAAAAAAAPAP//AAACAAAAAAAQAP//AAACAAAAAAAOAP//AAACAAAAAAAfAP//AAACAAEAAAAgAP//AAADAAEAAAAgAAAAAAADAAIAAAAgAAEAAAADAAIAAAAgAAIAAAADAAIAAAAgAAMAAAADAAIAAAAfAAMAAAACAAIAAAAfAAIAAAACAAIAAAAfAAEAAAACAAIAAAAfAAAAAAACAAIAAAAgAAcAAAADAAIAAAAgAAgAAAADAAIAAAAgAAkAAAADAAIAAAAgAAoAAAADAAIAAAAgAAsAAAADAAIAAAAgAAwAAAADAAIAAAAgAA0AAAADAAIAAAAfAA0AAAABAAIAAAAfAAwAAAABAAIAAAAfAAsAAAABAAIAAAAfAAoAAAABAAIAAAAfAAkAAAABAAIAAAAfAAgAAAABAAIAAAAfAAcAAAABAAIAAAAgABAAAAADAAIAAAAgABEAAAADAAIAAAAfABEAAAABAAIAAAAfABAAAAABAAIAAAARABQAAAACAAAAAAAQABQAAAACAAAAAAAPABQAAAACAAAAAAAOABQAAAACAAAAAAA=")
 metadata/_edit_lock_ = true

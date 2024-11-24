@@ -30,7 +30,7 @@ offset_left = 336.0
 offset_top = 192.0
 offset_right = 432.0
 offset_bottom = 288.0
-type = 1
+type = 3
 final_destination = true
 
 [node name="SolidTileSet" parent="." instance=ExtResource("6_q0rjx")]

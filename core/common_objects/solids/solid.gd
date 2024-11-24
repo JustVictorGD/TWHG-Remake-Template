@@ -1,146 +1,126 @@
 @icon("res://core/misc_assets/images/node_icons/solid.png")
 @tool
-extends ColorRect
+extends Control
 class_name Solid
 
-## Print certain debug information if there is any.
-@export var tracking: bool = false
+const PIXEL: PackedScene = preload("res://core/common_objects/solids/pixel.tscn")
 
-## Allows global_opacity to be used to make the solid semi-transparent without
-## the opacities of the 2 layers stacking, but forces them to be on a single
-## Z-index, preventing them from nicely being merged with other solids.
-@export var merge_sprite: bool = false
+## Only recommended to turn on when using themes that gradually change color.
+@export var dynamic_color: bool = false
+## Turning this on will prevent the solid from existing collision wise at all.
+@export var decorative: bool = false
+## Expands outline outwards.
+@export var outwards_width: float = 3
+## Expands outline inwards.
+@export var inwards_width: float = 3
+@export var outline_color: Color = Color(0.282, 0.282, 0.4)
+@export var fill_color: Color = Color(0.7, 0.7, 1)
+## Negative values will allow solids to visually merge with each other.
+@export var outline_z_offset: int = -1
 
-## Only works if merge_sprite is true. Reduces the solid's opacity as if it was a single sprite.
-@export_range(0, 1) var global_opacity: float = 1
-@export var outline_color: Color = Color.BLACK
-@export var fill_color: Color = Color.WHITE
-@export var has_collision: bool = true
+@onready var in_editor: bool = Engine.is_editor_hint()
 
-@export_category("Outline width")
-@export_range(0, 65536) var outwards_width: int = 3
-@export_range(0, 65536) var inwards_width: int = 3
-var total_outline_width: int = outwards_width + inwards_width
+var fill: Sprite2D = PIXEL.instantiate()
+var outline: Node2D = Node2D.new()
+var top: Sprite2D = PIXEL.instantiate()
+var left: Sprite2D = PIXEL.instantiate()
+var bottom: Sprite2D = PIXEL.instantiate()
+var right: Sprite2D = PIXEL.instantiate()
 
-# Components of the solid
-var canvas_group: CanvasGroup = CanvasGroup.new()
-var outline: ColorRect = ColorRect.new()
-var fill: ColorRect = ColorRect.new()
+var outwards_2d: Vector2:
+	get:
+		return Vector2(outwards_width, outwards_width)
 
-# If false, doesn't call the set_sprite_size() function for better performance.
-var dynamic_size: bool = false
+var outer_bound: Rect2:
+	get:
+		return Rect2(-outwards_2d, size + outwards_2d * 2)
 
-# Misc
-var sprite_is_merged: bool = false
+var global_bound: Rect2:
+	get:
+		return Rect2(-outwards_2d + position, size + outwards_2d * 2)
+
+var total_width: float:
+	get:
+		return outwards_width + inwards_width
+
 var hitbox_index: int
-@onready var original_opacity: float = canvas_group.modulate.a
 
 
 func _ready() -> void:
-	canvas_group.name = "CanvasGroup"
-	outline.name = "Outline"
-	fill.name = "Fill"
-	
-	color = Color.TRANSPARENT
-	
 	for child: Node in get_children():
-		child.queue_free()
+		# Spare anything extending Control if text needs to be included.
+		if child is Node2D:
+			child.queue_free()
 	
-	sprite_is_merged = not merge_sprite
-	set_merge_sprite(merge_sprite)
-	set_sprite_size(Rect2(Vector2.ZERO, size))
+	add_child(fill)
+	add_child(outline)
 	
-	if not Engine.is_editor_hint():
-		GameLoop.wall_update.connect(wall_update)
-		
-		if has_collision:
-			hitbox_index = World.walls.size()
-			World.walls.append(Rect2(outline.position + self.global_position, outline.size))
+	var segments: Array[Sprite2D] = [top, left, bottom, right]
 	
-	child_ready()
-
-
-func wall_update() -> void:
-	total_outline_width = outwards_width + inwards_width
-	canvas_group.self_modulate.a = global_opacity
-	outline.color = outline_color
-	fill.color = fill_color
+	for segment: Sprite2D in segments:
+		outline.add_child(segment)
 	
-	if dynamic_size or Engine.is_editor_hint():
-		set_sprite_size(Rect2(Vector2.ZERO, size))
+	outline.modulate = outline_color
+	fill.modulate = fill_color
+	outline.z_index = outline_z_offset
 	
-	if not Engine.is_editor_hint() and has_collision:
-	# Only play in game, not in editor.
-		if merge_sprite:
-			canvas_group.self_modulate.a = global_opacity
-		else:
-			fill.self_modulate.a = global_opacity
-			outline.self_modulate.a = global_opacity
-			
-		if has_collision and GameManager.ghost:
-			if merge_sprite:
-				canvas_group.self_modulate.a = global_opacity * 0.5
-			else:
-				fill.self_modulate.a = global_opacity * 0.5
-				outline.self_modulate.a = global_opacity * 0.5
-		
-		
-		#World.walls[hitbox_index] = Rect2(outline.position + self.global_position, outline.size)
-
-
-func set_sprite_size(sprite: Rect2) -> void:
-	outline.position = sprite.position - Vector2(outwards_width, outwards_width)
-	outline.size = sprite.size + Vector2(outwards_width, outwards_width) * 2
-	fill.position = outline.position + Vector2(total_outline_width, total_outline_width)
-	fill.size = outline.size - Vector2(total_outline_width, total_outline_width) * 2
-
-
-func set_outline_size(sprite: Rect2) -> void:
-	outline.position = sprite.position
-	outline.size = sprite.size
-	fill.position = outline.position + Vector2(total_outline_width, total_outline_width)
-	fill.size = outline.size - Vector2(total_outline_width, total_outline_width) * 2
-
-
-# Override this function to add more behavior.
-func child_ready() -> void:
-	pass
-
-
-func set_merge_sprite(suggest_merge: bool) -> void:
-	# Turning on
-	if suggest_merge and not sprite_is_merged and canvas_group not in get_children():
-		
-		if outline in get_children():
-			self.remove_child(outline)
-			self.remove_child(fill)
-		
-		self.add_child(canvas_group)
-		canvas_group.add_child(outline)
-		canvas_group.add_child(fill)
-		fill.z_index = 0
-		sprite_is_merged = true
+	change_shape(outer_bound)
 	
-	# Turning off
-	if not suggest_merge and sprite_is_merged:
-		
-		if canvas_group in get_children():
-			self.remove_child(canvas_group)
-			canvas_group.remove_child(outline)
-			canvas_group.remove_child(fill)
-		
-		self.add_child(outline)
-		self.add_child(fill)
-		outline.z_index = -1
-		sprite_is_merged = false
+	if not decorative and not in_editor:
+		hitbox_index = World.walls.size()
+		World.walls.append(global_bound)
 
 
-func _process(delta: float) -> void:
-	# Only happens in the Godot editor, not in game.
-	if Engine.is_editor_hint():
-		wall_update()
-		set_merge_sprite(merge_sprite)
-		
-		# Prevents a weird bug that stops you from resizing the solid by dragging it.
-		if has_meta("_edit_use_anchors_"):
-			set_meta("_edit_use_anchors_", false)
+func change_shape(rect: Rect2) -> void:
+	rect.size.x = clamp(rect.size.x, 0, INF)
+	rect.size.y = clamp(rect.size.y, 0, INF)
+	
+	var inwards_2d: Vector2 = Vector2(inwards_width, inwards_width) * 2
+	
+	var inner: Rect2 = Rect2(
+		rect.position + inwards_2d,
+		rect.size - inwards_2d * 2
+	)
+	
+	if inner.size.x <= 0:
+		inner.size.x = 0
+		if inner.end.x > rect.end.x:
+			inner.position.x = rect.end.x
+	
+	if inner.size.y <= 0:
+		inner.size.y = 0
+		if inner.end.y > rect.end.y:
+			inner.position.y = rect.end.y
+	
+	transform_pixel(fill, inner)
+	# I don't see a convenient pattern so I have to do things manually like this.
+	transform_pixel(top, sides_to_rect(rect.position.y, inner.position.x, inner.position.y, rect.end.x))
+	transform_pixel(left, sides_to_rect(rect.position.y, rect.position.x, inner.end.y, inner.position.x))
+	transform_pixel(bottom, sides_to_rect(inner.end.y, rect.position.x, rect.end.y, inner.end.x))
+	transform_pixel(right, sides_to_rect(inner.position.y, inner.end.x, rect.end.y, rect.end.x))
+
+
+# A Rect2 can't really be turned off but it can be moved billions of pixels away.
+func nullify_hitbox() -> void:
+	if not decorative:
+		World.walls[hitbox_index] = Rect2(-4294967296, -4294967296, 0, 0)
+
+
+func _process(_delta: float) -> void:
+	if dynamic_color or in_editor:
+		outline.modulate = outline_color
+		fill.modulate = fill_color
+	
+	if in_editor:
+		outline.z_index = outline_z_offset
+		change_shape(outer_bound)
+
+
+func transform_pixel(pixel: Sprite2D, rect: Rect2) -> void:
+	pixel.position = (rect.position + rect.end) / 2
+	pixel.scale = rect.size
+
+
+@warning_ignore("shadowed_variable")
+func sides_to_rect(top: float, left: float, bottom: float, right: float) -> Rect2:
+	return Rect2(left, top, right - left, bottom - top)
