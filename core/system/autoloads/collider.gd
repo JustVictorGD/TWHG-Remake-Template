@@ -4,17 +4,6 @@ extends Node
 const WALL_SIZE: Vector2 = Vector2(54, 54)
 
 var touched_checkpoint_ids: PackedInt32Array = []
-#var walls: Array[Rect2] = []
-
-var checkpoints: Array[ColorRect] = []
-
-# Assigning unique IDs to objects
-var next_enemy_id: int = -1
-var next_checkpoint_id: int = -1
-var next_coin_id: int = -1
-var next_key_id: int = -1
-
-
 
 
 func get_center(rect: Rect2) -> Vector2:

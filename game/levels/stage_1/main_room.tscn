@@ -360,6 +360,7 @@ offset_right = 1392.0
 offset_bottom = 240.0
 type = 2
 level_warp = "3"
+warp_delay = 90
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("4_gna1d")
@@ -780,7 +781,7 @@ libraries = {
 }
 autoplay = "new_animation"
 script = ExtResource("7_8uesn")
-start_time = 240
+start_time = 60
 
 [node name="BlueEnemy9" parent="Enemies/Group2" instance=ExtResource("8_v7h88")]
 position = Vector2(192, 0)
@@ -858,7 +859,7 @@ offset_bottom = 768.0
 key_id = 0
 open_method = 1
 custom_method = Rect2(0.5, -0.5, 0, 2)
-open_time = 1200
+open_time = 300
 fade = true
 
 [node name="GoldDoors" type="Node2D" parent="Doors"]

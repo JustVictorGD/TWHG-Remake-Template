@@ -312,7 +312,7 @@ libraries = {
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
-start_time = 240
+start_time = 60
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
@@ -440,6 +440,7 @@ offset_bottom = 768.0
 key_id = 2
 open_method = 4
 custom_method = Rect2(-0.5, -0.5, 2, 2)
+open_time = 60
 fade = true
 
 [node name="Decoration" type="Node2D" parent="."]

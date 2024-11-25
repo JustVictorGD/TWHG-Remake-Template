@@ -12,8 +12,8 @@ class_name Checkpoint
 ## key is entered in this field, it will load the corresponding file path.
 @export var level_warp: String = ""
 
-## Measured in ticks. 1 second = 240 ticks.
-@export var warp_delay: int = 240
+## Measured in frames. 1 second = 60 frames.
+@export var warp_delay: int = 90
 
 ## If this checkpoint is a finish, using it to win will turn
 ## the timer golden and will not lead to another level.

@@ -12,11 +12,11 @@ class_name Door
 ## In this context, the entire door goes from (0, 0) to (1, 1).
 @export var custom_method: Rect2 = Rect2(0.5, 0.5, 0, 0)
 
-## Length of the opening animation in ticks (1/240 seconds).
-@export var open_time: int = 120
+## Length of the opening animation in frames (1/60 seconds).
+@export var open_time: int = 30
 
-## Length of the closing animation in ticks (1/240 seconds).
-@export var close_time: int = 60
+## Length of the closing animation in frames (1/60 seconds).
+@export var close_time: int = 15
 
 ## Choose whether or not the door fades away as it opens.
 @export var fade: bool = false
