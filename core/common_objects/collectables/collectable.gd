@@ -16,8 +16,8 @@ enum states {
 	SAVED
 }
 
-var collect_animation: TickBasedTimer = TickBasedTimer.new(24)
-var drop_animation: TickBasedTimer = TickBasedTimer.new(24)
+var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
+var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 
 var state: states = states.UNCOLLECTED
 var collect_sound: String

@@ -19,7 +19,7 @@ var hours: int = 0
 @onready var sides: Control = $Sides
 @onready var flash: ColorRect = $Flash
 
-var flash_timer: TickBasedTimer = TickBasedTimer.new(120)
+var flash_timer: TickBasedTimer = TickBasedTimer.new(30)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,8 +40,8 @@ func update_timers() -> void:
 	if not GameManager.finished:
 		ticks += 1
 		
-		while ticks >= 240:
-			ticks -= 240
+		while ticks >= 60:
+			ticks -= 60
 			seconds += 1
 		
 		while seconds >= 60:
@@ -64,7 +64,7 @@ func _process(_delta : float) -> void:
 		bottom_text.text = World.current_level.bottom_text
 		
 	timer.text = str(hours) + (":%02d:%02d" % [minutes, seconds])
-	tick_timer.text = ".%03d" % [ticks]
+	tick_timer.text = ".%02d" % [ticks]
 	fps.text = str(Engine.get_frames_per_second()) + " FPS"
 	
 	if GameManager.finished:

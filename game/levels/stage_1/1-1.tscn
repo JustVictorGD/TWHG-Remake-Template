@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=4 uid="uid://blp6v7py3fd5j"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_msdjo"]
-[ext_resource type="Resource" uid="uid://bvirr7nvp5wjo" path="res://game/themes/red_theme.tres" id="2_43q52"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_2hsw4"]
 [ext_resource type="Script" path="res://core/special_objects/folder_2d.gd" id="3_womt2"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/common_objects/other/floor/floor.tscn" id="4_mkg8p"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="6_exbb4"]
@@ -166,7 +166,7 @@ _data = {
 script = ExtResource("1_msdjo")
 level_code = "1-1"
 bottom_text = "Boy oh boy."
-theme = ExtResource("2_43q52")
+theme = ExtResource("2_2hsw4")
 
 [node name="Floors" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
@@ -422,47 +422,6 @@ offset_bottom = 579.0
 key_id = 2
 tracking = true
 
-[node name="KeyDoor5" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
-offset_left = 216.0
-offset_top = 216.0
-offset_right = 312.0
-offset_bottom = 312.0
-key_id = 2
-
-[node name="KeyDoor10" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
-offset_left = 984.0
-offset_top = 216.0
-offset_right = 1080.0
-offset_bottom = 312.0
-key_id = 2
-outline_color = Color(0.27, 0.27, 0.27, 0.501961)
-fill_color = Color(0.6, 0.6, 0.6, 0.501961)
-
-[node name="KeyDoor6" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
-offset_left = 360.0
-offset_top = 216.0
-offset_right = 456.0
-offset_bottom = 312.0
-key_id = 2
-open_method = 1
-
-[node name="KeyDoor7" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
-offset_left = 504.0
-offset_top = 216.0
-offset_right = 600.0
-offset_bottom = 312.0
-key_id = 2
-open_method = 2
-
-[node name="KeyDoor8" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
-offset_left = 648.0
-offset_top = 216.0
-offset_right = 744.0
-offset_bottom = 312.0
-key_id = 2
-open_method = 3
-fade = true
-
 [node name="KeyDoor11" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
 offset_left = 720.0
 offset_top = 432.0
@@ -482,16 +441,6 @@ key_id = 2
 open_method = 4
 custom_method = Rect2(-0.5, -0.5, 2, 2)
 fade = true
-
-[node name="KeyDoor9" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
-offset_left = 792.0
-offset_top = 216.0
-offset_right = 888.0
-offset_bottom = 312.0
-key_id = 2
-open_method = 4
-outline_color = Color(1, 0, 0, 1)
-fill_color = Color(0, 1, 1, 1)
 
 [node name="Decoration" type="Node2D" parent="."]
 editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."

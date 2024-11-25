@@ -4,12 +4,9 @@ class_name Player
 
 #region Properties
 
-
-# Makes object collision checks only happen if time is a multiple of 4 ticks.
-const QUARTER_CHECKS: bool = true
 const PLAYER_SIZE: Vector2 = Vector2(42, 42)
 
-@export var speed: int = 1000 # One pixel per tick is 1,000
+@export var speed: int = 4000 # One pixel per tick is 1,000
 @export var velocity: Vector2i = Vector2i(0, 0)
 @export_range(0, 41) var sliding_sensitivity: int = 32
 
@@ -28,9 +25,9 @@ var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 var movement_direction: Vector2 = Vector2.ZERO
 
 # Timers, used for fading the player in and out.
-var respawn_timer: TickBasedTimer = TickBasedTimer.new(120)
-var death_animation: TickBasedTimer = TickBasedTimer.new(90)
-var respawn_animation: TickBasedTimer = TickBasedTimer.new(24)
+var respawn_timer: TickBasedTimer = TickBasedTimer.new(30)
+var death_animation: TickBasedTimer = TickBasedTimer.new(15)
+var respawn_animation: TickBasedTimer = TickBasedTimer.new(6)
 
 # Respawning
 var last_checkpoint_id: int = -1
@@ -114,9 +111,6 @@ func movement_update() -> void:
 
 
 func collision_update() -> void:
-	if QUARTER_CHECKS and not GameLoop.ticks % 4 == 0:
-		return
-	
 	Collider.touched_checkpoint_ids.clear()
 	
 	if dead:
