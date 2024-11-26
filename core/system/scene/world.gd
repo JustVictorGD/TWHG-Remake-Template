@@ -10,7 +10,7 @@ const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 @export var starting_level: String
 
 # Tracking objects and game state.
-static var walls: Array[Rect2] = []
+static var walls: Array[Rect2i] = []
 static var collected_money: int = 0
 static var money_requirement: int = 0
 

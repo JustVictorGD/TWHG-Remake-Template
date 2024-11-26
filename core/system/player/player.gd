@@ -4,7 +4,7 @@ class_name Player
 
 #region Properties
 
-const PLAYER_SIZE: Vector2 = Vector2(42, 42)
+const PLAYER_SIZE: Vector2i = Vector2i(42, 42)
 
 @export var speed: int = 4000 # One pixel per tick is 1,000
 @export var velocity: Vector2i = Vector2i(0, 0)
@@ -20,7 +20,12 @@ enum subpixel {
 }
 
 # Physics and movement
-var hitbox: RectangleCollider = RectangleCollider.new()
+var hitbox: Rect2i
+
+var fancy_hitbox: RectangleCollider:
+	get:
+		return RectangleCollider.new(hitbox)
+
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 var movement_direction: Vector2 = Vector2.ZERO
 
@@ -98,16 +103,23 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
-	var speed_hack_multiplier: int = int(GameManager.speed_hacking) + 1
+	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
 	if not dead:
 		move(movement_direction * speed * speed_hack_multiplier)
 		move(velocity)
 	
 	if not GameManager.ghost:
-		move(Collider.corner_slide(hitbox, World.walls, \
-				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
-		move_to(Collider.push_out_of_walls(hitbox, subpixels, World.walls))
+		#move(Collider.corner_slide(hitbox, World.walls, \
+		#		sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
+		var touching_walls: Array[Rect2i] = []
+		
+		for wall: Rect2i in World.walls:
+			if wall.intersects(hitbox): touching_walls.append(wall)
+		
+		var wall_push: Vector2i = Collider.updated_wall_push(hitbox, touching_walls) - Vector2i(position)
+		
+		move(wall_push * 1000)
 
 
 func collision_update() -> void:
@@ -117,23 +129,22 @@ func collision_update() -> void:
 		return
 	
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
-		if hitbox.intersects(checkpoint.hitbox):
+		if fancy_hitbox.intersects(checkpoint.hitbox):
 			checkpoint.select()
 			Collider.touched_checkpoint_ids.append(checkpoint.id)
 			last_checkpoint_id = checkpoint.id
 	
 	for coin: Coin in get_tree().get_nodes_in_group("coins"):
-		if hitbox.intersects(coin.hitbox):
+		if fancy_hitbox.intersects(coin.hitbox):
 			coin.collect()
 	
 	for enemy: Enemy in get_tree().get_nodes_in_group("enemies"):
-		if not GameManager.invincible and hitbox.intersects(enemy.hitbox):
+		if not GameManager.invincible and fancy_hitbox.intersects(enemy.hitbox):
 			enemy_death()
 	
 	for key: Key in get_tree().get_nodes_in_group("keys"):
-		if hitbox.intersects(key.hitbox):
+		if fancy_hitbox.intersects(key.hitbox):
 			key.collect()
-
 
 
 func update_timers() -> void:
@@ -206,46 +217,46 @@ func move(movement: Vector2i) -> void:
 	
 	while subpixels.x > subpixel.MAX:
 		subpixels.x -= subpixel.RANGE
-		global_position.x += 1
+		position.x += 1
 	while subpixels.x < subpixel.MIN:
 		subpixels.x += subpixel.RANGE
-		global_position.x -= 1
+		position.x -= 1
 	while subpixels.y > subpixel.MAX:
 		subpixels.y -= subpixel.RANGE
-		global_position.y += 1
+		position.y += 1
 	while subpixels.y < subpixel.MIN:
 		subpixels.y += subpixel.RANGE
-		global_position.y -= 1
+		position.y -= 1
 	
-	global_position = round(global_position)
-	hitbox.position = global_position - PLAYER_SIZE / 2
+	position = round(position)
+	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
 
 
 # Sets the position using the subpixel system.
 # This function uses subpixels. Multiply any input in pixels by 1000.
 func move_to(given_position: Vector2i) -> void:
-	global_position = given_position / 1000
+	position = given_position / 1000
 	
 	subpixels.x = given_position.x % 1000
 	subpixels.y = given_position.y % 1000
 	
 	while subpixels.x > subpixel.MAX:
 		subpixels.x -= subpixel.RANGE
-		global_position.x += 1
+		position.x += 1
 	while subpixels.x < subpixel.MIN:
 		subpixels.x += subpixel.RANGE
-		global_position.x -= 1
+		position.x -= 1
 	while subpixels.y > subpixel.MAX:
 		subpixels.y -= subpixel.RANGE
-		global_position.y += 1
+		position.y += 1
 	while subpixels.y < subpixel.MIN:
 		subpixels.y += subpixel.RANGE
-		global_position.y -= 1
+		position.y -= 1
 	
-	global_position = round(global_position)
+	position = round(position)
 	
-	hitbox.position = global_position - PLAYER_SIZE / 2
+	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
 
 

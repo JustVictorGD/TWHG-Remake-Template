@@ -68,7 +68,7 @@ func _ready() -> void:
 	
 	if not decorative and not in_editor:
 		hitbox_index = World.walls.size()
-		World.walls.append(global_bound)
+		World.walls.append(Rect2i(global_bound))
 
 
 func change_shape(rect: Rect2) -> void:

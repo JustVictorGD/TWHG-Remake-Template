@@ -6,9 +6,8 @@ const WALL_SIZE: Vector2 = Vector2(54, 54)
 var touched_checkpoint_ids: PackedInt32Array = []
 
 
-func get_center(rect: Rect2) -> Vector2:
+func get_center(rect: Rect2i) -> Vector2i:
 	return rect.position + rect.size / 2
-
 
 
 func point_in_rect(position: Vector2, rect: Rect2) -> bool:
@@ -18,63 +17,40 @@ func point_in_rect(position: Vector2, rect: Rect2) -> bool:
 	return false
 
 
+func updated_wall_push(player: Rect2i, walls: Array[Rect2i]) -> Vector2i:
+	for wall: Rect2 in walls:
+		player = push_out_rectangle(player, wall)
+	
+	return get_center(player)
 
 
-func push_out_of_walls(hitbox: RectangleCollider, subpixels: Vector2i, given_walls: Array[Rect2]) -> Vector2:
-	var usable_hitbox: Rect2 = Rect2(hitbox.position, hitbox.size)
-	
-	var proposed_position: Vector2i = get_center(usable_hitbox) * 1000
-	var half_size: Vector2 = hitbox.size / 2
-	
-	var intersections: Array[Rect2] = []
-	for wall: Rect2 in given_walls:
-		if usable_hitbox.intersects(wall):
-			var intersection: Rect2 = usable_hitbox.intersection(wall)
-			intersection.position -= get_center(usable_hitbox)
-			intersections.append(intersection)
-	
-	var edge: Vector2i = Vector2i.ZERO
-	
-	for intersection: Rect2 in intersections:
-		if edge.x == 0:
-			# Case: Vertical intersection
-			if intersection.size.x < intersection.size.y:
-				if intersection.position.x == -half_size.x:
-					@warning_ignore("narrowing_conversion")
-					proposed_position.x += intersection.size.x * 1000
-					edge.x = -1
-				
-				if intersection.end.x == half_size.x:
-					@warning_ignore("narrowing_conversion")
-					proposed_position.x -= intersection.size.x * 1000
-					edge.x = 1
-		
-		if edge.y == 0:
-			# Case: Horizontal or square intersection
-			if intersection.size.x > intersection.size.y or \
-					intersection.size >= Vector2(4, 4):
-				if intersection.position.y == -half_size.y:
-					@warning_ignore("narrowing_conversion")
-					proposed_position.y += intersection.size.y * 1000
-					edge.y = -1
-				
-				if intersection.end.y == half_size.y:
-					@warning_ignore("narrowing_conversion")
-					proposed_position.y -= intersection.size.y * 1000
-					edge.y = 1
-	
-	if edge.x == 0:
-		proposed_position.x += subpixels.x
-	if edge.x == 1:
-		proposed_position.x += 999
-	if edge.y == 0:
-		proposed_position.y += subpixels.y
-	if edge.y == 1:
-		proposed_position.y += 999
-	
-	return proposed_position
+func get_closest(anchor: int, a: int, b: int) -> int:
+	return a if abs(anchor - a) < abs(anchor - b) else b
 
 
+func push_out_rectangle(dynamic: Rect2i, staticc: Rect2i) -> Rect2i:
+	# Calculate overlaps
+	var overlap_x1: int = staticc.position.x - (dynamic.position.x + dynamic.size.x)  # -X overlap
+	var overlap_x2: int = (staticc.position.x + staticc.size.x) - dynamic.position.x  # +X overlap
+	var overlap_y1: int = staticc.position.y - (dynamic.position.y + dynamic.size.y)  # -Y overlap
+	var overlap_y2: int = (staticc.position.y + staticc.size.y) - dynamic.position.y  # +Y overlap
+	
+	# If there's no overlap, return the dynamic rectangle as is
+	if overlap_x1 > 0 or overlap_x2 < 0 or overlap_y1 > 0 or overlap_y2 < 0:
+		return dynamic
+	
+	var push: Vector2i = Vector2i(
+		get_closest(0, overlap_x1, overlap_x2),
+		get_closest(0, overlap_y1, overlap_y2)
+	)
+	
+	if abs(push.x) < abs(push.y):
+		push.y = 0
+	else:
+		push.x = 0
+	
+	dynamic.position += push
+	return dynamic
 
 
 
@@ -92,7 +68,7 @@ func push_out_of_walls(hitbox: RectangleCollider, subpixels: Vector2i, given_wal
 
 
 # WARNING: This function is so complex that it tends to melt people's brains.
-func corner_slide(dynamic_rect: RectangleCollider, given_walls: Array[Rect2], sensitivity: float, velocity: Vector2, controls: Vector2i) -> Vector2:
+func corner_slide(dynamic_rect: RectangleCollider, given_walls: Array[Rect2i], sensitivity: float, velocity: Vector2, controls: Vector2i) -> Vector2:
 	var usable_rect: Rect2 = Rect2(dynamic_rect.position, dynamic_rect.size)
 	
 	var player_movement: bool = false
@@ -118,7 +94,7 @@ func corner_slide(dynamic_rect: RectangleCollider, given_walls: Array[Rect2], se
 	for wall: Rect2 in given_walls:
 		if usable_rect.intersects(wall):
 			intersections.append(Rect2(usable_rect.intersection(wall).position - \
-					get_center(usable_rect), usable_rect.intersection(wall).size))
+					Vector2(get_center(usable_rect)), usable_rect.intersection(wall).size))
 	# Aborting in case of no wall intersections.
 	if intersections.size() == 0:
 		return Vector2.ZERO

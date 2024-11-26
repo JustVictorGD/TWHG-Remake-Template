@@ -360,7 +360,6 @@ offset_right = 1392.0
 offset_bottom = 240.0
 type = 2
 level_warp = "3"
-warp_delay = 90
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("4_gna1d")
