@@ -63,7 +63,7 @@ func untrigger_door() -> void:
 	if triggered:
 		close_timer.reset_and_play()
 		
-		World.walls[hitbox_index] = Rect2(global_bound)
+		World.walls[hitbox_index] = Rect2i(global_bound)
 		
 		SFX.play("CloseDoor")
 		triggered = false
@@ -71,14 +71,17 @@ func untrigger_door() -> void:
 
 func update_timers() -> void:
 	open_timer.tick_and_timeout()
-	close_timer.tick_and_timeout()
+	close_timer.tick()
 	
 	if open_timer.active:
 		handle_animation(open_timer.get_progress_left())
 	
 	if close_timer.active:
-		handle_animation(close_timer.get_progress())
-
+		if close_timer.get_progress_left() <= 0:
+			close_timer.handle_timeout()
+			handle_animation(1)
+		else:
+			handle_animation(close_timer.get_progress())
 
 func sine_in(t: float) -> float:
 	return 1.0 - cos((t * PI) / 2.0)

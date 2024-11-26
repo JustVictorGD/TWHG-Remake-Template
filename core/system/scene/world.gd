@@ -26,9 +26,6 @@ static var current_level: Area = null
 
 
 func _ready() -> void:
-	print(Collider.try_merge(Vector2(0, 0), Rect2i(0, 0, 24, 24), Rect2i(-24, 0, 24, 24), 0))
-	print(Collider.try_merge(Vector2(0, 0), Rect2i(0, 0, 24, 24), Rect2i(-25, 0, 24, 24), 0))
-	
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
 	add_child(camera)

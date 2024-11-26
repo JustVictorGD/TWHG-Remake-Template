@@ -7,6 +7,8 @@ const PIXEL: PackedScene = preload("res://core/common_objects/solids/pixel.tscn"
 
 ## Only recommended to turn on when using themes that gradually change color.
 @export var dynamic_color: bool = false
+## Turn this on for moving walls.
+@export var dynamic_hitbox: bool = false
 ## Turning this on will prevent the solid from existing collision wise at all.
 @export var decorative: bool = false
 ## Expands outline outwards.
@@ -69,6 +71,14 @@ func _ready() -> void:
 	if not decorative and not in_editor:
 		hitbox_index = World.walls.size()
 		World.walls.append(Rect2i(global_bound))
+		
+		if dynamic_hitbox:
+			GameLoop.wall_update.connect(wall_update)
+
+
+func wall_update() -> void:
+	global_position = round(global_position)
+	World.walls[hitbox_index] = Rect2i(global_bound)
 
 
 func change_shape(rect: Rect2) -> void:
