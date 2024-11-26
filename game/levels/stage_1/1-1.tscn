@@ -229,10 +229,10 @@ fill_color = Color(0.760784, 0.384314, 0.219608, 1)
 [node name="Solid4" type="Control" parent="Walls"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 312.0
-offset_top = 168.0
-offset_right = 360.0
-offset_bottom = 192.0
+offset_left = 336.0
+offset_top = 192.0
+offset_right = 384.0
+offset_bottom = 216.0
 script = ExtResource("6_e1mw2")
 outline_color = Color(0.3, 0.1509, 0.087, 1)
 fill_color = Color(0.760784, 0.384314, 0.219608, 1)

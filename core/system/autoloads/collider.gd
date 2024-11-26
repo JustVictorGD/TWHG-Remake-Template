@@ -54,7 +54,7 @@ func push_out_rectangle(dynamic: Rect2i, staticc: Rect2i) -> Rect2i:
 	return dynamic
 
 
-func try_merge(target: Vector2, a: Rect2i, b: Rect2i, leniency: float = 10) -> Variant:
+func try_merge(target: Vector2, a: Rect2i, b: Rect2i, leniency: float = 0) -> Variant:
 	var nearest_a: Vector2i = get_nearest_corner(target, a)
 	var nearest_b: Vector2i = get_nearest_corner(target, b)
 	
@@ -62,18 +62,18 @@ func try_merge(target: Vector2, a: Rect2i, b: Rect2i, leniency: float = 10) -> V
 		# Case: Walls are to the player's left or right.
 		if nearest_a.x + nearest_b.x == i and a.position.x == b.position.x and nearest_a.y != nearest_b.y:
 			if nearest_a.y == 1 and nearest_b.y == 0:
-				if -(a.end.y - b.position.y) <= leniency:
+				if -(a.end.y - b.position.y) < leniency:
 					return a.merge(b)
 			else:
-				if (a.position.y - b.end.y) <= leniency:
+				if (a.position.y - b.end.y) < leniency:
 					return a.merge(b)
 		# Case: Walls are above or below the player.
 		elif nearest_a.y + nearest_b.y == i and a.position.y == b.position.y and nearest_a.x != nearest_b.x:
 			if nearest_a.x == 1 and nearest_b.x == 0:
-				if -(a.end.x - b.position.x) <= leniency:
+				if -(a.end.x - b.position.x) < leniency:
 					return a.merge(b)
 			else:
-				if (a.position.x - b.end.x) <= leniency:
+				if (a.position.x - b.end.x) < leniency:
 					return a.merge(b)
 	
 	return null

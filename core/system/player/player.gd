@@ -120,8 +120,13 @@ func movement_update() -> void:
 	
 	var touching_walls: Array[Rect2i] = []
 	
+	var larger_check: Rect2i = Rect2i(
+		hitbox.position - Vector2i(8, 8),
+		hitbox.size + Vector2i(16, 16)
+		)
+	
 	for wall: Rect2i in World.walls:
-		if wall.intersects(hitbox): touching_walls.append(wall)
+		if wall.intersects(larger_check): touching_walls.append(wall)
 	
 	var merged_walls: Array[Rect2i] = []
 	
@@ -131,7 +136,7 @@ func movement_update() -> void:
 		for i: int in range(touching_walls.size() - 1):
 			# Either Rect2i or null.
 			var merge: Variant = Collider.try_merge(position, \
-					touching_walls[i], touching_walls[i + 1])
+					touching_walls[i], touching_walls[i + 1], PLAYER_SIZE.x)
 			
 			if merge != null:
 				merged_walls.append(merge)
