@@ -1,7 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://db78gabyxxg2y"]
+[gd_scene load_steps=8 format=3 uid="uid://db78gabyxxg2y"]
 
 [ext_resource type="Script" path="res://core/system/player/player.gd" id="1_sxbrj"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_qubyp"]
+
+[sub_resource type="Gradient" id="Gradient_y1mgf"]
+colors = PackedColorArray(1, 0, 0, 0.333333, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aqyqe"]
+gradient = SubResource("Gradient_y1mgf")
+
+[sub_resource type="Curve" id="Curve_j6oky"]
+_data = [Vector2(0, 1), 0.0, -0.989011, 0, 0, Vector2(1, 0), -1.01437, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_20u8p"]
+curve = SubResource("Curve_j6oky")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jfo76"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 42.0
+scale_max = 42.0
+scale_curve = SubResource("CurveTexture_20u8p")
+color_ramp = SubResource("GradientTexture1D_aqyqe")
 
 [node name="Player" type="Node2D"]
 z_index = 6
@@ -18,3 +39,12 @@ texture = ExtResource("2_qubyp")
 modulate = Color(1, 0, 0, 1)
 scale = Vector2(30, 30)
 texture = ExtResource("2_qubyp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+process_material = SubResource("ParticleProcessMaterial_jfo76")
+texture = ExtResource("2_qubyp")
+lifetime = 0.25
+fixed_fps = 60
+interpolate = false
+fract_delta = false

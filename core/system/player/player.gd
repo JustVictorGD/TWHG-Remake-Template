@@ -11,6 +11,7 @@ const PLAYER_SIZE: Vector2i = Vector2i(42, 42)
 @export_range(0, 41) var sliding_sensitivity: int = 32
 
 @onready var sprite: CanvasGroup = $CanvasGroup
+@onready var particles: GPUParticles2D = $GPUParticles2D
 
 enum subpixel {
 	MIN = 0, # Going below makes it loop to MAX.
@@ -103,9 +104,11 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
+	particles.emitting = true
 	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
 	if dead:
+		particles.emitting = false
 		return
 	
 	# Movement from player controls.

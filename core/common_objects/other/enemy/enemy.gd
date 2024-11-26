@@ -63,3 +63,5 @@ func update_colors() -> void:
 	else:
 		outline.modulate = outline_color
 		fill.modulate = fill_color
+	
+	$GPUParticles2D.modulate = fill.modulate

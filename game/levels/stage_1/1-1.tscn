@@ -16,6 +16,21 @@
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/common_objects/solids/key_door/key_door.tscn" id="13_qpbyw"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="15_m7dd2"]
 
+[sub_resource type="Animation" id="Animation_byiuy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Walls/Solid8:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(528, 192)]
+}
+
 [sub_resource type="Animation" id="Animation_t1k25"]
 resource_name = "new_animation"
 length = 0.75
@@ -32,21 +47,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(744, 102), Vector2(744, 330)]
-}
-
-[sub_resource type="Animation" id="Animation_byiuy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Walls/Solid8:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(528, 192)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppnw4"]
@@ -594,7 +594,6 @@ offset_right = 1056.0
 offset_bottom = 336.0
 key_id = 2
 open_method = 4
-dynamic_hitbox = false
 outline_color = Color(0.4, 0.2, 0.4, 1)
 fill_color = Color(1, 0.5, 1, 1)
 
