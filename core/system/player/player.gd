@@ -105,21 +105,48 @@ func _ready() -> void:
 func movement_update() -> void:
 	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
-	if not dead:
-		move(movement_direction * speed * speed_hack_multiplier)
-		move(velocity)
+	if dead:
+		return
 	
-	if not GameManager.ghost:
-		#move(Collider.corner_slide(hitbox, World.walls, \
-		#		sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
-		var touching_walls: Array[Rect2i] = []
-		
-		for wall: Rect2i in World.walls:
-			if wall.intersects(hitbox): touching_walls.append(wall)
-		
-		var wall_push: Vector2i = Collider.updated_wall_push(hitbox, touching_walls) - Vector2i(position)
-		
-		move(wall_push * 1000)
+	# Movement from player controls.
+	
+	move(movement_direction * speed * speed_hack_multiplier)
+	move(velocity)
+	
+	if GameManager.ghost:
+		return
+	
+	# Wall related behavior.
+	
+	var touching_walls: Array[Rect2i] = []
+	
+	for wall: Rect2i in World.walls:
+		if wall.intersects(hitbox): touching_walls.append(wall)
+	
+	var merged_walls: Array[Rect2i] = []
+	
+	# It's going to be understandable to not understand this.
+	
+	if touching_walls.size() >= 2:
+		for i: int in range(touching_walls.size() - 1):
+			# Either Rect2i or null.
+			var merge: Variant = Collider.try_merge(position, \
+					touching_walls[i], touching_walls[i + 1])
+			
+			if merge != null:
+				merged_walls.append(merge)
+			
+			else:
+				merged_walls.append(touching_walls[i])
+				
+				if i == touching_walls.size() - 2:
+					merged_walls.append(touching_walls[i + 1])
+	else:
+		merged_walls = touching_walls
+	
+	var wall_push: Vector2i = Collider.updated_wall_push(hitbox, merged_walls) - Vector2i(position)
+	
+	move(wall_push * 1000)
 
 
 func collision_update() -> void:
