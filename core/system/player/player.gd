@@ -1,3 +1,4 @@
+@icon("res://core/misc_assets/images/node_icons/player.png")
 extends Node2D
 class_name Player
 
