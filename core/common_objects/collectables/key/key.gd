@@ -4,7 +4,7 @@ class_name Key
 
 @export var key_id: int = -1
 
-var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 21)
+@onready var hitbox: CircleCollider = $CircleCollider
 var id: int # Not to be confused with the key_id,
 # this one is only for collision and collectable saving
 
@@ -32,4 +32,6 @@ func checkpoint_touched(_id: int) -> void:
 
 
 func movement_update() -> void:
-	hitbox.position = self.global_position
+	hitbox.global_position = self.global_position
+	hitbox.radius = self.global_scale.x * 21 # 21 units is the default scale of the key.
+	# This assumes that enemy scale.x and scale.y are equal as oval hitboxes are not implemented.

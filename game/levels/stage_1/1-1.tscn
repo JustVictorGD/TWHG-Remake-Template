@@ -363,7 +363,7 @@ position = Vector2(144, 384)
 [node name="VelocityComponent" type="Node2D" parent="Enemies/BlueEnemy2"]
 position = Vector2(-432, -192)
 script = ExtResource("10_546r7")
-velocity = Vector2(3, 0)
+velocity = Vector2(0.25, 0)
 
 [node name="Ring1" type="Node2D" parent="Enemies"]
 position = Vector2(456, 696)
@@ -619,3 +619,6 @@ offset_bottom = 345.0
 text = "Bricks."
 label_settings = SubResource("LabelSettings_tx2ix")
 horizontal_alignment = 1
+
+[node name="EnemySpawners" type="Node2D" parent="."]
+script = ExtResource("3_womt2")

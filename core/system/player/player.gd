@@ -8,7 +8,6 @@ class_name Player
 const PLAYER_SIZE: Vector2i = Vector2i(42, 42)
 
 @export var speed: int = 4000 # One pixel per tick is 1,000
-@export var velocity: Vector2i = Vector2i(0, 0)
 @export_range(0, 41) var sliding_sensitivity: int = 32
 
 @onready var sprite: CanvasGroup = $CanvasGroup
@@ -24,9 +23,7 @@ enum subpixel {
 # Physics and movement
 var hitbox: Rect2i
 
-var fancy_hitbox: RectangleCollider:
-	get:
-		return RectangleCollider.new(hitbox)
+@onready var fancy_hitbox: RectangleCollider = $RectangleCollider
 
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 var movement_direction: Vector2 = Vector2.ZERO
@@ -105,17 +102,21 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
+	
 	particles.emitting = true
+	$TerrainVelocityComponent.enabled = true
+	$InputVelocityComponent.enabled = true
 	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
 	if dead:
 		particles.emitting = false
+		$TerrainVelocityComponent.enabled = false
+		$InputVelocityComponent.enabled = false
 		return
 	
 	# Movement from player controls.
 	
 	move(movement_direction * speed * speed_hack_multiplier)
-	move(velocity)
 	
 	if GameManager.ghost:
 		return
@@ -159,6 +160,7 @@ func movement_update() -> void:
 
 
 func collision_update() -> void:
+	
 	Collider.touched_checkpoint_ids.clear()
 	
 	if dead:
@@ -267,7 +269,9 @@ func move(movement: Vector2i) -> void:
 	position = round(position)
 	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
-
+	
+	fancy_hitbox.global_position = hitbox.position
+	fancy_hitbox.scale = PLAYER_SIZE
 
 # Sets the position using the subpixel system.
 # This function uses subpixels. Multiply any input in pixels by 1000.
@@ -292,8 +296,11 @@ func move_to(given_position: Vector2i) -> void:
 	
 	position = round(position)
 	
-	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
+	#hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
+	
+	fancy_hitbox.global_position = hitbox.position
+	fancy_hitbox.scale = PLAYER_SIZE
 
 
 #endregion

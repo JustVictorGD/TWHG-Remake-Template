@@ -2,7 +2,7 @@
 extends Collectable
 class_name Coin
 
-var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 13)
+@onready var hitbox: CircleCollider = $CircleCollider
 
 var id: int
 
@@ -24,4 +24,6 @@ func checkpoint_touched(_id: int) -> void:
 	save()
 
 func movement_update() -> void:
-	hitbox.position = self.global_position
+	hitbox.global_position = self.global_position
+	hitbox.radius = self.global_scale.x * 13 # 13 units is the default scale of the coin.
+	# This assumes that enemy scale.x and scale.y are equal as oval hitboxes are not implemented.

@@ -42,6 +42,7 @@ var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
 var id: int = -1
 
 var hitbox: RectangleCollider = RectangleCollider.new()
+# The RectangleCollider in the scene tree currently does nothing.
 
 func _ready() -> void:
 	GameLoop.movement_update.connect(movement_update)
@@ -61,7 +62,7 @@ func movement_update() -> void:
 	rotation = 0
 	
 	hitbox.position = self.global_position
-	hitbox.size = self.size
+	hitbox.scale = self.size
 	hitbox.rotation = previous_rotation
 	hitbox.pivot_offset = self.pivot_offset
 	
