@@ -31,6 +31,8 @@ func _ready() -> void:
 	
 	if not in_editor:
 		GameLoop.movement_update.connect(movement_update)
+		if !lock_scale:
+			hitbox.lock_scale = false
 
 
 func movement_update() -> void:
@@ -38,10 +40,6 @@ func movement_update() -> void:
 	
 	if lock_scale:
 		global_scale = Vector2(1, 1)
-
-	hitbox.radius = self.global_scale.x * 7 # 7 units is the default scale of the enemy. 
-	# This assumes that enemy scale.x and scale.y are equal as oval hitboxes are not implemented.
-	
 
 func _process(_delta: float) -> void:
 	if constant_check or in_editor:

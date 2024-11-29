@@ -22,8 +22,3 @@ func extra_drop() -> void:
 
 func checkpoint_touched(_id: int) -> void:
 	save()
-
-func movement_update() -> void:
-	hitbox.global_position = self.global_position
-	hitbox.radius = self.global_scale.x * 13 # 13 units is the default scale of the coin.
-	# This assumes that enemy scale.x and scale.y are equal as oval hitboxes are not implemented.

@@ -31,9 +31,9 @@ func _to_string() -> String:
 func intersects(shape: AbstractCollider) -> bool:
 	if enabled and shape.enabled:
 		if shape is CircleCollider:
-			if is_zero_approx(rotation) and not Rect2(global_position, scale).intersects(create_rect_with_radius(shape.global_position, shape.radius)):
+			if is_zero_approx(rotation) and not Rect2(global_position, scale).intersects(create_rect_with_radius(shape.global_position, shape.global_radius)):
 				return false
-			elif not Rect2(global_position - scale / 4, scale * 1.5).intersects(create_rect_with_radius(shape.global_position, shape.radius)):
+			elif not Rect2(global_position - scale / 4, scale * 1.5).intersects(create_rect_with_radius(shape.global_position, shape.global_radius)):
 				return false
 			
 			var relative_point: Vector2 = shape.global_position - global_position
@@ -48,7 +48,7 @@ func intersects(shape: AbstractCollider) -> bool:
 				clamp(relative_point.x, 0, scale.x),
 				clamp(relative_point.y, 0, scale.y))
 			
-			return relative_point.distance_squared_to(nearest_point) < shape.radius ** 2
+			return relative_point.distance_squared_to(nearest_point) < shape.global_radius ** 2
 		
 		
 		if shape is PointCollider:

@@ -93,7 +93,11 @@ func handle_key_press(snappy_movement: bool) -> void:
 
 func _ready() -> void:
 	sliding_sensitivity += 1
+	fancy_hitbox.position -= Vector2(PLAYER_SIZE / 2)
+	fancy_hitbox.scale = PLAYER_SIZE
+	
 	respawn_timer.timeout.connect(respawn)
+	
 	
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.collision_update.connect(collision_update)
@@ -265,9 +269,6 @@ func move(movement: Vector2i) -> void:
 	position = round(position)
 	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
-	
-	fancy_hitbox.global_position = hitbox.position
-	fancy_hitbox.scale = PLAYER_SIZE
 
 # Sets the position using the subpixel system.
 # This function uses subpixels. Multiply any input in pixels by 1000.
@@ -292,11 +293,9 @@ func move_to(given_position: Vector2i) -> void:
 	
 	position = round(position)
 	
-	#hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
+	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
 	hitbox.size = PLAYER_SIZE
-	
-	fancy_hitbox.global_position = hitbox.position
-	fancy_hitbox.scale = PLAYER_SIZE
+
 
 
 #endregion

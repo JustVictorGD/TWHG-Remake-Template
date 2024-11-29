@@ -54,12 +54,10 @@ fract_delta = false
 
 [node name="InputVelocityComponent" type="Node2D" parent="."]
 script = ExtResource("3_buqh6")
-velocity = Vector2(1, 0)
 enabled = false
 
 [node name="TerrainVelocityComponent" type="Node2D" parent="."]
 script = ExtResource("3_buqh6")
-velocity = Vector2(-2, 0)
 
 [node name="RectangleCollider" type="Node2D" parent="."]
 position = Vector2(-21, -21)

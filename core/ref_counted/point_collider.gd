@@ -10,7 +10,7 @@ func _to_string() -> String:
 func intersects(shape: AbstractCollider) -> bool:
 	if enabled and shape.enabled:
 		if shape is CircleCollider:
-			return global_position.distance_squared_to(shape.global_position) < shape.radius ** 2
+			return global_position.distance_squared_to(shape.global_position) < shape.global_radius ** 2
 		
 		elif shape is PointCollider:
 			return false # Infinitely small points can have no intersection.

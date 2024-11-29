@@ -359,6 +359,7 @@ position = Vector2(456, 696)
 
 [node name="BlueEnemy2" parent="Enemies" instance=ExtResource("8_7casm")]
 position = Vector2(144, 384)
+scale = Vector2(4, 4)
 
 [node name="VelocityComponent" type="Node2D" parent="Enemies/BlueEnemy2"]
 position = Vector2(-432, -192)
