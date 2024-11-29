@@ -12,14 +12,11 @@ class_name Checkpoint
 ## key is entered in this field, it will load the corresponding file path.
 @export var level_warp: String = ""
 
-## Measured in frames. 1 second = 60 frames.
-@export var warp_delay: int = 90
-
 ## If this checkpoint is a finish, using it to win will turn
 ## the timer golden and will not lead to another level.
 @export var final_destination: bool = false
 
-@onready var warp_timer: TickBasedTimer = TickBasedTimer.new(warp_delay)
+@onready var warp_timer: TickBasedTimer = $WarpDelayTimer
 var state: states = states.NOT_SELECTED
 
 enum types {
@@ -38,7 +35,7 @@ enum states {
 const ORIGINAL_COLOR: Color = Color(0.643, 0.996, 0.639)
 const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 
-var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
+@onready var flash_animation: TickBasedTimer = $FlashAnimationTimer
 var id: int = -1
 
 var hitbox: RectangleCollider = RectangleCollider.new()

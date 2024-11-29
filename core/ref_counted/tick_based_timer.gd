@@ -1,19 +1,22 @@
-extends RefCounted
+extends Node
 class_name TickBasedTimer
 
 signal timeout
 
 # You're meant to set these 2 properties manually!
-var metronome: bool = false
-var reversed: bool = false
+@export var metronome: bool = false
+@export var reversed: bool = false
 
 # Ideally not these, though.
 var active: bool = false
-var duration: int
+## Timer duration in ticks. 60 ticks = 1 second.
+@export var duration: int
 var remaining_time: int
 
 
-func _init(_duration: int, _metronome: bool = false, _reversed: bool = false) -> void:
+func _init(_duration: int = 1, _metronome: bool = false, _reversed: bool = false) -> void:
+	
+	GameLoop.update_timers.connect(update_timers)
 	duration = _duration
 	metronome = _metronome
 	reversed = _reversed
@@ -21,6 +24,8 @@ func _init(_duration: int, _metronome: bool = false, _reversed: bool = false) ->
 	if not reversed:
 		remaining_time = duration
 
+func update_timers() -> void:
+	self.tick_and_timeout()
 
 func _to_string() -> String:
 	var extra: String = ""

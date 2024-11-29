@@ -29,9 +29,9 @@ var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 var movement_direction: Vector2 = Vector2.ZERO
 
 # Timers, used for fading the player in and out.
-var respawn_timer: TickBasedTimer = TickBasedTimer.new(30)
-var death_animation: TickBasedTimer = TickBasedTimer.new(15)
-var respawn_animation: TickBasedTimer = TickBasedTimer.new(6)
+@onready var respawn_timer: TickBasedTimer = $RespawnTimer
+@onready var death_animation: TickBasedTimer = $DeathAnimationTimer
+@onready var respawn_animation: TickBasedTimer = $RespawnAnimationTimer
 
 # Respawning
 var last_checkpoint_id: int = -1
@@ -186,10 +186,6 @@ func collision_update() -> void:
 
 
 func update_timers() -> void:
-	respawn_timer.tick_and_timeout()
-	death_animation.tick_and_timeout()
-	respawn_animation.tick_and_timeout()
-	
 	sprite.self_modulate.a = 1
 	
 	if death_animation.active:

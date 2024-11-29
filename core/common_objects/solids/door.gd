@@ -70,9 +70,6 @@ func untrigger_door() -> void:
 
 
 func update_timers() -> void:
-	open_timer.tick_and_timeout()
-	close_timer.tick()
-	
 	if open_timer.active:
 		handle_animation(open_timer.get_progress_left())
 	

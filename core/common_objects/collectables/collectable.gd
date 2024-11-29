@@ -67,9 +67,6 @@ func movement_update() -> void:
 		global_rotation = 0
 
 func update_timers() -> void:
-	collect_animation.tick_and_timeout()
-	drop_animation.tick_and_timeout()
-	
 	if state != states.UNCOLLECTED:
 		if collect_animation.active:
 			modulate.a = collect_animation.get_progress_left()
