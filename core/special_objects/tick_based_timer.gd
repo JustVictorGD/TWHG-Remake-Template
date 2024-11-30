@@ -22,11 +22,12 @@ func _init(_duration: int = 1, _metronome: bool = false, _reversed: bool = false
 	metronome = _metronome
 	reversed = _reversed
 	
-	if autostart:
-		reset_and_play()
-	
 	if not reversed:
 		remaining_time = duration
+
+func _ready() -> void:
+	if autostart:
+		reset_and_play()
 
 func update_timers() -> void:
 	tick_and_timeout()

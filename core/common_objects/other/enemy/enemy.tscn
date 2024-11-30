@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://core/common_objects/other/enemy/enemy.gd" id="1_0mjwl"]
 [ext_resource type="Texture2D" uid="uid://bt6njoie05rxm" path="res://core/common_objects/other/enemy/enemy_outline.png" id="2_s808a"]
 [ext_resource type="Texture2D" uid="uid://qp3hlpihs6sm" path="res://core/common_objects/other/enemy/enemy_fill.png" id="3_3npqu"]
-[ext_resource type="Script" path="res://core/ref_counted/circle_collider.gd" id="4_bp5sv"]
+[ext_resource type="Script" path="res://core/colliders/circle_collider.gd" id="4_bp5sv"]
 
 [sub_resource type="Gradient" id="Gradient_vr4eu"]
 colors = PackedColorArray(1, 1, 1, 0.333333, 0, 0, 1, 0)

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://core/system/player/player.gd" id="1_sxbrj"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_qubyp"]
 [ext_resource type="Script" path="res://core/common_objects/other/velocity_component/velocity_component.gd" id="3_buqh6"]
-[ext_resource type="Script" path="res://core/ref_counted/rectangle_collider.gd" id="4_v5d1p"]
-[ext_resource type="Script" path="res://core/ref_counted/tick_based_timer.gd" id="5_pw1f6"]
+[ext_resource type="Script" path="res://core/colliders/rectangle_collider.gd" id="4_v5d1p"]
+[ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="5_pw1f6"]
 
 [sub_resource type="Gradient" id="Gradient_y1mgf"]
 colors = PackedColorArray(1, 0, 0, 0.333333, 1, 0, 0, 0)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://core/common_objects/collectables/key/key.gd" id="1_n7evj"]
 [ext_resource type="Texture2D" uid="uid://claldq5wno4ro" path="res://core/common_objects/collectables/key/Key 48.png" id="2_tvkth"]
-[ext_resource type="Script" path="res://core/ref_counted/circle_collider.gd" id="3_p0ict"]
+[ext_resource type="Script" path="res://core/colliders/circle_collider.gd" id="3_p0ict"]
 
 [node name="Key" type="Node2D" groups=["keys"]]
 script = ExtResource("1_n7evj")

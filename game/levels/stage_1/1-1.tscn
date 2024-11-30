@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://blp6v7py3fd5j"]
+[gd_scene load_steps=37 format=4 uid="uid://blp6v7py3fd5j"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_msdjo"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_2hsw4"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/common_objects/solids/key_door/key_door.tscn" id="13_qpbyw"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="15_m7dd2"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/common_objects/other/turret/turret.tscn" id="16_854g3"]
+[ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="17_bfg8e"]
 
 [sub_resource type="Animation" id="Animation_byiuy"]
 length = 0.001
@@ -209,6 +210,8 @@ font = ExtResource("15_m7dd2")
 font_size = 48
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_0ni8k"]
+
 [sub_resource type="Animation" id="Animation_7wvjd"]
 resource_name = "new_animation"
 length = 2.0
@@ -226,8 +229,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 6.28319]
 }
-
-[sub_resource type="Animation" id="Animation_0ni8k"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i8m1s"]
 _data = {
@@ -619,10 +620,10 @@ offset_left = 960.0
 offset_top = 240.0
 offset_right = 1056.0
 offset_bottom = 336.0
-key_id = 2
-open_method = 4
 outline_color = Color(0.4, 0.2, 0.4, 1)
 fill_color = Color(1, 0.5, 1, 1)
+key_id = 2
+open_method = 4
 
 [node name="Decoration" type="Node2D" parent="."]
 editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
@@ -641,11 +642,11 @@ horizontal_alignment = 1
 [node name="Turrets" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
 
-[node name="Turret" parent="Turrets" instance=ExtResource("16_854g3")]
+[node name="Turret" parent="Turrets" node_paths=PackedStringArray("fire_timer") instance=ExtResource("16_854g3")]
 position = Vector2(792, 264)
-object_lifetime = -1
+object_lifetime = 120
 object_speed = 2.5
-fire_delay = 10
+fire_timer = NodePath("TickBasedTimer")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Turrets/Turret"]
 libraries = {
@@ -654,7 +655,20 @@ libraries = {
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
 
-[node name="Turret2" parent="Turrets" instance=ExtResource("16_854g3")]
+[node name="TickBasedTimer" type="Node" parent="Turrets/Turret"]
+script = ExtResource("17_bfg8e")
+metronome = true
+autostart = true
+duration = 10
+
+[node name="Turret2" parent="Turrets" node_paths=PackedStringArray("fire_timer") instance=ExtResource("16_854g3")]
 position = Vector2(168, 360)
 object_lifetime = 180
 object_speed = 5.0
+fire_timer = NodePath("TickBasedTimer")
+
+[node name="TickBasedTimer" type="Node" parent="Turrets/Turret2"]
+script = ExtResource("17_bfg8e")
+metronome = true
+autostart = true
+duration = 60

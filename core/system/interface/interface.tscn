@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://jn6lkoo3vdrt"]
+[gd_scene load_steps=9 format=3 uid="uid://jn6lkoo3vdrt"]
 
 [ext_resource type="Script" path="res://core/system/interface/interface.gd" id="1_5xmwe"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_svcw7"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="3_1ytlt"]
 [ext_resource type="PackedScene" uid="uid://btuvdtlg5u165" path="res://core/system/interface/pause_menu.tscn" id="3_l5642"]
+[ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="5_nnsi2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_aag45"]
 font = ExtResource("2_svcw7")
@@ -166,3 +167,7 @@ offset_bottom = 660.0
 color = Color(1, 1, 1, 0)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_l5642")]
+
+[node name="FlashTimer" type="Node" parent="."]
+script = ExtResource("5_nnsi2")
+duration = 30

@@ -19,7 +19,7 @@ var hours: int = 0
 @onready var sides: Control = $Sides
 @onready var flash: ColorRect = $Flash
 
-var flash_timer: TickBasedTimer = TickBasedTimer.new(30)
+@onready var flash_timer: TickBasedTimer = $FlashTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

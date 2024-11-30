@@ -4,23 +4,17 @@ extends Node2D
 ## Set this to -1 if you don't want the enemy destroyed.
 @export var object_lifetime: int = 60
 @export var object_speed: float = 1
-@export var fire_delay: int = 60 # Temporary, gonna refactor soon
+@export var fire_timer: TickBasedTimer
 
 var object: PackedScene
-@onready var timer: TickBasedTimer = $FireTimer
 
 func _ready() -> void:
 	object = preload("res://core/common_objects/other/enemy/enemy.tscn")
-	
-	timer.duration = fire_delay # Temporary, gonna refactor soon
-	
 	# Makes the cyan square invisible in-game
 	$Sprite2D.modulate.a = 0
 	
-	timer.timeout.connect(fire_turret)
-	timer.reset_and_play()
-	#fire_turret() # Fires the turret immediately when loaded
-	
+	if fire_timer != null:
+		fire_timer.timeout.connect(fire_turret)
 
 func fire_turret() -> void:
 	var new_object: Node2D = object.instantiate()
