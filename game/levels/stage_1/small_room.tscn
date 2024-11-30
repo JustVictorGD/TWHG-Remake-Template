@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://ihcdg7j8edmp"]
+[gd_scene load_steps=7 format=4 uid="uid://ihcdg7j8edmp"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_4r10h"]
 [ext_resource type="Resource" uid="uid://bvirr7nvp5wjo" path="res://game/themes/red_theme.tres" id="2_lro8t"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="5_b85qo"]
 [ext_resource type="Script" path="res://core/special_objects/folder_2d.gd" id="6_1elcq"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="6_q0rjx"]
-[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="7_vkji7"]
 
 [node name="SmallRoom" type="Node2D" groups=["area"]]
 script = ExtResource("1_4r10h")
@@ -38,39 +37,3 @@ tile_map_data = PackedByteArray("AAAQAAoAAAADAAMAAAAQAAkAAAADAAIAAAAQAAgAAAADAAI
 
 [node name="Folder2D" type="Node2D" parent="."]
 script = ExtResource("6_1elcq")
-
-[node name="BlueEnemy" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(312, 168)
-
-[node name="BlueEnemy2" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(360, 168)
-
-[node name="BlueEnemy3" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(408, 168)
-
-[node name="BlueEnemy4" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(456, 168)
-
-[node name="BlueEnemy5" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(312, 216)
-
-[node name="BlueEnemy6" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(456, 216)
-
-[node name="BlueEnemy7" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(312, 264)
-
-[node name="BlueEnemy8" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(456, 264)
-
-[node name="BlueEnemy9" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(312, 312)
-
-[node name="BlueEnemy10" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(360, 312)
-
-[node name="BlueEnemy11" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(408, 312)
-
-[node name="BlueEnemy12" parent="Folder2D" instance=ExtResource("7_vkji7")]
-position = Vector2(456, 312)

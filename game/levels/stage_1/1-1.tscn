@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://blp6v7py3fd5j"]
+[gd_scene load_steps=36 format=4 uid="uid://blp6v7py3fd5j"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_msdjo"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_2hsw4"]
@@ -10,12 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="8_7casm"]
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/common_objects/other/circle/circle.tscn" id="9_kgjox"]
 [ext_resource type="Script" path="res://core/special_objects/tick_based_animator.gd" id="9_yeknw"]
-[ext_resource type="Script" path="res://core/common_objects/other/velocity_component/velocity_component.gd" id="10_546r7"]
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/common_objects/collectables/key/key.tscn" id="11_cekvf"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/common_objects/collectables/coin/coin.tscn" id="11_xb47a"]
 [ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/common_objects/solids/gold_door/gold_door.tscn" id="12_3wyhv"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/common_objects/solids/key_door/key_door.tscn" id="13_qpbyw"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="15_m7dd2"]
+[ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/common_objects/other/turret/turret.tscn" id="16_854g3"]
 
 [sub_resource type="Animation" id="Animation_byiuy"]
 length = 0.001
@@ -209,6 +209,32 @@ font = ExtResource("15_m7dd2")
 font_size = 48
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_7wvjd"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_0ni8k"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8m1s"]
+_data = {
+"RESET": SubResource("Animation_0ni8k"),
+"new_animation": SubResource("Animation_7wvjd")
+}
+
 [node name="TemplateLevel" type="Node2D" groups=["area"]]
 script = ExtResource("1_msdjo")
 level_code = "1-1"
@@ -356,15 +382,6 @@ metadata/_edit_lock_ = true
 
 [node name="BlueEnemy" parent="Enemies" instance=ExtResource("8_7casm")]
 position = Vector2(456, 696)
-
-[node name="BlueEnemy2" parent="Enemies" instance=ExtResource("8_7casm")]
-position = Vector2(144, 384)
-scale = Vector2(4, 4)
-
-[node name="VelocityComponent" type="Node2D" parent="Enemies/BlueEnemy2"]
-position = Vector2(-432, -192)
-script = ExtResource("10_546r7")
-velocity = Vector2(0.25, 0)
 
 [node name="Ring1" type="Node2D" parent="Enemies"]
 position = Vector2(456, 696)
@@ -621,5 +638,23 @@ text = "Bricks."
 label_settings = SubResource("LabelSettings_tx2ix")
 horizontal_alignment = 1
 
-[node name="EnemySpawners" type="Node2D" parent="."]
+[node name="Turrets" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
+
+[node name="Turret" parent="Turrets" instance=ExtResource("16_854g3")]
+position = Vector2(792, 264)
+object_lifetime = -1
+object_speed = 2.5
+fire_delay = 10
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Turrets/Turret"]
+libraries = {
+"": SubResource("AnimationLibrary_i8m1s")
+}
+autoplay = "new_animation"
+script = ExtResource("9_yeknw")
+
+[node name="Turret2" parent="Turrets" instance=ExtResource("16_854g3")]
+position = Vector2(168, 360)
+object_lifetime = 180
+object_speed = 5.0

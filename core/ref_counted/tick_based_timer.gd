@@ -6,6 +6,7 @@ signal timeout
 # You're meant to set these 2 properties manually!
 @export var metronome: bool = false
 @export var reversed: bool = false
+@export var autostart: bool = false
 
 # Ideally not these, though.
 var active: bool = false
@@ -21,11 +22,14 @@ func _init(_duration: int = 1, _metronome: bool = false, _reversed: bool = false
 	metronome = _metronome
 	reversed = _reversed
 	
+	if autostart:
+		reset_and_play()
+	
 	if not reversed:
 		remaining_time = duration
 
 func update_timers() -> void:
-	self.tick_and_timeout()
+	tick_and_timeout()
 
 func _to_string() -> String:
 	var extra: String = ""

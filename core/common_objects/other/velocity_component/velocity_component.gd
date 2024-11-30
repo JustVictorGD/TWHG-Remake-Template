@@ -5,8 +5,9 @@ extends Node2D
 @export var enabled: bool = true
 @onready var parent: Node = self.get_parent()
 
-func _ready() -> void:
+func _init(_velocity: Vector2 = velocity) -> void:
 	GameLoop.movement_update.connect(movement_update)
+	velocity = _velocity
 
 func movement_update() -> void:
 	if parent is Node2D and enabled:
