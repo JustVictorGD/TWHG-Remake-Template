@@ -26,7 +26,6 @@ func _ready() -> void:
 	GameLoop.update_timers.connect(update_timers)
 	$Menu.button_down.connect(menu_click)
 	
-	flash_timer.reset_and_play()
 	GlobalSignal.level_switched.connect(flash_timer.reset_and_play)
 
 
@@ -35,8 +34,6 @@ func menu_click() -> void:
 
 
 func update_timers() -> void:
-	flash_timer.tick_and_timeout()
-	
 	if not GameManager.finished:
 		ticks += 1
 		

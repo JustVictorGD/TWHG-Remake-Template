@@ -620,10 +620,10 @@ offset_left = 960.0
 offset_top = 240.0
 offset_right = 1056.0
 offset_bottom = 336.0
-outline_color = Color(0.4, 0.2, 0.4, 1)
-fill_color = Color(1, 0.5, 1, 1)
 key_id = 2
 open_method = 4
+outline_color = Color(0.4, 0.2, 0.4, 1)
+fill_color = Color(1, 0.5, 1, 1)
 
 [node name="Decoration" type="Node2D" parent="."]
 editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
