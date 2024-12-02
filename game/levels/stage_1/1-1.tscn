@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://blp6v7py3fd5j"]
+[gd_scene load_steps=40 format=4 uid="uid://blp6v7py3fd5j"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_msdjo"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_2hsw4"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/common_objects/other/turret/turret.tscn" id="16_854g3"]
 [ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="17_bfg8e"]
 [ext_resource type="PackedScene" uid="uid://df0rstt43gnmy" path="res://core/common_objects/other/trigger/trigger.tscn" id="18_egtxg"]
+[ext_resource type="Script" path="res://core/event_extensions/enemy_extension_1.gd" id="19_ooqya"]
+[ext_resource type="Script" path="res://core/common_objects/other/velocity_component/velocity_component.gd" id="20_3tkab"]
 
 [sub_resource type="Animation" id="Animation_byiuy"]
 length = 0.001
@@ -675,3 +677,24 @@ duration = 60
 
 [node name="Trigger" parent="." instance=ExtResource("18_egtxg")]
 position = Vector2(168, 168)
+event_id = 1
+
+[node name="BlueEnemy" parent="." instance=ExtResource("8_7casm")]
+position = Vector2(120, 168)
+script = ExtResource("19_ooqya")
+
+[node name="VelocityComponent" type="Node2D" parent="BlueEnemy"]
+script = ExtResource("20_3tkab")
+velocity = Vector2(4, 0)
+enabled = false
+metadata/_edit_lock_ = true
+
+[node name="BlueEnemy2" parent="." instance=ExtResource("8_7casm")]
+position = Vector2(216, 168)
+script = ExtResource("19_ooqya")
+
+[node name="VelocityComponent" type="Node2D" parent="BlueEnemy2"]
+script = ExtResource("20_3tkab")
+velocity = Vector2(4, 0)
+enabled = false
+metadata/_edit_lock_ = true
