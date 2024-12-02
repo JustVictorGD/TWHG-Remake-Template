@@ -9,11 +9,11 @@ var end: Vector2 = global_position + scale:
 	set(value):
 		scale = value - global_position
 
-func _init(bounding_box: Rect2 = Rect2(), _rotation: float = 0, _pivot_offset: Vector2 = Vector2.ZERO) -> void:
-	global_position = bounding_box.position
-	scale = bounding_box.size
-	rotation = _rotation
-	pivot_offset = _pivot_offset
+#func _init(bounding_box: Rect2 = Rect2(), _rotation: float = 0, _pivot_offset: Vector2 = Vector2.ZERO) -> void:
+	#global_position = bounding_box.position
+	#scale = bounding_box.size
+	#rotation = _rotation
+	#pivot_offset = _pivot_offset
 
 
 func _to_string() -> String:

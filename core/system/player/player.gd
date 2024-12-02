@@ -93,7 +93,6 @@ func handle_key_press(snappy_movement: bool) -> void:
 
 func _ready() -> void:
 	sliding_sensitivity += 1
-	fancy_hitbox.position -= Vector2(PLAYER_SIZE / 2)
 	fancy_hitbox.scale = PLAYER_SIZE
 	
 	respawn_timer.timeout.connect(respawn)

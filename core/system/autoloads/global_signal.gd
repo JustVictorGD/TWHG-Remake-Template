@@ -10,3 +10,5 @@ signal switch_level(label: String) # Specify name for world.gd
 signal level_switched # Just a signal
 
 signal finish
+
+signal trigger(id: int)

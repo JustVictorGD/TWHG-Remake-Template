@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://blp6v7py3fd5j"]
+[gd_scene load_steps=38 format=4 uid="uid://blp6v7py3fd5j"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_msdjo"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_2hsw4"]
@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="15_m7dd2"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/common_objects/other/turret/turret.tscn" id="16_854g3"]
 [ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="17_bfg8e"]
+[ext_resource type="PackedScene" uid="uid://df0rstt43gnmy" path="res://core/common_objects/other/trigger/trigger.tscn" id="18_egtxg"]
 
 [sub_resource type="Animation" id="Animation_byiuy"]
 length = 0.001
@@ -658,7 +659,6 @@ script = ExtResource("9_yeknw")
 [node name="TickBasedTimer" type="Node" parent="Turrets/Turret"]
 script = ExtResource("17_bfg8e")
 metronome = true
-autostart = true
 duration = 10
 
 [node name="Turret2" parent="Turrets" node_paths=PackedStringArray("fire_timer") instance=ExtResource("16_854g3")]
@@ -672,3 +672,6 @@ script = ExtResource("17_bfg8e")
 metronome = true
 autostart = true
 duration = 60
+
+[node name="Trigger" parent="." instance=ExtResource("18_egtxg")]
+position = Vector2(168, 168)

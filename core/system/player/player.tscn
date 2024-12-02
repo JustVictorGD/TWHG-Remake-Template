@@ -27,7 +27,7 @@ scale_max = 42.0
 scale_curve = SubResource("CurveTexture_20u8p")
 color_ramp = SubResource("GradientTexture1D_aqyqe")
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["player"]]
 z_index = 6
 script = ExtResource("1_sxbrj")
 

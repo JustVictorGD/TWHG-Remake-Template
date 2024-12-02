@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://df0rstt43gnmy"]
+
+[ext_resource type="Script" path="res://core/colliders/rectangle_collider.gd" id="1_42bxe"]
+[ext_resource type="Script" path="res://core/common_objects/other/trigger/trigger.gd" id="1_gwh63"]
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_jqwii"]
+
+[node name="Trigger" type="Node2D"]
+script = ExtResource("1_gwh63")
+
+[node name="RectangleCollider" type="Node2D" parent="."]
+position = Vector2(-24, -24)
+scale = Vector2(48, 48)
+script = ExtResource("1_42bxe")
+groups_to_check = Array[String](["player"])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 0.498039)
+scale = Vector2(48, 48)
+texture = ExtResource("2_jqwii")
