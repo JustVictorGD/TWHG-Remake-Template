@@ -11,4 +11,4 @@ signal level_switched # Just a signal
 
 signal finish
 
-signal event(id: int)
+signal event(id: int, state: bool)

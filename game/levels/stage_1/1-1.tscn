@@ -676,8 +676,10 @@ autostart = true
 duration = 60
 
 [node name="Trigger" parent="." instance=ExtResource("18_egtxg")]
-position = Vector2(168, 168)
+position = Vector2(192, 144)
 event_id = 1
+button_mode = true
+activated_color = Color(1, 0.713726, 0.756863, 0.5)
 
 [node name="BlueEnemy" parent="." instance=ExtResource("8_7casm")]
 position = Vector2(120, 168)
