@@ -27,7 +27,6 @@ func on_collision_enter(node: Node) -> void:
 	GlobalSignal.event.emit(event_id, true)
 
 func on_all_collisions_exited() -> void:
-	print("works")
 	if button_mode:
 		modulate = deactivated_color
 		GlobalSignal.event.emit(event_id, false)

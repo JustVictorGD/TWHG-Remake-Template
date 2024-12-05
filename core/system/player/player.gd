@@ -163,10 +163,11 @@ func movement_update() -> void:
 
 
 func collision_update() -> void:
-	
+	fancy_hitbox.enabled = true
 	Collider.touched_checkpoint_ids.clear()
 	
 	if dead:
+		fancy_hitbox.enabled = false
 		return
 	
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
