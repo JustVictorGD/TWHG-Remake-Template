@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://blp6v7py3fd5j"]
+[gd_scene load_steps=43 format=4 uid="uid://blp6v7py3fd5j"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_msdjo"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_2hsw4"]
@@ -208,6 +208,43 @@ _data = {
 "new_animation": SubResource("Animation_fsuu8")
 }
 
+[sub_resource type="Animation" id="Animation_jy5fi"]
+resource_name = "new_animation"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_mu4tm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u1ebv"]
+_data = {
+"RESET": SubResource("Animation_mu4tm"),
+"new_animation": SubResource("Animation_jy5fi")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_tx2ix"]
 font = ExtResource("15_m7dd2")
 font_size = 48
@@ -244,6 +281,7 @@ script = ExtResource("1_msdjo")
 level_code = "1-1"
 bottom_text = "Boy oh boy."
 theme = ExtResource("2_2hsw4")
+metadata/_edit_lock_ = true
 
 [node name="Floors" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
@@ -445,6 +483,7 @@ script = ExtResource("9_yeknw")
 
 [node name="Vertical" type="Node2D" parent="Enemies"]
 script = ExtResource("3_womt2")
+metadata/_edit_lock_ = true
 
 [node name="BlueEnemy" parent="Enemies/Vertical" instance=ExtResource("8_7casm")]
 position = Vector2(1080, 636)
@@ -467,6 +506,7 @@ script = ExtResource("9_yeknw")
 
 [node name="Vertical2" type="Node2D" parent="Enemies"]
 script = ExtResource("3_womt2")
+metadata/_edit_lock_ = true
 
 [node name="BlueEnemy" parent="Enemies/Vertical2" instance=ExtResource("8_7casm")]
 position = Vector2(1176, 636)
@@ -488,6 +528,44 @@ libraries = {
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
 start_time = 60
+
+[node name="AnotherSpinner" type="Node2D" parent="Enemies"]
+position = Vector2(1080, 408)
+script = ExtResource("3_womt2")
+
+[node name="BlueEnemy" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+position = Vector2(0, -96)
+
+[node name="BlueEnemy2" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+position = Vector2(0, -72)
+
+[node name="BlueEnemy3" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+position = Vector2(0, -48)
+
+[node name="BlueEnemy4" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+position = Vector2(0, -24)
+
+[node name="BlueEnemy5" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+
+[node name="BlueEnemy6" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+position = Vector2(0, 24)
+
+[node name="BlueEnemy7" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+position = Vector2(0, 48)
+
+[node name="BlueEnemy8" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+position = Vector2(0, 72)
+
+[node name="BlueEnemy9" parent="Enemies/AnotherSpinner" instance=ExtResource("8_7casm")]
+position = Vector2(0, 96)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/AnotherSpinner"]
+libraries = {
+"": SubResource("AnimationLibrary_u1ebv")
+}
+autoplay = "new_animation"
+script = ExtResource("9_yeknw")
+bpm = 126.0
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
@@ -619,10 +697,10 @@ open_time = 60
 fade = true
 
 [node name="KeyDoor13" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
-offset_left = 960.0
-offset_top = 240.0
-offset_right = 1056.0
-offset_bottom = 336.0
+offset_left = 864.0
+offset_top = 144.0
+offset_right = 960.0
+offset_bottom = 240.0
 key_id = 2
 open_method = 4
 outline_color = Color(0.4, 0.2, 0.4, 1)
@@ -644,6 +722,7 @@ horizontal_alignment = 1
 
 [node name="Turrets" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
+metadata/_edit_lock_ = true
 
 [node name="Turret" parent="Turrets" node_paths=PackedStringArray("fire_timer") instance=ExtResource("16_854g3")]
 position = Vector2(792, 264)
@@ -676,6 +755,7 @@ autostart = true
 duration = 60
 
 [node name="Trigger" parent="." instance=ExtResource("18_egtxg")]
+modulate = Color(1, 0.411765, 0.705882, 1)
 position = Vector2(192, 144)
 event_id = 1
 button_mode = true
