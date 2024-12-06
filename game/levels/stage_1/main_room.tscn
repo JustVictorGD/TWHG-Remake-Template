@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=4 uid="uid://c1bhjs030vqlv"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_ttfq5"]
-[ext_resource type="Resource" uid="uid://dcnwlk7ew7avh" path="res://game/themes/purple_theme.tres" id="2_q60q2"]
+[ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_y2utv"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/common_objects/other/floor/floor.tscn" id="3_if1iy"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="4_3uxk1"]
 [ext_resource type="Script" path="res://core/special_objects/folder_2d.gd" id="4_gna1d"]
@@ -296,7 +296,7 @@ _data = {
 script = ExtResource("1_ttfq5")
 level_code = "1-2"
 bottom_text = "Kewl, purple!"
-theme = ExtResource("2_q60q2")
+theme = ExtResource("2_y2utv")
 metadata/_edit_lock_ = true
 
 [node name="Floor" parent="." instance=ExtResource("3_if1iy")]
@@ -925,8 +925,8 @@ offset_top = 240.0
 offset_right = 1224.0
 offset_bottom = 336.0
 script = ExtResource("12_bcmw2")
-outline_color = Color(0.294118, 0.239216, 0.4, 1)
-fill_color = Color(0.745098, 0.6, 1, 1)
+outline_color = Color(0.4, 0.282353, 0.4, 1)
+fill_color = Color(1, 0.74902, 1, 1)
 
 [node name="Solid2" type="Control" parent="Solids"]
 z_index = 7
@@ -937,8 +937,8 @@ offset_top = 240.0
 offset_right = 1416.0
 offset_bottom = 336.0
 script = ExtResource("12_bcmw2")
-outline_color = Color(0.294118, 0.239216, 0.4, 1)
-fill_color = Color(0.745098, 0.6, 1, 1)
+outline_color = Color(0.4, 0.282353, 0.4, 1)
+fill_color = Color(1, 0.74902, 1, 1)
 
 [node name="Glow" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.501961)

@@ -1,17 +1,18 @@
-[gd_scene load_steps=7 format=4 uid="uid://ihcdg7j8edmp"]
+[gd_scene load_steps=8 format=3 uid="uid://ihcdg7j8edmp"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_4r10h"]
-[ext_resource type="Resource" uid="uid://bvirr7nvp5wjo" path="res://game/themes/red_theme.tres" id="2_lro8t"]
+[ext_resource type="Resource" uid="uid://bnkml2vts6jbf" path="res://game/themes/custom/orange_theme.tres" id="2_clx40"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/common_objects/other/floor/floor.tscn" id="3_w0ebs"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="5_b85qo"]
 [ext_resource type="Script" path="res://core/special_objects/folder_2d.gd" id="6_1elcq"]
-[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="6_q0rjx"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="7_66r1i"]
+[ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="7_vtrin"]
 
 [node name="SmallRoom" type="Node2D" groups=["area"]]
 script = ExtResource("1_4r10h")
 level_code = "1-3"
 bottom_text = "THE END OF THE LINE_"
-theme = ExtResource("2_lro8t")
+theme = ExtResource("2_clx40")
 area_size = Vector2i(16, 10)
 
 [node name="Floor" parent="." instance=ExtResource("3_w0ebs")]
@@ -24,16 +25,245 @@ grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_lock_ = true
 
-[node name="Checkpoint" parent="." instance=ExtResource("5_b85qo")]
-offset_left = 336.0
+[node name="Start" parent="." instance=ExtResource("5_b85qo")]
+offset_left = 96.0
 offset_top = 192.0
-offset_right = 432.0
+offset_right = 192.0
 offset_bottom = 288.0
-type = 3
+type = 1
 final_destination = true
 
-[node name="SolidTileSet" parent="." instance=ExtResource("6_q0rjx")]
-tile_map_data = PackedByteArray("AAAQAAoAAAADAAMAAAAQAAkAAAADAAIAAAAQAAgAAAADAAIAAAAQAAcAAAADAAIAAAAQAAYAAAADAAIAAAAQAAMAAAADAAIAAAAQAAIAAAADAAIAAAAQAAEAAAADAAIAAAAQAAAAAAADAAIAAAAQAP//AAADAAEAAAAPAAoAAAACAAMAAAAPAAkAAAAGAAIAAAAPAAAAAAAGAAEAAAAPAP//AAACAAEAAAAOAAoAAAACAAMAAAAOAAkAAAACAAEAAAAOAAAAAAACAAMAAAAOAP//AAACAAEAAAANAAoAAAACAAMAAAANAAkAAAACAAEAAAANAAAAAAACAAMAAAANAP//AAACAAEAAAAMAAoAAAACAAMAAAAMAAkAAAACAAEAAAAMAAAAAAACAAMAAAAMAP//AAACAAEAAAALAAoAAAACAAMAAAALAAkAAAACAAEAAAALAAAAAAACAAMAAAALAP//AAACAAEAAAAKAAoAAAACAAMAAAAKAAkAAAACAAEAAAAKAAAAAAACAAMAAAAKAP//AAACAAEAAAAJAAoAAAACAAMAAAAJAAkAAAACAAEAAAAJAAAAAAACAAMAAAAJAP//AAACAAEAAAAGAAoAAAACAAMAAAAGAAkAAAACAAEAAAAGAAAAAAACAAMAAAAGAP//AAACAAEAAAAFAAoAAAACAAMAAAAFAAkAAAACAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAAEAAoAAAACAAMAAAAEAAkAAAACAAEAAAAEAAAAAAACAAMAAAAEAP//AAACAAEAAAADAAoAAAACAAMAAAADAAkAAAACAAEAAAADAAAAAAACAAMAAAADAP//AAACAAEAAAACAAoAAAACAAMAAAACAAkAAAACAAEAAAACAAAAAAACAAMAAAACAP//AAACAAEAAAABAAoAAAACAAMAAAABAAkAAAACAAEAAAABAAAAAAACAAMAAAABAP//AAACAAEAAAAAAAoAAAACAAMAAAAAAAkAAAAFAAIAAAAAAAgAAAADAAIAAAAAAAcAAAADAAIAAAAAAAYAAAADAAIAAAAAAAMAAAADAAIAAAAAAAIAAAADAAIAAAAAAAEAAAADAAIAAAAAAAAAAAAFAAEAAAAAAP//AAACAAEAAAD//woAAAABAAMAAAD//wkAAAABAAIAAAD//wgAAAABAAIAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wMAAAABAAIAAAD//wIAAAABAAIAAAD//wEAAAABAAIAAAD//wAAAAABAAIAAAD/////AAABAAEAAAAPAAgAAAABAAIAAAAPAAcAAAABAAIAAAAPAAYAAAABAAIAAAAPAAMAAAABAAIAAAAPAAIAAAABAAIAAAAPAAEAAAABAAIAAAAHAAAAAAACAAMAAAAIAAAAAAACAAMAAAAIAP//AAACAAEAAAAHAP//AAACAAEAAAAAAAQAAAADAAIAAAAAAAUAAAADAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAAHAAkAAAACAAEAAAAIAAkAAAACAAEAAAAIAAoAAAACAAMAAAAHAAoAAAACAAMAAAAQAAUAAAADAAIAAAAQAAQAAAADAAIAAAAPAAUAAAABAAIAAAAPAAQAAAABAAIAAAA=")
+[node name="Finish" parent="." instance=ExtResource("5_b85qo")]
+offset_left = 576.0
+offset_top = 192.0
+offset_right = 672.0
+offset_bottom = 288.0
+type = 2
+final_destination = true
 
-[node name="Folder2D" type="Node2D" parent="."]
+[node name="Walls" type="Node2D" parent="."]
 script = ExtResource("6_1elcq")
+
+[node name="Solid" type="Control" parent="Walls"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 792.0
+offset_bottom = 96.0
+script = ExtResource("7_vtrin")
+decorative = true
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
+
+[node name="Solid2" type="Control" parent="Walls"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = -24.0
+offset_top = 384.0
+offset_right = 792.0
+offset_bottom = 504.0
+script = ExtResource("7_vtrin")
+decorative = true
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
+
+[node name="Solid3" type="Control" parent="Walls"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = -24.0
+offset_top = 288.0
+offset_right = 192.0
+offset_bottom = 408.0
+script = ExtResource("7_vtrin")
+decorative = true
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
+
+[node name="Solid4" type="Control" parent="Walls"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = -24.0
+offset_top = 72.0
+offset_right = 192.0
+offset_bottom = 192.0
+script = ExtResource("7_vtrin")
+decorative = true
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
+
+[node name="Solid5" type="Control" parent="Walls"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 72.0
+offset_right = 792.0
+offset_bottom = 192.0
+script = ExtResource("7_vtrin")
+decorative = true
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
+
+[node name="Solid6" type="Control" parent="Walls"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 288.0
+offset_right = 792.0
+offset_bottom = 408.0
+script = ExtResource("7_vtrin")
+decorative = true
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
+
+[node name="Solid7" type="Control" parent="Walls"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = 672.0
+offset_top = 168.0
+offset_right = 792.0
+offset_bottom = 312.0
+script = ExtResource("7_vtrin")
+decorative = true
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
+
+[node name="Solid8" type="Control" parent="Walls"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = -24.0
+offset_top = 168.0
+offset_right = 96.0
+offset_bottom = 312.0
+script = ExtResource("7_vtrin")
+decorative = true
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("6_1elcq")
+
+[node name="BlueEnemy" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 96)
+
+[node name="BlueEnemy2" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 120)
+
+[node name="BlueEnemy3" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 144)
+
+[node name="BlueEnemy4" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 168)
+
+[node name="BlueEnemy5" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 192)
+
+[node name="BlueEnemy6" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 216)
+
+[node name="BlueEnemy7" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 96)
+
+[node name="BlueEnemy8" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 120)
+
+[node name="BlueEnemy9" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 144)
+
+[node name="BlueEnemy10" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 168)
+
+[node name="BlueEnemy11" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 192)
+
+[node name="BlueEnemy12" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 216)
+
+[node name="BlueEnemy13" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 240)
+
+[node name="BlueEnemy14" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 264)
+
+[node name="BlueEnemy15" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 288)
+
+[node name="BlueEnemy16" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 312)
+
+[node name="BlueEnemy17" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 336)
+
+[node name="BlueEnemy18" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 240)
+
+[node name="BlueEnemy19" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 264)
+
+[node name="BlueEnemy20" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 288)
+
+[node name="BlueEnemy21" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 312)
+
+[node name="BlueEnemy22" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 336)
+
+[node name="BlueEnemy23" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 384)
+
+[node name="BlueEnemy24" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 360)
+
+[node name="BlueEnemy25" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 360)
+
+[node name="BlueEnemy26" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(384, 384)
+
+[node name="BlueEnemy27" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 96)
+
+[node name="BlueEnemy28" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 120)
+
+[node name="BlueEnemy29" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 144)
+
+[node name="BlueEnemy30" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 168)
+
+[node name="BlueEnemy31" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 192)
+
+[node name="BlueEnemy32" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 216)
+
+[node name="BlueEnemy33" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 240)
+
+[node name="BlueEnemy34" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 264)
+
+[node name="BlueEnemy35" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 288)
+
+[node name="BlueEnemy36" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 312)
+
+[node name="BlueEnemy37" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 336)
+
+[node name="BlueEnemy38" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 360)
+
+[node name="BlueEnemy39" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 384)
