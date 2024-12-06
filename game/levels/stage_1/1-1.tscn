@@ -788,6 +788,7 @@ tracking = false
 lock_scale = false
 lock_rotation = false
 plays_sound = true
+sound = null
 
 [node name="Paint2" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(912, 336)
@@ -797,6 +798,7 @@ tracking = false
 lock_scale = false
 lock_rotation = false
 plays_sound = true
+sound = null
 
 [node name="Paint3" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(1080, 144)
@@ -806,3 +808,4 @@ tracking = false
 lock_scale = false
 lock_rotation = false
 plays_sound = true
+sound = null

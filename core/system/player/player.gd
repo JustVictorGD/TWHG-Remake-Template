@@ -223,7 +223,7 @@ func collect_coin(id: int) -> void:
 func enemy_death() -> void:
 	dead = true
 	GameManager.deaths += 1
-	SFX.play("EnemyDeath")
+	SFX.play(SFX.sounds.ENEMY_DEATH)
 	
 	respawn_timer.reset_and_play()
 	death_animation.reset_and_play()
@@ -232,7 +232,7 @@ func enemy_death() -> void:
 
 
 func respawn() -> void:
-	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
+	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == last_checkpoint_id:
 			move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
 	

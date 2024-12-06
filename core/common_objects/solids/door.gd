@@ -56,7 +56,7 @@ func trigger_door() -> void:
 		
 		nullify_hitbox()
 		
-		SFX.play("OpenDoor")
+		SFX.play(SFX.sounds.OPEN_DOOR)
 		triggered = true
 
 
@@ -67,7 +67,7 @@ func untrigger_door() -> void:
 		
 		World.walls[hitbox_index] = Rect2i(global_bound)
 		
-		SFX.play("CloseDoor")
+		SFX.play(SFX.sounds.CLOSE_DOOR)
 		triggered = false
 
 

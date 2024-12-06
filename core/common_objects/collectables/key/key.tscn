@@ -6,6 +6,7 @@
 
 [node name="Key" type="Node2D" groups=["keys"]]
 script = ExtResource("1_n7evj")
+sound = 5
 
 [node name="Key" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

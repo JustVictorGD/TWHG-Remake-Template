@@ -10,10 +10,6 @@ class_name Paint
 @onready var hitbox: CircleCollider = $CircleCollider
 
 
-func _ready() -> void:
-	collect_sound = "Paint"
-
-
 func _process(delta: float) -> void:
 	outline.modulate = outline_color
 	fill.modulate = fill_color

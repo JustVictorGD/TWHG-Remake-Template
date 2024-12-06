@@ -10,8 +10,6 @@ var id: int # Not to be confused with the key_id,
 
 
 func _ready() -> void:
-	collect_sound = "Key"
-	
 	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
 
 

@@ -10,6 +10,8 @@ class_name Collectable
 ## Play sound when collected.
 @export var plays_sound: bool = true
 
+@export var sound: SFX.sounds = SFX.sounds.NONE
+
 enum states {
 	UNCOLLECTED,
 	PICKED_UP, # Goes back to UNCOLLECTED if the player dies
@@ -20,7 +22,6 @@ var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 
 var state: states = states.UNCOLLECTED
-var collect_sound: String
 
 func _init() -> void:
 	drop_animation.timeout.connect(finish_animation)
@@ -39,7 +40,7 @@ func collect() -> void:
 		
 		collect_animation.reset_and_play()
 		if plays_sound:
-			SFX.play(collect_sound)
+			SFX.play(sound)
 		GlobalSignal.anything_collected.emit()
 		
 		extra_collect()

@@ -7,8 +7,6 @@ class_name Coin
 var id: int
 
 func _ready() -> void:
-	collect_sound = "Coin"
-	
 	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
 	
 	World.money_requirement += 1

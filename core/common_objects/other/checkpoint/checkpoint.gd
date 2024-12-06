@@ -107,11 +107,11 @@ func select() -> void:
 			win()
 		
 		else:
-			SFX.play("Checkpoint")
+			SFX.play(SFX.sounds.CHECKPOINT)
 
 
 func win() -> void:
-	SFX.play("Finish")
+	SFX.play(SFX.sounds.FINISH)
 	warp_timer.reset_and_play()
 	
 	if final_destination:
