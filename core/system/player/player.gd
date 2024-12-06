@@ -12,6 +12,8 @@ const PLAYER_SIZE: Vector2i = Vector2i(42, 42)
 
 @onready var sprite: CanvasGroup = $CanvasGroup
 @onready var particles: GPUParticles2D = $GPUParticles2D
+@onready var outline: Sprite2D = $CanvasGroup/Outline
+@onready var fill: Sprite2D = $CanvasGroup/Fill
 
 enum subpixel {
 	MIN = 0, # Going below makes it loop to MAX.
@@ -187,6 +189,13 @@ func collision_update() -> void:
 	for key: Key in get_tree().get_nodes_in_group("keys"):
 		if fancy_hitbox.intersects(key.hitbox):
 			key.collect()
+	
+	for paint: Paint in get_tree().get_nodes_in_group("paints"):
+		if fancy_hitbox.intersects(paint.hitbox):
+			paint.collect()
+			outline.modulate = paint.outline_color
+			fill.modulate = paint.fill_color
+			particles.modulate = paint.fill_color
 
 
 func update_timers() -> void:

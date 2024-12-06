@@ -43,6 +43,8 @@ func _ready() -> void:
 	# Call the _ready() function from the Solid class.
 	super()
 	
+	close_timer.timeout.connect(finish_closing)
+	
 	if not Engine.is_editor_hint():
 		GameLoop.update_timers.connect(update_timers)
 
@@ -74,11 +76,12 @@ func update_timers() -> void:
 		handle_animation(open_timer.get_progress_left())
 	
 	if close_timer.active:
-		if close_timer.get_progress_left() <= 0:
-			close_timer.handle_timeout()
-			handle_animation(1)
-		else:
-			handle_animation(close_timer.get_progress())
+		handle_animation(close_timer.get_progress())
+
+
+func finish_closing() -> void:
+	handle_animation(1)
+
 
 func sine_in(t: float) -> float:
 	return 1.0 - cos((t * PI) / 2.0)

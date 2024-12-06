@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="5_pw1f6"]
 
 [sub_resource type="Gradient" id="Gradient_y1mgf"]
-colors = PackedColorArray(1, 0, 0, 0.333333, 1, 0, 0, 0)
+colors = PackedColorArray(1, 1, 1, 0.333333, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_aqyqe"]
 gradient = SubResource("Gradient_y1mgf")
@@ -44,6 +44,7 @@ scale = Vector2(30, 30)
 texture = ExtResource("2_qubyp")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 z_index = -1
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_jfo76")

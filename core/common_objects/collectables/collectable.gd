@@ -23,9 +23,12 @@ var state: states = states.UNCOLLECTED
 var collect_sound: String
 
 func _init() -> void:
-	GameLoop.update_timers.connect(update_timers)
-	GameLoop.movement_update.connect(movement_update)
-	GlobalSignal.player_respawn.connect(player_respawn)
+	drop_animation.timeout.connect(finish_animation)
+	
+	if not Engine.is_editor_hint():
+		GameLoop.update_timers.connect(update_timers)
+		GameLoop.movement_update.connect(movement_update)
+		GlobalSignal.player_respawn.connect(player_respawn)
 
 func collect() -> void:
 	if state == states.UNCOLLECTED:
@@ -75,6 +78,11 @@ func update_timers() -> void:
 	
 	if drop_animation.active:
 		modulate.a = drop_animation.get_progress()
+
+
+func finish_animation() -> void:
+	modulate.a = 1
+
 
 func player_respawn() -> void:
 	drop()
