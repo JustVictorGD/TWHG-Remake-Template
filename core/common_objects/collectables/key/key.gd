@@ -13,13 +13,18 @@ func _ready() -> void:
 	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
 
 
-func extra_collect() -> void:
+func collect() -> void:
+	# Call the collect() function of the Collectable class.
+	super()
+	
 	for key_door: Door in get_tree().get_nodes_in_group("key_doors"):
 		if key_door.key_id == key_id:
 			key_door.trigger_door()
 
 
-func extra_drop() -> void:
+func drop() -> void:
+	super()
+	
 	for key_door: Door in get_tree().get_nodes_in_group("key_doors"):
 		if key_door.key_id == key_id:
 			key_door.untrigger_door()

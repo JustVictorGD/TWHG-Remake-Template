@@ -11,11 +11,16 @@ func _ready() -> void:
 	
 	World.money_requirement += 1
 
-func extra_collect() -> void:
+func collect() -> void:
+	# Call the collect() function of the Collectable class.
+	super()
+	
 	World.collected_money += 1
 	GlobalSignal.coin_collected.emit()
 
-func extra_drop() -> void:
+func drop() -> void:
+	super()
+	
 	World.collected_money -= 1
 
 func checkpoint_touched(_id: int) -> void:

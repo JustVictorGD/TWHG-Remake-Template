@@ -23,6 +23,7 @@ var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 
 var state: states = states.UNCOLLECTED
 
+
 func _init() -> void:
 	drop_animation.timeout.connect(finish_animation)
 	
@@ -30,6 +31,7 @@ func _init() -> void:
 		GameLoop.update_timers.connect(update_timers)
 		GameLoop.movement_update.connect(movement_update)
 		GlobalSignal.player_respawn.connect(player_respawn)
+
 
 func collect() -> void:
 	if state == states.UNCOLLECTED:
@@ -42,33 +44,25 @@ func collect() -> void:
 		if plays_sound:
 			SFX.play(sound)
 		GlobalSignal.anything_collected.emit()
-		
-		extra_collect()
+
 
 func drop() -> void:
 	if state == states.PICKED_UP:
 		state = states.UNCOLLECTED
 		drop_animation.reset_and_play()
-		extra_drop()
+
 
 func save() -> void:
 	if state == states.PICKED_UP:
 		state = states.SAVED
-		extra_save()
 
-# Override these functions to add more behavior.
-func extra_collect() -> void:
-	pass
-func extra_drop() -> void:
-	pass
-func extra_save() -> void:
-	pass
 
 func movement_update() -> void:
 	if lock_scale:
 		global_scale = Vector2(1, 1)
 	if lock_rotation:
 		global_rotation = 0
+
 
 func update_timers() -> void:
 	if state != states.UNCOLLECTED:
