@@ -25,6 +25,11 @@ var connections: Dictionary = json_to_dict("res://game/connections.json")
 static var current_level: Area = null
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("0"):
+		print(get_tree().get_nodes_in_group("coins")[0].modulate)
+
+
 func _ready() -> void:
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)

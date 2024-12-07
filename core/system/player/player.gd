@@ -1,11 +1,11 @@
 @icon("res://core/misc_assets/images/node_icons/player.png")
-extends Node2D
+extends PushableBox
 class_name Player
 
 
 #region Properties
 
-const PLAYER_SIZE: Vector2i = Vector2i(42, 42)
+
 
 @export var speed: int = 4000 # One pixel per tick is 1,000
 @export_range(0, 41) var sliding_sensitivity: int = 32
@@ -15,19 +15,9 @@ const PLAYER_SIZE: Vector2i = Vector2i(42, 42)
 @onready var outline: Sprite2D = $CanvasGroup/Outline
 @onready var fill: Sprite2D = $CanvasGroup/Fill
 
-enum subpixel {
-	MIN = 0, # Going below makes it loop to MAX.
-	DEFAULT = 500,
-	MAX = 999, # Going above makes it loop to MIN.
-	RANGE = 1000
-}
-
-# Physics and movement
-var hitbox: Rect2i
-
 @onready var fancy_hitbox: RectangleCollider = $RectangleCollider
 
-var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
+
 var movement_direction: Vector2 = Vector2.ZERO
 
 # Timers, used for fading the player in and out.
@@ -180,7 +170,7 @@ func collision_update() -> void:
 	
 	for coin: Coin in get_tree().get_nodes_in_group("coins"):
 		if fancy_hitbox.intersects(coin.hitbox):
-			coin.collect()
+			coin.try_collect()
 	
 	for enemy: Enemy in get_tree().get_nodes_in_group("enemies"):
 		if not GameManager.invincible and fancy_hitbox.intersects(enemy.hitbox):
@@ -188,11 +178,11 @@ func collision_update() -> void:
 	
 	for key: Key in get_tree().get_nodes_in_group("keys"):
 		if fancy_hitbox.intersects(key.hitbox):
-			key.collect()
+			key.try_collect()
 	
 	for paint: Paint in get_tree().get_nodes_in_group("paints"):
 		if fancy_hitbox.intersects(paint.hitbox):
-			paint.collect()
+			paint.try_collect()
 			outline.modulate = paint.outline_color
 			fill.modulate = paint.fill_color
 			particles.modulate = paint.fill_color
@@ -244,67 +234,6 @@ func respawn() -> void:
 
 func finish() -> void:
 	GameManager.invincible = true
-
-
-#endregion
-
-
-#region Special Position Handling
-
-
-func print_position() -> void:
-	# Weird formatting explained at: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_format_string.html#padding
-	print("X = %s.%03d, Y = %s.%03d" % [position.x, subpixels.x, position.y, subpixels.y])
-
-
-# Adds to the position using the subpixel system.
-# This function uses subpixels. Multiply any input in pixels by 1000.
-func move(movement: Vector2i) -> void:
-	subpixels += movement
-	
-	while subpixels.x > subpixel.MAX:
-		subpixels.x -= subpixel.RANGE
-		position.x += 1
-	while subpixels.x < subpixel.MIN:
-		subpixels.x += subpixel.RANGE
-		position.x -= 1
-	while subpixels.y > subpixel.MAX:
-		subpixels.y -= subpixel.RANGE
-		position.y += 1
-	while subpixels.y < subpixel.MIN:
-		subpixels.y += subpixel.RANGE
-		position.y -= 1
-	
-	position = round(position)
-	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
-	hitbox.size = PLAYER_SIZE
-
-# Sets the position using the subpixel system.
-# This function uses subpixels. Multiply any input in pixels by 1000.
-func move_to(given_position: Vector2i) -> void:
-	position = given_position / 1000
-	
-	subpixels.x = given_position.x % 1000
-	subpixels.y = given_position.y % 1000
-	
-	while subpixels.x > subpixel.MAX:
-		subpixels.x -= subpixel.RANGE
-		position.x += 1
-	while subpixels.x < subpixel.MIN:
-		subpixels.x += subpixel.RANGE
-		position.x -= 1
-	while subpixels.y > subpixel.MAX:
-		subpixels.y -= subpixel.RANGE
-		position.y += 1
-	while subpixels.y < subpixel.MIN:
-		subpixels.y += subpixel.RANGE
-		position.y -= 1
-	
-	position = round(position)
-	
-	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
-	hitbox.size = PLAYER_SIZE
-
 
 
 #endregion

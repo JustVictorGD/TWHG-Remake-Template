@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://df0rstt43gnmy" path="res://core/common_objects/other/trigger/trigger.tscn" id="18_egtxg"]
 [ext_resource type="Script" path="res://core/event_extensions/enemy_extension_1.gd" id="19_ooqya"]
 [ext_resource type="Script" path="res://core/common_objects/other/velocity_component/velocity_component.gd" id="20_3tkab"]
-[ext_resource type="PackedScene" uid="uid://dk82f13qdaip0" path="res://core/common_objects/other/paint/paint.tscn" id="21_vxatf"]
+[ext_resource type="PackedScene" uid="uid://dk82f13qdaip0" path="res://core/common_objects/collectables/paint/paint.tscn" id="21_vxatf"]
 
 [sub_resource type="Animation" id="Animation_byiuy"]
 length = 0.001
@@ -784,28 +784,13 @@ metadata/_edit_lock_ = true
 
 [node name="Paint" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(672, 336)
-tracking = false
-lock_scale = false
-lock_rotation = false
-plays_sound = true
-sound = null
 
 [node name="Paint2" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(912, 336)
 outline_color = Color(0.4, 0, 0.4, 1)
 fill_color = Color(1, 0, 1, 1)
-tracking = false
-lock_scale = false
-lock_rotation = false
-plays_sound = true
-sound = null
 
 [node name="Paint3" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(1080, 144)
 outline_color = Color(0.2, 0.2, 0.2, 1)
 fill_color = Color(0.5, 0.5, 0.5, 1)
-tracking = false
-lock_scale = false
-lock_rotation = false
-plays_sound = true
-sound = null

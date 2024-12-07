@@ -24,37 +24,54 @@ var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 var state: states = states.UNCOLLECTED
 
 
-func _init() -> void:
+func _ready() -> void:
+	print("Calling _ready()... somehow?")
+	
 	drop_animation.timeout.connect(finish_animation)
 	
-	if not Engine.is_editor_hint():
-		GameLoop.update_timers.connect(update_timers)
-		GameLoop.movement_update.connect(movement_update)
-		GlobalSignal.player_respawn.connect(player_respawn)
+	GameLoop.update_timers.connect(update_timers)
+	GameLoop.movement_update.connect(movement_update)
+	
+	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
+	GlobalSignal.player_respawn.connect(player_respawn)
+
+
+func try_collect() -> void:
+	if state == states.UNCOLLECTED:
+		collect()
+
+
+func try_drop() -> void:
+	if state == states.PICKED_UP:
+		drop()
+
+
+func try_save() -> void:
+	if state == states.PICKED_UP:
+		save()
 
 
 func collect() -> void:
-	if state == states.UNCOLLECTED:
-		if Collider.touched_checkpoint_ids.size() == 0:
-			state = states.PICKED_UP
-		else:
-			state = states.SAVED
-		
-		collect_animation.reset_and_play()
-		if plays_sound:
-			SFX.play(sound)
-		GlobalSignal.anything_collected.emit()
+	if Collider.touched_checkpoint_ids.size() == 0:
+		state = states.PICKED_UP
+	else:
+		state = states.SAVED
+	
+	collect_animation.reset_and_play()
+	
+	if plays_sound:
+		SFX.play(sound)
+	
+	GlobalSignal.anything_collected.emit()
 
 
 func drop() -> void:
-	if state == states.PICKED_UP:
-		state = states.UNCOLLECTED
-		drop_animation.reset_and_play()
+	state = states.UNCOLLECTED
+	drop_animation.reset_and_play()
 
 
 func save() -> void:
-	if state == states.PICKED_UP:
-		state = states.SAVED
+	state = states.SAVED
 
 
 func movement_update() -> void:
@@ -80,4 +97,8 @@ func finish_animation() -> void:
 
 
 func player_respawn() -> void:
-	drop()
+	try_drop()
+
+
+func checkpoint_touched(_id: int) -> void:
+	try_save()

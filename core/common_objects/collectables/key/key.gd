@@ -9,10 +9,6 @@ var id: int # Not to be confused with the key_id,
 # this one is only for collision and collectable saving
 
 
-func _ready() -> void:
-	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
-
-
 func collect() -> void:
 	# Call the collect() function of the Collectable class.
 	super()
@@ -28,10 +24,6 @@ func drop() -> void:
 	for key_door: Door in get_tree().get_nodes_in_group("key_doors"):
 		if key_door.key_id == key_id:
 			key_door.untrigger_door()
-
-
-func checkpoint_touched(_id: int) -> void:
-	save()
 
 
 func movement_update() -> void:

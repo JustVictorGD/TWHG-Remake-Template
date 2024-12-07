@@ -6,22 +6,22 @@ class_name Coin
 
 var id: int
 
+
 func _ready() -> void:
-	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
+	# Call the _ready() function of the Collectable class.
+	super()
 	
 	World.money_requirement += 1
 
+
 func collect() -> void:
-	# Call the collect() function of the Collectable class.
 	super()
 	
 	World.collected_money += 1
 	GlobalSignal.coin_collected.emit()
 
+
 func drop() -> void:
 	super()
 	
 	World.collected_money -= 1
-
-func checkpoint_touched(_id: int) -> void:
-	save()

@@ -36,6 +36,8 @@ func play(sound_name: sounds) -> void:
 			checkpoint.play()
 		sounds.FINISH:
 			finish.play()
+		sounds.KEY:
+			key.play()
 		sounds.PAINT:
 			paint.play()
 		sounds.OPEN_DOOR:

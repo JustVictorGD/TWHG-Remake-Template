@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br3x13o51ul6q"
-path="res://.godot/imported/paint outline quadruple precision.png-28a35330ce97d3c7f676879eba0b8d94.ctex"
+uid="uid://32xlqikx31rs"
+path="res://.godot/imported/paint fill quadruple precision.png-f973abb719b3a107d698566c8c8990bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/common_objects/other/paint/paint outline quadruple precision.png"
-dest_files=["res://.godot/imported/paint outline quadruple precision.png-28a35330ce97d3c7f676879eba0b8d94.ctex"]
+source_file="res://core/common_objects/collectables/paint/paint fill quadruple precision.png"
+dest_files=["res://.godot/imported/paint fill quadruple precision.png-f973abb719b3a107d698566c8c8990bc.ctex"]
 
 [params]
 
