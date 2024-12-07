@@ -25,15 +25,14 @@ var state: states = states.UNCOLLECTED
 
 
 func _ready() -> void:
-	print("Calling _ready()... somehow?")
-	
 	drop_animation.timeout.connect(finish_animation)
 	
-	GameLoop.update_timers.connect(update_timers)
-	GameLoop.movement_update.connect(movement_update)
-	
-	GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
-	GlobalSignal.player_respawn.connect(player_respawn)
+	if not Engine.is_editor_hint():
+		GameLoop.update_timers.connect(update_timers)
+		GameLoop.movement_update.connect(movement_update)
+		
+		GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
+		GlobalSignal.player_respawn.connect(player_respawn)
 
 
 func try_collect() -> void:
