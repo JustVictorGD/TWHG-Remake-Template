@@ -22,11 +22,12 @@ buses/default_bus_layout="res://core/misc_assets/resources/default_bus_layout.tr
 
 [autoload]
 
-GameLoop="*res://core/system/autoloads/game_loop.gd"
 GameManager="*res://core/system/autoloads/game_manager.gd"
+GameLoop="*res://core/system/autoloads/game_loop.gd"
 SFX="*res://core/system/autoloads/sfx.tscn"
 GlobalSignal="*res://core/system/autoloads/global_signal.gd"
 Collider="*res://core/system/autoloads/collider.gd"
+SaveFile="*res://core/system/autoloads/save_file.gd"
 
 [debug]
 

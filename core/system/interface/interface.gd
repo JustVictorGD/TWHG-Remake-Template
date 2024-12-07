@@ -1,12 +1,6 @@
 extends Control
 class_name Interface
 
-# Time
-var ticks: int = 0
-var seconds: int = 0
-var minutes: int = 0
-var hours: int = 0
-
 # Node references
 @onready var level_code: Label = $LevelCode
 @onready var money: Label = $Money
@@ -21,6 +15,10 @@ var hours: int = 0
 
 @onready var flash_timer: TickBasedTimer = $FlashTimer
 
+@onready var ticks: int = GameLoop.ticks
+var seconds: int = 0
+var minutes: int = 0
+var hours: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameLoop.update_timers.connect(update_timers)

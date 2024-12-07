@@ -111,7 +111,7 @@ text = "Save 1"
 label_settings = SubResource("LabelSettings_q1axj")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Save1"]
+[node name="Deaths" type="Label" parent="Save1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,7 +125,7 @@ grow_vertical = 2
 text = "Deaths: 0"
 label_settings = SubResource("LabelSettings_4iutb")
 
-[node name="Label3" type="Label" parent="Save1"]
+[node name="Time" type="Label" parent="Save1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,7 +139,7 @@ grow_vertical = 2
 text = "Time: 0:00:00.000"
 label_settings = SubResource("LabelSettings_4iutb")
 
-[node name="Label4" type="Label" parent="Save1"]
+[node name="Level" type="Label" parent="Save1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,7 +153,7 @@ grow_vertical = 2
 text = "Level: 1"
 label_settings = SubResource("LabelSettings_4iutb")
 
-[node name="Label5" type="Label" parent="Save1"]
+[node name="Area" type="Label" parent="Save1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

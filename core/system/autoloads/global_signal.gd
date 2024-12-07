@@ -11,4 +11,6 @@ signal level_switched # Just a signal
 
 signal finish
 
+signal progress_saved
+
 signal event(id: int, state: bool)

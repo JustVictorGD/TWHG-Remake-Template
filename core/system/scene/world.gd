@@ -64,6 +64,8 @@ func switch_level(key: String) -> void:
 		
 		GlobalSignal.level_switched.emit()
 		
+		GameManager.current_level = key
+		
 		current_level = load(connections[key]).instantiate()
 		
 		GameManager.finished = false
