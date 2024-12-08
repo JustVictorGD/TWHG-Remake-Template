@@ -58,48 +58,58 @@ func focus_camera(area: Area) -> void:
 
 
 func switch_level(key: String) -> void:
-	if connections.has(key):
-		print(current_level)
-		if current_level != null:
-			current_level.queue_free()
-			await current_level.tree_exited
-		
-		walls.clear()
-		
-		GlobalSignal.level_switched.emit()
-		
-		GameManager.current_level = key
-		
-		current_level = load(connections[key]).instantiate()
-		
-		GameManager.finished = false
-		GameManager.invincible = false
-		
-		collected_money = 0
-		money_requirement = 0
-		
-		
-		add_child(current_level)
-		focus_camera(current_level)
-		
-		SaveFile.add_level_to_dict(key)
-		
-		var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
-		#checkpoints.filter(func(cp: Node) -> bool: return cp.is_inside_tree())
-		
-		
-		print(checkpoints)
-		for i: int in range(checkpoints.size()):
-			checkpoints[i].id = i
-			
-			var current_cp: int = SaveFile.save_dictionary["levels"][key]["checkpoint_id"]
-			
-			if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
-				player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
-			
-			
-	else:
+	if not connections.has(key):
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
+		return
+	
+	print(current_level)
+	if current_level != null:
+		current_level.queue_free()
+		await current_level.tree_exited
+	
+	walls.clear()
+	
+	GlobalSignal.level_switched.emit()
+	
+	GameManager.current_level = key
+	
+	current_level = load(connections[key]).instantiate()
+	
+	GameManager.finished = false
+	GameManager.invincible = false
+	
+	collected_money = 0
+	money_requirement = 0
+	
+	
+	add_child(current_level)
+	focus_camera(current_level)
+	
+	SaveFile.add_level_to_dict(key)
+	
+	# Assign checkpoint ids and spawn the player on the correct one
+	var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
+	for i: int in range(checkpoints.size()):
+		checkpoints[i].id = i
+		
+		var current_cp: int = SaveFile.save_dictionary["levels"][key]["checkpoint_id"]
+		
+		if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
+			player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
+	
+	# Assign coin ids
+	var coins: Array[Node] = get_tree().get_nodes_in_group("coins")
+	var coin_states: Array = SaveFile.save_dictionary["levels"][key]["coins"]
+	
+	for i: int in range(coins.size()):
+		coins[i].id = i
+		
+		while coin_states.size() < coins.size():
+			coin_states.append(0)
+		
+	
+	GlobalSignal.coins_processed.emit()
+	print(coin_states)
 
 
 static func try_get(array: Array, index: int) -> Variant:

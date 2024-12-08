@@ -13,15 +13,17 @@ class_name Collectable
 @export var sound: SFX.sounds = SFX.sounds.NONE
 
 enum states {
-	UNCOLLECTED,
-	PICKED_UP, # Goes back to UNCOLLECTED if the player dies
-	SAVED
+	UNCOLLECTED = 0,
+	PICKED_UP = 1, # Goes back to UNCOLLECTED if the player dies
+	SAVED = 1
 }
 
 var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 
-var state: states = states.UNCOLLECTED
+var state: int = states.UNCOLLECTED
+
+
 
 
 func _ready() -> void:

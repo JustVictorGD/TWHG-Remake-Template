@@ -6,12 +6,19 @@ class_name Coin
 
 var id: int
 
+var coin_states: Array = SaveFile.save_dictionary["levels"][GameManager.current_level]["coins"]
 
 func _ready() -> void:
 	# Call the _ready() function of the Collectable class.
 	super()
 	
 	World.money_requirement += 1
+	
+	await GlobalSignal.coins_processed
+	
+	state = coin_states[id]
+	if state == states.SAVED:
+		collect()
 
 
 func collect() -> void:
@@ -19,9 +26,19 @@ func collect() -> void:
 	
 	World.collected_money += 1
 	GlobalSignal.coin_collected.emit()
+	coin_states[id] = state
+	
 
 
 func drop() -> void:
 	super()
 	
 	World.collected_money -= 1
+	coin_states[id] = state
+
+func save() -> void:
+	super()
+	
+	coin_states[id] = state
+	
+	
