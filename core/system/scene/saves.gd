@@ -1,18 +1,23 @@
 extends Control
 @onready var square: ColorRect = $Square
-@onready var load_save_1: Button = $Save1/Button
+@onready var load_save_1: Button = $Save1/LoadSave
+@onready var clear_save_1: Button = $Save1/ClearSave
 @onready var world_scene: PackedScene = preload("res://game/scenes/world.tscn")
 
 func _ready() -> void:
 	load_save_1.button_up.connect(load_save_and_world)
+	clear_save_1.button_up.connect(override_save)
 	
 	var ticks: int = SaveFile.save_dictionary["global"]["ticks"]
 	var deaths: int = SaveFile.save_dictionary["global"]["deaths"]
-	var level: String = SaveFile.save_dictionary["global"]["current_level"]
+	var level: String = SaveFile.save_dictionary["global"]["level"]
 	
 	$Save1/Deaths.text = "Deaths: " + str(deaths)
 	$Save1/Time.text = "Time: " + format_time(ticks)
 	$Save1/Level.text = "Level: " + level
+
+
+
 
 @warning_ignore("integer_division")
 func format_time(total_ticks: int) -> String:
@@ -25,6 +30,10 @@ func format_time(total_ticks: int) -> String:
 
 func _process(delta: float) -> void:
 	$Square.rotation_degrees += 180 * delta
+
+func override_save() -> void:
+	SaveFile.clear_save()
+	load_save_and_world()
 
 func load_save_and_world() -> void:
 	SaveFile.load_save()

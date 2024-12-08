@@ -167,7 +167,7 @@ grow_vertical = 2
 text = "Area: (coords or name)"
 label_settings = SubResource("LabelSettings_4iutb")
 
-[node name="Button" type="Button" parent="Save1"]
+[node name="LoadSave" type="Button" parent="Save1"]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 304.0
@@ -175,7 +175,17 @@ offset_right = 212.0
 offset_bottom = 348.0
 theme_override_fonts/font = ExtResource("1_tcivd")
 theme_override_font_sizes/font_size = 25
-text = "Load"
+text = "Load Save"
+
+[node name="ClearSave" type="Button" parent="Save1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 248.0
+offset_right = 212.0
+offset_bottom = 292.0
+theme_override_fonts/font = ExtResource("1_tcivd")
+theme_override_font_sizes/font_size = 25
+text = "Override Save"
 
 [node name="Square" type="ColorRect" parent="."]
 layout_mode = 0

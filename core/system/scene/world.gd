@@ -27,7 +27,7 @@ static var current_level: Area = null
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("0"):
-		print(get_tree().get_nodes_in_group("coins")[0].modulate)
+		print(SaveFile.save_dictionary)
 
 
 func _ready() -> void:
@@ -40,7 +40,9 @@ func _ready() -> void:
 	
 	GlobalSignal.switch_level.connect(switch_level)
 	
-	switch_level(starting_level)
+	var stored_level: String = SaveFile.save_dictionary["global"]["level"]
+	
+	switch_level(starting_level if stored_level == "" else stored_level)
 
 
 func focus_camera(area: Area) -> void:
@@ -57,8 +59,10 @@ func focus_camera(area: Area) -> void:
 
 func switch_level(key: String) -> void:
 	if connections.has(key):
+		print(current_level)
 		if current_level != null:
 			current_level.queue_free()
+			await current_level.tree_exited
 		
 		walls.clear()
 		
@@ -78,13 +82,22 @@ func switch_level(key: String) -> void:
 		add_child(current_level)
 		focus_camera(current_level)
 		
-		var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
+		SaveFile.add_level_to_dict(key)
 		
+		var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
+		#checkpoints.filter(func(cp: Node) -> bool: return cp.is_inside_tree())
+		
+		
+		print(checkpoints)
 		for i: int in range(checkpoints.size()):
 			checkpoints[i].id = i
 			
-			if checkpoints[i].is_start():
+			var current_cp: int = SaveFile.save_dictionary["levels"][key]["checkpoint_id"]
+			
+			if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
 				player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
+			
+			
 	else:
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 
