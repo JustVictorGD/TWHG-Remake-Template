@@ -104,8 +104,12 @@ func switch_level(key: String) -> void:
 	for i: int in range(coins.size()):
 		coins[i].id = i
 		
+		# Extend the array until it has all coins' states
 		while coin_states.size() < coins.size():
 			coin_states.append(0)
+		
+		if coin_states[i] == 1:
+			World.collected_money += 1
 		
 	
 	GlobalSignal.coins_processed.emit()

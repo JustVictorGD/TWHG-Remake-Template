@@ -18,6 +18,11 @@ func _ready() -> void:
 		
 		if money_requirement <= 0:
 			money_requirement += World.money_requirement
+		
+		await GlobalSignal.coins_processed
+		
+		if World.collected_money >= money_requirement:
+			keep_triggered()
 
 
 func coin_collected() -> void:

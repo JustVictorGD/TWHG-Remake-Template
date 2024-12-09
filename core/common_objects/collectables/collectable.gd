@@ -52,6 +52,10 @@ func try_save() -> void:
 		save()
 
 
+func stay_collected() -> void:
+	state = states.SAVED
+	modulate.a = 0
+
 func collect() -> void:
 	if Collider.touched_checkpoint_ids.size() == 0:
 		state = states.PICKED_UP

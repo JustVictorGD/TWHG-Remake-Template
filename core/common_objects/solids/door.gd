@@ -49,6 +49,12 @@ func _ready() -> void:
 		GameLoop.update_timers.connect(update_timers)
 
 
+func keep_triggered() -> void:
+	modulate.a = 0
+	nullify_hitbox()
+	triggered = true
+
+
 func trigger_door() -> void:
 	# Don't trigger while already triggered.
 	if not triggered:
