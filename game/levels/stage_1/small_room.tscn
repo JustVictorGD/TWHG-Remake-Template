@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ihcdg7j8edmp"]
+[gd_scene load_steps=17 format=3 uid="uid://ihcdg7j8edmp"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_4r10h"]
 [ext_resource type="Resource" uid="uid://bnkml2vts6jbf" path="res://game/themes/custom/orange_theme.tres" id="2_clx40"]
@@ -7,6 +7,85 @@
 [ext_resource type="Script" path="res://core/special_objects/folder_2d.gd" id="6_1elcq"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="7_66r1i"]
 [ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="7_vtrin"]
+[ext_resource type="Script" path="res://core/special_objects/tick_based_animator.gd" id="8_m2jsx"]
+[ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/common_objects/other/turret/turret.tscn" id="9_x0h7h"]
+[ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="10_baewg"]
+
+[sub_resource type="Animation" id="Animation_pmfjl"]
+resource_name = "new_animation"
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 240)]
+}
+
+[sub_resource type="Animation" id="Animation_y3mh4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lixfg"]
+_data = {
+"RESET": SubResource("Animation_y3mh4"),
+"new_animation": SubResource("Animation_pmfjl")
+}
+
+[sub_resource type="Animation" id="Animation_ornn3"]
+resource_name = "new_animation"
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -240)]
+}
+
+[sub_resource type="Animation" id="Animation_ybkw4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cyuu8"]
+_data = {
+"RESET": SubResource("Animation_ybkw4"),
+"new_animation": SubResource("Animation_ornn3")
+}
 
 [node name="SmallRoom" type="Node2D" groups=["area"]]
 script = ExtResource("1_4r10h")
@@ -53,9 +132,9 @@ offset_top = -24.0
 offset_right = 792.0
 offset_bottom = 96.0
 script = ExtResource("7_vtrin")
-decorative = true
 outline_color = Color(0.4, 0.321569, 0.282353, 1)
 fill_color = Color(1, 0.705882, 0.560784, 1)
+metadata/_edit_lock_ = true
 
 [node name="Solid2" type="Control" parent="Walls"]
 z_index = 6
@@ -66,9 +145,9 @@ offset_top = 384.0
 offset_right = 792.0
 offset_bottom = 504.0
 script = ExtResource("7_vtrin")
-decorative = true
 outline_color = Color(0.4, 0.321569, 0.282353, 1)
 fill_color = Color(1, 0.705882, 0.560784, 1)
+metadata/_edit_lock_ = true
 
 [node name="Solid3" type="Control" parent="Walls"]
 z_index = 6
@@ -79,9 +158,9 @@ offset_top = 288.0
 offset_right = 192.0
 offset_bottom = 408.0
 script = ExtResource("7_vtrin")
-decorative = true
 outline_color = Color(0.4, 0.321569, 0.282353, 1)
 fill_color = Color(1, 0.705882, 0.560784, 1)
+metadata/_edit_lock_ = true
 
 [node name="Solid4" type="Control" parent="Walls"]
 z_index = 6
@@ -92,9 +171,9 @@ offset_top = 72.0
 offset_right = 192.0
 offset_bottom = 192.0
 script = ExtResource("7_vtrin")
-decorative = true
 outline_color = Color(0.4, 0.321569, 0.282353, 1)
 fill_color = Color(1, 0.705882, 0.560784, 1)
+metadata/_edit_lock_ = true
 
 [node name="Solid5" type="Control" parent="Walls"]
 z_index = 6
@@ -105,9 +184,9 @@ offset_top = 72.0
 offset_right = 792.0
 offset_bottom = 192.0
 script = ExtResource("7_vtrin")
-decorative = true
 outline_color = Color(0.4, 0.321569, 0.282353, 1)
 fill_color = Color(1, 0.705882, 0.560784, 1)
+metadata/_edit_lock_ = true
 
 [node name="Solid6" type="Control" parent="Walls"]
 z_index = 6
@@ -118,9 +197,9 @@ offset_top = 288.0
 offset_right = 792.0
 offset_bottom = 408.0
 script = ExtResource("7_vtrin")
-decorative = true
 outline_color = Color(0.4, 0.321569, 0.282353, 1)
 fill_color = Color(1, 0.705882, 0.560784, 1)
+metadata/_edit_lock_ = true
 
 [node name="Solid7" type="Control" parent="Walls"]
 z_index = 6
@@ -131,9 +210,9 @@ offset_top = 168.0
 offset_right = 792.0
 offset_bottom = 312.0
 script = ExtResource("7_vtrin")
-decorative = true
 outline_color = Color(0.4, 0.321569, 0.282353, 1)
 fill_color = Color(1, 0.705882, 0.560784, 1)
+metadata/_edit_lock_ = true
 
 [node name="Solid8" type="Control" parent="Walls"]
 z_index = 6
@@ -144,126 +223,83 @@ offset_top = 168.0
 offset_right = 96.0
 offset_bottom = 312.0
 script = ExtResource("7_vtrin")
-decorative = true
 outline_color = Color(0.4, 0.321569, 0.282353, 1)
 fill_color = Color(1, 0.705882, 0.560784, 1)
+metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("6_1elcq")
 
-[node name="BlueEnemy" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 96)
+[node name="Group1" type="Node2D" parent="Enemies"]
+script = ExtResource("6_1elcq")
 
-[node name="BlueEnemy2" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 120)
+[node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("7_66r1i")]
+position = Vector2(216, 120)
 
-[node name="BlueEnemy3" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 144)
-
-[node name="BlueEnemy4" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 168)
-
-[node name="BlueEnemy5" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 192)
-
-[node name="BlueEnemy6" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 216)
-
-[node name="BlueEnemy7" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 96)
-
-[node name="BlueEnemy8" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 120)
-
-[node name="BlueEnemy9" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 144)
-
-[node name="BlueEnemy10" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 168)
-
-[node name="BlueEnemy11" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 192)
-
-[node name="BlueEnemy12" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 216)
-
-[node name="BlueEnemy13" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 240)
-
-[node name="BlueEnemy14" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 264)
-
-[node name="BlueEnemy15" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 288)
-
-[node name="BlueEnemy16" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 312)
-
-[node name="BlueEnemy17" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 336)
-
-[node name="BlueEnemy18" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 240)
-
-[node name="BlueEnemy19" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 264)
-
-[node name="BlueEnemy20" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 288)
-
-[node name="BlueEnemy21" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 312)
-
-[node name="BlueEnemy22" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 336)
-
-[node name="BlueEnemy23" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 384)
-
-[node name="BlueEnemy24" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 360)
-
-[node name="BlueEnemy25" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 360)
-
-[node name="BlueEnemy26" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(384, 384)
-
-[node name="BlueEnemy27" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 96)
-
-[node name="BlueEnemy28" parent="Enemies" instance=ExtResource("7_66r1i")]
+[node name="BlueEnemy3" parent="Enemies/Group1" instance=ExtResource("7_66r1i")]
 position = Vector2(408, 120)
 
-[node name="BlueEnemy29" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 144)
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
+libraries = {
+"": SubResource("AnimationLibrary_lixfg")
+}
+autoplay = "new_animation"
+script = ExtResource("8_m2jsx")
 
-[node name="BlueEnemy30" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 168)
+[node name="Group2" type="Node2D" parent="Enemies"]
+script = ExtResource("6_1elcq")
 
-[node name="BlueEnemy31" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 192)
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
+libraries = {
+"": SubResource("AnimationLibrary_cyuu8")
+}
+autoplay = "new_animation"
+script = ExtResource("8_m2jsx")
 
-[node name="BlueEnemy32" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 216)
+[node name="BlueEnemy2" parent="Enemies/Group2" instance=ExtResource("7_66r1i")]
+position = Vector2(312, 360)
 
-[node name="BlueEnemy33" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 240)
+[node name="BlueEnemy3" parent="Enemies/Group2" instance=ExtResource("7_66r1i")]
+position = Vector2(504, 360)
 
-[node name="BlueEnemy34" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 264)
+[node name="BlueEnemy" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(264, 120)
 
-[node name="BlueEnemy35" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 288)
+[node name="BlueEnemy4" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 360)
 
-[node name="BlueEnemy36" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 312)
+[node name="BlueEnemy6" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(552, 360)
 
-[node name="BlueEnemy37" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 336)
+[node name="BlueEnemy5" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(456, 120)
 
-[node name="BlueEnemy38" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 360)
+[node name="Turret" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
+position = Vector2(264, 120)
+rotation = 1.57079
+object_speed = 4.0
+fire_timer = NodePath("../FireTimer")
 
-[node name="BlueEnemy39" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 384)
+[node name="Turret3" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
+position = Vector2(360, 360)
+rotation = 4.71238
+object_speed = 4.0
+fire_timer = NodePath("../FireTimer")
+
+[node name="Turret4" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
+position = Vector2(552, 360)
+rotation = 4.71238
+object_speed = 4.0
+fire_timer = NodePath("../FireTimer")
+
+[node name="Turret2" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
+position = Vector2(456, 120)
+rotation = 1.57079
+object_speed = 4.0
+fire_timer = NodePath("../FireTimer")
+
+[node name="FireTimer" type="Node" parent="."]
+script = ExtResource("10_baewg")
+metronome = true
+autostart = true
+duration = 60

@@ -4,6 +4,7 @@ extends Node2D
 ## Set this to -1 if you don't want the enemy destroyed.
 @export var object_lifetime: int = 60
 @export var object_speed: float = 1
+@export var fire_on_load: bool = true
 @export var fire_timer: TickBasedTimer
 
 var object: PackedScene
@@ -15,6 +16,9 @@ func _ready() -> void:
 	
 	if fire_timer != null:
 		fire_timer.timeout.connect(fire_turret)
+	
+	if fire_on_load:
+		call_deferred("fire_turret") # Avoids the "Parent is busy setting up children" error.
 
 func fire_turret() -> void:
 	var new_object: Node2D = object.instantiate()
