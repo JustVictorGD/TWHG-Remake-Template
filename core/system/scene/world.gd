@@ -97,24 +97,28 @@ func switch_level(key: String) -> void:
 		if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
 			player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
 	
-	# Assign coin ids
-	var coins: Array[Node] = get_tree().get_nodes_in_group("coins")
-	var coin_states: Array = SaveFile.save_dictionary["levels"][key]["coins"]
 	
-	for i: int in range(coins.size()):
-		coins[i].id = i
+	assign_collectable_ids("coins")
+	assign_collectable_ids("keys")
+	assign_collectable_ids("paints")
+	
+	GameManager.collectables_processed = true
+	GlobalSignal.collectables_processed.emit()
+
+func assign_collectable_ids(group_name: String) -> void:
+	var nodes: Array[Node] = get_tree().get_nodes_in_group(group_name)
+	var states: Array = SaveFile.save_dictionary["levels"][GameManager.current_level][group_name]
+	for i: int in range(nodes.size()):
+		nodes[i].id = i
 		
 		# Extend the array until it has all coins' states
-		while coin_states.size() < coins.size():
-			coin_states.append(0)
+		while states.size() < nodes.size():
+			states.append(0)
 		
-		if coin_states[i] == 1:
+		if group_name == "coins" and states[i] == 1:
 			World.collected_money += 1
-		
 	
-	GlobalSignal.coins_processed.emit()
-	print(coin_states)
-
+	print(states)
 
 static func try_get(array: Array, index: int) -> Variant:
 	# Negative check

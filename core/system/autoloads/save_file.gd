@@ -7,6 +7,8 @@ var default_save: Dictionary = {
 		"ticks": 0,
 		"deaths": 0 ,
 		"level": "",
+		"color_fill": Color(1, 0, 0),
+		"color_outline": Color(0.4, 0, 0)
 	},
 	"levels": {
 		"1": {

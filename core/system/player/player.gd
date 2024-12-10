@@ -155,6 +155,9 @@ func movement_update() -> void:
 
 
 func collision_update() -> void:
+	if not GameManager.collectables_processed:
+		return
+	
 	fancy_hitbox.enabled = true
 	Collider.touched_checkpoint_ids.clear()
 	

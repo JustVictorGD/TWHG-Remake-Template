@@ -1,5 +1,7 @@
 extends Node
 
+var collectables_processed: bool = false
+
 # Game properties
 var paused: bool = false
 var snappy_movement: bool = false

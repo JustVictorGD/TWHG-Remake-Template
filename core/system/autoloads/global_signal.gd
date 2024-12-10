@@ -1,6 +1,6 @@
 extends Node
 
-signal coins_processed
+signal collectables_processed
 
 signal coin_collected(id: int)
 signal anything_collected # Update checkpoints

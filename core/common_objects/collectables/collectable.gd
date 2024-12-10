@@ -21,10 +21,12 @@ enum states {
 var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 
-var state: int = states.UNCOLLECTED
+var state: states = states.UNCOLLECTED
 
+var id: int
 
-
+var group: String
+var group_states: Array # Gets the states of all collectables in the same group.
 
 func _ready() -> void:
 	drop_animation.timeout.connect(finish_animation)
@@ -35,6 +37,18 @@ func _ready() -> void:
 		
 		GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
 		GlobalSignal.player_respawn.connect(player_respawn)
+		
+		await GlobalSignal.collectables_processed
+		group = get_groups()[0]
+		group_states = SaveFile.save_dictionary["levels"][GameManager.current_level][group]
+		
+		if group_states.size() == 0:
+			push_warning("Collectable state array for group " + group + " is not created.")
+			return
+		
+		state = group_states[id]
+		if state == states.SAVED:
+			stay_collected()
 
 
 func try_collect() -> void:
@@ -67,17 +81,27 @@ func collect() -> void:
 	if plays_sound:
 		SFX.play(sound)
 	
+	update_state()
 	GlobalSignal.anything_collected.emit()
 
 
 func drop() -> void:
 	state = states.UNCOLLECTED
 	drop_animation.reset_and_play()
+	update_state()
+
 
 
 func save() -> void:
 	state = states.SAVED
+	update_state()
 
+func update_state() -> void:
+	if group_states.size() == 0:
+		push_warning("Collectable state array for group " + group + " is not created.")
+		return
+	
+	group_states[id] = state
 
 func movement_update() -> void:
 	if lock_scale:

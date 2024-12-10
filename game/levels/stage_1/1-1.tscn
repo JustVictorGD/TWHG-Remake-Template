@@ -756,7 +756,6 @@ autostart = true
 duration = 60
 
 [node name="Trigger" parent="." instance=ExtResource("18_egtxg")]
-modulate = Color(1, 0.411765, 0.705882, 1)
 position = Vector2(192, 144)
 event_id = 1
 button_mode = true
