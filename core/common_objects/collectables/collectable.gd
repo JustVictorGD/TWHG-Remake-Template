@@ -14,9 +14,9 @@ class_name Collectable
 
 
 enum states {
-	UNCOLLECTED = 0,
-	PICKED_UP = 1, # Goes back to UNCOLLECTED if the player dies
-	SAVED = 1
+	UNCOLLECTED,
+	PICKED_UP, # Goes back to UNCOLLECTED if the player dies
+	SAVED
 }
 
 var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
@@ -48,9 +48,9 @@ func _ready() -> void:
 			if group_states.size() == 0:
 				push_warning("Collectable state array for group " + group + " is not created.")
 				return
-			state = group_states[id]
 		
-		if state == states.SAVED:
+		if group_states[id] == 1:
+			state = states.SAVED
 			stay_collected()
 
 
@@ -107,7 +107,7 @@ func update_state() -> void:
 		push_warning("Collectable state array for group " + group + " is not created.")
 		return
 	
-	group_states[id] = state
+	group_states[id] = 1 if state == states.SAVED else 0
 
 func movement_update() -> void:
 	if lock_scale:
