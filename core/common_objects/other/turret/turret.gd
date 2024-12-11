@@ -3,14 +3,16 @@ extends Node2D
 ## Time until the object gets destroyed in frames. 60 frames = 1 second. 
 ## Set this to -1 if you don't want the enemy destroyed.
 @export var object_lifetime: int = 60
-@export var object_speed: float = 1
+@export var shot_node: PackedScene
+@export var velocity: Vector2 = Vector2.ZERO
 @export var fire_on_load: bool = true
 @export var fire_timer: TickBasedTimer
+@export var fire_event_id: int
 
-var object: PackedScene
+var scene: PackedScene = PackedScene.new()
 
 func _ready() -> void:
-	object = preload("res://core/common_objects/other/enemy/enemy.tscn")
+	GlobalSignal.event.connect(on_event)
 	# Makes the cyan square invisible in-game
 	$Sprite2D.modulate.a = 0
 	
@@ -21,17 +23,30 @@ func _ready() -> void:
 		call_deferred("fire_turret") # Avoids the "Parent is busy setting up children" error.
 
 func fire_turret() -> void:
-	var new_object: Node2D = object.instantiate()
-	self.get_parent().add_child(new_object)
-	new_object.position = position
+	if shot_node == null:
+		push_warning("No scene is chosen, turret won't work.")
+		return
+	var copy: Node = load(shot_node.resource_path).instantiate()
 	
-	var velocity_component: VelocityComponent = VelocityComponent.new(Vector2.RIGHT.rotated(rotation) * object_speed)
-	new_object.add_child(velocity_component)
+	if copy is Coin:
+		copy.store_state = false
+		
+	get_parent().add_child(copy)
 	
-	if object_lifetime != -1:
-		var lifetime_timer: TickBasedTimer = TickBasedTimer.new(object_lifetime)
-		lifetime_timer.timeout.connect(func() -> void: new_object.queue_free())
-		lifetime_timer.reset_and_play()
-		new_object.add_child(lifetime_timer)
+	copy.position = position
+	
+	var vc: VelocityComponent = VelocityComponent.new(velocity.rotated(rotation))
+	copy.add_child(vc)
+	
+	var tbt: TickBasedTimer = TickBasedTimer.new(object_lifetime, false, false, true)
+	copy.add_child(tbt)
+	
+	await tbt.timeout
+	
+	copy.queue_free()
 	
 	
+
+func on_event(id: int, state: bool) -> void:
+	if id == fire_event_id and state == true:
+		fire_turret()

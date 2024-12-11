@@ -11,6 +11,21 @@
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/common_objects/other/turret/turret.tscn" id="9_x0h7h"]
 [ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="10_baewg"]
 
+[sub_resource type="Animation" id="Animation_y3mh4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_pmfjl"]
 resource_name = "new_animation"
 loop_mode = 2
@@ -28,7 +43,13 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, 240)]
 }
 
-[sub_resource type="Animation" id="Animation_y3mh4"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lixfg"]
+_data = {
+"RESET": SubResource("Animation_y3mh4"),
+"new_animation": SubResource("Animation_pmfjl")
+}
+
+[sub_resource type="Animation" id="Animation_ybkw4"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -41,12 +62,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lixfg"]
-_data = {
-"RESET": SubResource("Animation_y3mh4"),
-"new_animation": SubResource("Animation_pmfjl")
 }
 
 [sub_resource type="Animation" id="Animation_ornn3"]
@@ -64,21 +79,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -240)]
-}
-
-[sub_resource type="Animation" id="Animation_ybkw4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cyuu8"]
@@ -277,25 +277,21 @@ position = Vector2(456, 120)
 [node name="Turret" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(264, 120)
 rotation = 1.57079
-object_speed = 4.0
 fire_timer = NodePath("../FireTimer")
 
 [node name="Turret3" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(360, 360)
 rotation = 4.71238
-object_speed = 4.0
 fire_timer = NodePath("../FireTimer")
 
 [node name="Turret4" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(552, 360)
 rotation = 4.71238
-object_speed = 4.0
 fire_timer = NodePath("../FireTimer")
 
 [node name="Turret2" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(456, 120)
 rotation = 1.57079
-object_speed = 4.0
 fire_timer = NodePath("../FireTimer")
 
 [node name="FireTimer" type="Node" parent="."]

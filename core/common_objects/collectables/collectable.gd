@@ -12,6 +12,7 @@ class_name Collectable
 
 @export var sound: SFX.sounds = SFX.sounds.NONE
 
+
 enum states {
 	UNCOLLECTED = 0,
 	PICKED_UP = 1, # Goes back to UNCOLLECTED if the player dies
@@ -22,6 +23,7 @@ var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 
 var state: states = states.UNCOLLECTED
+var store_state: bool = true
 
 var id: int
 
@@ -38,15 +40,16 @@ func _ready() -> void:
 		GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
 		GlobalSignal.player_respawn.connect(player_respawn)
 		
-		await GlobalSignal.collectables_processed
-		group = get_groups()[0]
-		group_states = SaveFile.save_dictionary["levels"][GameManager.current_level][group]
+		if store_state:
+			await GlobalSignal.collectables_processed
+			group = get_groups()[0]
+			group_states = SaveFile.save_dictionary["levels"][GameManager.current_level][group]
+			
+			if group_states.size() == 0:
+				push_warning("Collectable state array for group " + group + " is not created.")
+				return
+			state = group_states[id]
 		
-		if group_states.size() == 0:
-			push_warning("Collectable state array for group " + group + " is not created.")
-			return
-		
-		state = group_states[id]
 		if state == states.SAVED:
 			stay_collected()
 
@@ -97,6 +100,9 @@ func save() -> void:
 	update_state()
 
 func update_state() -> void:
+	if not store_state:
+		return
+	
 	if group_states.size() == 0:
 		push_warning("Collectable state array for group " + group + " is not created.")
 		return

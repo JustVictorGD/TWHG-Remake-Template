@@ -636,6 +636,7 @@ offset_left = 1200.0
 offset_top = 288.0
 offset_right = 1296.0
 offset_bottom = 528.0
+money_requirement = 50
 open_method = 4
 custom_method = Rect2(0.5, 0, 0, 1)
 fade = true
@@ -721,6 +722,15 @@ text = "Bricks."
 label_settings = SubResource("LabelSettings_tx2ix")
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="."]
+offset_left = 200.0
+offset_top = 120.0
+offset_right = 592.0
+offset_bottom = 177.0
+text = "<-- Free coins (no cap)"
+label_settings = SubResource("LabelSettings_tx2ix")
+horizontal_alignment = 1
+
 [node name="Turrets" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
 metadata/_edit_lock_ = true
@@ -728,7 +738,8 @@ metadata/_edit_lock_ = true
 [node name="Turret" parent="Turrets" node_paths=PackedStringArray("fire_timer") instance=ExtResource("16_854g3")]
 position = Vector2(792, 264)
 object_lifetime = 120
-object_speed = 2.5
+shot_node = ExtResource("8_7casm")
+velocity = Vector2(2, 0)
 fire_timer = NodePath("TickBasedTimer")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Turrets/Turret"]
@@ -741,13 +752,16 @@ script = ExtResource("9_yeknw")
 [node name="TickBasedTimer" type="Node" parent="Turrets/Turret"]
 script = ExtResource("17_bfg8e")
 metronome = true
+autostart = true
 duration = 10
 
-[node name="Turret2" parent="Turrets" node_paths=PackedStringArray("fire_timer") instance=ExtResource("16_854g3")]
-position = Vector2(168, 360)
-object_lifetime = 180
-object_speed = 5.0
-fire_timer = NodePath("TickBasedTimer")
+[node name="Turret2" parent="Turrets" instance=ExtResource("16_854g3")]
+position = Vector2(144, 576)
+object_lifetime = -1
+shot_node = ExtResource("11_xb47a")
+velocity = Vector2(0, -10)
+fire_on_load = false
+fire_event_id = 1
 
 [node name="TickBasedTimer" type="Node" parent="Turrets/Turret2"]
 script = ExtResource("17_bfg8e")
@@ -756,28 +770,18 @@ autostart = true
 duration = 60
 
 [node name="Trigger" parent="." instance=ExtResource("18_egtxg")]
-position = Vector2(192, 144)
+position = Vector2(144, 144)
 event_id = 1
 button_mode = true
 activated_color = Color(1, 0.713726, 0.756863, 0.5)
 
 [node name="BlueEnemy" parent="." instance=ExtResource("8_7casm")]
-position = Vector2(120, 168)
+position = Vector2(72, 144)
 script = ExtResource("19_ooqya")
 
 [node name="VelocityComponent" type="Node2D" parent="BlueEnemy"]
 script = ExtResource("20_3tkab")
-velocity = Vector2(4, 0)
-enabled = false
-metadata/_edit_lock_ = true
-
-[node name="BlueEnemy2" parent="." instance=ExtResource("8_7casm")]
-position = Vector2(216, 168)
-script = ExtResource("19_ooqya")
-
-[node name="VelocityComponent" type="Node2D" parent="BlueEnemy2"]
-script = ExtResource("20_3tkab")
-velocity = Vector2(4, 0)
+velocity = Vector2(8, 0)
 enabled = false
 metadata/_edit_lock_ = true
 
