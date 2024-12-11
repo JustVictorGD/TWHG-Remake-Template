@@ -48,10 +48,10 @@ func _ready() -> void:
 			if group_states.size() == 0:
 				push_warning("Collectable state array for group " + group + " is not created.")
 				return
-		
-		if group_states[id] == 1:
-			state = states.SAVED
-			stay_collected()
+			
+			if group_states[id] == 1:
+				state = states.SAVED
+				stay_collected()
 
 
 func try_collect() -> void:
