@@ -186,9 +186,11 @@ func collision_update() -> void:
 	for paint: Paint in get_tree().get_nodes_in_group("paints"):
 		if fancy_hitbox.intersects(paint.hitbox):
 			paint.try_collect()
-			outline.modulate = paint.outline_color
-			fill.modulate = paint.fill_color
-			particles.modulate = paint.fill_color
+			
+			var color_tuple: ColorTuple = PaintManager.unlockable_paints[paint.paint_id]
+			outline.modulate = color_tuple.outline
+			fill.modulate = color_tuple.fill
+			particles.modulate = color_tuple.fill
 
 
 func update_timers() -> void:

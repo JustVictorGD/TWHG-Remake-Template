@@ -4,7 +4,6 @@ class_name Key
 
 @export var key_id: int = -1
 
-@onready var hitbox: CircleCollider = $CircleCollider
 #var id: int # Not to be confused with the key_id,
 # this one is only for collision and collectable saving
 
@@ -13,6 +12,7 @@ var key_states: Array
 func _ready() -> void:
 	super()
 	
+	hitbox = $CircleCollider
 	await GlobalSignal.collectables_processed
 	key_states = SaveFile.save_dictionary["levels"][GameManager.current_level]["keys"]
 	

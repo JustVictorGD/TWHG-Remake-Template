@@ -12,6 +12,7 @@ class_name Collectable
 
 @export var sound: SFX.sounds = SFX.sounds.NONE
 
+var hitbox: AbstractCollider
 
 enum states {
 	UNCOLLECTED,
@@ -54,19 +55,28 @@ func _ready() -> void:
 				stay_collected()
 
 
-func try_collect() -> void:
+func try_collect() -> bool:
 	if state == states.UNCOLLECTED:
 		collect()
+		return true
+	
+	return false
 
 
-func try_drop() -> void:
+func try_drop() -> bool:
 	if state == states.PICKED_UP:
 		drop()
+		return true
+	
+	return false
 
 
-func try_save() -> void:
+func try_save() -> bool:
 	if state == states.PICKED_UP:
 		save()
+		return true
+	
+	return false
 
 
 func stay_collected() -> void:
@@ -78,6 +88,8 @@ func collect() -> void:
 		state = states.PICKED_UP
 	else:
 		state = states.SAVED
+	
+	hitbox.enabled = false
 	
 	collect_animation.reset_and_play()
 	
@@ -91,12 +103,15 @@ func collect() -> void:
 func drop() -> void:
 	state = states.UNCOLLECTED
 	drop_animation.reset_and_play()
+	hitbox.enabled = true
 	update_state()
+	
 
 
 
 func save() -> void:
 	state = states.SAVED
+	hitbox.enabled = true
 	update_state()
 
 func update_state() -> void:

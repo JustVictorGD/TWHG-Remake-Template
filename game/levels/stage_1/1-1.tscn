@@ -770,6 +770,7 @@ autostart = true
 duration = 60
 
 [node name="Trigger" parent="." instance=ExtResource("18_egtxg")]
+modulate = Color(1, 0.411765, 0.705882, 1)
 position = Vector2(144, 144)
 event_id = 1
 button_mode = true
@@ -790,10 +791,8 @@ position = Vector2(672, 336)
 
 [node name="Paint2" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(912, 336)
-outline_color = Color(0.4, 0, 0.4, 1)
-fill_color = Color(1, 0, 1, 1)
+paint_id = 1
 
 [node name="Paint3" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(1080, 144)
-outline_color = Color(0.2, 0.2, 0.2, 1)
-fill_color = Color(0.5, 0.5, 0.5, 1)
+paint_id = 2

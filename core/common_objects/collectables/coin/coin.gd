@@ -2,14 +2,13 @@
 extends Collectable
 class_name Coin
 
-@onready var hitbox: CircleCollider = $CircleCollider
-
 var coin_states: Array
 
 func _ready() -> void:
 	# Call the _ready() function of the Collectable class.
 	super()
 	
+	hitbox = $CircleCollider
 	World.money_requirement += 1
 	
 	await GlobalSignal.collectables_processed
