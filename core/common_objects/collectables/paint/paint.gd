@@ -3,18 +3,33 @@ extends Collectable
 class_name Paint
 
 @export var paint_id: int = 0
+var color_tuple: ColorTuple:
+	get:
+		return PaintManager.unlockable_paints[paint_id]
 
 @onready var outline: Sprite2D = $Outline
 @onready var fill: Sprite2D = $Fill
 
+var is_ghost: bool = false
+
 func _ready() -> void:
 	super()
-	
 	hitbox = $CircleCollider
+
+func stay_collected() -> void:
+	#state = states.SAVED
+	hitbox.enabled = false
+	is_ghost = true
+
+func update_timers() -> void:
+	super()
 	
-	var color_tuple: ColorTuple = PaintManager.unlockable_paints[paint_id]
-	if color_tuple == null:
-		return
+	if color_tuple != null:
+		outline.modulate = color_tuple.outline
+		fill.modulate = color_tuple.fill
+	else:
+		push_warning("Paint ID ", paint_id, " doesn't exist.")
 	
-	outline.modulate = color_tuple.outline
-	fill.modulate = color_tuple.fill
+	if is_ghost:
+		modulate = PaintManager.ghost_tint
+	
