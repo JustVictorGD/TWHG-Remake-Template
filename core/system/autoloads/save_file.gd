@@ -1,5 +1,7 @@
 extends Node
 
+signal save_loaded
+
 var path: String = "user://save.json"
 
 var default_save: Dictionary = {
@@ -7,8 +9,7 @@ var default_save: Dictionary = {
 		"ticks": 0,
 		"deaths": 0 ,
 		"level": "",
-		"color_fill": Color(1, 0, 0),
-		"color_outline": Color(0.4, 0, 0)
+		"color": -1,
 	},
 	"levels": {
 		"1": {
@@ -64,6 +65,11 @@ func save() -> void:
 	save_dictionary["global"]["deaths"] = GameManager.deaths
 	save_dictionary["global"]["level"] = GameManager.current_level
 	
+	var player: Player = get_tree().get_first_node_in_group("player")
+	
+	if player != null:
+		save_dictionary["global"]["color"] = player.paint_id
+	
 	store_save()
 
 
@@ -82,3 +88,4 @@ func load_save() -> void:
 	GameLoop.ticks = save_dictionary["global"]["ticks"]
 	GameManager.deaths = save_dictionary["global"]["deaths"]
 	GameManager.current_level = save_dictionary["global"]["level"]
+	save_loaded.emit()

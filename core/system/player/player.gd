@@ -5,8 +5,6 @@ class_name Player
 
 #region Properties
 
-
-
 @export var speed: int = 4000 # One pixel per tick is 1,000
 @export_range(0, 41) var sliding_sensitivity: int = 32
 
@@ -17,6 +15,9 @@ class_name Player
 
 @onready var fancy_hitbox: RectangleCollider = $RectangleCollider
 
+var paint_id: int
+var color_tuple: ColorTuple:
+	get: return PaintManager.default_player if paint_id == -1 else PaintManager.unlockable_paints[paint_id]
 
 var movement_direction: Vector2 = Vector2.ZERO
 
@@ -93,10 +94,16 @@ func _ready() -> void:
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
+	
 	GlobalSignal.finish.connect(finish)
+	
+	paint_id = SaveFile.save_dictionary["global"]["color"]
 
 
 func movement_update() -> void:
+	outline.modulate = color_tuple.outline
+	fill.modulate = color_tuple.fill
+	particles.modulate = color_tuple.fill
 	
 	particles.emitting = true
 	$TerrainVelocityComponent.enabled = true
@@ -187,10 +194,8 @@ func collision_update() -> void:
 		if fancy_hitbox.intersects(paint.hitbox):
 			paint.try_collect()
 			
-			var color_tuple: ColorTuple = PaintManager.unlockable_paints[paint.paint_id]
-			outline.modulate = color_tuple.outline
-			fill.modulate = color_tuple.fill
-			particles.modulate = color_tuple.fill
+			paint_id = paint.paint_id
+			#SaveFile.save_dictionary["global"]["color"] = paint.paint_id
 
 
 func update_timers() -> void:

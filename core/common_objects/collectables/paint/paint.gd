@@ -13,5 +13,8 @@ func _ready() -> void:
 	hitbox = $CircleCollider
 	
 	var color_tuple: ColorTuple = PaintManager.unlockable_paints[paint_id]
+	if color_tuple == null:
+		return
+	
 	outline.modulate = color_tuple.outline
 	fill.modulate = color_tuple.fill

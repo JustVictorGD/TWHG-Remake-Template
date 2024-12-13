@@ -62,7 +62,6 @@ func switch_level(key: String) -> void:
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 		return
 	
-	print(current_level)
 	if current_level != null:
 		current_level.queue_free()
 		await current_level.tree_exited
@@ -118,7 +117,6 @@ func assign_collectable_ids(group_name: String) -> void:
 		if group_name == "coins" and states[i] == 1:
 			World.collected_money += 1
 	
-	print(states)
 
 static func try_get(array: Array, index: int) -> Variant:
 	# Negative check

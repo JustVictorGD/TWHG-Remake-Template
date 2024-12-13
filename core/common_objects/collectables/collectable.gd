@@ -81,6 +81,7 @@ func try_save() -> bool:
 
 func stay_collected() -> void:
 	state = states.SAVED
+	hitbox.enabled = false
 	modulate.a = 0
 
 func collect() -> void:
@@ -111,7 +112,6 @@ func drop() -> void:
 
 func save() -> void:
 	state = states.SAVED
-	hitbox.enabled = true
 	update_state()
 
 func update_state() -> void:
