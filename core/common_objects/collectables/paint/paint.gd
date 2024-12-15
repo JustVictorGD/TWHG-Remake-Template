@@ -3,6 +3,7 @@ extends Collectable
 class_name Paint
 
 @export var paint_id: int = 0
+
 var color_tuple: ColorTuple:
 	get:
 		return PaintManager.unlockable_paints[paint_id]
@@ -12,14 +13,17 @@ var color_tuple: ColorTuple:
 
 var is_ghost: bool = false
 
+
 func _ready() -> void:
 	super()
 	hitbox = $CircleCollider
+
 
 func stay_collected() -> void:
 	#state = states.SAVED
 	hitbox.enabled = false
 	is_ghost = true
+
 
 func update_timers() -> void:
 	super()
@@ -32,4 +36,8 @@ func update_timers() -> void:
 	
 	if is_ghost:
 		modulate = PaintManager.ghost_tint
-	
+
+
+func _process(delta: float) -> void:
+	outline.modulate = color_tuple.outline
+	fill.modulate = color_tuple.fill
