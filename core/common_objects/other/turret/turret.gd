@@ -4,6 +4,7 @@ extends Node2D
 ## Set this to -1 if you don't want the enemy destroyed.
 @export var object_lifetime: int = 60
 @export var shot_node: PackedScene
+@export var properties: Resource
 @export var velocity: Vector2 = Vector2.ZERO
 @export var fire_on_load: bool = true
 @export var fire_timer: TickBasedTimer
@@ -38,6 +39,9 @@ func fire_turret() -> void:
 		copy.store_state = false
 	
 	if copy is Enemy:
+		if properties != null and properties is EnemyProperties:
+			copy.set_properties(properties)
+		
 		copy.update_colors()
 	
 	copy.position = position

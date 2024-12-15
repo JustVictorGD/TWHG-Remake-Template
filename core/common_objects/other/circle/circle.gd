@@ -10,6 +10,7 @@ class_name Circle
 @export var arc_degrees : float = 360
 ## Type of object, which the circle will create. If empty, the circle will spawn enemies by default.
 @export var node: PackedScene = load("res://core/common_objects/other/enemy/enemy.tscn")
+@export var properties: Resource
 ## If this is false, then there will be an object at the start and at the end of the arc. However, if arc_degrees = 360, then the start and end overlap and the object count looks like it's reduced by 1. Changing this to true will make the circle work like in Edit1 and Edit3.
 @export var full_circle_mode : bool = true
 
@@ -36,8 +37,11 @@ func _ready() -> void:
 		if owner is Area:
 			copy.owner = self.owner
 			
-			if copy is Enemy:
-				copy.update_colors()
+		if copy is Enemy:
+			if properties != null and properties is EnemyProperties:
+				copy.set_properties(properties)
+			
+			copy.update_colors()
 
 func animation_update() -> void:
 	arc = deg_to_rad(arc_degrees)

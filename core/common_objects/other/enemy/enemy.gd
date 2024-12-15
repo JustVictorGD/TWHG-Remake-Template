@@ -66,3 +66,10 @@ func update_colors() -> void:
 		fill.modulate = fill_color
 	
 	$GPUParticles2D.modulate = fill.modulate
+
+func set_properties(properties: EnemyProperties) -> void:
+	constant_check = properties.constant_check
+	lock_scale = properties.lock_scale
+	copy_area_theme = properties.copy_area_theme
+	outline_color = properties.outline_color
+	fill_color = properties.fill_color

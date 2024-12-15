@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ihcdg7j8edmp"]
+[gd_scene load_steps=19 format=3 uid="uid://ihcdg7j8edmp"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_4r10h"]
 [ext_resource type="Resource" uid="uid://bnkml2vts6jbf" path="res://game/themes/custom/orange_theme.tres" id="2_clx40"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="7_vtrin"]
 [ext_resource type="Script" path="res://core/special_objects/tick_based_animator.gd" id="8_m2jsx"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/common_objects/other/turret/turret.tscn" id="9_x0h7h"]
+[ext_resource type="Script" path="res://core/special_objects/enemy_properties.gd" id="10_1hxpd"]
 [ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="10_baewg"]
 
 [sub_resource type="Animation" id="Animation_y3mh4"]
@@ -86,6 +87,14 @@ _data = {
 "RESET": SubResource("Animation_ybkw4"),
 "new_animation": SubResource("Animation_ornn3")
 }
+
+[sub_resource type="Resource" id="Resource_0vqd2"]
+script = ExtResource("10_1hxpd")
+constant_check = false
+lock_scale = false
+copy_area_theme = false
+outline_color = Color(0.4, 0.321569, 0.282353, 1)
+fill_color = Color(1, 0.705882, 0.560784, 1)
 
 [node name="SmallRoom" type="Node2D" groups=["area"]]
 script = ExtResource("1_4r10h")
@@ -276,22 +285,30 @@ position = Vector2(456, 120)
 
 [node name="Turret" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(264, 120)
-rotation = 1.57079
+shot_node = ExtResource("7_66r1i")
+properties = SubResource("Resource_0vqd2")
+velocity = Vector2(0, 4)
 fire_timer = NodePath("../FireTimer")
 
 [node name="Turret3" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(360, 360)
-rotation = 4.71238
+shot_node = ExtResource("7_66r1i")
+properties = SubResource("Resource_0vqd2")
+velocity = Vector2(0, -4)
 fire_timer = NodePath("../FireTimer")
 
 [node name="Turret4" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(552, 360)
-rotation = 4.71238
+shot_node = ExtResource("7_66r1i")
+properties = SubResource("Resource_0vqd2")
+velocity = Vector2(0, -4)
 fire_timer = NodePath("../FireTimer")
 
 [node name="Turret2" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(456, 120)
-rotation = 1.57079
+shot_node = ExtResource("7_66r1i")
+properties = SubResource("Resource_0vqd2")
+velocity = Vector2(0, 4)
 fire_timer = NodePath("../FireTimer")
 
 [node name="FireTimer" type="Node" parent="."]
