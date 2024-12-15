@@ -576,13 +576,13 @@ metadata/_edit_lock_ = true
 position = Vector2(456, 696)
 radius = 3.0
 object_count = 4
-object_type = 1
+node = ExtResource("11_xb47a")
 
 [node name="Circle4" parent="Coins" instance=ExtResource("9_kgjox")]
 position = Vector2(456, 696)
 radius = 1.0
 object_count = 4
-object_type = 1
+node = ExtResource("11_xb47a")
 
 [node name="Coin" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1272, 696)
@@ -758,7 +758,7 @@ duration = 10
 [node name="Turret2" parent="Turrets" instance=ExtResource("16_854g3")]
 position = Vector2(144, 576)
 object_lifetime = -1
-shot_node = ExtResource("11_xb47a")
+shot_node = ExtResource("8_7casm")
 velocity = Vector2(0, -10)
 fire_on_load = false
 fire_event_id = 1

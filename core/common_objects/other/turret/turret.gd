@@ -26,12 +26,19 @@ func fire_turret() -> void:
 	if shot_node == null:
 		push_warning("No scene is chosen, turret won't work.")
 		return
-	var copy: Node = load(shot_node.resource_path).instantiate()
+	var copy: Node = shot_node.instantiate()
+	
+		
+	get_parent().add_child(copy)
+	
+	if owner is Area:
+		copy.owner = self.owner
 	
 	if copy is Coin:
 		copy.store_state = false
-		
-	get_parent().add_child(copy)
+	
+	if copy is Enemy:
+		copy.update_colors()
 	
 	copy.position = position
 	
