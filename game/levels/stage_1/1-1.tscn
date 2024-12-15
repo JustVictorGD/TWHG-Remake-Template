@@ -626,6 +626,7 @@ key_id = 1
 [node name="Key3" parent="Keys" instance=ExtResource("11_cekvf")]
 position = Vector2(768, 576)
 key_id = 2
+save_behavior = 2
 
 [node name="GoldDoors" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
@@ -788,11 +789,14 @@ metadata/_edit_lock_ = true
 
 [node name="Paint" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(672, 336)
+save_behavior = 1
 
 [node name="Paint2" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(912, 336)
 paint_id = 1
+save_behavior = 1
 
 [node name="Paint3" parent="." instance=ExtResource("21_vxatf")]
 position = Vector2(1080, 144)
 paint_id = 2
+save_behavior = 1

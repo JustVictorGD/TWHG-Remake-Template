@@ -12,13 +12,22 @@ class_name Collectable
 
 @export var sound: SFX.sounds = SFX.sounds.NONE
 
-var hitbox: AbstractCollider
+@export var save_behavior: save_behaviors = save_behaviors.NORMAL
+
 
 enum states {
 	UNCOLLECTED,
 	PICKED_UP, # Goes back to UNCOLLECTED if the player dies
 	SAVED
 }
+
+enum save_behaviors {
+	NORMAL,
+	AUTOMATIC_SAVE,
+	UNSAVABLE
+}
+
+var hitbox: AbstractCollider
 
 var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
@@ -88,7 +97,11 @@ func collect() -> void:
 	if plays_sound:
 		SFX.play(sound)
 	
+	if save_behavior == save_behaviors.AUTOMATIC_SAVE:
+		save()
+	
 	update_state()
+	
 	GlobalSignal.anything_collected.emit()
 
 
@@ -102,6 +115,9 @@ func drop() -> void:
 
 
 func save() -> void:
+	if save_behavior == save_behaviors.UNSAVABLE:
+		return
+	
 	state = states.SAVED
 	update_state()
 
