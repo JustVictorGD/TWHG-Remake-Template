@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sfeanntnhuwr" path="res://core/common_objects/collectables/coin/Coin.png" id="2_a33l2"]
 [ext_resource type="Script" path="res://core/colliders/circle_collider.gd" id="3_qukea"]
 
-[node name="Coin" type="Node2D" groups=["coins"]]
+[node name="Coin" type="Node2D" groups=["coins", "collectables"]]
 z_index = 2
 script = ExtResource("1_k1jfa")
 sound = 2

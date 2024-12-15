@@ -32,6 +32,9 @@ var group: String
 var group_states: Array # Gets the states of all collectables in the same group.
 
 func _ready() -> void:
+	if not is_in_group("collectables"):
+		push_warning("Node extending 'Collectable' expected to be in \"collectables\" group.")
+	
 	drop_animation.timeout.connect(finish_animation)
 	
 	if not Engine.is_editor_hint():
@@ -40,19 +43,6 @@ func _ready() -> void:
 		
 		GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
 		GlobalSignal.player_respawn.connect(player_respawn)
-		
-		if store_state:
-			await GlobalSignal.collectables_processed
-			group = get_groups()[0]
-			group_states = SaveFile.save_dictionary["levels"][GameManager.current_level][group]
-			
-			if group_states.size() == 0:
-				push_warning("Collectable state array for group " + group + " is not created.")
-				return
-			
-			if group_states[id] == 1:
-				state = states.SAVED
-				stay_collected()
 
 
 func try_collect() -> bool:
@@ -83,6 +73,7 @@ func stay_collected() -> void:
 	state = states.SAVED
 	hitbox.enabled = false
 	modulate.a = 0
+
 
 func collect() -> void:
 	if Collider.touched_checkpoint_ids.size() == 0:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://core/common_objects/solids/key_door/key_door.gd" id="1_7ugfb"]
 
-[node name="KeyDoor2" type="ColorRect" groups=["key_doors"]]
+[node name="KeyDoor" type="ColorRect" groups=["key_doors"]]
 z_index = 5
 offset_left = -48.0
 offset_top = -48.0

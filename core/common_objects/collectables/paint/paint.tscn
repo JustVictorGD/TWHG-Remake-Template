@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://br3x13o51ul6q" path="res://core/common_objects/collectables/paint/paint outline quadruple precision.png" id="3_yie6p"]
 [ext_resource type="Script" path="res://core/colliders/circle_collider.gd" id="4_t8bvy"]
 
-[node name="Paint" type="Node2D" groups=["paints"]]
+[node name="Paint" type="Node2D" groups=["collectables", "paints"]]
 script = ExtResource("1_xq6tu")
 sound = 6
 

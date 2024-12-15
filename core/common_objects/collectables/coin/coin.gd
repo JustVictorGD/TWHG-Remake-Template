@@ -2,7 +2,6 @@
 extends Collectable
 class_name Coin
 
-var coin_states: Array
 
 func _ready() -> void:
 	# Call the _ready() function of the Collectable class.
@@ -10,16 +9,6 @@ func _ready() -> void:
 	
 	hitbox = $CircleCollider
 	World.money_requirement += 1
-	
-	await GlobalSignal.collectables_processed
-	coin_states = SaveFile.save_dictionary["levels"][GameManager.current_level]["coins"]
-	
-	
-	#state = coin_states[id]
-	#if state == states.SAVED:
-		#stay_collected()
-
-
 
 
 func collect() -> void:
@@ -27,8 +16,12 @@ func collect() -> void:
 	
 	World.collected_money += 1
 	GlobalSignal.coin_collected.emit()
+
+
+func stay_collected() -> void:
+	super()
 	
-	
+	World.collected_money += 1
 
 
 func drop() -> void:

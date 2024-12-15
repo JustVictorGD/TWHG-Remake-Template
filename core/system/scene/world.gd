@@ -66,10 +66,7 @@ func switch_level(key: String) -> void:
 		current_level.queue_free()
 		await current_level.tree_exited
 	
-	walls.clear()
-	
 	GlobalSignal.level_switched.emit()
-	
 	GameManager.current_level = key
 	
 	current_level = load(connections[key]).instantiate()
@@ -79,7 +76,7 @@ func switch_level(key: String) -> void:
 	
 	collected_money = 0
 	money_requirement = 0
-	
+	walls.clear()
 	
 	add_child(current_level)
 	focus_camera(current_level)
@@ -88,6 +85,7 @@ func switch_level(key: String) -> void:
 	
 	# Assign checkpoint ids and spawn the player on the correct one
 	var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
+	
 	for i: int in range(checkpoints.size()):
 		checkpoints[i].id = i
 		
@@ -96,13 +94,31 @@ func switch_level(key: String) -> void:
 		if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
 			player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
 	
-	
 	assign_collectable_ids("coins")
 	assign_collectable_ids("keys")
 	assign_collectable_ids("paints")
 	
 	GameManager.collectables_processed = true
-	GlobalSignal.collectables_processed.emit()
+	
+	for collectable: Collectable in get_tree().get_nodes_in_group("collectables"):
+		if collectable.store_state:
+			var group: String = collectable.get_groups()[0]
+			
+			if group == "collectables": group = collectable.get_groups()[1]
+			
+			collectable.group_states = SaveFile.save_dictionary["levels"][GameManager.current_level][group]
+			
+			if collectable.group_states.size() == 0:
+				push_warning("Collectable state array for group " + group + " is not created.")
+				return
+			
+			if collectable.group_states[collectable.id] == 1:
+				collectable.stay_collected()
+	
+	for gold_door: GoldDoor in get_tree().get_nodes_in_group("gold_doors"):
+		if collected_money >= gold_door.money_requirement:
+			gold_door.stay_triggered()
+
 
 func assign_collectable_ids(group_name: String) -> void:
 	var nodes: Array[Node] = get_tree().get_nodes_in_group(group_name)
@@ -114,8 +130,13 @@ func assign_collectable_ids(group_name: String) -> void:
 		while states.size() < nodes.size():
 			states.append(0)
 		
-		if group_name == "coins" and states[i] == 1:
-			World.collected_money += 1
+		match group_name:
+			"coins":
+				if states[i] == 1:
+					World.collected_money += 1
+			
+			"keys":
+				nodes[i].key_states = SaveFile.save_dictionary["levels"][GameManager.current_level]["keys"]
 	
 
 static func try_get(array: Array, index: int) -> Variant:

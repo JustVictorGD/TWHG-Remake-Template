@@ -13,9 +13,6 @@ func _ready() -> void:
 	super()
 	
 	hitbox = $CircleCollider
-	await GlobalSignal.collectables_processed
-	key_states = SaveFile.save_dictionary["levels"][GameManager.current_level]["keys"]
-	
 
 func stay_collected() -> void:
 	super()
