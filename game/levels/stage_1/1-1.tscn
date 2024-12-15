@@ -758,7 +758,7 @@ duration = 10
 [node name="Turret2" parent="Turrets" instance=ExtResource("16_854g3")]
 position = Vector2(144, 576)
 object_lifetime = -1
-shot_node = ExtResource("8_7casm")
+shot_node = ExtResource("11_xb47a")
 velocity = Vector2(0, -10)
 fire_on_load = false
 fire_event_id = 1
