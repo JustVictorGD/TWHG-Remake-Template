@@ -586,30 +586,39 @@ node = ExtResource("11_xb47a")
 
 [node name="Coin" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1272, 696)
+store_behavior = 2
 
 [node name="Coin2" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1320, 696)
+store_behavior = 2
 
 [node name="Coin3" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1368, 696)
+store_behavior = 2
 
 [node name="Coin4" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1272, 744)
+store_behavior = 2
 
 [node name="Coin5" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1320, 744)
+store_behavior = 2
 
 [node name="Coin6" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1368, 744)
+store_behavior = 2
 
 [node name="Coin7" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1272, 792)
+store_behavior = 2
 
 [node name="Coin8" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1320, 792)
+store_behavior = 2
 
 [node name="Coin9" parent="Coins" instance=ExtResource("11_xb47a")]
 position = Vector2(1368, 792)
+store_behavior = 2
 
 [node name="Keys" type="Node2D" parent="."]
 script = ExtResource("3_womt2")

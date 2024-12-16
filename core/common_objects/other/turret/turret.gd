@@ -36,7 +36,7 @@ func fire_turret() -> void:
 		copy.owner = self.owner
 	
 	if copy is Coin:
-		copy.store_state = false
+		copy.store_behavior = copy.store_behaviors.INCREMENT_TOTAL
 	
 	if copy is Enemy:
 		if properties != null and properties is EnemyProperties:

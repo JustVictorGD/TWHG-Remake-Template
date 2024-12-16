@@ -15,6 +15,7 @@ var default_save: Dictionary = {
 		"1": {
 			"checkpoint_id": -1,
 			"coins": [],
+			"extra_coins": 0,
 			"keys": [],
 			"paints": [],
 		}
@@ -44,6 +45,7 @@ func add_level_to_dict(level: String) -> void:
 		save_dictionary["levels"][level] = {
 			"checkpoint_id": -1,
 			"coins": [],
+			"extra_coins": 0,
 			"keys": [],
 			"paints": [],
 		}

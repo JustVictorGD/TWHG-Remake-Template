@@ -94,6 +94,8 @@ func switch_level(key: String) -> void:
 		if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
 			player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
 	
+	# Add extra coins count
+	collected_money += SaveFile.save_dictionary["levels"][key]["extra_coins"]
 	assign_collectable_ids("coins")
 	assign_collectable_ids("keys")
 	assign_collectable_ids("paints")
@@ -101,7 +103,7 @@ func switch_level(key: String) -> void:
 	GameManager.collectables_processed = true
 	
 	for collectable: Collectable in get_tree().get_nodes_in_group("collectables"):
-		if collectable.store_state:
+		if collectable.store_behavior == collectable.store_behaviors.STORE_STATE:
 			var group: String = collectable.get_groups()[0]
 			
 			if group == "collectables": group = collectable.get_groups()[1]
