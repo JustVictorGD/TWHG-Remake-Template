@@ -1,3 +1,4 @@
+@icon("res://core/misc_assets/images/node_icons/paint.png")
 @tool
 extends Collectable
 class_name Paint
