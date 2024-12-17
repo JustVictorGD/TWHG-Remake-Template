@@ -82,13 +82,10 @@ func handle_key_press(snappy_movement: bool) -> void:
 
 
 func _ready() -> void:
-	super() # Calling _ready() of the PushableBox class.
-	
 	sliding_sensitivity += 1
 	fancy_hitbox.scale = PLAYER_SIZE
 	
 	respawn_timer.timeout.connect(respawn)
-	
 	
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.collision_update.connect(collision_update)
@@ -116,48 +113,11 @@ func movement_update() -> void:
 		return
 	
 	# Movement from player controls.
-	
 	move(movement_direction * speed * speed_hack_multiplier)
 	
-	if GameManager.ghost:
-		return
-	
-	# Wall related behavior.
-	
-	var touching_walls: Array[Rect2i] = []
-	
-	var larger_check: Rect2i = Rect2i(
-		hitbox.position - Vector2i(8, 8),
-		hitbox.size + Vector2i(16, 16)
-		)
-	
-	for wall: Rect2i in World.walls:
-		if wall.intersects(larger_check): touching_walls.append(wall)
-	
-	var merged_walls: Array[Rect2i] = []
-	
-	# It's going to be understandable to not understand this.
-	
-	if touching_walls.size() >= 2:
-		for i: int in range(touching_walls.size() - 1):
-			# Either Rect2i or null.
-			var merge: Variant = Collider.try_merge(position, \
-					touching_walls[i], touching_walls[i + 1], PLAYER_SIZE.x)
-			
-			if merge != null:
-				merged_walls.append(merge)
-			
-			else:
-				merged_walls.append(touching_walls[i])
-				
-				if i == touching_walls.size() - 2:
-					merged_walls.append(touching_walls[i + 1])
-	else:
-		merged_walls = touching_walls
-	
-	var wall_push: Vector2i = Collider.updated_wall_push(hitbox, merged_walls) - Vector2i(position)
-	
-	move(wall_push * 1000)
+	if not GameManager.ghost:
+		# Comes from the 'PushableBox' class!
+		push_out_of_walls()
 
 
 func collision_update() -> void:

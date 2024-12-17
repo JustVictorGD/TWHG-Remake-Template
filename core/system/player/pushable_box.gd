@@ -13,12 +13,23 @@ enum subpixel {
 var hitbox: Rect2i
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 
-#region Game Loop
 
-func _ready() -> void:
-	pass
-
-#endregion
+func push_out_of_walls() -> void:
+	var nearby_walls: Array[Rect2i] = []
+	
+	var larger_check: Rect2i = Rect2i(
+		hitbox.position - Vector2i(8, 8),
+		hitbox.size + Vector2i(16, 16)
+		)
+	
+	for wall: Rect2i in World.walls:
+		if wall.intersects(larger_check): nearby_walls.append(wall)
+	
+	nearby_walls = merge_walls(nearby_walls, hitbox)
+	
+	var wall_push: Vector2i = Collider.updated_wall_push(hitbox, nearby_walls) - Vector2i(position)
+	
+	move(wall_push * 1000)
 
 # Floating point numbers cannot be trusted with precision,
 # however keeping track of subpixel position is still needed.
@@ -79,9 +90,9 @@ func move_to(given_position: Vector2i) -> void:
 
 #endregion
 
-# Everything below is related to preventing getting stuck
-# on smooth walls when moving diagonally into them, and properly
-# pushing the player out when sandwiched between walls.
+# Everything below may be confusing for some (potentially most) readers.
+# The purpose of these functions is to achieve more reliable wall physics
+# through merging and stretching walls and performing corner sliding.
 
 #region Wall Utilities
 
@@ -148,7 +159,7 @@ func can_merge(a: Rect2i, b: Rect2i, player_pos: Vector2, leniency: Vector2) -> 
 
 func merge_walls(walls: Array[Rect2i], player: Rect2i) -> Array[Rect2i]:
 	var player_pos: Vector2 = player.position + player.size / 2
-	var leniency: Vector2 = player.size
+	var leniency: Vector2 = player.size - Vector2i.ONE
 	
 	var did_merge: bool = true
 	
@@ -177,5 +188,11 @@ func merge_walls(walls: Array[Rect2i], player: Rect2i) -> Array[Rect2i]:
 
 
 
+
+#endregion
+
+#region Corner Sliding
+
+# This region is empty.
 
 #endregion
