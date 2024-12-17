@@ -29,6 +29,8 @@ var in_editor: bool:
 func _ready() -> void:
 	update_colors()
 	
+	$GPUParticles2D.emitting = true
+	
 	if not in_editor:
 		GameLoop.movement_update.connect(movement_update)
 		if !lock_scale:

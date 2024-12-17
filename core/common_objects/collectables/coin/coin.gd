@@ -7,6 +7,7 @@ func _ready() -> void:
 	# Call the _ready() function of the Collectable class.
 	super()
 	
+	$GPUParticles2D.emitting = true
 	hitbox = $CircleCollider
 	World.money_requirement += 1
 
