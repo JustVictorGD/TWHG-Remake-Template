@@ -33,6 +33,7 @@ var dead: bool = false # Invincible but disables movement and is temporary
 
 #endregion
 
+#region Game Loop
 
 func _input(_event: InputEvent) -> void:
 	handle_key_press(GameManager.snappy_movement)
@@ -40,7 +41,7 @@ func _input(_event: InputEvent) -> void:
 	if not dead:
 		if Input.is_action_pressed("teleport"):
 			move_to(get_global_mouse_position() * 1000)
-		
+
 
 func handle_key_press(snappy_movement: bool) -> void:
 	if snappy_movement:
@@ -78,13 +79,11 @@ func handle_key_press(snappy_movement: bool) -> void:
 				- int(Input.is_action_pressed("left")))
 		movement_direction.y = (int(Input.is_action_pressed("down")) \
 				- int(Input.is_action_pressed("up")))
-	
-
-
-#region Game Loop
 
 
 func _ready() -> void:
+	super() # Calling _ready() of the PushableBox class.
+	
 	sliding_sensitivity += 1
 	fancy_hitbox.scale = PLAYER_SIZE
 	
@@ -212,9 +211,7 @@ func update_timers() -> void:
 
 #endregion
 
-
 #region Gameplay Functions
-
 
 func collect_coin(id: int) -> void:
 	GlobalSignal.coin_collected.emit(id)
