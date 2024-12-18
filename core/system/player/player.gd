@@ -117,7 +117,14 @@ func movement_update() -> void:
 	
 	if not GameManager.ghost:
 		# Comes from the 'PushableBox' class!
-		push_out_of_walls()
+		var push: Vector2i = push_out_of_walls()
+		
+		if not GameManager.invincible and \
+				(abs(push.x) / 500 >= hitbox.size.x or \
+				abs(push.y) / 500 >= hitbox.size.y):
+			enemy_death()
+		else:
+			move(push)
 
 
 func collision_update() -> void:

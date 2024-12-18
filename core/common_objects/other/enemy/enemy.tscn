@@ -42,7 +42,6 @@ texture = ExtResource("3_3npqu")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(0, 0, 1, 1)
 z_index = -1
-emitting = false
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_mf8v6")
 texture = ExtResource("3_3npqu")
