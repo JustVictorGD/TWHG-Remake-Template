@@ -2,12 +2,16 @@
 extends Collectable
 class_name Coin
 
+# False by default because coins rarely move.
+@export var motion_trail: bool = false
 
 func _ready() -> void:
 	# Call the _ready() function of the Collectable class.
 	super()
 	
-	$GPUParticles2D.emitting = true
+	if motion_trail:
+		$GPUParticles2D.emitting = true
+	
 	hitbox = $CircleCollider
 	World.money_requirement += 1
 

@@ -3,11 +3,14 @@
 extends Node2D
 class_name Enemy
 
+## True by default because enemies rarely stay still.
+## Turn off for static enemies to reduce unneeded GPU load.
+@export var motion_trail: bool = true
+
 ## If true, it will keep updating its colors and size every frame in game.
 ## May cost some performance but allows themes that gradually change.
 @export var constant_check: bool = false
 @export var lock_scale: bool = false
-
 @export var copy_area_theme: bool = true
 
 @export var outline_color: Color = Color(0, 0, 0.4)
@@ -29,7 +32,8 @@ var in_editor: bool:
 func _ready() -> void:
 	update_colors()
 	
-	$GPUParticles2D.emitting = true
+	if motion_trail:
+		$GPUParticles2D.emitting = true
 	
 	if not in_editor:
 		GameLoop.movement_update.connect(movement_update)
