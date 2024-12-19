@@ -118,13 +118,24 @@ func movement_update() -> void:
 	if not GameManager.ghost:
 		# Comes from the 'PushableBox' class!
 		var push: Vector2i = push_out_of_walls()
+		var queue_death: bool = false
 		
-		if not GameManager.invincible and \
-				(abs(push.x) / 500 >= hitbox.size.x or \
-				abs(push.y) / 500 >= hitbox.size.y):
-			enemy_death()
-		else:
+		if GameManager.invincible:
 			move(push)
+		
+		else:
+			if abs(push.x) / 1000 * 3 >= hitbox.size.x:
+				queue_death = true
+			else:
+				move(Vector2i(push.x, 0))
+			
+			if abs(push.y) / 1000 * 3 >= hitbox.size.y:
+				queue_death = true
+			else:
+				move(Vector2i(0, push.y))
+			
+			if queue_death:
+				enemy_death()
 
 
 func collision_update() -> void:
