@@ -127,7 +127,7 @@ offset_top = 192.0
 offset_right = 672.0
 offset_bottom = 288.0
 type = 2
-final_destination = true
+level_warp = "4"
 
 [node name="Walls" type="Node2D" parent="."]
 script = ExtResource("6_1elcq")
@@ -242,18 +242,18 @@ script = ExtResource("6_1elcq")
 [node name="Group1" type="Node2D" parent="Enemies"]
 script = ExtResource("6_1elcq")
 
-[node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("7_66r1i")]
-position = Vector2(216, 120)
-
-[node name="BlueEnemy3" parent="Enemies/Group1" instance=ExtResource("7_66r1i")]
-position = Vector2(408, 120)
-
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
 libraries = {
 "": SubResource("AnimationLibrary_lixfg")
 }
 autoplay = "new_animation"
 script = ExtResource("8_m2jsx")
+
+[node name="BlueEnemy" parent="Enemies/Group1" instance=ExtResource("7_66r1i")]
+position = Vector2(216, 120)
+
+[node name="BlueEnemy2" parent="Enemies/Group1" instance=ExtResource("7_66r1i")]
+position = Vector2(408, 120)
 
 [node name="Group2" type="Node2D" parent="Enemies"]
 script = ExtResource("6_1elcq")
@@ -265,23 +265,23 @@ libraries = {
 autoplay = "new_animation"
 script = ExtResource("8_m2jsx")
 
-[node name="BlueEnemy2" parent="Enemies/Group2" instance=ExtResource("7_66r1i")]
+[node name="BlueEnemy3" parent="Enemies/Group2" instance=ExtResource("7_66r1i")]
 position = Vector2(312, 360)
 
-[node name="BlueEnemy3" parent="Enemies/Group2" instance=ExtResource("7_66r1i")]
+[node name="BlueEnemy4" parent="Enemies/Group2" instance=ExtResource("7_66r1i")]
 position = Vector2(504, 360)
 
-[node name="BlueEnemy" parent="Enemies" instance=ExtResource("7_66r1i")]
+[node name="BlueEnemy5" parent="Enemies" instance=ExtResource("7_66r1i")]
 position = Vector2(264, 120)
 
-[node name="BlueEnemy4" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(360, 360)
-
 [node name="BlueEnemy6" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(456, 120)
+
+[node name="BlueEnemy7" parent="Enemies" instance=ExtResource("7_66r1i")]
 position = Vector2(552, 360)
 
-[node name="BlueEnemy5" parent="Enemies" instance=ExtResource("7_66r1i")]
-position = Vector2(456, 120)
+[node name="BlueEnemy8" parent="Enemies" instance=ExtResource("7_66r1i")]
+position = Vector2(360, 360)
 
 [node name="Turret" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("9_x0h7h")]
 position = Vector2(264, 120)

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/common_objects/other/floor/floor.tscn" id="4_mkg8p"]
 [ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="6_e1mw2"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/common_objects/solids/tile_map/solid_tile_set.tscn" id="6_exbb4"]
-[ext_resource type="Shader" path="res://gradient_shader.gdshader" id="6_tk2c3"]
+[ext_resource type="Shader" path="res://core/shaders/screen_gradient/screen_gradient_shader.gdshader" id="6_tk2c3"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/common_objects/other/checkpoint/checkpoint.tscn" id="7_aod08"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="8_7casm"]
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/common_objects/other/circle/circle.tscn" id="9_kgjox"]

@@ -27,6 +27,7 @@ var in_editor: bool:
 
 @onready var outline: Sprite2D = $Outline
 @onready var fill: Sprite2D = $Fill
+@onready var particles: GPUParticles2D = $GPUParticles2D
 
 
 func _ready() -> void:
@@ -79,3 +80,9 @@ func set_properties(properties: EnemyProperties) -> void:
 	copy_area_theme = properties.copy_area_theme
 	outline_color = properties.outline_color
 	fill_color = properties.fill_color
+	
+	if properties.outline_shader != null:
+		outline.material = properties.outline_shader
+	if properties.fill_shader != null:
+		fill.material = properties.fill_shader
+		particles.material = properties.fill_shader
