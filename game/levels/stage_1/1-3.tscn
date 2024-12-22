@@ -215,45 +215,13 @@ metadata/_edit_lock_ = true
 
 [node name="BlueEnemy" parent="Enemies" instance=ExtResource("8_svj4m")]
 position = Vector2(264, 312)
-
-[node name="Outline" parent="Enemies/BlueEnemy" index="0"]
-modulate = Color(0, 0, 0, 1)
-material = ExtResource("7_yux3v")
-metadata/_edit_lock_ = true
-
-[node name="Fill" parent="Enemies/BlueEnemy" index="1"]
-modulate = Color(1, 1, 1, 1)
-material = ExtResource("7_k0rsa")
-metadata/_edit_lock_ = true
-
-[node name="GPUParticles2D" parent="Enemies/BlueEnemy" index="2"]
-modulate = Color(1, 1, 1, 1)
-material = ExtResource("7_k0rsa")
-metadata/_edit_lock_ = true
-
-[node name="CircleCollider" parent="Enemies/BlueEnemy" index="3"]
-metadata/_edit_lock_ = true
+outline_shader = ExtResource("7_yux3v")
+fill_shader = ExtResource("7_k0rsa")
 
 [node name="BlueEnemy4" parent="Enemies" instance=ExtResource("8_svj4m")]
 position = Vector2(312, 312)
-
-[node name="Outline" parent="Enemies/BlueEnemy4" index="0"]
-modulate = Color(0, 0, 0, 1)
-material = ExtResource("7_yux3v")
-metadata/_edit_lock_ = true
-
-[node name="Fill" parent="Enemies/BlueEnemy4" index="1"]
-modulate = Color(1, 1, 1, 1)
-material = ExtResource("7_k0rsa")
-metadata/_edit_lock_ = true
-
-[node name="GPUParticles2D" parent="Enemies/BlueEnemy4" index="2"]
-modulate = Color(1, 1, 1, 1)
-material = ExtResource("7_k0rsa")
-metadata/_edit_lock_ = true
-
-[node name="CircleCollider" parent="Enemies/BlueEnemy4" index="3"]
-metadata/_edit_lock_ = true
+outline_shader = ExtResource("7_yux3v")
+fill_shader = ExtResource("7_k0rsa")
 
 [node name="Turret" parent="Enemies" node_paths=PackedStringArray("fire_timer") instance=ExtResource("14_4u7yo")]
 position = Vector2(1512, 72)
@@ -320,5 +288,3 @@ is_relative = false
 teleporter_setting = 1
 
 [editable path="Walls/TileBasedWall"]
-[editable path="Enemies/BlueEnemy"]
-[editable path="Enemies/BlueEnemy4"]

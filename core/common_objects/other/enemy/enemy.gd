@@ -16,6 +16,9 @@ class_name Enemy
 @export var outline_color: Color = Color(0, 0, 0.4)
 @export var fill_color: Color = Color(0, 0, 1)
 
+@export var outline_shader: ShaderMaterial
+@export var fill_shader: ShaderMaterial
+
 @onready var hitbox: CircleCollider = $CircleCollider
 var id: int
 # For cases when opacity is changed externally, like from invincibility
@@ -32,6 +35,12 @@ var in_editor: bool:
 
 func _ready() -> void:
 	update_colors()
+	
+	if outline_shader != null:
+		outline.material = outline_shader
+	if fill_shader != null:
+		fill.material = fill_shader
+		particles.material = fill_shader
 	
 	if motion_trail:
 		$GPUParticles2D.emitting = true
