@@ -117,7 +117,7 @@ func movement_update() -> void:
 	
 	if not GameManager.ghost:
 		# Comes from the 'PushableBox' class!
-		var push: Vector2i = push_out_of_walls()
+		var push: Vector2i = push_out_of_walls(get_nearby_walls())
 		var queue_death: bool = false
 		
 		if GameManager.invincible:

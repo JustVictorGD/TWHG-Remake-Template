@@ -14,7 +14,7 @@ var hitbox: Rect2i
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 
 
-func push_out_of_walls() -> Vector2i:
+func get_nearby_walls() -> Array[Rect2i]:
 	var nearby_walls: Array[Rect2i] = []
 	
 	var larger_check: Rect2i = Rect2i(
@@ -26,16 +26,16 @@ func push_out_of_walls() -> Vector2i:
 		if wall.intersects(larger_check): nearby_walls.append(wall)
 	
 	nearby_walls = merge_walls(nearby_walls, hitbox)
-	var first_push: Vector2i = Collider.updated_wall_push(hitbox, nearby_walls) - Vector2i(position)
 	
-	move(first_push * 1000)
+	nearby_walls += get_stretches(nearby_walls, hitbox)
 	
-	nearby_walls = stretch_walls(nearby_walls, hitbox)
-	var second_push: Vector2i = Collider.updated_wall_push(hitbox, nearby_walls) - Vector2i(position)
+	#DataVisualizer.red_walls.append_array(nearby_walls)
 	
-	move(first_push * -1000)
-	
-	return (first_push + second_push) * 1000
+	return nearby_walls
+
+
+func push_out_of_walls(walls: Array[Rect2i]) -> Vector2i:
+	return (Collider.updated_wall_push(hitbox, walls) - Vector2i(position)) * 1000
 
 # Floating point numbers cannot be trusted with precision,
 # however keeping track of subpixel position is still needed.
@@ -45,6 +45,7 @@ func push_out_of_walls() -> Vector2i:
 func print_position() -> void:
 	# Weird formatting explained at: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_format_string.html#padding
 	print("X = %s.%03d, Y = %s.%03d" % [position.x, subpixels.x, position.y, subpixels.y])
+
 
 # Adds to the position using the subpixel system.
 # This function uses subpixels. Multiply any input in pixels by 1000.
@@ -264,7 +265,7 @@ func merge_walls(walls: Array[Rect2i], player: Rect2i) -> Array[Rect2i]:
 
 #region Wall Stretching
 
-func stretch_walls(walls: Array[Rect2i], player: Rect2i) -> Array[Rect2i]:
+func get_stretches(walls: Array[Rect2i], player: Rect2i) -> Array[Rect2i]:
 	var transformations: Array[Rect2i] = []
 	
 	for i: int in range(walls.size()):
@@ -281,19 +282,29 @@ func stretch_walls(walls: Array[Rect2i], player: Rect2i) -> Array[Rect2i]:
 			transformations[j].position += potential_stretches[1].position
 			transformations[j].size += potential_stretches[1].size
 	
+	var stretched_walls: Array[Rect2i] = []
+	
 	for i: int in range(transformations.size()):
 		var transformation: Rect2i = transformations[i]
 		
+		if transformation.position == Vector2i.ZERO and \
+				transformation.size == Vector2i.ZERO:
+			continue
+		
+		var new_wall: Rect2i = walls[i]
+		
 		if transformation.position.x != 0:
-			walls[i] = stretch(walls[i], Vector2i.LEFT)
+			new_wall = stretch(new_wall, Vector2i.LEFT)
 		if transformation.position.y != 0:
-			walls[i] = stretch(walls[i], Vector2i.UP)
+			new_wall = stretch(new_wall, Vector2i.UP)
 		if transformation.size.x != 0:
-			walls[i] = stretch(walls[i], Vector2i.RIGHT)
+			new_wall = stretch(new_wall, Vector2i.RIGHT)
 		if transformation.size.y != 0:
-			walls[i] = stretch(walls[i], Vector2i.DOWN)
+			new_wall = stretch(new_wall, Vector2i.DOWN)
+		
+		stretched_walls.append(new_wall)
 	
-	return walls
+	return stretched_walls
 
 
 

@@ -14,6 +14,8 @@ static var walls: Array[Rect2i] = []
 static var collected_money: int = 0
 static var money_requirement: int = 0
 
+static var rect_visualizer: Node
+
 # Important nodes.
 var canvas_layer: CanvasLayer = CanvasLayer.new()
 var interface: Interface = preload("res://core/system/interface/interface.tscn").instantiate()
@@ -31,6 +33,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
+	rect_visualizer = $RectVisualizer
+	
 	add_child(canvas_layer)
 	canvas_layer.add_child(interface)
 	add_child(camera)
