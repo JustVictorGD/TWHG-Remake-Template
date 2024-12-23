@@ -247,7 +247,7 @@ position = Vector2(1200, 120)
 script = ExtResource("3_qv0m8")
 
 [node name="Key" parent="Keys" instance=ExtResource("11_hvxuf")]
-position = Vector2(776, 1088)
+position = Vector2(768, 1104)
 
 [node name="GoldDoors" type="Node2D" parent="."]
 script = ExtResource("3_qv0m8")

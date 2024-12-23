@@ -17,10 +17,14 @@ static var money_requirement: int = 0
 static var rect_visualizer: Node
 
 # Important nodes.
-var canvas_layer: CanvasLayer = CanvasLayer.new()
-var interface: Interface = preload("res://core/system/interface/interface.tscn").instantiate()
-var camera: Camera2D = Camera2D.new()
-var player: Player = preload("res://core/system/player/player.tscn").instantiate()
+@onready var canvas_layer: CanvasLayer = $UILayer
+@onready var interface: Interface = $UILayer/Interface
+@onready var camera: Camera2D = $Camera2D
+@onready var player: Player = $Player
+@onready var shader_container: Control = $Camera2D/ShaderLayer/ShaderContainer # Contains all the full screen shaders and scales them to fit the game window
+
+
+
 
 # Level switching.
 var connections: Dictionary = json_to_dict("res://game/connections.json")
@@ -35,10 +39,10 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	rect_visualizer = $RectVisualizer
 	
-	add_child(canvas_layer)
-	canvas_layer.add_child(interface)
-	add_child(camera)
-	add_child(player)
+	#add_child(canvas_layer)
+	#canvas_layer.add_child(interface)
+	#add_child(camera)
+	#add_child(player)
 	
 	focus_camera(current_level)
 	
@@ -48,6 +52,13 @@ func _ready() -> void:
 	
 	switch_level(starting_level if stored_level == "" else stored_level)
 
+func _process(delta: float) -> void:
+	var invincibility_shader: ColorRect = $Camera2D/ShaderLayer/ShaderContainer/Invincibility
+	if GameManager.invincible:
+		invincibility_shader.visible = true
+	else:
+		invincibility_shader.visible = false
+		
 
 func focus_camera(area: Area) -> void:
 	if area == null:
@@ -55,10 +66,13 @@ func focus_camera(area: Area) -> void:
 	
 	camera.zoom.x = PLAYABLE_WINDOW.size.x / (area.area_size.x * 48)
 	camera.zoom.y = camera.zoom.x
+	shader_container.size = PLAYABLE_WINDOW.size
+	shader_container.position = PLAYABLE_WINDOW.position
+	
 	
 	# The "area_size" of areas is measured in tiles, which are 48x48 pixels in size.
 	# The value in pixels is halved because the halfway point is needed.
-	camera.offset = area.position + Vector2(area.area_size) / 2 * 48
+	camera.position = area.position + Vector2(area.area_size) / 2 * 48
 
 
 func switch_level(key: String) -> void:

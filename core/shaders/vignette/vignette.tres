@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xauxknlfrump"]
+
+[ext_resource type="Shader" path="res://core/shaders/vignette/vignette.gdshader" id="1_iixhy"]
+
+[resource]
+shader = ExtResource("1_iixhy")
+shader_parameter/outerRadius = 1.0
+shader_parameter/MainAlpha = 1.0
+shader_parameter/vignetteColor = Color(0, 0, 0, 1)
