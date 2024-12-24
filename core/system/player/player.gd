@@ -91,7 +91,7 @@ func _ready() -> void:
 	GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
 	
-	GlobalSignal.finish.connect(finish)
+	#GlobalSignal.finish.connect(finish)
 	
 	paint_id = SaveFile.save_dictionary["global"]["color"]
 
@@ -160,7 +160,7 @@ func collision_update() -> void:
 			coin.try_collect()
 	
 	for enemy: Enemy in get_tree().get_nodes_in_group("enemies"):
-		if not GameManager.invincible and fancy_hitbox.intersects(enemy.hitbox):
+		if not GameManager.invincible and not GameManager.finished and fancy_hitbox.intersects(enemy.hitbox):
 			enemy_death()
 	
 	for key: Key in get_tree().get_nodes_in_group("keys"):
@@ -217,8 +217,8 @@ func respawn() -> void:
 	dead = false
 
 
-func finish() -> void:
-	GameManager.invincible = true
+#func finish() -> void:
+	#GameManager.invincible = true
 
 
 #endregion

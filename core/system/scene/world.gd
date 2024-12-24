@@ -23,9 +23,6 @@ static var rect_visualizer: Node
 @onready var player: Player = $Player
 @onready var shader_container: Control = $Camera2D/ShaderLayer/ShaderContainer # Contains all the full screen shaders and scales them to fit the game window
 
-
-
-
 # Level switching.
 var connections: Dictionary = json_to_dict("res://game/connections.json")
 static var current_level: Area = null
@@ -51,14 +48,6 @@ func _ready() -> void:
 	var stored_level: String = SaveFile.save_dictionary["global"]["level"]
 	
 	switch_level(starting_level if stored_level == "" else stored_level)
-
-func _process(delta: float) -> void:
-	var invincibility_shader: ColorRect = $Camera2D/ShaderLayer/ShaderContainer/Invincibility
-	if GameManager.invincible:
-		invincibility_shader.visible = true
-	else:
-		invincibility_shader.visible = false
-		
 
 func focus_camera(area: Area) -> void:
 	if area == null:
@@ -178,3 +167,9 @@ static func json_to_dict(json_path: String) -> Dictionary:
 	item_def_file.close()
 	
 	return item_lookup
+	
+static func get_child_by_name(node: Node, target_name: String) -> Node:
+	for child: Node in node.get_children():
+		if child.name == target_name:
+			return child
+	return null

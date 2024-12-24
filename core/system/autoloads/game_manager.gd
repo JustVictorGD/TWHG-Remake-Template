@@ -11,9 +11,6 @@ var deaths: int = 0
 var finished: bool = false
 var current_level: String
 
-# Player time
-# var ticks: int = 0
-
 # Special player states
 var invincible: bool = false # Death can't trigger
 var ghost: bool = false # Ignore walls
