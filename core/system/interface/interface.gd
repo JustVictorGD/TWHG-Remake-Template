@@ -34,18 +34,18 @@ func menu_click() -> void:
 func update_timers() -> void:
 	if not GameManager.finished:
 		ticks += 1
-		
-		while ticks >= 60:
-			ticks -= 60
-			seconds += 1
-		
-		while seconds >= 60:
-			seconds -= 60
-			minutes += 1
-		
-		while minutes >= 60:
-			minutes -= 60
-			hours += 1
+	
+	while ticks >= 60:
+		ticks -= 60
+		seconds += 1
+	
+	while seconds >= 60:
+		seconds -= 60
+		minutes += 1
+	
+	while minutes >= 60:
+		minutes -= 60
+		hours += 1
 
 
 func _process(_delta : float) -> void:
