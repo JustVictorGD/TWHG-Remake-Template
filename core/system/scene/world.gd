@@ -13,6 +13,7 @@ const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 static var walls: Array[Rect2i] = []
 static var collected_money: int = 0
 static var money_requirement: int = 0
+static var touched_checkpoint_ids: PackedInt32Array = []
 
 static var rect_visualizer: Node
 

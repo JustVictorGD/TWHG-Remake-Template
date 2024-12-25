@@ -87,7 +87,7 @@ func any_checkpoint_touched(_id: int) -> void:
 
 
 func anything_collected() -> void:
-	if state == states.SELECTED and self.id not in Collider.touched_checkpoint_ids:
+	if state == states.SELECTED and self.id not in World.touched_checkpoint_ids:
 		state = states.UPDATED
 
 

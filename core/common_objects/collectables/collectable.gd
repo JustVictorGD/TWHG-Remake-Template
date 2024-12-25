@@ -94,7 +94,7 @@ func stay_collected() -> void:
 
 
 func collect() -> void:
-	if Collider.touched_checkpoint_ids.size() == 0:
+	if World.touched_checkpoint_ids.size() == 0:
 		state = states.PICKED_UP
 	else:
 		state = states.SAVED

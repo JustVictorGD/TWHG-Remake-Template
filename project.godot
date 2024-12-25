@@ -26,7 +26,6 @@ GameManager="*res://core/system/autoloads/game_manager.gd"
 GameLoop="*res://core/system/autoloads/game_loop.gd"
 SFX="*res://core/system/autoloads/sfx.tscn"
 GlobalSignal="*res://core/system/autoloads/global_signal.gd"
-Collider="*res://core/system/autoloads/collider.gd"
 SaveFile="*res://core/system/autoloads/save_file.gd"
 PaintManager="*res://core/system/autoloads/paint_manager.tscn"
 

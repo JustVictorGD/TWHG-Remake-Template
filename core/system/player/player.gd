@@ -83,7 +83,7 @@ func handle_key_press(snappy_movement: bool) -> void:
 
 func _ready() -> void:
 	sliding_sensitivity += 1
-	fancy_hitbox.scale = PLAYER_SIZE
+	fancy_hitbox.scale = size
 	
 	respawn_timer.timeout.connect(respawn)
 	
@@ -117,7 +117,10 @@ func movement_update() -> void:
 	
 	if not GameManager.ghost:
 		# Comes from the 'PushableBox' class!
-		var push: Vector2i = push_out_of_walls(get_nearby_walls())
+		var walls: Array[Rect2i] = get_nearby_walls()
+		
+		var push: Vector2i = push_out_of_walls(walls)
+		
 		var queue_death: bool = false
 		
 		if GameManager.invincible:
@@ -143,7 +146,7 @@ func collision_update() -> void:
 		return
 	
 	fancy_hitbox.enabled = true
-	Collider.touched_checkpoint_ids.clear()
+	World.touched_checkpoint_ids.clear()
 	
 	if dead:
 		fancy_hitbox.enabled = false
@@ -152,7 +155,7 @@ func collision_update() -> void:
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
 		if fancy_hitbox.intersects(checkpoint.hitbox):
 			checkpoint.select()
-			Collider.touched_checkpoint_ids.append(checkpoint.id)
+			World.touched_checkpoint_ids.append(checkpoint.id)
 			last_checkpoint_id = checkpoint.id
 	
 	for coin: Coin in get_tree().get_nodes_in_group("coins"):

@@ -1,7 +1,7 @@
 extends Node2D
 class_name PushableBox
 
-const PLAYER_SIZE: Vector2i = Vector2i(42, 42)
+var size: Vector2i = Vector2i(42, 42)
 
 enum subpixel {
 	MIN = 0, # Going below makes it loop to MAX.
@@ -33,8 +33,46 @@ func get_nearby_walls() -> Array[Rect2i]:
 	return nearby_walls
 
 
+#region Wall Physics
+
+
 func push_out_of_walls(walls: Array[Rect2i]) -> Vector2i:
-	return (Collider.updated_wall_push(hitbox, walls) - Vector2i(position)) * 1000
+	for wall: Rect2 in walls:
+		hitbox = push_out_rectangle(hitbox, wall)
+	
+	return (hitbox.position + hitbox.size / 2 - Vector2i(position)) * 1000
+
+
+func get_closest(anchor: int, a: int, b: int) -> int:
+	return a if abs(anchor - a) < abs(anchor - b) else b
+
+
+func push_out_rectangle(rect: Rect2i, wall: Rect2i) -> Rect2i:
+	# Calculate overlaps
+	var left_overlap: int = wall.position.x - (rect.position.x + rect.size.x)
+	var right_overlap: int = (wall.position.x + wall.size.x) - rect.position.x
+	var top_overlap: int = wall.position.y - (rect.position.y + rect.size.y)
+	var bottom_overlap: int = (wall.position.y + wall.size.y) - rect.position.y
+	
+	# If there's no overlap, return the rectangle as is
+	if left_overlap > 0 or right_overlap < 0 or top_overlap > 0 or bottom_overlap < 0:
+		return rect
+	
+	var push: Vector2i = Vector2i(
+		get_closest(0, left_overlap, right_overlap),
+		get_closest(0, top_overlap, bottom_overlap)
+	)
+	
+	# Slightly favor X axis.
+	if abs(push.x) <= abs(push.y):
+		push.y = 0
+	else:
+		push.x = 0
+	
+	rect.position += push
+	return rect
+
+#endregion
 
 #region Corner Sliding
 
@@ -71,8 +109,8 @@ func move(movement: Vector2i) -> void:
 		position.y -= 1
 	
 	position = round(position)
-	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
-	hitbox.size = PLAYER_SIZE
+	hitbox.position = Vector2i(position) - size / 2
+	hitbox.size = size
 
 # Sets the position using the subpixel system.
 # This function uses subpixels. Multiply any input in pixels by 1000.
@@ -97,7 +135,7 @@ func move_to(given_position: Vector2i) -> void:
 	
 	position = round(position)
 	
-	hitbox.position = Vector2i(position) - PLAYER_SIZE / 2
-	hitbox.size = PLAYER_SIZE
+	hitbox.position = Vector2i(position) - size / 2
+	hitbox.size = size
 
 #endregion
