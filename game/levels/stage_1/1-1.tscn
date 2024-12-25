@@ -102,6 +102,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_u8kd1"]
 resource_name = "new_animation"
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -110,7 +111,7 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 3.14159]
@@ -139,6 +140,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_afrqd"]
 resource_name = "new_animation"
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -147,10 +149,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -1.5708]
+"values": [0.0, 3.14159]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75u1h"]
@@ -176,6 +178,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_s32s1"]
 resource_name = "new_animation"
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -184,10 +187,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.0472]
+"values": [0.0, 3.14159]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3cdk"]
@@ -418,10 +421,10 @@ fill_color = Color(0.760784, 0.384314, 0.219608, 1)
 z_index = 8
 layout_mode = 3
 anchors_preset = 0
-offset_left = 577.0
-offset_top = 102.0
-offset_right = 677.0
-offset_bottom = 198.0
+offset_left = 524.0
+offset_top = 192.0
+offset_right = 624.0
+offset_bottom = 288.0
 script = ExtResource("6_e1mw2")
 dynamic_hitbox = true
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
@@ -508,7 +511,7 @@ metadata/_edit_group_ = true
 
 [node name="Circle" parent="Enemies/Ring3" instance=ExtResource("9_kgjox")]
 radius = 3.0
-object_count = 6
+object_count = 4
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Ring3"]
 libraries = {
@@ -839,6 +842,7 @@ autostart = true
 duration = 60
 
 [node name="Trigger" parent="." instance=ExtResource("18_egtxg")]
+modulate = Color(1, 0.411765, 0.705882, 1)
 position = Vector2(144, 144)
 event_id = 1
 button_mode = true

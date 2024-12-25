@@ -1,4 +1,5 @@
 @icon("res://core/misc_assets/images/node_icons/player.png")
+@tool
 extends PushableBox
 class_name Player
 
@@ -7,12 +8,10 @@ class_name Player
 
 @export var speed: int = 4000 # One pixel per tick is 1,000
 @export_range(0, 41) var sliding_sensitivity: int = 32
+@export var size: Vector2i = Vector2i(42, 42)
 
-@onready var sprite: CanvasGroup = $CanvasGroup
 @onready var particles: GPUParticles2D = $GPUParticles2D
-@onready var outline: Sprite2D = $CanvasGroup/Outline
-@onready var fill: Sprite2D = $CanvasGroup/Fill
-
+@onready var sprite: Solid = $Sprite
 @onready var fancy_hitbox: RectangleCollider = $RectangleCollider
 
 var paint_id: int
@@ -76,14 +75,25 @@ func handle_key_press(snappy_movement: bool) -> void:
 			movement_direction.y = 0
 	else:
 		movement_direction.x = (int(Input.is_action_pressed("right")) \
-				- int(Input.is_action_pressed("left")))
+			- int(Input.is_action_pressed("left")))
 		movement_direction.y = (int(Input.is_action_pressed("down")) \
-				- int(Input.is_action_pressed("up")))
+			- int(Input.is_action_pressed("up")))
 
 
 func _ready() -> void:
+	#sprite.change_shape(Rect2(Vector2.ZERO, size))
+	
+	if Engine.is_editor_hint():
+		return
+	
+	
+	hitbox.size = size
+	
 	sliding_sensitivity += 1
+	
+	fancy_hitbox.position = -size / 2
 	fancy_hitbox.scale = size
+	
 	
 	respawn_timer.timeout.connect(respawn)
 	
@@ -97,16 +107,19 @@ func _ready() -> void:
 
 
 func movement_update() -> void:
-	outline.modulate = color_tuple.outline
-	fill.modulate = color_tuple.fill
+	sprite.outline_color = color_tuple.outline
+	sprite.fill_color = color_tuple.fill
 	particles.modulate = color_tuple.fill
 	
-	particles.emitting = true
-	$TerrainVelocityComponent.enabled = true
-	$InputVelocityComponent.enabled = true
+	particles.process_material.scale = size
+	
 	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
-	if dead:
+	if not dead:
+		particles.emitting = true
+		$TerrainVelocityComponent.enabled = true
+		$InputVelocityComponent.enabled = true
+	else:
 		particles.emitting = false
 		$TerrainVelocityComponent.enabled = false
 		$InputVelocityComponent.enabled = false
@@ -179,15 +192,15 @@ func collision_update() -> void:
 
 
 func update_timers() -> void:
-	sprite.self_modulate.a = 1
+	sprite.modulate.a = 1
 	
 	if death_animation.active:
-		sprite.self_modulate.a = death_animation.get_progress_left()
+		sprite.modulate.a = death_animation.get_progress_left()
 	elif dead: # Short time after the animation ends
-		sprite.self_modulate.a = 0
+		sprite.modulate.a = 0
 	
 	if respawn_animation.active == true:
-		sprite.self_modulate.a = respawn_animation.get_progress()
+		sprite.modulate.a = respawn_animation.get_progress()
 
 
 #endregion
@@ -220,8 +233,8 @@ func respawn() -> void:
 	dead = false
 
 
-#func finish() -> void:
-	#GameManager.invincible = true
+func _process(delta: float) -> void:
+	sprite.change_shape(Rect2(-size / 2, size))
 
 
 #endregion

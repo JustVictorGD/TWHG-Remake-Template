@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://db78gabyxxg2y"]
+[gd_scene load_steps=12 format=3 uid="uid://db78gabyxxg2y"]
 
 [ext_resource type="Script" path="res://core/system/player/player.gd" id="1_sxbrj"]
+[ext_resource type="Script" path="res://core/common_objects/solids/solid.gd" id="2_k8eip"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_qubyp"]
 [ext_resource type="Script" path="res://core/common_objects/other/velocity_component/velocity_component.gd" id="3_buqh6"]
 [ext_resource type="Script" path="res://core/colliders/rectangle_collider.gd" id="4_v5d1p"]
@@ -30,18 +31,18 @@ color_ramp = SubResource("GradientTexture1D_aqyqe")
 [node name="Player" type="Node2D" groups=["player"]]
 z_index = 6
 script = ExtResource("1_sxbrj")
+sliding_sensitivity = 33
+size = Vector2i(66, 66)
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
-
-[node name="Outline" type="Sprite2D" parent="CanvasGroup"]
-modulate = Color(0.4, 0, 0, 1)
-scale = Vector2(42, 42)
-texture = ExtResource("2_qubyp")
-
-[node name="Fill" type="Sprite2D" parent="CanvasGroup"]
-modulate = Color(1, 0, 0, 1)
-scale = Vector2(30, 30)
-texture = ExtResource("2_qubyp")
+[node name="Sprite" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_k8eip")
+dynamic_color = true
+decorative = true
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
+outline_z_offset = 0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -63,7 +64,7 @@ script = ExtResource("3_buqh6")
 
 [node name="RectangleCollider" type="Node2D" parent="."]
 position = Vector2(-21, -21)
-scale = Vector2(42, 42)
+scale = Vector2(26, 66)
 script = ExtResource("4_v5d1p")
 
 [node name="RespawnTimer" type="Node" parent="."]

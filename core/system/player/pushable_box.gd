@@ -1,8 +1,6 @@
 extends Node2D
 class_name PushableBox
 
-var size: Vector2i = Vector2i(42, 42)
-
 enum subpixel {
 	MIN = 0, # Going below makes it loop to MAX.
 	DEFAULT = 500,
@@ -11,7 +9,7 @@ enum subpixel {
 }
 
 # Physics and movement
-var hitbox: Rect2i
+var hitbox: Rect2i = Rect2i(0, 0, 42, 42)
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 
 
@@ -109,8 +107,7 @@ func move(movement: Vector2i) -> void:
 		position.y -= 1
 	
 	position = round(position)
-	hitbox.position = Vector2i(position) - size / 2
-	hitbox.size = size
+	hitbox.position = Vector2i(position) - hitbox.size / 2
 
 # Sets the position using the subpixel system.
 # This function uses subpixels. Multiply any input in pixels by 1000.
@@ -135,7 +132,6 @@ func move_to(given_position: Vector2i) -> void:
 	
 	position = round(position)
 	
-	hitbox.position = Vector2i(position) - size / 2
-	hitbox.size = size
+	hitbox.position = Vector2i(position) - hitbox.size / 2
 
 #endregion
