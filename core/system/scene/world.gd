@@ -90,20 +90,22 @@ func switch_level(key: String) -> void:
 	focus_camera(current_level)
 	
 	SaveFile.add_level_to_dict(key)
-	
+	load_room_state()
+
+func load_room_state() -> void:
 	# Assign checkpoint ids and spawn the player on the correct one
 	var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
 	
 	for i: int in range(checkpoints.size()):
 		checkpoints[i].id = i
 		
-		var current_cp: int = SaveFile.save_dictionary["levels"][key]["checkpoint_id"]
+		var current_cp: int = SaveFile.save_dictionary["levels"][GameManager.current_level]["checkpoint_id"]
 		
 		if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
 			player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
 	
 	# Add extra coins count
-	collected_money += SaveFile.save_dictionary["levels"][key]["extra_coins"]
+	collected_money += SaveFile.save_dictionary["levels"][GameManager.current_level]["extra_coins"]
 	assign_collectable_ids("coins")
 	assign_collectable_ids("keys")
 	assign_collectable_ids("paints")
@@ -141,9 +143,9 @@ func assign_collectable_ids(group_name: String) -> void:
 			states.append(0)
 		
 		match group_name:
-			"coins":
-				if states[i] == 1:
-					World.collected_money += 1
+			#"coins":
+				#if states[i] == 1:
+					#World.collected_money += 1
 			
 			"keys":
 				nodes[i].key_states = SaveFile.save_dictionary["levels"][GameManager.current_level]["keys"]
