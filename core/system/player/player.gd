@@ -1,36 +1,33 @@
-extends Node2D
+@icon("res://core/misc_assets/images/node_icons/player.png")
+@tool
+extends PushableBox
 class_name Player
 
 
 #region Properties
 
-
-# Makes object collision checks only happen if time is a multiple of 4 ticks.
-const QUARTER_CHECKS: bool = true
-const PLAYER_SIZE: Vector2 = Vector2(42, 42)
-
-@export var speed: int = 1000 # One pixel per tick is 1,000
-@export var velocity: Vector2i = Vector2i(0, 0)
+@export var speed: int = 4000 # One pixel per tick is 1,000
 @export_range(0, 41) var sliding_sensitivity: int = 32
+@export var size: Vector2i = Vector2i(42, 42)
 
-@onready var sprite: CanvasGroup = $CanvasGroup
+## How much the player is allowed to travel from a wall 
+## push relative to its own size without getting crushed.
+@export var crush_leniency: float = 1.0/3.0
 
-enum subpixel {
-	MIN = 0, # Going below makes it loop to MAX.
-	DEFAULT = 500,
-	MAX = 999, # Going above makes it loop to MIN.
-	RANGE = 1000
-}
+@onready var particles: GPUParticles2D = $GPUParticles2D
+@onready var sprite: Solid = $Sprite
+@onready var fancy_hitbox: RectangleCollider = $RectangleCollider
 
-# Physics and movement
-var hitbox: RectangleCollider = RectangleCollider.new()
-var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
+var paint_id: int
+var color_tuple: ColorTuple:
+	get: return PaintManager.default_player if paint_id == -1 else PaintManager.unlockable_paints[paint_id]
+
 var movement_direction: Vector2 = Vector2.ZERO
 
 # Timers, used for fading the player in and out.
-var respawn_timer: TickBasedTimer = TickBasedTimer.new(120)
-var death_animation: TickBasedTimer = TickBasedTimer.new(90)
-var respawn_animation: TickBasedTimer = TickBasedTimer.new(24)
+@onready var respawn_timer: TickBasedTimer = $RespawnTimer
+@onready var death_animation: TickBasedTimer = $DeathAnimationTimer
+@onready var respawn_animation: TickBasedTimer = $RespawnAnimationTimer
 
 # Respawning
 var last_checkpoint_id: int = -1
@@ -39,6 +36,7 @@ var dead: bool = false # Invincible but disables movement and is temporary
 
 #endregion
 
+#region Game Loop
 
 func _input(_event: InputEvent) -> void:
 	handle_key_press(GameManager.snappy_movement)
@@ -46,7 +44,7 @@ func _input(_event: InputEvent) -> void:
 	if not dead:
 		if Input.is_action_pressed("teleport"):
 			move_to(get_global_mouse_position() * 1000)
-		
+
 
 func handle_key_press(snappy_movement: bool) -> void:
 	if snappy_movement:
@@ -81,88 +79,159 @@ func handle_key_press(snappy_movement: bool) -> void:
 			movement_direction.y = 0
 	else:
 		movement_direction.x = (int(Input.is_action_pressed("right")) \
-				- int(Input.is_action_pressed("left")))
+			- int(Input.is_action_pressed("left")))
 		movement_direction.y = (int(Input.is_action_pressed("down")) \
-				- int(Input.is_action_pressed("up")))
-	
-
-
-#region Game Loop
+			- int(Input.is_action_pressed("up")))
 
 
 func _ready() -> void:
+	#sprite.change_shape(Rect2(Vector2.ZERO, size))
+	
+	if Engine.is_editor_hint():
+		return
+	
+	
+	hitbox.size = size
+	
 	sliding_sensitivity += 1
+	
+	fancy_hitbox.position = -size / 2
+	fancy_hitbox.scale = size
+	
+	
 	respawn_timer.timeout.connect(respawn)
 	
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
-	GlobalSignal.finish.connect(finish)
+	
+	#GlobalSignal.finish.connect(finish)
+	
+	paint_id = SaveFile.save_dictionary["global"]["color"]
 
 
 func movement_update() -> void:
-	var speed_hack_multiplier: int = int(GameManager.speed_hacking) + 1
+	sprite.outline_color = color_tuple.outline
+	sprite.fill_color = color_tuple.fill
+	particles.modulate = color_tuple.fill
+	
+	particles.process_material.scale = size
+	
+	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
 	if not dead:
-		move(movement_direction * speed * speed_hack_multiplier)
-		move(velocity)
+		particles.emitting = true
+		$TerrainVelocityComponent.enabled = true
+		$InputVelocityComponent.enabled = true
+	else:
+		particles.emitting = false
+		$TerrainVelocityComponent.enabled = false
+		$InputVelocityComponent.enabled = false
+		return
+	
+	var movement: Vector2i = movement_direction * speed * speed_hack_multiplier
+	var pixel_movement: Vector2i = movement / 1000
+	
+	# Movement from player controls.
+	move(movement)
 	
 	if not GameManager.ghost:
-		move(Collider.corner_slide(hitbox, World.walls, \
-				sliding_sensitivity, velocity, movement_direction) * speed * speed_hack_multiplier)
-		move_to(Collider.push_out_of_walls(hitbox, subpixels, World.walls))
+		# Comes from the 'PushableBox' class!
+		var walls: Array[Rect2i] = get_nearby_walls()
+		
+		var up_crush_threshold: int = int(-hitbox.size.x * crush_leniency)
+		var left_crush_threshold: int = int(-hitbox.size.y * crush_leniency)
+		var down_crush_threshold: int = int(hitbox.size.x * crush_leniency)
+		var right_crush_threshold: int = int(hitbox.size.y * crush_leniency)
+		
+		if movement.x < 0:
+			right_crush_threshold -= pixel_movement.x
+		else:
+			left_crush_threshold -= pixel_movement.x
+		
+		if movement.y < 0:
+			down_crush_threshold -= pixel_movement.y
+		else:
+			up_crush_threshold -= pixel_movement.y
+		
+		move(corner_slide(walls, movement_direction * 4, Vector2i(500, 0), Vector2i(21, 21)) * speed)
+		
+		var push: Vector2i = push_out_of_walls(walls)
+		var queue_death: bool = false
+		var pixel_push: Vector2i = push / 1000
+		
+		if GameManager.invincible:
+			move(push)
+		
+		else:
+			if up_crush_threshold <= pixel_push.y and \
+					pixel_push.y <= down_crush_threshold:
+				move(Vector2i(0, push.y))
+			else:
+				queue_death = true
+			
+			if left_crush_threshold <= pixel_push.x and \
+					pixel_push.x <= right_crush_threshold:
+				move(Vector2i(push.x, 0))
+			else:
+				queue_death = true
+			
+			if queue_death:
+				enemy_death()
 
 
 func collision_update() -> void:
-	if QUARTER_CHECKS and not GameLoop.ticks % 4 == 0:
+	if not GameManager.collectables_processed:
 		return
 	
-	Collider.touched_checkpoint_ids.clear()
+	fancy_hitbox.enabled = true
+	World.touched_checkpoint_ids.clear()
 	
 	if dead:
+		fancy_hitbox.enabled = false
 		return
 	
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
-		if hitbox.intersects(checkpoint.hitbox):
+		if fancy_hitbox.intersects(checkpoint.hitbox):
 			checkpoint.select()
-			Collider.touched_checkpoint_ids.append(checkpoint.id)
+			World.touched_checkpoint_ids.append(checkpoint.id)
 			last_checkpoint_id = checkpoint.id
 	
 	for coin: Coin in get_tree().get_nodes_in_group("coins"):
-		if hitbox.intersects(coin.hitbox):
-			coin.collect()
+		if fancy_hitbox.intersects(coin.hitbox):
+			coin.try_collect()
 	
 	for enemy: Enemy in get_tree().get_nodes_in_group("enemies"):
-		if not GameManager.invincible and hitbox.intersects(enemy.hitbox):
+		if not GameManager.invincible and not GameManager.finished and fancy_hitbox.intersects(enemy.hitbox):
 			enemy_death()
 	
 	for key: Key in get_tree().get_nodes_in_group("keys"):
-		if hitbox.intersects(key.hitbox):
-			key.collect()
-
+		if fancy_hitbox.intersects(key.hitbox):
+			key.try_collect()
+	
+	for paint: Paint in get_tree().get_nodes_in_group("paints"):
+		if fancy_hitbox.intersects(paint.hitbox):
+			paint.try_collect()
+			
+			paint_id = paint.paint_id
+			#SaveFile.save_dictionary["global"]["color"] = paint.paint_id
 
 
 func update_timers() -> void:
-	respawn_timer.tick_and_timeout()
-	death_animation.tick_and_timeout()
-	respawn_animation.tick_and_timeout()
-	
-	sprite.self_modulate.a = 1
+	sprite.modulate.a = 1
 	
 	if death_animation.active:
-		sprite.self_modulate.a = death_animation.get_progress_left()
+		sprite.modulate.a = death_animation.get_progress_left()
 	elif dead: # Short time after the animation ends
-		sprite.self_modulate.a = 0
+		sprite.modulate.a = 0
 	
 	if respawn_animation.active == true:
-		sprite.self_modulate.a = respawn_animation.get_progress()
+		sprite.modulate.a = respawn_animation.get_progress()
 
 
 #endregion
 
-
 #region Gameplay Functions
-
 
 func collect_coin(id: int) -> void:
 	GlobalSignal.coin_collected.emit(id)
@@ -171,7 +240,7 @@ func collect_coin(id: int) -> void:
 func enemy_death() -> void:
 	dead = true
 	GameManager.deaths += 1
-	SFX.play("EnemyDeath")
+	SFX.play(SFX.sounds.ENEMY_DEATH)
 	
 	respawn_timer.reset_and_play()
 	death_animation.reset_and_play()
@@ -180,7 +249,7 @@ func enemy_death() -> void:
 
 
 func respawn() -> void:
-	for checkpoint: ColorRect in get_tree().get_nodes_in_group("checkpoints"):
+	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == last_checkpoint_id:
 			move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
 	
@@ -190,69 +259,8 @@ func respawn() -> void:
 	dead = false
 
 
-func finish() -> void:
-	GameManager.invincible = true
-
-
-#endregion
-
-
-#region Special Position Handling
-
-
-func print_position() -> void:
-	# Weird formatting explained at: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_format_string.html#padding
-	print("X = %s.%03d, Y = %s.%03d" % [position.x, subpixels.x, position.y, subpixels.y])
-
-
-# Adds to the position using the subpixel system.
-# This function uses subpixels. Multiply any input in pixels by 1000.
-func move(movement: Vector2i) -> void:
-	subpixels += movement
-	
-	while subpixels.x > subpixel.MAX:
-		subpixels.x -= subpixel.RANGE
-		global_position.x += 1
-	while subpixels.x < subpixel.MIN:
-		subpixels.x += subpixel.RANGE
-		global_position.x -= 1
-	while subpixels.y > subpixel.MAX:
-		subpixels.y -= subpixel.RANGE
-		global_position.y += 1
-	while subpixels.y < subpixel.MIN:
-		subpixels.y += subpixel.RANGE
-		global_position.y -= 1
-	
-	global_position = round(global_position)
-	hitbox.position = global_position - PLAYER_SIZE / 2
-	hitbox.size = PLAYER_SIZE
-
-
-# Sets the position using the subpixel system.
-# This function uses subpixels. Multiply any input in pixels by 1000.
-func move_to(given_position: Vector2i) -> void:
-	global_position = given_position / 1000
-	
-	subpixels.x = given_position.x % 1000
-	subpixels.y = given_position.y % 1000
-	
-	while subpixels.x > subpixel.MAX:
-		subpixels.x -= subpixel.RANGE
-		global_position.x += 1
-	while subpixels.x < subpixel.MIN:
-		subpixels.x += subpixel.RANGE
-		global_position.x -= 1
-	while subpixels.y > subpixel.MAX:
-		subpixels.y -= subpixel.RANGE
-		global_position.y += 1
-	while subpixels.y < subpixel.MIN:
-		subpixels.y += subpixel.RANGE
-		global_position.y -= 1
-	
-	global_position = round(global_position)
-	
-	hitbox.position = global_position - PLAYER_SIZE / 2
-	hitbox.size = PLAYER_SIZE
+func _process(delta: float) -> void:
+	sprite.change_shape(Rect2(-size / 2, size))
 
 
 #endregion

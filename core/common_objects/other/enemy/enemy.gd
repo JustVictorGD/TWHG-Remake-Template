@@ -3,17 +3,23 @@
 extends Node2D
 class_name Enemy
 
+## True by default because enemies rarely stay still.
+## Turn off for static enemies to reduce unneeded GPU load.
+@export var motion_trail: bool = true
+
 ## If true, it will keep updating its colors and size every frame in game.
 ## May cost some performance but allows themes that gradually change.
 @export var constant_check: bool = false
 @export var lock_scale: bool = false
-
 @export var copy_area_theme: bool = true
 
 @export var outline_color: Color = Color(0, 0, 0.4)
 @export var fill_color: Color = Color(0, 0, 1)
 
-var hitbox: CircleCollider = CircleCollider.new(Vector2.ZERO, 7)
+@export var outline_shader: ShaderMaterial
+@export var fill_shader: ShaderMaterial
+
+@onready var hitbox: CircleCollider = $CircleCollider
 var id: int
 # For cases when opacity is changed externally, like from invincibility
 @onready var original_opacity: float = modulate.a
@@ -24,21 +30,32 @@ var in_editor: bool:
 
 @onready var outline: Sprite2D = $Outline
 @onready var fill: Sprite2D = $Fill
+@onready var particles: GPUParticles2D = $GPUParticles2D
 
 
 func _ready() -> void:
 	update_colors()
 	
+	if outline_shader != null:
+		outline.material = outline_shader
+	if fill_shader != null:
+		fill.material = fill_shader
+		particles.material = fill_shader
+	
+	if motion_trail:
+		$GPUParticles2D.emitting = true
+	
 	if not in_editor:
 		GameLoop.movement_update.connect(movement_update)
+		if !lock_scale:
+			hitbox.lock_scale = false
 
 
 func movement_update() -> void:
-	hitbox.position = self.global_position
+	hitbox.global_position = self.global_position
 	
 	if lock_scale:
 		global_scale = Vector2(1, 1)
-
 
 func _process(_delta: float) -> void:
 	if constant_check or in_editor:
@@ -63,3 +80,18 @@ func update_colors() -> void:
 	else:
 		outline.modulate = outline_color
 		fill.modulate = fill_color
+	
+	$GPUParticles2D.modulate = fill.modulate
+
+func set_properties(properties: EnemyProperties) -> void:
+	constant_check = properties.constant_check
+	lock_scale = properties.lock_scale
+	copy_area_theme = properties.copy_area_theme
+	outline_color = properties.outline_color
+	fill_color = properties.fill_color
+	
+	if properties.outline_shader != null:
+		outline.material = properties.outline_shader
+	if properties.fill_shader != null:
+		fill.material = properties.fill_shader
+		particles.material = properties.fill_shader

@@ -8,18 +8,14 @@ class_name Circle
 @export var object_count : int = 1
 ## Angle of the arc, in which the objects will be created. 360 degrees is a full circle.
 @export var arc_degrees : float = 360
-## Type of object, which the circle will create.
-@export var object_type : obj = obj.ENEMIES
+## Type of object, which the circle will create. If empty, the circle will spawn enemies by default.
+@export var node: PackedScene = load("res://core/common_objects/other/enemy/enemy.tscn")
+@export var properties: Resource
 ## If this is false, then there will be an object at the start and at the end of the arc. However, if arc_degrees = 360, then the start and end overlap and the object count looks like it's reduced by 1. Changing this to true will make the circle work like in Edit1 and Edit3.
 @export var full_circle_mode : bool = true
 
 var arc: float
 var children: Array[Node]
-
-enum obj {
-	ENEMIES,
-	COINS
-}
 
 func _ready() -> void:
 	
@@ -28,25 +24,24 @@ func _ready() -> void:
 	# Makes the orange square invisible in-game
 	$Sprite2D.modulate.a = 0
 	
-	# Loads the chosen object
-	var object: PackedScene
-	if object_type == obj.ENEMIES:
-		object = preload("res://core/common_objects/other/enemy/enemy.tscn")
-	elif object_type == obj.COINS:
-		object = preload("res://core/common_objects/collectables/coin/coin.tscn")
-	
 	# Creates the objects
 	for i: int in range(object_count):
-		var new_object : Node2D = object.instantiate()
+		if node == null:
+			push_warning("No scene is chosen, circle won't work.")
+			return
+		var copy: Node = node.instantiate()
 		
-		add_child(new_object)
-		children.append(new_object)
+		add_child(copy)
+		children.append(copy)
 		
 		if owner is Area:
-			new_object.owner = self.owner
+			copy.owner = self.owner
 			
-			if object_type == obj.ENEMIES:
-				new_object.update_colors()
+		if copy is Enemy:
+			if properties != null and properties is EnemyProperties:
+				copy.set_properties(properties)
+			
+			copy.update_colors()
 
 func animation_update() -> void:
 	arc = deg_to_rad(arc_degrees)

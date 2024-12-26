@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0dbbdclyjpxo"]
+[gd_scene load_steps=4 format=3 uid="uid://b0dbbdclyjpxo"]
 
 [ext_resource type="Script" path="res://core/common_objects/collectables/key/key.gd" id="1_n7evj"]
 [ext_resource type="Texture2D" uid="uid://claldq5wno4ro" path="res://core/common_objects/collectables/key/Key 48.png" id="2_tvkth"]
+[ext_resource type="Script" path="res://core/colliders/circle_collider.gd" id="3_p0ict"]
 
-[node name="Key" type="Node2D" groups=["keys"]]
+[node name="Key" type="Node2D" groups=["collectables", "keys"]]
 script = ExtResource("1_n7evj")
+sound = 5
 
 [node name="Key" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_tvkth")
+
+[node name="CircleCollider" type="Node2D" parent="."]
+script = ExtResource("3_p0ict")
+radius = 21.0

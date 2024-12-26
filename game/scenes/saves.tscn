@@ -1,0 +1,205 @@
+[gd_scene load_steps=9 format=3 uid="uid://co0yct0o2kjwv"]
+
+[ext_resource type="Script" path="res://core/system/scene/saves.gd" id="1_b22i8"]
+[ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="1_tcivd"]
+[ext_resource type="Texture2D" uid="uid://h4g6i6gvhmno" path="res://core/misc_assets/images/background_test.png" id="2_hvolq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nn8v5"]
+font = ExtResource("1_tcivd")
+font_size = 45
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdd60"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_padms"]
+bg_color = Color(1, 1, 1, 0.498039)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_q1axj"]
+font = ExtResource("1_tcivd")
+font_size = 35
+font_color = Color(0.277528, 0.277528, 0.277528, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4iutb"]
+font = ExtResource("1_tcivd")
+font_size = 25
+font_color = Color(0.277528, 0.277528, 0.277528, 1)
+
+[node name="Saves" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b22i8")
+metadata/_edit_lock_ = true
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.716296, 0.716296, 0.716296, 1)
+metadata/_edit_lock_ = true
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hvolq")
+stretch_mode = 6
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 64.0
+offset_right = 896.0
+offset_bottom = 118.0
+text = "Choose a save:"
+label_settings = SubResource("LabelSettings_nn8v5")
+horizontal_alignment = 1
+
+[node name="ColorRect3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.0
+offset_top = 120.0
+offset_right = -384.0
+offset_bottom = -596.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rdd60")
+
+[node name="Save1" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 160.0
+offset_right = 768.0
+offset_bottom = 552.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_padms")
+
+[node name="Label" type="Label" parent="Save1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -334.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Save 1"
+label_settings = SubResource("LabelSettings_q1axj")
+horizontal_alignment = 1
+
+[node name="Deaths" type="Label" parent="Save1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = -32.0
+offset_bottom = -265.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Deaths: 0"
+label_settings = SubResource("LabelSettings_4iutb")
+
+[node name="Time" type="Label" parent="Save1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 128.0
+offset_right = -32.0
+offset_bottom = -233.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Time: 0:00:00.000"
+label_settings = SubResource("LabelSettings_4iutb")
+
+[node name="Level" type="Label" parent="Save1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 160.0
+offset_right = -32.0
+offset_bottom = -201.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level: 1"
+label_settings = SubResource("LabelSettings_4iutb")
+
+[node name="Area" type="Label" parent="Save1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 192.0
+offset_right = -32.0
+offset_bottom = -169.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Area: (coords or name)"
+label_settings = SubResource("LabelSettings_4iutb")
+
+[node name="LoadSave" type="Button" parent="Save1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 304.0
+offset_right = 212.0
+offset_bottom = 348.0
+theme_override_fonts/font = ExtResource("1_tcivd")
+theme_override_font_sizes/font_size = 25
+text = "Load Save"
+
+[node name="ClearSave" type="Button" parent="Save1"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 248.0
+offset_right = 212.0
+offset_bottom = 292.0
+theme_override_fonts/font = ExtResource("1_tcivd")
+theme_override_font_sizes/font_size = 25
+text = "Override Save"
+
+[node name="Square" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 580.0
+offset_right = 664.0
+offset_bottom = 636.0
+pivot_offset = Vector2(28, 28)
+color = Color(0.4, 0, 0, 1)
+
+[node name="Fill" type="ColorRect" parent="Square"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
+color = Color(1, 0, 0, 1)

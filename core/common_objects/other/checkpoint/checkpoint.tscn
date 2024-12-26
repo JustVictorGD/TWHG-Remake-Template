@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf8htjaobfs6b"]
+[gd_scene load_steps=4 format=3 uid="uid://bf8htjaobfs6b"]
 
 [ext_resource type="Script" path="res://core/common_objects/other/checkpoint/checkpoint.gd" id="1_f5or5"]
+[ext_resource type="Script" path="res://core/colliders/rectangle_collider.gd" id="2_yns8d"]
+[ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="3_mriv3"]
 
 [node name="Checkpoint" type="ColorRect" groups=["checkpoints"]]
 z_index = 1
@@ -8,3 +10,14 @@ offset_right = 96.0
 offset_bottom = 96.0
 color = Color(0.643137, 0.996078, 0.639216, 1)
 script = ExtResource("1_f5or5")
+
+[node name="RectangleCollider" type="Node2D" parent="."]
+script = ExtResource("2_yns8d")
+
+[node name="FlashAnimationTimer" type="Node" parent="."]
+script = ExtResource("3_mriv3")
+duration = 120
+
+[node name="WarpDelayTimer" type="Node" parent="."]
+script = ExtResource("3_mriv3")
+duration = 90

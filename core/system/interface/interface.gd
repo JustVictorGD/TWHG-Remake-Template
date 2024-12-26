@@ -1,12 +1,6 @@
 extends Control
 class_name Interface
 
-# Time
-var ticks: int = 0
-var seconds: int = 0
-var minutes: int = 0
-var hours: int = 0
-
 # Node references
 @onready var level_code: Label = $LevelCode
 @onready var money: Label = $Money
@@ -19,14 +13,17 @@ var hours: int = 0
 @onready var sides: Control = $Sides
 @onready var flash: ColorRect = $Flash
 
-var flash_timer: TickBasedTimer = TickBasedTimer.new(120)
+@onready var flash_timer: TickBasedTimer = $FlashTimer
 
+@onready var ticks: int = GameLoop.ticks
+var seconds: int = 0
+var minutes: int = 0
+var hours: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameLoop.update_timers.connect(update_timers)
 	$Menu.button_down.connect(menu_click)
 	
-	flash_timer.reset_and_play()
 	GlobalSignal.level_switched.connect(flash_timer.reset_and_play)
 
 
@@ -35,22 +32,20 @@ func menu_click() -> void:
 
 
 func update_timers() -> void:
-	flash_timer.tick_and_timeout()
-	
 	if not GameManager.finished:
 		ticks += 1
-		
-		while ticks >= 240:
-			ticks -= 240
-			seconds += 1
-		
-		while seconds >= 60:
-			seconds -= 60
-			minutes += 1
-		
-		while minutes >= 60:
-			minutes -= 60
-			hours += 1
+	
+	while ticks >= 60:
+		ticks -= 60
+		seconds += 1
+	
+	while seconds >= 60:
+		seconds -= 60
+		minutes += 1
+	
+	while minutes >= 60:
+		minutes -= 60
+		hours += 1
 
 
 func _process(_delta : float) -> void:
@@ -64,7 +59,7 @@ func _process(_delta : float) -> void:
 		bottom_text.text = World.current_level.bottom_text
 		
 	timer.text = str(hours) + (":%02d:%02d" % [minutes, seconds])
-	tick_timer.text = ".%03d" % [ticks]
+	tick_timer.text = ".%02d" % [ticks]
 	fps.text = str(Engine.get_frames_per_second()) + " FPS"
 	
 	if GameManager.finished:

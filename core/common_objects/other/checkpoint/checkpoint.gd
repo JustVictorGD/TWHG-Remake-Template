@@ -12,14 +12,11 @@ class_name Checkpoint
 ## key is entered in this field, it will load the corresponding file path.
 @export var level_warp: String = ""
 
-## Measured in ticks. 1 second = 240 ticks.
-@export var warp_delay: int = 240
-
 ## If this checkpoint is a finish, using it to win will turn
 ## the timer golden and will not lead to another level.
 @export var final_destination: bool = false
 
-@onready var warp_timer: TickBasedTimer = TickBasedTimer.new(warp_delay)
+@onready var warp_timer: TickBasedTimer = $WarpDelayTimer
 var state: states = states.NOT_SELECTED
 
 enum types {
@@ -38,10 +35,11 @@ enum states {
 const ORIGINAL_COLOR: Color = Color(0.643, 0.996, 0.639)
 const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 
-var flash_animation: TickBasedTimer = TickBasedTimer.new(120)
+@onready var flash_animation: TickBasedTimer = $FlashAnimationTimer
 var id: int = -1
 
 var hitbox: RectangleCollider = RectangleCollider.new()
+# The RectangleCollider in the scene tree currently does nothing.
 
 func _ready() -> void:
 	GameLoop.movement_update.connect(movement_update)
@@ -61,7 +59,7 @@ func movement_update() -> void:
 	rotation = 0
 	
 	hitbox.position = self.global_position
-	hitbox.size = self.size
+	hitbox.scale = self.size
 	hitbox.rotation = previous_rotation
 	hitbox.pivot_offset = self.pivot_offset
 	
@@ -89,7 +87,7 @@ func any_checkpoint_touched(_id: int) -> void:
 
 
 func anything_collected() -> void:
-	if state == states.SELECTED and self.id not in Collider.touched_checkpoint_ids:
+	if state == states.SELECTED and self.id not in World.touched_checkpoint_ids:
 		state = states.UPDATED
 
 
@@ -109,11 +107,11 @@ func select() -> void:
 			win()
 		
 		else:
-			SFX.play("Checkpoint")
+			SFX.play(SFX.sounds.CHECKPOINT)
 
 
 func win() -> void:
-	SFX.play("Finish")
+	SFX.play(SFX.sounds.FINISH)
 	warp_timer.reset_and_play()
 	
 	if final_destination:

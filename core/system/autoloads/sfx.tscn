@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://csfgjflaug8s3"]
+[gd_scene load_steps=9 format=3 uid="uid://csfgjflaug8s3"]
 
 [ext_resource type="AudioStream" uid="uid://0rswldab7ydh" path="res://core/misc_assets/sfx/enemyDeathSoundTrim.mp3" id="1_e4xx7"]
 [ext_resource type="Script" path="res://core/system/autoloads/sfx.gd" id="1_mivbn"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bno35o3repwfl" path="res://core/misc_assets/sfx/winSound.mp3" id="5_6rhof"]
 [ext_resource type="AudioStream" uid="uid://bxd6745sqaour" path="res://core/misc_assets/sfx/doorSoundTrim.mp3" id="6_k78t6"]
 [ext_resource type="AudioStream" uid="uid://bmocxq1e1y3gi" path="res://core/misc_assets/sfx/keySoundTrim.mp3" id="7_wptrf"]
+[ext_resource type="AudioStream" uid="uid://d3tepgeik4klo" path="res://core/misc_assets/sfx/paintSound.mp3" id="8_g3hen"]
 
 [node name="SFX" type="Node"]
 script = ExtResource("1_mivbn")
@@ -15,16 +16,24 @@ script = ExtResource("1_mivbn")
 stream = ExtResource("1_e4xx7")
 bus = &"SFX"
 
-[node name="Checkpoint" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_lkdm5")
-bus = &"SFX"
-
 [node name="Coin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_phojv")
 bus = &"SFX"
 
+[node name="Checkpoint" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lkdm5")
+bus = &"SFX"
+
 [node name="Finish" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6rhof")
+bus = &"SFX"
+
+[node name="Key" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_wptrf")
+bus = &"SFX"
+
+[node name="Paint" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_g3hen")
 bus = &"SFX"
 
 [node name="OpenDoor" type="AudioStreamPlayer" parent="."]
@@ -34,8 +43,4 @@ bus = &"SFX"
 [node name="CloseDoor" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_k78t6")
 volume_db = -10.0
-bus = &"SFX"
-
-[node name="Key" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_wptrf")
 bus = &"SFX"

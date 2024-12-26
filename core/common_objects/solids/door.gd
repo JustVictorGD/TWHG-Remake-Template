@@ -12,11 +12,11 @@ class_name Door
 ## In this context, the entire door goes from (0, 0) to (1, 1).
 @export var custom_method: Rect2 = Rect2(0.5, 0.5, 0, 0)
 
-## Length of the opening animation in ticks (1/240 seconds).
-@export var open_time: int = 120
+## Length of the opening animation in frames (1/60 seconds).
+@export var open_time: int = 30
 
-## Length of the closing animation in ticks (1/240 seconds).
-@export var close_time: int = 60
+## Length of the closing animation in frames (1/60 seconds).
+@export var close_time: int = 15
 
 ## Choose whether or not the door fades away as it opens.
 @export var fade: bool = false
@@ -43,8 +43,16 @@ func _ready() -> void:
 	# Call the _ready() function from the Solid class.
 	super()
 	
+	close_timer.timeout.connect(finish_closing)
+	
 	if not Engine.is_editor_hint():
 		GameLoop.update_timers.connect(update_timers)
+
+
+func stay_triggered() -> void:
+	modulate.a = 0
+	nullify_hitbox()
+	triggered = true
 
 
 func trigger_door() -> void:
@@ -54,7 +62,7 @@ func trigger_door() -> void:
 		
 		nullify_hitbox()
 		
-		SFX.play("OpenDoor")
+		SFX.play(SFX.sounds.OPEN_DOOR)
 		triggered = true
 
 
@@ -63,21 +71,22 @@ func untrigger_door() -> void:
 	if triggered:
 		close_timer.reset_and_play()
 		
-		World.walls[hitbox_index] = Rect2(global_bound)
+		World.walls[hitbox_index] = Rect2i(global_bound)
 		
-		SFX.play("CloseDoor")
+		SFX.play(SFX.sounds.CLOSE_DOOR)
 		triggered = false
 
 
 func update_timers() -> void:
-	open_timer.tick_and_timeout()
-	close_timer.tick_and_timeout()
-	
 	if open_timer.active:
 		handle_animation(open_timer.get_progress_left())
 	
 	if close_timer.active:
 		handle_animation(close_timer.get_progress())
+
+
+func finish_closing() -> void:
+	handle_animation(1)
 
 
 func sine_in(t: float) -> float:

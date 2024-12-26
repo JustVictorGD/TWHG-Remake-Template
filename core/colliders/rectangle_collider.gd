@@ -1,23 +1,19 @@
-extends AbstractCollider # Which then extends RefCounted.
+extends AbstractCollider # Which then extends Node2D.
 class_name RectangleCollider
 
-
-var position: Vector2
-var size: Vector2
-var rotation: float
 var pivot_offset: Vector2
 
-var end: Vector2 = position + size:
+var end: Vector2 = global_position + scale:
 	get:
-		return position + size
+		return global_position + scale
 	set(value):
-		size = value - position
+		scale = value - global_position
 
-func _init(bounding_box: Rect2 = Rect2(), _rotation: float = 0, _pivot_offset: Vector2 = Vector2.ZERO) -> void:
-	position = bounding_box.position
-	size = bounding_box.size
-	rotation = _rotation
-	pivot_offset = _pivot_offset
+#func _init(bounding_box: Rect2 = Rect2(), _rotation: float = 0, _pivot_offset: Vector2 = Vector2.ZERO) -> void:
+	#global_position = bounding_box.position
+	#scale = bounding_box.size
+	#rotation = _rotation
+	#pivot_offset = _pivot_offset
 
 
 func _to_string() -> String:
@@ -29,18 +25,18 @@ func _to_string() -> String:
 	if pivot_offset != Vector2.ZERO:
 		extra += str(", Pivot Offset = ", pivot_offset)
 	
-	return str("[Enabled: ", enabled, ", Bounding Box: ", Rect2(position, size), extra, "]")
+	return str("[Enabled: ", enabled, ", Bounding Box: ", Rect2(position, scale), extra, "]")
 
 
 func intersects(shape: AbstractCollider) -> bool:
 	if enabled and shape.enabled:
 		if shape is CircleCollider:
-			if is_zero_approx(rotation) and not Rect2(position, size).intersects(create_rect_with_radius(shape.position, shape.radius)):
+			if is_zero_approx(rotation) and not Rect2(global_position, scale).intersects(create_rect_with_radius(shape.global_position, shape.global_radius)):
 				return false
-			elif not Rect2(position - size / 4, size * 1.5).intersects(create_rect_with_radius(shape.position, shape.radius)):
+			elif not Rect2(global_position - scale / 4, scale * 1.5).intersects(create_rect_with_radius(shape.global_position, shape.global_radius)):
 				return false
 			
-			var relative_point: Vector2 = shape.position - position
+			var relative_point: Vector2 = shape.global_position - global_position
 			relative_point -= pivot_offset
 			
 			if not is_zero_approx(rotation):
@@ -49,14 +45,14 @@ func intersects(shape: AbstractCollider) -> bool:
 			relative_point += pivot_offset
 			
 			var nearest_point: Vector2 = Vector2(
-				clamp(relative_point.x, 0, size.x),
-				clamp(relative_point.y, 0, size.y))
+				clamp(relative_point.x, 0, scale.x),
+				clamp(relative_point.y, 0, scale.y))
 			
-			return relative_point.distance_squared_to(nearest_point) < shape.radius ** 2
+			return relative_point.distance_squared_to(nearest_point) < shape.global_radius ** 2
 		
 		
 		if shape is PointCollider:
-			var relative_point: Vector2 = shape.position - position
+			var relative_point: Vector2 = shape.global_position - global_position
 			relative_point -= pivot_offset
 			
 			if not is_zero_approx(rotation):
@@ -64,15 +60,15 @@ func intersects(shape: AbstractCollider) -> bool:
 			
 			relative_point += pivot_offset
 			
-			return relative_point > Vector2.ZERO and relative_point < size
+			return relative_point > Vector2.ZERO and relative_point < scale
 		
 		
 		if shape is RectangleCollider:
 			if is_zero_approx(rotation) and is_zero_approx(shape.rotation):
-				return Rect2(position, size).intersects(Rect2(shape.position, shape.size))
+				return Rect2(global_position, scale).intersects(Rect2(shape.global_position, shape.scale))
 			
-			elif not Rect2(position - size / 4, size * 1.5).intersects(\
-					Rect2(shape.position - shape.size / 4, shape.size * 1.5)):
+			elif not Rect2(global_position - scale / 4, scale * 1.5).intersects(\
+					Rect2(shape.global_position - shape.scale / 4, shape.scale * 1.5)):
 				return false
 			
 			else:
@@ -101,7 +97,7 @@ func overlap(range_1: Vector2, range_2: Vector2) -> bool:
 
 
 func get_vertices() -> PackedVector2Array:
-	var rect: Rect2 = Rect2(position, size)
+	var rect: Rect2 = Rect2(global_position, scale)
 	
 	var vertices: PackedVector2Array = [
 		Vector2(0, 0),

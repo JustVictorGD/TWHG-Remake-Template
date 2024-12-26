@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://b23x8d283g2uq"]
+
+[ext_resource type="Script" path="res://core/system/autoloads/paint_manager.gd" id="1_iav1l"]
+[ext_resource type="Script" path="res://core/special_objects/color_tuple.gd" id="2_n2obn"]
+
+[sub_resource type="Resource" id="Resource_fcuxf"]
+script = ExtResource("2_n2obn")
+outline = Color(0.4, 0, 0, 1)
+fill = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_aq1i0"]
+script = ExtResource("2_n2obn")
+outline = Color(0, 0.301961, 0, 1)
+fill = Color(0, 0.752941, 0, 1)
+
+[sub_resource type="Resource" id="Resource_cb1wg"]
+script = ExtResource("2_n2obn")
+outline = Color(0, 0, 0.4, 1)
+fill = Color(0, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_7x0ta"]
+script = ExtResource("2_n2obn")
+outline = Color(0.4, 0, 0.4, 1)
+fill = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_b05vv"]
+script = ExtResource("2_n2obn")
+outline = Color(0.2, 0.2, 0.2, 1)
+fill = Color(0.5, 0.5, 0.5, 1)
+
+[node name="PaintManager" type="Node"]
+script = ExtResource("1_iav1l")
+default_player = SubResource("Resource_fcuxf")
+ghost_tint = Color(0.361294, 0.695266, 0.999998, 0.25)
+unlockable_paints = Array[ExtResource("2_n2obn")]([SubResource("Resource_aq1i0"), SubResource("Resource_cb1wg"), SubResource("Resource_7x0ta"), SubResource("Resource_b05vv")])
