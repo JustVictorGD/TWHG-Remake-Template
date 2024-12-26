@@ -132,6 +132,8 @@ func movement_update() -> void:
 		# Comes from the 'PushableBox' class!
 		var walls: Array[Rect2i] = get_nearby_walls()
 		
+		move(corner_slide(walls, movement_direction * 4, Vector2i(500, 0), Vector2i(21, 21)) * speed)
+		
 		var push: Vector2i = push_out_of_walls(walls)
 		
 		var queue_death: bool = false

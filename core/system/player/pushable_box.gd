@@ -74,7 +74,110 @@ func push_out_rectangle(rect: Rect2i, wall: Rect2i) -> Rect2i:
 
 #region Corner Sliding
 
-# This region is empty.
+# This function suggests a direction in which you should move in to
+# avoid getting stuck on a corner. The way you use it is up to you.
+func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_velocity: Vector2i, sensitivity: Vector2i) -> Vector2i:
+	# Save resources if there are no walls to slide around by aborting.
+	if walls.size() == 0:
+		return Vector2i.ZERO
+	
+	# The interpreted movement direction.
+	# Expecting Vector2i.UP, LEFT, DOWN or RIGHT.
+	var movement_direction: Vector2i = sign(speed_from_input) if \
+			speed_from_input != Vector2i.ZERO else sign(external_velocity)
+	
+	# Abort in case of diagonal or no movement.
+	if (movement_direction.x != 0 and movement_direction.y != 0) or \
+			movement_direction == Vector2i.ZERO:
+		return Vector2i.ZERO
+	
+	# Position X being at -2.147 billion is a way
+	# to determine if this variable is untouched.
+	var chosen_wall: Rect2i = Rect2i(-2147483648, 0, 0, 0)
+	
+	var touching_a_wall: bool = false
+	
+	for wall: Rect2i in walls:
+		if hitbox.intersects(wall):
+			touching_a_wall = true
+			
+			# Sorry for the repetitive code, I just need to get this working.
+			
+			match movement_direction:
+				Vector2i.UP:
+					if wall.end.y < hitbox.end.y:
+						# The first touched wall should assign itself to "chosen_wall."
+						if chosen_wall.position.x == -2147483648:
+							chosen_wall = wall
+						
+						if chosen_wall.end.y <= wall.end.y:
+							if chosen_wall.end.y < wall.end.y or wall.size.x > chosen_wall.size.x:
+								chosen_wall = wall
+				
+				Vector2i.LEFT:
+					if wall.end.x < hitbox.end.x:
+						# The first touched wall should assign itself to "chosen_wall."
+						if chosen_wall.position.x == -2147483648:
+							chosen_wall = wall
+						
+						if chosen_wall.end.x <= wall.end.x:
+							if chosen_wall.end.x < wall.end.x or wall.size.y > chosen_wall.size.y:
+								chosen_wall = wall
+				
+				Vector2i.DOWN:
+					if wall.position.y > hitbox.position.y:
+						# The first touched wall should assign itself to "chosen_wall."
+						if chosen_wall.position.x == -2147483648:
+							chosen_wall = wall
+						
+						if chosen_wall.position.y >= wall.position.y:
+							if chosen_wall.position.y > wall.position.y or wall.size.x > chosen_wall.size.x:
+								chosen_wall = wall
+				
+				Vector2i.RIGHT:
+					if wall.position.x > hitbox.position.x:
+						# The first touched wall should assign itself to "chosen_wall."
+						if chosen_wall.position.x == -2147483648:
+							chosen_wall = wall
+						
+						if chosen_wall.position.x >= wall.position.x:
+							if chosen_wall.position.x > wall.position.x or wall.size.y > chosen_wall.size.y:
+								chosen_wall = wall
+	
+	if not touching_a_wall:
+		return Vector2i.ZERO
+	
+	var box_center: Vector2i = hitbox.position + hitbox.size / 2
+	
+	# Repetition...
+	
+	# Moving either left or right.
+	if movement_direction.y == 0:
+		var distance_up: int = box_center.y - chosen_wall.position.y
+		var distance_down: int = chosen_wall.end.y - box_center.y
+		
+		# Don't slide in case of a perfect tie
+		if distance_up == distance_down:
+			return Vector2i.ZERO
+		
+		if distance_up > sensitivity.y and distance_down > sensitivity.y:
+			return Vector2i.ZERO
+		
+		return Vector2i.UP if distance_up < distance_down else Vector2i.DOWN
+	
+	# Moving either up or down.
+	else:
+		var distance_left: int = box_center.x - chosen_wall.position.x
+		var distance_right: int = chosen_wall.end.x - box_center.x
+		
+		# Don't slide in case of a perfect tie
+		if distance_left == distance_right:
+			return Vector2i.ZERO
+		
+		if distance_left > sensitivity.x and distance_right > sensitivity.x:
+			return Vector2i.ZERO
+		
+		return Vector2i.LEFT if distance_left < distance_right else Vector2i.RIGHT
 
 #endregion
 
