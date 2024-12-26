@@ -10,6 +10,10 @@ class_name Player
 @export_range(0, 41) var sliding_sensitivity: int = 32
 @export var size: Vector2i = Vector2i(42, 42)
 
+## How much the player is allowed to travel from a wall 
+## push relative to its own size without getting crushed.
+@export var crush_leniency: float = 1.0/3.0
+
 @onready var particles: GPUParticles2D = $GPUParticles2D
 @onready var sprite: Solid = $Sprite
 @onready var fancy_hitbox: RectangleCollider = $RectangleCollider
@@ -125,32 +129,52 @@ func movement_update() -> void:
 		$InputVelocityComponent.enabled = false
 		return
 	
+	var movement: Vector2i = movement_direction * speed * speed_hack_multiplier
+	var pixel_movement: Vector2i = movement / 1000
+	
 	# Movement from player controls.
-	move(movement_direction * speed * speed_hack_multiplier)
+	move(movement)
 	
 	if not GameManager.ghost:
 		# Comes from the 'PushableBox' class!
 		var walls: Array[Rect2i] = get_nearby_walls()
 		
+		var up_crush_threshold: int = int(-hitbox.size.x * crush_leniency)
+		var left_crush_threshold: int = int(-hitbox.size.y * crush_leniency)
+		var down_crush_threshold: int = int(hitbox.size.x * crush_leniency)
+		var right_crush_threshold: int = int(hitbox.size.y * crush_leniency)
+		
+		if movement.x < 0:
+			right_crush_threshold -= pixel_movement.x
+		else:
+			left_crush_threshold -= pixel_movement.x
+		
+		if movement.y < 0:
+			down_crush_threshold -= pixel_movement.y
+		else:
+			up_crush_threshold -= pixel_movement.y
+		
 		move(corner_slide(walls, movement_direction * 4, Vector2i(500, 0), Vector2i(21, 21)) * speed)
 		
 		var push: Vector2i = push_out_of_walls(walls)
-		
 		var queue_death: bool = false
+		var pixel_push: Vector2i = push / 1000
 		
 		if GameManager.invincible:
 			move(push)
 		
 		else:
-			if abs(push.x) / 1000 * 3 >= hitbox.size.x:
-				queue_death = true
-			else:
-				move(Vector2i(push.x, 0))
-			
-			if abs(push.y) / 1000 * 3 >= hitbox.size.y:
-				queue_death = true
-			else:
+			if up_crush_threshold <= pixel_push.y and \
+					pixel_push.y <= down_crush_threshold:
 				move(Vector2i(0, push.y))
+			else:
+				queue_death = true
+			
+			if left_crush_threshold <= pixel_push.x and \
+					pixel_push.x <= right_crush_threshold:
+				move(Vector2i(push.x, 0))
+			else:
+				queue_death = true
 			
 			if queue_death:
 				enemy_death()
