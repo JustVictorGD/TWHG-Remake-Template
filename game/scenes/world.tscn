@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://jn6lkoo3vdrt" path="res://core/system/interface/interface.tscn" id="3_vj0hv"]
 [ext_resource type="Shader" path="res://core/shaders/vignette/vignette.gdshader" id="4_dvtww"]
 [ext_resource type="PackedScene" uid="uid://db78gabyxxg2y" path="res://core/system/player/player.tscn" id="4_n1yce"]
-[ext_resource type="Script" path="res://core/shaders/shader_container.gd" id="4_rpnxj"]
-[ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="5_7upe0"]
+[ext_resource type="Script" path="res://core/system/scene/shader_container.gd" id="4_rpnxj"]
+[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="5_7upe0"]
 [ext_resource type="Material" uid="uid://xauxknlfrump" path="res://core/shaders/vignette/vignette.tres" id="5_iye3r"]
 
 [sub_resource type="Environment" id="Environment_s0ysr"]

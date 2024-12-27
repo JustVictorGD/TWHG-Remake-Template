@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://br20utobbc302"]
 
 [ext_resource type="Script" path="res://weird/tester.gd" id="1_osnom"]
-[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/common_objects/other/enemy/enemy.tscn" id="2_urwhs"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="2_urwhs"]
 
 [node name="CollisionTesting" type="Node2D"]
 script = ExtResource("1_osnom")

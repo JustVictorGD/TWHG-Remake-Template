@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_svcw7"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="3_1ytlt"]
 [ext_resource type="PackedScene" uid="uid://btuvdtlg5u165" path="res://core/system/interface/pause_menu.tscn" id="3_l5642"]
-[ext_resource type="Script" path="res://core/special_objects/tick_based_timer.gd" id="5_nnsi2"]
+[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="5_nnsi2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_aag45"]
 font = ExtResource("2_svcw7")
