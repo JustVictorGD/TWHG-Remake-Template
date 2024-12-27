@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1dbw36tkmvwy"]
+[gd_scene load_steps=10 format=3 uid="uid://b1dbw36tkmvwy"]
 
 [ext_resource type="Script" path="res://core/common_objects/collectables/coin/coin.gd" id="1_k1jfa"]
 [ext_resource type="Texture2D" uid="uid://sfeanntnhuwr" path="res://core/common_objects/collectables/coin/Coin.png" id="2_a33l2"]
+[ext_resource type="Texture2D" uid="uid://d1ch3bxh6knag" path="res://core/common_objects/collectables/coin/coin_outline.png" id="2_wfxgp"]
 [ext_resource type="Script" path="res://core/colliders/circle_collider.gd" id="3_qukea"]
 
 [sub_resource type="Gradient" id="Gradient_iaa7i"]
@@ -28,17 +29,26 @@ color_ramp = SubResource("GradientTexture1D_pjmya")
 [node name="Coin" type="Node2D" groups=["coins", "collectables"]]
 z_index = 2
 script = ExtResource("1_k1jfa")
+outline_color = Color(0.584314, 0.466667, 0, 1)
+fill_color = Color(1, 0.8, 0, 1)
 sound = 2
 
-[node name="Coin" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_a33l2")
+[node name="Outline" type="Sprite2D" parent="."]
+modulate = Color(0.584314, 0.466667, 0, 1)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_wfxgp")
+
+[node name="Fill" type="Sprite2D" parent="."]
+modulate = Color(1, 0.8, 0, 1)
+scale = Vector2(0.225, 0.225)
+texture = ExtResource("2_wfxgp")
 
 [node name="CircleCollider" type="Node2D" parent="."]
 script = ExtResource("3_qukea")
 radius = 13.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 0.8, 0, 1)
 z_index = -1
 emitting = false
 amount = 15

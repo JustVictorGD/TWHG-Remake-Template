@@ -41,7 +41,7 @@ func _ready() -> void:
 			if properties != null and properties is EnemyProperties:
 				copy.set_properties(properties)
 			
-			copy.update_colors()
+		copy.update_colors()
 
 func animation_update() -> void:
 	arc = deg_to_rad(arc_degrees)
