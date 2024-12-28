@@ -512,6 +512,7 @@ metadata/_edit_group_ = true
 [node name="Circle" parent="Enemies/Ring3" instance=ExtResource("9_kgjox")]
 radius = 3.0
 object_count = 4
+node = ExtResource("8_7casm")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Ring3"]
 libraries = {
@@ -616,8 +617,8 @@ radius = 3.0
 object_count = 4
 node = ExtResource("11_xb47a")
 
-[node name="Circle4" parent="Coins" instance=ExtResource("9_kgjox")]
-position = Vector2(456, 696)
+[node name="Circle3" parent="Coins" instance=ExtResource("9_kgjox")]
+position = Vector2(456, 704)
 radius = 1.0
 object_count = 4
 node = ExtResource("11_xb47a")

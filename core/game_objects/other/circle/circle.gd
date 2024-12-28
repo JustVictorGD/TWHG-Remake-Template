@@ -1,5 +1,6 @@
+@tool
 @icon("res://core/misc_assets/images/node_icons/circle.png")
-extends Node
+extends Node2D
 class_name Circle
 
 ## Radius from the circle object, where the objects will be created.
@@ -14,10 +15,15 @@ class_name Circle
 ## If this is false, then there will be an object at the start and at the end of the arc. However, if arc_degrees = 360, then the start and end overlap and the object count looks like it's reduced by 1. Changing this to true will make the circle work like in Edit1 and Edit3.
 @export var full_circle_mode : bool = true
 
-var arc: float
+var arc: float:
+	get:
+		return deg_to_rad(arc_degrees)
+
 var children: Array[Node]
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	
 	GameLoop.animation_update.connect(animation_update)
 	
@@ -44,11 +50,27 @@ func _ready() -> void:
 		copy.update_colors()
 
 func animation_update() -> void:
-	arc = deg_to_rad(arc_degrees)
-	
 	for i: int in range(children.size()):
 		if children[i] is Node2D:
 			if full_circle_mode:
 				children[i].position = Vector2(48 * radius, 0).rotated(lerp(0.0, arc, float(i) / object_count))
 			else:
 				children[i].position = Vector2(48 * radius, 0).rotated(lerp(0.0, arc, float(i) / (object_count - 1)))
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		queue_redraw()
+
+func _draw() -> void:
+	if not Engine.is_editor_hint():
+		return
+	
+	for i: int in range(object_count):
+		var object_position: Vector2
+		if full_circle_mode:
+			object_position = Vector2(48 * radius, 0).rotated(lerp(0.0, arc, float(i) / object_count))
+		else:
+			object_position = Vector2(48 * radius, 0).rotated(lerp(0.0, arc, float(i) / (object_count - 1)))
+		
+		draw_circle(object_position, 12, Color(Color.BLACK, 0.5), false, 2, true)
+		draw_line(Vector2.ZERO, object_position, Color(Color.BLACK, 0.5), 2, true)
