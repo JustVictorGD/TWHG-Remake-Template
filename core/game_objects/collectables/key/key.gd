@@ -10,13 +10,17 @@ class_name Key
 @export var outline_color: Color = Color(0.267, 0.267, 0.267)
 @export var fill_color: Color = Color(0.6, 0.6, 0.6)
 
-@onready var outline: Sprite2D = $Outline
-@onready var fill: Sprite2D = $Fill
+@onready var sprite: MaskedSprite = $MaskedSprite
 
 var key_states: Array
 
+
 func _ready() -> void:
 	super()
+	
+	sprite.update_textures()
+	sprite.update_scale()
+	
 	update_colors()
 	
 	hitbox = $CircleCollider
@@ -50,13 +54,12 @@ func drop() -> void:
 		if key_door.key_id == key_id:
 			key_door.untrigger_door()
 
-func save() -> void:
-	super()
 
 func movement_update() -> void:
 	hitbox.global_position = self.global_position
 	hitbox.radius = self.global_scale.x * 21 # 21 units is the default scale of the key.
 	# This assumes that enemy scale.x and scale.y are equal as oval hitboxes are not implemented.
+
 
 func update_colors() -> void:
 	var theme: AreaTheme
@@ -65,8 +68,10 @@ func update_colors() -> void:
 		theme = owner.theme
 	
 	if copy_area_theme and theme != null:
-		outline.modulate = theme.key_outline
-		fill.modulate = theme.key_fill
+		sprite.outline_color = theme.key_outline
+		sprite.fill_color = theme.key_fill
 	else:
-		outline.modulate = outline_color
-		fill.modulate = fill_color
+		sprite.outline_color = outline_color
+		sprite.fill_color = fill_color
+	
+	sprite.update_colors()

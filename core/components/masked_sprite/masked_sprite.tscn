@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://brxa1aj0qdr67"]
+
+[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="1_irnwc"]
+[ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="2_6dbmt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxsad"]
+shader = ExtResource("1_irnwc")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/outline_scale = Vector2(1, 1)
+shader_parameter/fill_scale = Vector2(0.75, 0.75)
+
+[node name="MaskedSprite" type="Sprite2D"]
+editor_description = "This object uses a special shader that allows the fill layer to fully override the outline layer, allowing opaque outlines combined with see-through fillings."
+material = SubResource("ShaderMaterial_dxsad")
+scale = Vector2(48, 48)
+script = ExtResource("2_6dbmt")

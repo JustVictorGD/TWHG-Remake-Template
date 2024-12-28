@@ -501,6 +501,7 @@ rotation = -3.14159
 radius = 1.5
 object_count = 10
 arc_degrees = 0.0
+node = ExtResource("8_v7h88")
 full_circle_mode = false
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Circles/Circle"]
