@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AreaTheme" load_steps=2 format=3 uid="uid://bce68jr2gt8ep"]
 
-[ext_resource type="Script" path="res://game/themes/area_theme.gd" id="1_1xqut"]
+[ext_resource type="Script" path="res://core/custom_resources/area_theme.gd" id="1_1xqut"]
 
 [resource]
 script = ExtResource("1_1xqut")

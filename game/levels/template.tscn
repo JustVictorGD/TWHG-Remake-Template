@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://cqaqxbbo5mla6"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_3o1ei"]
-[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_pbtqy"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_pbtqy"]
 [ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_ivdn3"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_joj78"]
 [ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="6_pnra0"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://cfpmyus0gexd6"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_offie"]
-[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/blue_theme.tres" id="2_8ibmk"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_8ibmk"]
 [ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_exrr7"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_g5dxk"]
 [ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="5_7s4pf"]
@@ -65,6 +65,7 @@ position = Vector2(648, 360)
 position = Vector2(504, 360)
 radius = 1.0
 object_count = 7
+node = ExtResource("8_h2xji")
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("3_exrr7")

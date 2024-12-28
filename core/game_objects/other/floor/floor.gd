@@ -15,7 +15,7 @@ extends Control
 @onready var tile_1: TextureRect = $Tile1
 @onready var tile_2: TextureRect = $Tile2
 
-var debug_theme: AreaTheme = load("res://game/themes/red_theme.tres")
+var debug_theme: AreaTheme = load("res://game/themes/original/red_theme.tres")
 
 # Keeping track of change
 var old_size: Vector2
