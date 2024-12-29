@@ -330,7 +330,7 @@ _data = {
 "new_animation": SubResource("Animation_7wvjd")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8711h"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycuoc"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
@@ -340,7 +340,7 @@ shader_parameter/fill_scale = Vector2(0.5, 1)
 shader_parameter/outline_texture = ExtResource("26_cp0ph")
 shader_parameter/fill_texture = ExtResource("26_cp0ph")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lixc8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52ta2"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
@@ -350,7 +350,7 @@ shader_parameter/fill_scale = Vector2(1, 1)
 shader_parameter/outline_texture = ExtResource("28_hquiu")
 shader_parameter/fill_texture = ExtResource("27_70yx1")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdmyc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ujjo"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 1, 1)
@@ -974,7 +974,7 @@ teleporter_setting = 2
 
 [node name="LayeredSprite" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 20
-material = SubResource("ShaderMaterial_8711h")
+material = SubResource("ShaderMaterial_ycuoc")
 position = Vector2(576, 384)
 scale = Vector2(68, 72)
 texture = ExtResource("26_u2nnr")
@@ -987,7 +987,7 @@ fill_texture = ExtResource("26_cp0ph")
 
 [node name="LayeredSprite2" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 12
-material = SubResource("ShaderMaterial_lixc8")
+material = SubResource("ShaderMaterial_52ta2")
 position = Vector2(384, 384)
 scale = Vector2(144, 144)
 texture = ExtResource("26_u2nnr")
@@ -997,7 +997,7 @@ outline_texture = ExtResource("28_hquiu")
 fill_texture = ExtResource("27_70yx1")
 
 [node name="LayeredSprite3" parent="." instance=ExtResource("24_bhh7e")]
-material = SubResource("ShaderMaterial_qdmyc")
+material = SubResource("ShaderMaterial_5ujjo")
 position = Vector2(192, 288)
 scale = Vector2(192, 192)
 texture = ExtResource("26_u2nnr")

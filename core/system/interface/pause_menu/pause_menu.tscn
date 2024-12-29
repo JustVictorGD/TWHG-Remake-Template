@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btuvdtlg5u165"]
+[gd_scene load_steps=6 format=3 uid="uid://btuvdtlg5u165"]
 
-[ext_resource type="Script" path="res://core/system/interface/pause_menu.gd" id="1_eyytm"]
+[ext_resource type="Script" path="res://core/system/interface/pause_menu/pause_menu.gd" id="1_eyytm"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="2_g15fw"]
+[ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_container.gd" id="3_orb62"]
+[ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_button.gd" id="5_mpifj"]
 
 [sub_resource type="Theme" id="Theme_ddqyr"]
 
@@ -13,6 +15,7 @@ offset_top = 60.0
 offset_right = 1120.0
 offset_bottom = 660.0
 script = ExtResource("1_eyytm")
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -22,6 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.666667)
+metadata/_edit_lock_ = true
 
 [node name="ReturnToGame" type="Button" parent="."]
 layout_mode = 1
@@ -200,3 +204,15 @@ theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
 text = "Volume"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="PaintContainer" type="FlowContainer" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 388.0
+offset_right = 272.0
+offset_bottom = 515.0
+script = ExtResource("3_orb62")
+
+[node name="PaintButton" type="TextureButton" parent="PaintContainer"]
+layout_mode = 2
+script = ExtResource("5_mpifj")

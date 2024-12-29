@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://i1lhbw6e250o"]
+
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="1_wb0bt"]
+[ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_button.gd" id="2_xbfm7"]
+
+[node name="TextureButton" type="TextureButton"]
+custom_minimum_size = Vector2(50, 50)
+texture_normal = ExtResource("1_wb0bt")
+texture_pressed = ExtResource("1_wb0bt")
+stretch_mode = 0
+script = ExtResource("2_xbfm7")
