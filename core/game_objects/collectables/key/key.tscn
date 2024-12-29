@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dyy8fd8kaymlg" path="res://core/game_objects/collectables/key/key_fill.png" id="4_5hayw"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="5_gonpa"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay5hb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhduu"]
 shader = ExtResource("2_8pmsk")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0.267, 0.267, 0.267, 1)
@@ -18,16 +18,21 @@ shader_parameter/fill_scale = Vector2(1, 1)
 shader_parameter/outline_texture = ExtResource("3_l4rgn")
 shader_parameter/fill_texture = ExtResource("4_5hayw")
 
-[node name="Key" type="Node2D" groups=["collectables", "keys"]]
+[node name="Key" type="Node2D" node_paths=PackedStringArray("sprite") groups=["collectables", "keys"]]
 script = ExtResource("1_n7evj")
 sound = 5
+sprite = NodePath("MaskedSprite")
+outline_theme_link = "key_outline"
+fill_theme_link = "key_fill"
+outline_color = Color(0.267, 0.267, 0.267, 1)
+fill_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="CircleCollider" type="Node2D" parent="."]
 script = ExtResource("3_p0ict")
 radius = 21.0
 
 [node name="MaskedSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_ay5hb")
+material = SubResource("ShaderMaterial_mhduu")
 scale = Vector2(64, 64)
 texture = ExtResource("5_gonpa")
 script = ExtResource("3_p6182")

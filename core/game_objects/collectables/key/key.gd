@@ -6,11 +6,6 @@ class_name Key
 @export var key_id: int = -1
 
 @export var constant_check: bool = false
-@export var copy_area_theme: bool = true
-@export var outline_color: Color = Color(0.267, 0.267, 0.267)
-@export var fill_color: Color = Color(0.6, 0.6, 0.6)
-
-@onready var sprite: MaskedSprite = $MaskedSprite
 
 var key_states: Array
 

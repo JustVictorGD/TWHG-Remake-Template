@@ -9,9 +9,6 @@ var color_tuple: ColorTuple:
 	get:
 		return PaintManager.unlockable_paints[paint_id]
 
-@onready var outline: Sprite2D = $Outline
-@onready var fill: Sprite2D = $Fill
-
 var is_ghost: bool = false
 
 
@@ -21,24 +18,28 @@ func _ready() -> void:
 
 
 func stay_collected() -> void:
-	#state = states.SAVED
 	hitbox.enabled = false
 	is_ghost = true
 
 
-func update_timers() -> void:
-	super()
+func _process(_delta: float) -> void:
+	if sprite == null:
+		print("What have you done to make a paint lack its sprite node?")
+		return
 	
 	if color_tuple != null:
-		outline.modulate = color_tuple.outline
-		fill.modulate = color_tuple.fill
+		sprite.outline_color = color_tuple.outline
+		sprite.fill_color = color_tuple.fill
+		
+		# For some reason all paints are green if I don't add this update.
+		update_colors()
+	
 	else:
-		push_warning("Paint ID ", paint_id, " doesn't exist.")
+		push_error("Paint ID ", paint_id, " doesn't exist.")
+		sprite.outline_color = Color.BLACK
+		sprite.fill_color = Color.MAGENTA
 	
 	if is_ghost:
-		modulate = PaintManager.ghost_tint
-
-
-func _process(delta: float) -> void:
-	outline.modulate = color_tuple.outline
-	fill.modulate = color_tuple.fill
+		sprite.set_opacity(0.5)
+	
+	super(_delta)

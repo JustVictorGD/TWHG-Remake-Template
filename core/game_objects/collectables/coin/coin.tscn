@@ -1,9 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1dbw36tkmvwy"]
+[gd_scene load_steps=14 format=3 uid="uid://b1dbw36tkmvwy"]
 
 [ext_resource type="Script" path="res://core/game_objects/collectables/coin/coin.gd" id="1_k1jfa"]
 [ext_resource type="Texture2D" uid="uid://sfeanntnhuwr" path="res://core/game_objects/collectables/coin/Coin.png" id="2_a33l2"]
 [ext_resource type="Texture2D" uid="uid://d1ch3bxh6knag" path="res://core/game_objects/collectables/coin/coin_outline.png" id="2_wfxgp"]
+[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="3_26q0t"]
 [ext_resource type="Script" path="res://core/components/colliders/circle_collider.gd" id="3_qukea"]
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="4_tersd"]
+[ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="5_tkrp5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shavq"]
+shader = ExtResource("3_26q0t")
+shader_parameter/opacity = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/fill_color = Color(1, 1, 0, 1)
+shader_parameter/outline_scale = Vector2(0.6, 0.6)
+shader_parameter/fill_scale = Vector2(0.3, 0.3)
+shader_parameter/outline_texture = ExtResource("2_wfxgp")
+shader_parameter/fill_texture = ExtResource("2_wfxgp")
 
 [sub_resource type="Gradient" id="Gradient_iaa7i"]
 colors = PackedColorArray(1, 1, 1, 0.333333, 0, 0, 1, 0)
@@ -26,22 +39,26 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_m2vw6")
 color_ramp = SubResource("GradientTexture1D_pjmya")
 
-[node name="Coin" type="Node2D" groups=["coins", "collectables"]]
+[node name="Coin" type="Node2D" node_paths=PackedStringArray("sprite") groups=["coins", "collectables"]]
 z_index = 2
 script = ExtResource("1_k1jfa")
-outline_color = Color(0.584314, 0.466667, 0, 1)
-fill_color = Color(1, 0.8, 0, 1)
 sound = 2
+sprite = NodePath("MaskedSprite")
+outline_theme_link = "gold_outline"
+fill_theme_link = "gold_fill"
+fill_color = Color(1, 1, 0, 1)
 
-[node name="Outline" type="Sprite2D" parent="."]
-modulate = Color(0.584314, 0.466667, 0, 1)
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("2_wfxgp")
-
-[node name="Fill" type="Sprite2D" parent="."]
-modulate = Color(1, 0.8, 0, 1)
-scale = Vector2(0.225, 0.225)
-texture = ExtResource("2_wfxgp")
+[node name="MaskedSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_shavq")
+position = Vector2(9.53674e-07, 9.53674e-07)
+scale = Vector2(48, 48)
+texture = ExtResource("4_tersd")
+script = ExtResource("5_tkrp5")
+outline_scale = Vector2(0.6, 0.6)
+fill_scale = Vector2(0.3, 0.3)
+fill_color = Color(1, 1, 0, 1)
+outline_texture = ExtResource("2_wfxgp")
+fill_texture = ExtResource("2_wfxgp")
 
 [node name="CircleCollider" type="Node2D" parent="."]
 script = ExtResource("3_qukea")

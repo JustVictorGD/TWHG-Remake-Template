@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://core/components/colliders/circle_collider.gd" id="4_bp5sv"]
 [ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="4_dhuah"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdttr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o70ao"]
 shader = ExtResource("2_infqj")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
@@ -46,7 +46,7 @@ outline_theme_link = "enemy_outline"
 fill_theme_link = "enemy_fill"
 
 [node name="MaskedSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_bdttr")
+material = SubResource("ShaderMaterial_o70ao")
 scale = Vector2(32, 32)
 texture = ExtResource("3_3k703")
 script = ExtResource("4_dhuah")

@@ -1,4 +1,4 @@
-extends Node2D
+extends GameObject2D
 class_name Collectable
 
 ## Print debug information. (WIP, does nothing)
@@ -50,6 +50,8 @@ var group: String
 var group_states: Array # Gets the states of all collectables in the same group.
 
 func _ready() -> void:
+	super()
+	
 	if not is_in_group("collectables"):
 		push_warning("Node extending 'Collectable' expected to be in \"collectables\" group.")
 	
@@ -122,7 +124,6 @@ func drop() -> void:
 	
 
 
-
 func save() -> void:
 	if save_behavior == save_behaviors.UNSAVABLE:
 		return
@@ -130,21 +131,23 @@ func save() -> void:
 	state = states.SAVED
 	update_state()
 
+
 func update_state() -> void:
 	if store_behavior == store_behaviors.STORE_STATE:
 		
 		if group_states.size() == 0:
 			push_warning("Collectable state array for group " + group + " is not created.")
 			return
+		
 		group_states[id] = 1 if state == states.SAVED else 0
-		
+	
 	if store_behavior == store_behaviors.INCREMENT_TOTAL:
-		
 		if self is Coin:
 			if state == states.SAVED:
 				SaveFile.save_dictionary["levels"][GameManager.current_level]["extra_coins"] += 1
 		else:
 			push_warning("Saving the amount of incremented collectables is only supported for coins.")
+
 
 func movement_update() -> void:
 	if lock_scale:
@@ -154,14 +157,18 @@ func movement_update() -> void:
 
 
 func update_timers() -> void:
+	if sprite == null:
+		push_error("What have you done to make a collectable lose its sprite node?")
+		return
+	
 	if state != states.UNCOLLECTED:
 		if collect_animation.active:
-			modulate.a = collect_animation.get_progress_left()
+			sprite.set_opacity(collect_animation.get_progress_left())
 		else:
-			modulate.a = 0
+			sprite.set_opacity(0)
 	
 	if drop_animation.active:
-		modulate.a = drop_animation.get_progress()
+		sprite.set_opacity(drop_animation.get_progress())
 
 
 func finish_animation() -> void:

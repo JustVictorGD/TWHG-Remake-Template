@@ -1,25 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk82f13qdaip0"]
+[gd_scene load_steps=9 format=3 uid="uid://dk82f13qdaip0"]
 
 [ext_resource type="Script" path="res://core/game_objects/collectables/paint/paint.gd" id="1_xq6tu"]
 [ext_resource type="Texture2D" uid="uid://32xlqikx31rs" path="res://core/game_objects/collectables/paint/paint fill quadruple precision.png" id="2_w8x3d"]
+[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="3_etra8"]
 [ext_resource type="Texture2D" uid="uid://br3x13o51ul6q" path="res://core/game_objects/collectables/paint/paint outline quadruple precision.png" id="3_yie6p"]
 [ext_resource type="Script" path="res://core/components/colliders/circle_collider.gd" id="4_t8bvy"]
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="6_25tpj"]
+[ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="7_0pncj"]
 
-[node name="Paint" type="Node2D" groups=["collectables", "paints"]]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gj3ba"]
+shader = ExtResource("3_etra8")
+shader_parameter/opacity = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/outline_scale = Vector2(1, 1)
+shader_parameter/fill_scale = Vector2(1, 1)
+shader_parameter/outline_texture = ExtResource("3_yie6p")
+shader_parameter/fill_texture = ExtResource("2_w8x3d")
+
+[node name="Paint" type="Node2D" node_paths=PackedStringArray("sprite") groups=["collectables", "paints"]]
 script = ExtResource("1_xq6tu")
 sound = 6
-
-[node name="Outline" type="Sprite2D" parent="."]
-modulate = Color(0, 0.301961, 0, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_yie6p")
-
-[node name="Fill" type="Sprite2D" parent="."]
-modulate = Color(0, 0.752941, 0, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_w8x3d")
+sprite = NodePath("MaskedSprite")
 
 [node name="CircleCollider" type="Node2D" parent="."]
 script = ExtResource("4_t8bvy")
 radius = 32.0
 multi_activate = false
+
+[node name="MaskedSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gj3ba")
+scale = Vector2(96, 96)
+texture = ExtResource("6_25tpj")
+script = ExtResource("7_0pncj")
+outline_texture = ExtResource("3_yie6p")
+fill_texture = ExtResource("2_w8x3d")

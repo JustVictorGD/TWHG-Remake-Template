@@ -9,3 +9,6 @@ class_name ColorTuple
 func _init(_outline: Color = outline, _fill: Color = outline) -> void:
 	outline = _outline
 	fill = _fill
+
+func _to_string() -> String:
+	return str("[", outline, ", ", fill, "]")

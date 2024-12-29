@@ -330,7 +330,7 @@ _data = {
 "new_animation": SubResource("Animation_7wvjd")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_igba5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5v78i"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
@@ -340,7 +340,7 @@ shader_parameter/fill_scale = Vector2(0.5, 1)
 shader_parameter/outline_texture = ExtResource("26_cp0ph")
 shader_parameter/fill_texture = ExtResource("26_cp0ph")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4u4du"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pximv"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
@@ -350,7 +350,7 @@ shader_parameter/fill_scale = Vector2(1, 1)
 shader_parameter/outline_texture = ExtResource("28_hquiu")
 shader_parameter/fill_texture = ExtResource("27_70yx1")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p71hw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mhp"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 1, 1)
@@ -729,17 +729,23 @@ metadata/_edit_lock_ = true
 [node name="Key" parent="Keys" instance=ExtResource("11_cekvf")]
 position = Vector2(360, 600)
 key_id = 0
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="Key2" parent="Keys" instance=ExtResource("11_cekvf")]
 position = Vector2(552, 792)
 key_id = 1
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="Key3" parent="Keys" instance=ExtResource("11_cekvf")]
 position = Vector2(768, 576)
 key_id = 2
-copy_area_theme = false
-fill_color = Color(0.6, 0.6, 0.6, 0)
 save_behavior = 2
+copy_area_theme = false
+outline_theme_link = ""
+fill_theme_link = ""
+fill_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="GoldDoors" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
@@ -925,18 +931,26 @@ velocity = Vector2(8, 0)
 enabled = false
 metadata/_edit_lock_ = true
 
-[node name="Paint" parent="." instance=ExtResource("21_vxatf")]
-position = Vector2(672, 336)
+[node name="Paints" type="Node2D" parent="."]
+script = ExtResource("3_womt2")
+
+[node name="Paint" parent="Paints" instance=ExtResource("21_vxatf")]
+position = Vector2(672, 144)
 save_behavior = 1
 
-[node name="Paint2" parent="." instance=ExtResource("21_vxatf")]
+[node name="Paint2" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(912, 336)
 paint_id = 1
 save_behavior = 1
 
-[node name="Paint3" parent="." instance=ExtResource("21_vxatf")]
+[node name="Paint3" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(1080, 144)
 paint_id = 2
+save_behavior = 1
+
+[node name="Paint4" parent="Paints" instance=ExtResource("21_vxatf")]
+position = Vector2(912, 816)
+paint_id = -1
 save_behavior = 1
 
 [node name="Teleporter" parent="." instance=ExtResource("22_t4d3y")]
@@ -959,7 +973,7 @@ teleporter_setting = 2
 
 [node name="LayeredSprite" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 20
-material = SubResource("ShaderMaterial_igba5")
+material = SubResource("ShaderMaterial_5v78i")
 position = Vector2(576, 384)
 scale = Vector2(68, 72)
 texture = ExtResource("26_u2nnr")
@@ -972,8 +986,8 @@ fill_texture = ExtResource("26_cp0ph")
 
 [node name="LayeredSprite2" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 12
-material = SubResource("ShaderMaterial_4u4du")
-position = Vector2(696, 312)
+material = SubResource("ShaderMaterial_pximv")
+position = Vector2(384, 384)
 scale = Vector2(144, 144)
 texture = ExtResource("26_u2nnr")
 standalone_decoration = true
@@ -982,8 +996,8 @@ outline_texture = ExtResource("28_hquiu")
 fill_texture = ExtResource("27_70yx1")
 
 [node name="LayeredSprite3" parent="." instance=ExtResource("24_bhh7e")]
-material = SubResource("ShaderMaterial_p71hw")
-position = Vector2(816, 192)
+material = SubResource("ShaderMaterial_n4mhp")
+position = Vector2(192, 288)
 scale = Vector2(192, 192)
 texture = ExtResource("26_u2nnr")
 standalone_decoration = true

@@ -46,6 +46,10 @@ func _process(delta: float) -> void:
 		update_scale()
 
 
+func set_opacity(opacity: float) -> void:
+	material.set_shader_parameter("opacity", opacity)
+
+
 func update_colors() -> void:
 	material.set_shader_parameter("outline_color", outline_color)
 	material.set_shader_parameter("fill_color", fill_color)
