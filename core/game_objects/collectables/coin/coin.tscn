@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="4_tersd"]
 [ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="5_tkrp5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_shavq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdesa"]
 shader = ExtResource("3_26q0t")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
@@ -49,7 +49,7 @@ fill_theme_link = "gold_fill"
 fill_color = Color(1, 1, 0, 1)
 
 [node name="MaskedSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_shavq")
+material = SubResource("ShaderMaterial_hdesa")
 position = Vector2(9.53674e-07, 9.53674e-07)
 scale = Vector2(48, 48)
 texture = ExtResource("4_tersd")

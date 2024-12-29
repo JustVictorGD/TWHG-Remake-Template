@@ -17,9 +17,16 @@ func _ready() -> void:
 	hitbox = $CircleCollider
 
 
+func collect() -> void:
+	super()
+	
+	PaintManager.paint_progress[paint_id] = 1
+
+
 func stay_collected() -> void:
 	hitbox.enabled = false
-	is_ghost = true
+	state = states.SAVED
+	sprite.set_opacity(0)
 
 
 func _process(_delta: float) -> void:
@@ -34,12 +41,18 @@ func _process(_delta: float) -> void:
 		# For some reason all paints are green if I don't add this update.
 		update_colors()
 	
+	# This already causes the error "Out of bounds get index '{paint_id}'
+	# (on base: 'Array[ColorTuple]')" which is why a push_error() isn't added.
 	else:
-		push_error("Paint ID ", paint_id, " doesn't exist.")
 		sprite.outline_color = Color.BLACK
 		sprite.fill_color = Color.MAGENTA
 	
-	if is_ghost:
-		sprite.set_opacity(0.5)
+	if not in_editor and state == states.UNCOLLECTED:
+		if PaintManager.paint_progress[paint_id] != 0:
+			opacity_multiplier = 0.5
+		else:
+			opacity_multiplier = 1
+		
+		sprite.set_opacity(opacity_multiplier)
 	
 	super(_delta)

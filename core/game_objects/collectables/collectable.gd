@@ -19,6 +19,11 @@ class_name Collectable
 ## Disable this if the collectable will be instanced in runtime.
 @export var store_behavior: store_behaviors = store_behaviors.STORE_STATE
 
+# Only really exists for paints, as they can both become semi-transparent
+# from a special mode (ghost paints) and can have a fading animation.
+var opacity_multiplier: float = 1.0
+
+
 enum states {
 	UNCOLLECTED,
 	PICKED_UP, # Goes back to UNCOLLECTED if the player dies
@@ -166,12 +171,12 @@ func update_timers() -> void:
 	
 	if state != states.UNCOLLECTED:
 		if collect_animation.active:
-			sprite.set_opacity(collect_animation.get_progress_left())
+			sprite.set_opacity(collect_animation.get_progress_left() * opacity_multiplier)
 		else:
 			sprite.set_opacity(0)
 	
 	if drop_animation.active:
-		sprite.set_opacity(drop_animation.get_progress())
+		sprite.set_opacity(drop_animation.get_progress() * opacity_multiplier)
 
 
 func finish_animation() -> void:

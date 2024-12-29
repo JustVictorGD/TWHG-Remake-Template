@@ -330,7 +330,7 @@ _data = {
 "new_animation": SubResource("Animation_7wvjd")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wqub"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8711h"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
@@ -340,7 +340,7 @@ shader_parameter/fill_scale = Vector2(0.5, 1)
 shader_parameter/outline_texture = ExtResource("26_cp0ph")
 shader_parameter/fill_texture = ExtResource("26_cp0ph")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vr1b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lixc8"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
@@ -350,7 +350,7 @@ shader_parameter/fill_scale = Vector2(1, 1)
 shader_parameter/outline_texture = ExtResource("28_hquiu")
 shader_parameter/fill_texture = ExtResource("27_70yx1")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uiadx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdmyc"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 1, 1)
@@ -818,16 +818,6 @@ custom_method = Rect2(-0.5, -0.5, 2, 2)
 open_time = 60
 fade = true
 
-[node name="KeyDoor13" parent="KeyDoors" instance=ExtResource("13_qpbyw")]
-offset_left = 864.0
-offset_top = 144.0
-offset_right = 960.0
-offset_bottom = 240.0
-key_id = 2
-open_method = 4
-outline_color = Color(0.4, 0.2, 0.4, 1)
-fill_color = Color(1, 0.5, 1, 1)
-
 [node name="Decoration" type="Node2D" parent="."]
 editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
 script = ExtResource("3_womt2")
@@ -936,21 +926,32 @@ script = ExtResource("3_womt2")
 
 [node name="Paint" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(672, 144)
+paint_id = 4
 save_behavior = 1
 
 [node name="Paint2" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(912, 336)
-paint_id = 1
+position = Vector2(768, 144)
+paint_id = 4
 save_behavior = 1
 
 [node name="Paint3" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(1080, 144)
-paint_id = 2
+position = Vector2(864, 144)
+paint_id = 4
 save_behavior = 1
 
 [node name="Paint4" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(912, 816)
-paint_id = -2
+position = Vector2(960, 144)
+paint_id = 4
+save_behavior = 1
+
+[node name="Paint5" parent="Paints" instance=ExtResource("21_vxatf")]
+position = Vector2(864, 288)
+paint_id = 1
+save_behavior = 1
+
+[node name="Paint6" parent="Paints" instance=ExtResource("21_vxatf")]
+position = Vector2(960, 288)
+paint_id = 1
 save_behavior = 1
 
 [node name="Teleporter" parent="." instance=ExtResource("22_t4d3y")]
@@ -973,7 +974,7 @@ teleporter_setting = 2
 
 [node name="LayeredSprite" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 20
-material = SubResource("ShaderMaterial_4wqub")
+material = SubResource("ShaderMaterial_8711h")
 position = Vector2(576, 384)
 scale = Vector2(68, 72)
 texture = ExtResource("26_u2nnr")
@@ -986,7 +987,7 @@ fill_texture = ExtResource("26_cp0ph")
 
 [node name="LayeredSprite2" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 12
-material = SubResource("ShaderMaterial_0vr1b")
+material = SubResource("ShaderMaterial_lixc8")
 position = Vector2(384, 384)
 scale = Vector2(144, 144)
 texture = ExtResource("26_u2nnr")
@@ -996,7 +997,7 @@ outline_texture = ExtResource("28_hquiu")
 fill_texture = ExtResource("27_70yx1")
 
 [node name="LayeredSprite3" parent="." instance=ExtResource("24_bhh7e")]
-material = SubResource("ShaderMaterial_uiadx")
+material = SubResource("ShaderMaterial_qdmyc")
 position = Vector2(192, 288)
 scale = Vector2(192, 192)
 texture = ExtResource("26_u2nnr")
