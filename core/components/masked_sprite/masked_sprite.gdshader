@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform float opacity = 1.0;
+
 // Textures for the fill and outline layers
 uniform sampler2D outline_texture;
 uniform sampler2D fill_texture;
@@ -20,8 +22,8 @@ void fragment() {
 	vec4 outline_modulated = outline_color;
 	vec4 fill_modulated = fill_color;
 	
-	outline_modulated.a *= outline_tex.a;
-	fill_modulated.a *= outline_tex.a;
+	outline_modulated.a *= outline_tex.a * opacity;
+	fill_modulated.a *= outline_tex.a * opacity;
 	
 	// Blend the colors using the fill texture's alpha as "power"
 	float fill_power = fill_tex.a;

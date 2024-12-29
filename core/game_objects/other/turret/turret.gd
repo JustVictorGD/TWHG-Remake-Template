@@ -39,10 +39,10 @@ func fire_turret() -> void:
 		copy.store_behavior = copy.store_behaviors.INCREMENT_TOTAL
 	
 	if copy is Enemy:
+		copy._ready()
+		
 		if properties != null and properties is EnemyProperties:
 			copy.set_properties(properties)
-		
-		copy.update_colors()
 	
 	copy.position = position
 	

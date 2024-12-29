@@ -35,11 +35,17 @@ func _ready() -> void:
 	if sprite == null:
 		return
 	
+	sprite.update_textures()
+	sprite.update_colors()
+	sprite.update_scale()
+	
 	sprite.rapid_update_colors = rapid_update_colors
+	
+	update_colors()
 
 
-func _process(delta: float) -> void:
-	if sprite == null or not (rapid_update_colors or in_editor):
+func update_colors() -> void:
+	if sprite == null:
 		return
 	
 	var theme: AreaTheme
@@ -52,9 +58,22 @@ func _process(delta: float) -> void:
 		sprite.fill_color = fill_color
 	else:
 		if outline_theme_link != "":
-			sprite.outline_color = theme.get(outline_theme_link)
+			if outline_theme_link in theme:
+				sprite.outline_color = theme.get(outline_theme_link)
+			else:
+				push_error("Property named '", outline_theme_link, "' not found in AreaTheme.")
 		
 		if fill_theme_link != "":
-			sprite.fill_color = theme.get(fill_theme_link)
+			if fill_theme_link in theme:
+				sprite.fill_color = theme.get(fill_theme_link)
+			else:
+				push_error("Property named '", fill_theme_link, "' not found in AreaTheme.")
 	
 	sprite.update_colors()
+
+
+func _process(delta: float) -> void:
+	if not (rapid_update_colors or in_editor):
+		return
+	
+	update_colors()

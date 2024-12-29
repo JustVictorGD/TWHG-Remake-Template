@@ -1,12 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2tu2qgth8he6"]
+[gd_scene load_steps=14 format=3 uid="uid://d2tu2qgth8he6"]
 
 [ext_resource type="Script" path="res://core/game_objects/other/enemy/enemy.gd" id="1_0mjwl"]
+[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="2_infqj"]
 [ext_resource type="Texture2D" uid="uid://bt6njoie05rxm" path="res://core/game_objects/other/enemy/enemy_outline.png" id="2_s808a"]
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="3_3k703"]
 [ext_resource type="Texture2D" uid="uid://qp3hlpihs6sm" path="res://core/game_objects/other/enemy/enemy_fill.png" id="3_3npqu"]
 [ext_resource type="Script" path="res://core/components/colliders/circle_collider.gd" id="4_bp5sv"]
+[ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="4_dhuah"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdttr"]
+shader = ExtResource("2_infqj")
+shader_parameter/opacity = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/outline_scale = Vector2(1, 1)
+shader_parameter/fill_scale = Vector2(1, 1)
+shader_parameter/outline_texture = ExtResource("2_s808a")
+shader_parameter/fill_texture = ExtResource("3_3npqu")
 
 [sub_resource type="Gradient" id="Gradient_vr4eu"]
-colors = PackedColorArray(1, 1, 1, 0.333333, 0, 0, 1, 0)
+colors = PackedColorArray(1, 1, 1, 0.333333, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_gx6ec"]
 gradient = SubResource("Gradient_vr4eu")
@@ -24,24 +37,25 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_256ov")
 color_ramp = SubResource("GradientTexture1D_gx6ec")
 
-[node name="Enemy" type="Node2D" groups=["enemies"]]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("sprite") groups=["enemies"]]
 process_priority = 1
 z_index = 3
 script = ExtResource("1_0mjwl")
+sprite = NodePath("MaskedSprite")
+outline_theme_link = "enemy_outline"
+fill_theme_link = "enemy_fill"
 
-[node name="Outline" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0.4, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_s808a")
-
-[node name="Fill" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 1, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_3npqu")
+[node name="MaskedSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bdttr")
+scale = Vector2(32, 32)
+texture = ExtResource("3_3k703")
+script = ExtResource("4_dhuah")
+outline_texture = ExtResource("2_s808a")
+fill_texture = ExtResource("3_3npqu")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-modulate = Color(0, 0, 1, 1)
 z_index = -1
+emitting = false
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_mf8v6")
 texture = ExtResource("3_3npqu")

@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dyy8fd8kaymlg" path="res://core/game_objects/collectables/key/key_fill.png" id="4_5hayw"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="5_gonpa"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwk0h"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay5hb"]
 shader = ExtResource("2_8pmsk")
+shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0.267, 0.267, 0.267, 1)
 shader_parameter/fill_color = Color(0.6, 0.6, 0.6, 1)
 shader_parameter/outline_scale = Vector2(1, 1)
@@ -26,7 +27,7 @@ script = ExtResource("3_p0ict")
 radius = 21.0
 
 [node name="MaskedSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_pwk0h")
+material = SubResource("ShaderMaterial_ay5hb")
 scale = Vector2(64, 64)
 texture = ExtResource("5_gonpa")
 script = ExtResource("3_p6182")

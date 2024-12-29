@@ -44,10 +44,10 @@ func _ready() -> void:
 			copy.owner = self.owner
 			
 		if copy is Enemy:
+			copy._ready()
+			
 			if properties != null and properties is EnemyProperties:
 				copy.set_properties(properties)
-			
-		copy.update_colors()
 
 func animation_update() -> void:
 	for i: int in range(children.size()):

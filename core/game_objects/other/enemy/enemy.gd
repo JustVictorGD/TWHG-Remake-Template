@@ -1,6 +1,6 @@
 @tool
 @icon("res://core/misc_assets/images/node_icons/enemy.png")
-extends Node2D
+extends GameObject2D
 class_name Enemy
 
 ## True by default because enemies rarely stay still.
@@ -12,42 +12,39 @@ class_name Enemy
 @export var constant_check: bool = false
 @export var lock_scale: bool = false
 
-@export var copy_area_theme: bool = true
-@export var outline_color: Color = Color(0, 0, 0.4)
-@export var fill_color: Color = Color(0, 0, 1)
 
 @export var outline_shader: ShaderMaterial
 @export var fill_shader: ShaderMaterial
 
 @onready var hitbox: CircleCollider = $CircleCollider
 var id: int
-# For cases when opacity is changed externally, like from invincibility
-@onready var original_opacity: float = modulate.a
 
-var in_editor: bool:
-	get:
-		return Engine.is_editor_hint()
-
-@onready var outline: Sprite2D = $Outline
-@onready var fill: Sprite2D = $Fill
 @onready var particles: GPUParticles2D = $GPUParticles2D
 
 
 func _ready() -> void:
-	update_colors()
+	super()
 	
-	if outline_shader != null:
-		outline.material = outline_shader
-	if fill_shader != null:
-		fill.material = fill_shader
-		particles.material = fill_shader
+	# There's currently a problem with additional shaders now that 2
+	# sprites of the enemy have been merged into one MaskedSprite.
 	
-	if motion_trail:
-		$GPUParticles2D.emitting = true
+	#if outline_shader != null:
+	#	outline.material = outline_shader
+	#if fill_shader != null:
+	#	fill.material = fill_shader
+	#	particles.material = fill_shader
 	
 	if not in_editor:
-		GameLoop.movement_update.connect(movement_update)
-		if !lock_scale:
+		if motion_trail:
+			particles.emitting = true
+			
+			if sprite != null:
+				particles.modulate = sprite.fill_color
+		
+		if not GameLoop.is_connected("movement_update", movement_update):
+			GameLoop.movement_update.connect(movement_update)
+		
+		if not lock_scale:
 			hitbox.lock_scale = false
 
 
@@ -57,31 +54,15 @@ func movement_update() -> void:
 	if lock_scale:
 		global_scale = Vector2(1, 1)
 
+
 func _process(_delta: float) -> void:
-	if constant_check or in_editor:
-		update_colors()
+	super(_delta)
 	
 	if not in_editor:
-		if GameManager.invincible:
-			modulate.a = original_opacity * 0.5
-		else:
-			modulate.a = original_opacity
+		var opacity: float = 0.5 if GameManager.invincible else 1.0
+		
+		sprite.material.set_shader_parameter("opacity", opacity)
 
-
-func update_colors() -> void:
-	var theme: AreaTheme
-	
-	if owner is Area:
-		theme = owner.theme
-	
-	if copy_area_theme and theme != null:
-		outline.modulate = theme.enemy_outline
-		fill.modulate = theme.enemy_fill
-	else:
-		outline.modulate = outline_color
-		fill.modulate = fill_color
-	
-	$GPUParticles2D.modulate = fill.modulate
 
 func set_properties(properties: EnemyProperties) -> void:
 	constant_check = properties.constant_check
@@ -90,8 +71,8 @@ func set_properties(properties: EnemyProperties) -> void:
 	outline_color = properties.outline_color
 	fill_color = properties.fill_color
 	
-	if properties.outline_shader != null:
-		outline.material = properties.outline_shader
+	#if properties.outline_shader != null:
+	#	outline.material = properties.outline_shader
 	if properties.fill_shader != null:
-		fill.material = properties.fill_shader
+	#	fill.material = properties.fill_shader
 		particles.material = properties.fill_shader
