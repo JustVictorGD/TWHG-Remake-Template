@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpe6jdhcx3gxt"]
+
+[ext_resource type="Script" path="res://core/game_objects/game_object_2d.gd" id="1_7iuts"]
+[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="2_2anbu"]
+[ext_resource type="Texture2D" uid="uid://dyy8fd8kaymlg" path="res://core/game_objects/collectables/key/key_fill.png" id="3_5cjqk"]
+[ext_resource type="Texture2D" uid="uid://br3x13o51ul6q" path="res://core/game_objects/collectables/paint/paint outline quadruple precision.png" id="4_voeuc"]
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="5_qlyjr"]
+[ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="6_346gx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrjqu"]
+shader = ExtResource("2_2anbu")
+shader_parameter/outline_color = Color(0.4, 0, 0, 1)
+shader_parameter/fill_color = Color(1, 0, 0, 1)
+shader_parameter/outline_scale = Vector2(1, 1)
+shader_parameter/fill_scale = Vector2(1, 1)
+shader_parameter/outline_texture = ExtResource("4_voeuc")
+shader_parameter/fill_texture = ExtResource("3_5cjqk")
+
+[node name="ColoredObject2D" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_7iuts")
+sprite = NodePath("MaskedSprite")
+copy_area_theme = null
+outline_theme_link = "coin_outline"
+fill_theme_link = "coin_fill"
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
+
+[node name="MaskedSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_nrjqu")
+scale = Vector2(64, 64)
+texture = ExtResource("5_qlyjr")
+script = ExtResource("6_346gx")
+rapid_update_colors = true
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
+outline_texture = ExtResource("4_voeuc")
+fill_texture = ExtResource("3_5cjqk")
