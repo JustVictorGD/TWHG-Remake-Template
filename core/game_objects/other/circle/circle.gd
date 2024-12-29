@@ -42,12 +42,12 @@ func _ready() -> void:
 		
 		if owner is Area:
 			copy.owner = self.owner
-			
+		
 		if copy is Enemy:
 			if properties != null and properties is EnemyProperties:
 				copy.set_properties(properties)
-			
-			copy._ready()
+		
+		copy._ready()
 
 func animation_update() -> void:
 	for i: int in range(children.size()):

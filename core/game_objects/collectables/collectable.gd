@@ -55,14 +55,17 @@ func _ready() -> void:
 	if not is_in_group("collectables"):
 		push_warning("Node extending 'Collectable' expected to be in \"collectables\" group.")
 	
-	drop_animation.timeout.connect(finish_animation)
-	
 	if not Engine.is_editor_hint():
-		GameLoop.update_timers.connect(update_timers)
-		GameLoop.movement_update.connect(movement_update)
-		
-		GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
-		GlobalSignal.player_respawn.connect(player_respawn)
+		# This check exists to make it simple for turrets and circles
+		# to call _ready() on an object again for color related stuff.
+		if not GameLoop.is_connected("update_timers", update_timers):
+			GameLoop.update_timers.connect(update_timers)
+			GameLoop.movement_update.connect(movement_update)
+			
+			GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
+			GlobalSignal.player_respawn.connect(player_respawn)
+			
+			drop_animation.timeout.connect(finish_animation)
 
 
 func try_collect() -> bool:

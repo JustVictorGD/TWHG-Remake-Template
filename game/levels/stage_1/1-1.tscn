@@ -330,7 +330,7 @@ _data = {
 "new_animation": SubResource("Animation_7wvjd")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5v78i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wqub"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
@@ -340,7 +340,7 @@ shader_parameter/fill_scale = Vector2(0.5, 1)
 shader_parameter/outline_texture = ExtResource("26_cp0ph")
 shader_parameter/fill_texture = ExtResource("26_cp0ph")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pximv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vr1b"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
@@ -350,7 +350,7 @@ shader_parameter/fill_scale = Vector2(1, 1)
 shader_parameter/outline_texture = ExtResource("28_hquiu")
 shader_parameter/fill_texture = ExtResource("27_70yx1")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4mhp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uiadx"]
 shader = ExtResource("25_hf0ry")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 1, 1)
@@ -950,7 +950,7 @@ save_behavior = 1
 
 [node name="Paint4" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(912, 816)
-paint_id = -1
+paint_id = -2
 save_behavior = 1
 
 [node name="Teleporter" parent="." instance=ExtResource("22_t4d3y")]
@@ -973,7 +973,7 @@ teleporter_setting = 2
 
 [node name="LayeredSprite" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 20
-material = SubResource("ShaderMaterial_5v78i")
+material = SubResource("ShaderMaterial_4wqub")
 position = Vector2(576, 384)
 scale = Vector2(68, 72)
 texture = ExtResource("26_u2nnr")
@@ -986,7 +986,7 @@ fill_texture = ExtResource("26_cp0ph")
 
 [node name="LayeredSprite2" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 12
-material = SubResource("ShaderMaterial_pximv")
+material = SubResource("ShaderMaterial_0vr1b")
 position = Vector2(384, 384)
 scale = Vector2(144, 144)
 texture = ExtResource("26_u2nnr")
@@ -996,7 +996,7 @@ outline_texture = ExtResource("28_hquiu")
 fill_texture = ExtResource("27_70yx1")
 
 [node name="LayeredSprite3" parent="." instance=ExtResource("24_bhh7e")]
-material = SubResource("ShaderMaterial_n4mhp")
+material = SubResource("ShaderMaterial_uiadx")
 position = Vector2(192, 288)
 scale = Vector2(192, 192)
 texture = ExtResource("26_u2nnr")
