@@ -34,6 +34,9 @@ var last_checkpoint_id: int = -1
 var last_checkpoint_area: int # Unused... for now.
 var dead: bool = false # Invincible but disables movement and is temporary
 
+# Used for the snappy movement option.
+var last_direction: Vector2i = Vector2i.ZERO
+
 #endregion
 
 #region Game Loop
@@ -47,41 +50,40 @@ func _input(_event: InputEvent) -> void:
 
 
 func handle_key_press(snappy_movement: bool) -> void:
-	if snappy_movement:
-		# Horizontal
-		# Normal movement
-		if Input.is_action_just_pressed("left"):
-			movement_direction.x = -1
-		if Input.is_action_just_pressed("right"):
-			movement_direction.x = 1
-		# Release while holding opposite direction
-		if Input.is_action_just_released("left") and Input.is_action_pressed("right"):
-			movement_direction.x = 1
-		if Input.is_action_just_released("right") and Input.is_action_pressed("left"):
-			movement_direction.x = -1
-		# Nothing held
-		if not Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
-			movement_direction.x = 0
-		
-		# Vertical
-		# Normal movement
-		if Input.is_action_just_pressed("up"):
-			movement_direction.y = -1
-		if Input.is_action_just_pressed("down"):
-			movement_direction.y = 1
-		# Release while holding opposite direction
-		if Input.is_action_just_released("up") and Input.is_action_pressed("down"):
-			movement_direction.y = 1
-		if Input.is_action_just_released("down") and Input.is_action_pressed("up"):
-			movement_direction.y = -1
-		# Nothing held
-		if not Input.is_action_pressed("up") and not Input.is_action_pressed("down"):
-			movement_direction.y = 0
+	var pressing_up: bool = Input.is_action_pressed("up")
+	var pressing_left: bool = Input.is_action_pressed("left")
+	var pressing_down: bool = Input.is_action_pressed("down")
+	var pressing_right: bool = Input.is_action_pressed("right")
+	
+	if not snappy_movement:
+		movement_direction.x = (int(pressing_right) - int(pressing_left))
+		movement_direction.y = (int(pressing_down) - int(pressing_up))
+	
 	else:
-		movement_direction.x = (int(Input.is_action_pressed("right")) \
-			- int(Input.is_action_pressed("left")))
-		movement_direction.y = (int(Input.is_action_pressed("down")) \
-			- int(Input.is_action_pressed("up")))
+		movement_direction = Vector2i.ZERO
+		
+		if Input.is_action_just_pressed("left"):
+			last_direction.x = -1
+		elif Input.is_action_just_pressed("right"):
+			last_direction.x = 1
+		if Input.is_action_just_pressed("up"):
+			last_direction.y = -1
+		elif Input.is_action_just_pressed("down"):
+			last_direction.y = 1
+		
+		if pressing_left and pressing_right:
+			movement_direction.x = last_direction.x
+		elif pressing_left:
+			movement_direction.x = -1
+		elif pressing_right:
+			movement_direction.x = 1
+		
+		if pressing_up and pressing_down:
+			movement_direction.y = last_direction.y
+		elif pressing_up:
+			movement_direction.y = -1
+		elif pressing_down:
+			movement_direction.y = 1
 
 
 func _ready() -> void:
