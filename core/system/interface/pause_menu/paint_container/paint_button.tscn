@@ -1,56 +1,73 @@
-[gd_scene load_steps=3 format=3 uid="uid://i1lhbw6e250o"]
+[gd_scene load_steps=2 format=3 uid="uid://i1lhbw6e250o"]
 
-[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="1_wb0bt"]
 [ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_button.gd" id="2_xbfm7"]
 
-[node name="TextureButton" type="TextureButton"]
-custom_minimum_size = Vector2(24, 24)
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 30.0
-offset_bottom = 30.0
-texture_normal = ExtResource("1_wb0bt")
-texture_pressed = ExtResource("1_wb0bt")
-stretch_mode = 0
+[node name="Button" type="Button"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(36, 36)
+offset_right = 36.0
+offset_bottom = 36.0
 script = ExtResource("2_xbfm7")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Outline" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 1.0
-offset_left = -6.0
-offset_top = -6.0
-offset_bottom = 6.0
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Outline"]
+layout_mode = 2
+anchor_bottom = 1.0
 offset_right = 6.0
-offset_bottom = 6.0
-grow_horizontal = 0
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_top = -6.0
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect4" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 12
+[node name="ColorRect2" type="ColorRect" parent="Outline"]
+layout_mode = 2
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -6.0
+offset_right = -6.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Outline"]
+layout_mode = 2
+anchor_right = 1.0
+offset_left = 6.0
+offset_right = -6.0
 offset_bottom = 6.0
+
+[node name="ColorRect4" type="ColorRect" parent="Outline"]
+layout_mode = 2
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0, 0, 0, 1)
+
+[node name="Fill" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Locked" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1

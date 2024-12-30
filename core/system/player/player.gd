@@ -107,6 +107,7 @@ func _ready() -> void:
 	GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
 	
+	GlobalSignal.paint_changed.connect(on_paint_change)
 	#GlobalSignal.finish.connect(finish)
 	
 	paint_id = SaveFile.save_dictionary["global"]["color"]
@@ -264,5 +265,12 @@ func respawn() -> void:
 func _process(delta: float) -> void:
 	sprite.change_shape(Rect2(-size / 2, size))
 
+
+func on_paint_change(id: int) -> void:
+	print(id)
+	paint_id = id
+	sprite.outline_color = color_tuple.outline
+	sprite.fill_color = color_tuple.fill
+	particles.modulate = color_tuple.fill
 
 #endregion
