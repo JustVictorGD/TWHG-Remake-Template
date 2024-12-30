@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if paint_id == -1 or PaintManager.paint_progress[paint_id] == 1:
+	if paint_id == -1 or PaintManager.paint_progress[paint_id] > 0:
 		disabled = false
 		locked_icon.visible = false
 	else:
