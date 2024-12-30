@@ -10,5 +10,7 @@ offset_right = 48.0
 offset_bottom = 48.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_7ugfb")
+outline_theme_link = "key_outline"
+fill_theme_link = "key_fill"
 outline_color = Color(0.266667, 0.266667, 0.266667, 1)
 fill_color = Color(0.6, 0.6, 0.6, 1)

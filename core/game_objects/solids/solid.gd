@@ -7,20 +7,44 @@ const PIXEL: PackedScene = preload("res://core/game_objects/solids/pixel.tscn")
 
 ## Only recommended to turn on when using themes that gradually change color.
 @export var dynamic_color: bool = false
+
 ## Turn this on for moving walls.
 @export var dynamic_hitbox: bool = false
+
 ## Turning this on will prevent the solid from existing collision wise at all.
 @export var decorative: bool = false
+
 ## Expands outline outwards.
 @export var outwards_width: float = 3
+
 ## Expands outline inwards.
 @export var inwards_width: float = 3
-@export var outline_color: Color = Color(0.282, 0.282, 0.4)
-@export var fill_color: Color = Color(0.7, 0.7, 1)
+
 ## Negative values will allow solids to visually merge with each other.
 @export var outline_z_offset: int = -1
 
+@export_category("Copying area theme")
+
+## If the owner of this node is of the 'Area' class, try to link the object's
+## colors to the area's 'AreaTheme' resource. Otherwise, use self-contained.
+@export var copy_area_theme: bool = true
+
+## The exact name of a variable in an 'AreaTheme'
+## resource to reference as the solid's outline color.
+@export var outline_theme_link: String = "wall_outline"
+
+## The exact name of a variable in an 'AreaTheme'
+## resource to reference as the solid's fill color.
+@export var fill_theme_link: String = "wall_fill"
+
+@export_category("Self-contained theme")
+
+@export var outline_color: Color = Color(0.282, 0.282, 0.4)
+@export var fill_color: Color = Color(0.7, 0.7, 1)
+
 @onready var in_editor: bool = Engine.is_editor_hint()
+
+#region Non-export variables
 
 var fill: Sprite2D = PIXEL.instantiate()
 var outline: Node2D = Node2D.new()
@@ -47,6 +71,7 @@ var total_width: float:
 
 var hitbox_index: int
 
+#endregion
 
 func _ready() -> void:
 	for child: Node in get_children():
@@ -79,6 +104,41 @@ func _ready() -> void:
 func wall_update() -> void:
 	global_position = round(global_position)
 	World.walls[hitbox_index] = Rect2i(global_bound)
+
+
+func _process(_delta: float) -> void:
+	if dynamic_color or in_editor:
+		outline.modulate = outline_color
+		fill.modulate = fill_color
+	
+	if in_editor:
+		outline.z_index = outline_z_offset
+		change_shape(outer_bound)
+	
+	update_colors()
+
+
+func update_colors() -> void:
+	var area_theme: AreaTheme
+	
+	if owner is Area:
+		area_theme = owner.theme
+	
+	if area_theme == null or not copy_area_theme:
+		outline.modulate = outline_color
+		fill.modulate = fill_color
+	else:
+		if outline_theme_link != "":
+			if outline_theme_link in area_theme:
+				outline.modulate = area_theme.get(outline_theme_link)
+			else:
+				push_error("Property named '", outline_theme_link, "' not found in AreaTheme.")
+		
+		if fill_theme_link != "":
+			if fill_theme_link in area_theme:
+				fill.modulate = area_theme.get(fill_theme_link)
+			else:
+				push_error("Property named '", fill_theme_link, "' not found in AreaTheme.")
 
 
 func change_shape(rect: Rect2) -> void:
@@ -116,14 +176,7 @@ func nullify_hitbox() -> void:
 		World.walls[hitbox_index] = Rect2(-4294967296, -4294967296, 0, 0)
 
 
-func _process(_delta: float) -> void:
-	if dynamic_color or in_editor:
-		outline.modulate = outline_color
-		fill.modulate = fill_color
-	
-	if in_editor:
-		outline.z_index = outline_z_offset
-		change_shape(outer_bound)
+
 
 
 func transform_pixel(pixel: Sprite2D, rect: Rect2) -> void:

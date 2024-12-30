@@ -841,6 +841,8 @@ offset_right = 1152.0
 offset_bottom = 576.0
 key_id = 2
 open_method = 4
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="KeyDoor2" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 offset_left = 720.0
@@ -850,6 +852,8 @@ offset_bottom = 288.0
 key_id = 1
 open_method = 4
 custom_method = Rect2(0.5, -0.5, 0, 2)
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="KeyDoor3" parent="Doors/KeyDoors" instance=ExtResource("10_k0gxq")]
 offset_left = 720.0
@@ -861,6 +865,8 @@ open_method = 1
 custom_method = Rect2(0.5, -0.5, 0, 2)
 open_time = 300
 fade = true
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="GoldDoors" type="Node2D" parent="Doors"]
 script = ExtResource("4_gna1d")
@@ -872,6 +878,8 @@ offset_top = 240.0
 offset_right = 1368.0
 offset_bottom = 336.0
 open_method = 4
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="GoldDoor2" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -882,6 +890,8 @@ offset_bottom = 864.0
 money_requirement = 1
 open_method = 4
 custom_method = Rect2(0, 0, 0, 0)
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="GoldDoor3" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -892,6 +902,8 @@ offset_bottom = 864.0
 money_requirement = 2
 open_method = 4
 custom_method = Rect2(1, 0, 0, 0)
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="GoldDoor4" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -902,6 +914,8 @@ offset_bottom = 960.0
 money_requirement = 3
 open_method = 4
 custom_method = Rect2(0, 1, 0, 0)
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="GoldDoor5" parent="Doors/GoldDoors" instance=ExtResource("11_x8hxl")]
 z_index = 4
@@ -912,6 +926,8 @@ offset_bottom = 960.0
 money_requirement = 4
 open_method = 4
 custom_method = Rect2(1, 1, 0, 0)
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="Solids" type="Node2D" parent="."]
 script = ExtResource("4_gna1d")
@@ -926,6 +942,8 @@ offset_top = 240.0
 offset_right = 1224.0
 offset_bottom = 336.0
 script = ExtResource("12_bcmw2")
+outline_theme_link = ""
+fill_theme_link = ""
 outline_color = Color(0.4, 0.282353, 0.4, 1)
 fill_color = Color(1, 0.74902, 1, 1)
 
@@ -938,6 +956,8 @@ offset_top = 240.0
 offset_right = 1416.0
 offset_bottom = 336.0
 script = ExtResource("12_bcmw2")
+outline_theme_link = ""
+fill_theme_link = ""
 outline_color = Color(0.4, 0.282353, 0.4, 1)
 fill_color = Color(1, 0.74902, 1, 1)
 

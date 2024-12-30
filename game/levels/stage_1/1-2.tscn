@@ -38,6 +38,8 @@ offset_right = 912.0
 offset_bottom = 624.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("5_7s4pf")
+outline_theme_link = ""
+fill_theme_link = ""
 outline_color = Color(0.623429, 0.00048949, 0.669374, 1)
 fill_color = Color(0.965606, 0.559224, 0.856285, 1)
 
@@ -87,6 +89,8 @@ offset_left = 480.0
 offset_top = 528.0
 offset_right = 576.0
 offset_bottom = 624.0
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="KeyDoors" type="Node2D" parent="."]
 script = ExtResource("3_exrr7")
@@ -96,6 +100,8 @@ offset_left = 960.0
 offset_top = 336.0
 offset_right = 1056.0
 offset_bottom = 432.0
+outline_theme_link = ""
+fill_theme_link = ""
 
 [node name="Decoration" type="Node2D" parent="."]
 editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."

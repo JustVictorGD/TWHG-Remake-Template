@@ -39,9 +39,11 @@ anchors_preset = 0
 script = ExtResource("2_k8eip")
 dynamic_color = true
 decorative = true
+outline_z_offset = 0
+outline_theme_link = ""
+fill_theme_link = ""
 outline_color = Color(0.4, 0, 0, 1)
 fill_color = Color(1, 0, 0, 1)
-outline_z_offset = 0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1, 0, 0, 1)
