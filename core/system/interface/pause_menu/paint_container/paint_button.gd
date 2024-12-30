@@ -2,16 +2,17 @@ extends Button
 class_name PaintButton
 
 var paint_id: int
-var unlocked: bool = false
 
 @onready var outline: Control = $Outline
 @onready var fill: ColorRect = $Fill
+@onready var locked_icon: Control = $Locked
+
+#PaintManager.paint_progress
 
 func _ready() -> void:
 	button_down.connect(on_click)
 	
 	if paint_id == -1:
-		unlocked = true
 		fill.modulate = PaintManager.default_player.fill
 		outline.modulate = PaintManager.default_player.outline
 	else:
@@ -21,7 +22,12 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	if paint_id == -1 or PaintManager.paint_progress[paint_id] == 1:
+		disabled = false
+		locked_icon.visible = false
+	else:
+		disabled = true
+		locked_icon.visible = true
 
 
 func on_click() -> void:

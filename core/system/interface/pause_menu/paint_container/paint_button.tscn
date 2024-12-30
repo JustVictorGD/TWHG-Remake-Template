@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://i1lhbw6e250o"]
+[gd_scene load_steps=3 format=3 uid="uid://i1lhbw6e250o"]
 
+[ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_3j6sm"]
 [ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_button.gd" id="2_xbfm7"]
 
 [node name="Button" type="Button"]
@@ -63,11 +64,24 @@ offset_bottom = -6.0
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Locked" type="Control" parent="."]
+[node name="Locked" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Locked"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_3j6sm")
+theme_override_font_sizes/font_size = 30
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
