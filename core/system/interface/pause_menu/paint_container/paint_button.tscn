@@ -4,8 +4,53 @@
 [ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_button.gd" id="2_xbfm7"]
 
 [node name="TextureButton" type="TextureButton"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(24, 24)
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 30.0
+offset_bottom = 30.0
 texture_normal = ExtResource("1_wb0bt")
 texture_pressed = ExtResource("1_wb0bt")
 stretch_mode = 0
 script = ExtResource("2_xbfm7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -6.0
+offset_bottom = 6.0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = -6.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)

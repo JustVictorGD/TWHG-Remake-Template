@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://btuvdtlg5u165"]
+[gd_scene load_steps=5 format=3 uid="uid://btuvdtlg5u165"]
 
 [ext_resource type="Script" path="res://core/system/interface/pause_menu/pause_menu.gd" id="1_eyytm"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="2_g15fw"]
 [ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_container.gd" id="3_orb62"]
-[ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_button.gd" id="5_mpifj"]
 
 [sub_resource type="Theme" id="Theme_ddqyr"]
 
@@ -207,12 +206,10 @@ vertical_alignment = 1
 
 [node name="PaintContainer" type="FlowContainer" parent="."]
 layout_mode = 0
-offset_left = 56.0
+offset_left = 64.0
 offset_top = 388.0
-offset_right = 272.0
+offset_right = 280.0
 offset_bottom = 515.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
 script = ExtResource("3_orb62")
-
-[node name="PaintButton" type="TextureButton" parent="PaintContainer"]
-layout_mode = 2
-script = ExtResource("5_mpifj")
