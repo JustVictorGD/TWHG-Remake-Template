@@ -9,16 +9,16 @@ class_name Coin
 
 
 func _ready() -> void:
-	# Call the _ready() function of the Collectable class.
-	super()
-	
-	update_colors()
-	
 	if motion_trail:
 		$GPUParticles2D.emitting = true
 	
 	hitbox = $CircleCollider
-	World.money_requirement += 1
+	
+	if not registered:
+		World.money_requirement += 1
+	
+	# Call the _ready() function of the Collectable class.
+	super()
 
 
 func collect() -> void:

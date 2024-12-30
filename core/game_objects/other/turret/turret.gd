@@ -41,7 +41,8 @@ func fire_turret() -> void:
 	if copy is Enemy:
 		if properties != null and properties is EnemyProperties:
 			copy.set_properties(properties)
-		
+	
+	if copy is GameObject2D:
 		copy._ready()
 	
 	copy.position = position
