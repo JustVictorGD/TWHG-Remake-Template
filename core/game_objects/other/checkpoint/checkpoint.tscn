@@ -20,4 +20,4 @@ duration = 120
 
 [node name="WarpDelayTimer" type="Node" parent="."]
 script = ExtResource("3_mriv3")
-duration = 90
+duration = 30

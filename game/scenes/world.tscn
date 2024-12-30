@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://55jl8jvoqiur"]
 
 [ext_resource type="Script" path="res://core/system/scene/world.gd" id="1_vvjqr"]
-[ext_resource type="Script" path="res://game/scenes/rect_visualizer.gd" id="2_55ix0"]
+[ext_resource type="Script" path="res://core/system/scene/rect_visualizer.gd" id="2_55ix0"]
 [ext_resource type="PackedScene" uid="uid://jn6lkoo3vdrt" path="res://core/system/interface/interface.tscn" id="3_vj0hv"]
 [ext_resource type="Shader" path="res://core/shaders/vignette/vignette.gdshader" id="4_dvtww"]
 [ext_resource type="PackedScene" uid="uid://db78gabyxxg2y" path="res://core/system/player/player.tscn" id="4_n1yce"]

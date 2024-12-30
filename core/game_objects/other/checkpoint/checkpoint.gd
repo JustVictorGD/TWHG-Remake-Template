@@ -4,13 +4,15 @@ class_name Checkpoint
 
 @export var type: types = types.CHECKPOINT
 
-
-
 ## If the checkpoint is a finish and is used to win the level, this value
 ## will be used as a shortcut to warp to another level. Check the file
 ## "res://game/connections.json" for the list of key-value pairs. If a valid
 ## key is entered in this field, it will load the corresponding file path.
 @export var level_warp: String = ""
+
+## Amount of delay after finishing the level before warping
+## to the next one. Measured in ticks. 1 second = 60 ticks.
+@export var warp_time: int = 120
 
 ## If this checkpoint is a finish, using it to win will turn
 ## the timer golden and will not lead to another level.
@@ -50,6 +52,7 @@ func _ready() -> void:
 	
 	movement_update()
 	
+	warp_timer.duration = warp_time
 	warp_timer.timeout.connect(warp_level)
 
 
@@ -120,5 +123,8 @@ func win() -> void:
 
 
 func warp_level() -> void:
-	if level_warp != "":
+	if final_destination:
+		get_tree().change_scene_to_packed(preload("res://game/scenes/end_screen.tscn"))
+	
+	elif level_warp != "":
 		GlobalSignal.switch_level.emit(level_warp)
