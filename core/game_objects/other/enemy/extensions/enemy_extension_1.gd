@@ -1,8 +1,12 @@
+@tool
 extends Enemy
 @onready var vc: VelocityComponent = $VelocityComponent
 
 func _ready() -> void:
-	GlobalSignal.event.connect(on_event)
+	super()
+	
+	if not in_editor:
+		GlobalSignal.event.connect(on_event)
 
 func on_event(event_id: int, state: bool) -> void:
 	if event_id == 1:
