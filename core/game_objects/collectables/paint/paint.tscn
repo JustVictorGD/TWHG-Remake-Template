@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk82f13qdaip0"]
+[gd_scene load_steps=8 format=3 uid="uid://dk82f13qdaip0"]
 
 [ext_resource type="Script" path="res://core/game_objects/collectables/paint/paint.gd" id="1_xq6tu"]
 [ext_resource type="Texture2D" uid="uid://32xlqikx31rs" path="res://core/game_objects/collectables/paint/paint fill quadruple precision.png" id="2_w8x3d"]
-[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="3_etra8"]
+[ext_resource type="PackedScene" uid="uid://brxa1aj0qdr67" path="res://core/components/masked_sprite/masked_sprite.tscn" id="3_3btvp"]
 [ext_resource type="Texture2D" uid="uid://br3x13o51ul6q" path="res://core/game_objects/collectables/paint/paint outline quadruple precision.png" id="3_yie6p"]
+[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="4_2d4e7"]
 [ext_resource type="Script" path="res://core/components/colliders/circle_collider.gd" id="4_t8bvy"]
-[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="6_25tpj"]
-[ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="7_0pncj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4jhp"]
-shader = ExtResource("3_etra8")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t003k"]
+resource_local_to_scene = true
+shader = ExtResource("4_2d4e7")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 1)
@@ -28,10 +28,8 @@ script = ExtResource("4_t8bvy")
 radius = 32.0
 multi_activate = false
 
-[node name="MaskedSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_w4jhp")
+[node name="MaskedSprite" parent="." instance=ExtResource("3_3btvp")]
+material = SubResource("ShaderMaterial_t003k")
 scale = Vector2(96, 96)
-texture = ExtResource("6_25tpj")
-script = ExtResource("7_0pncj")
 outline_texture = ExtResource("3_yie6p")
 fill_texture = ExtResource("2_w8x3d")

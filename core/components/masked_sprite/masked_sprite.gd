@@ -21,12 +21,11 @@ class_name MaskedSprite
 
 @onready var in_editor: bool = Engine.is_editor_hint()
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	texture = preload("res://core/misc_assets/images/Blank pixel.png")
-	
-	material = ShaderMaterial.new()
-	material.shader = preload("res://core/components/masked_sprite/masked_sprite.gdshader")
+	if texture == null:
+		push_error("Don't add a MaskedSprite using the \
+				scene dock! Use the .tscn file instead.")
 	
 	if standalone_decoration:
 		update_textures()
@@ -34,7 +33,6 @@ func _ready() -> void:
 		update_scale()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if in_editor:
 		update_textures()

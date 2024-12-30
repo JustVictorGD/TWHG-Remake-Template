@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://blp6v7py3fd5j"]
+[gd_scene load_steps=65 format=4 uid="uid://blp6v7py3fd5j"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_msdjo"]
 [ext_resource type="Resource" uid="uid://bvirr7nvp5wjo" path="res://game/themes/original/red_theme.tres" id="2_dbbye"]
@@ -25,14 +25,12 @@
 [ext_resource type="PackedScene" uid="uid://dk82f13qdaip0" path="res://core/game_objects/collectables/paint/paint.tscn" id="21_vxatf"]
 [ext_resource type="PackedScene" uid="uid://dbpu6toxelscq" path="res://core/game_objects/other/teleporter/teleporter.tscn" id="22_t4d3y"]
 [ext_resource type="PackedScene" uid="uid://brxa1aj0qdr67" path="res://core/components/masked_sprite/masked_sprite.tscn" id="24_bhh7e"]
-[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="25_hf0ry"]
 [ext_resource type="Texture2D" uid="uid://d1ch3bxh6knag" path="res://core/game_objects/collectables/coin/coin_outline.png" id="26_cp0ph"]
-[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="26_u2nnr"]
+[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="26_j6fxi"]
 [ext_resource type="Texture2D" uid="uid://dyy8fd8kaymlg" path="res://core/game_objects/collectables/key/key_fill.png" id="27_70yx1"]
 [ext_resource type="Texture2D" uid="uid://cykrjltlwlbtd" path="res://core/game_objects/collectables/key/key_outline.png" id="28_hquiu"]
 [ext_resource type="Texture2D" uid="uid://32xlqikx31rs" path="res://core/game_objects/collectables/paint/paint fill quadruple precision.png" id="29_cc3cq"]
 [ext_resource type="Texture2D" uid="uid://br3x13o51ul6q" path="res://core/game_objects/collectables/paint/paint outline quadruple precision.png" id="30_s5dq8"]
-[ext_resource type="PackedScene" uid="uid://bpe6jdhcx3gxt" path="res://weird/game_object_2d.tscn" id="32_66hbs"]
 
 [sub_resource type="Gradient" id="Gradient_bmgtd"]
 
@@ -330,8 +328,9 @@ _data = {
 "new_animation": SubResource("Animation_7wvjd")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycuoc"]
-shader = ExtResource("25_hf0ry")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h54oh"]
+resource_local_to_scene = true
+shader = ExtResource("26_j6fxi")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 0.501961)
@@ -340,8 +339,9 @@ shader_parameter/fill_scale = Vector2(0.5, 1)
 shader_parameter/outline_texture = ExtResource("26_cp0ph")
 shader_parameter/fill_texture = ExtResource("26_cp0ph")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_52ta2"]
-shader = ExtResource("25_hf0ry")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k7dhg"]
+resource_local_to_scene = true
+shader = ExtResource("26_j6fxi")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/fill_color = Color(0, 0, 0, 0)
@@ -350,8 +350,9 @@ shader_parameter/fill_scale = Vector2(1, 1)
 shader_parameter/outline_texture = ExtResource("28_hquiu")
 shader_parameter/fill_texture = ExtResource("27_70yx1")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ujjo"]
-shader = ExtResource("25_hf0ry")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klx5v"]
+resource_local_to_scene = true
+shader = ExtResource("26_j6fxi")
 shader_parameter/opacity = 1.0
 shader_parameter/outline_color = Color(0, 0, 1, 1)
 shader_parameter/fill_color = Color(0, 0, 1, 0.25098)
@@ -687,40 +688,39 @@ object_count = 4
 node = ExtResource("11_xb47a")
 
 [node name="Coin" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1272, 696)
+position = Vector2(1296, 730)
 store_behavior = 2
+copy_area_theme = false
+fill_color = Color(1, 0, 0, 1)
 
 [node name="Coin2" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1320, 696)
+position = Vector2(1320, 718)
 store_behavior = 2
+copy_area_theme = false
 
 [node name="Coin3" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1368, 696)
+position = Vector2(1344, 730)
 store_behavior = 2
+copy_area_theme = false
+fill_color = Color(0, 1, 0, 1)
 
 [node name="Coin4" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1272, 744)
+position = Vector2(1344, 758)
 store_behavior = 2
+copy_area_theme = false
+fill_color = Color(0, 1, 1, 1)
 
 [node name="Coin5" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1320, 744)
+position = Vector2(1320, 770)
 store_behavior = 2
+copy_area_theme = false
+fill_color = Color(0, 0, 1, 1)
 
 [node name="Coin6" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1368, 744)
+position = Vector2(1296, 758)
 store_behavior = 2
-
-[node name="Coin7" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1272, 792)
-store_behavior = 2
-
-[node name="Coin8" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1320, 792)
-store_behavior = 2
-
-[node name="Coin9" parent="Coins" instance=ExtResource("11_xb47a")]
-position = Vector2(1368, 792)
-store_behavior = 2
+copy_area_theme = false
+fill_color = Color(1, 0, 1, 1)
 
 [node name="Keys" type="Node2D" parent="."]
 script = ExtResource("3_womt2")
@@ -925,26 +925,26 @@ metadata/_edit_lock_ = true
 script = ExtResource("3_womt2")
 
 [node name="Paint" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(672, 144)
+position = Vector2(708, 168)
 paint_id = 4
 save_behavior = 2
 
 [node name="Paint2" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(768, 144)
+position = Vector2(792, 168)
 paint_id = 4
 
 [node name="Paint3" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(864, 144)
+position = Vector2(888, 168)
 paint_id = 4
 save_behavior = 1
 
 [node name="Paint4" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(864, 288)
+position = Vector2(888, 312)
 paint_id = 2
 save_behavior = 1
 
 [node name="Paint5" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(960, 288)
+position = Vector2(984, 312)
 paint_id = 1
 save_behavior = 1
 
@@ -968,10 +968,9 @@ teleporter_setting = 2
 
 [node name="LayeredSprite" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 20
-material = SubResource("ShaderMaterial_ycuoc")
+material = SubResource("ShaderMaterial_h54oh")
 position = Vector2(576, 384)
 scale = Vector2(68, 72)
-texture = ExtResource("26_u2nnr")
 standalone_decoration = true
 fill_scale = Vector2(0.5, 1)
 outline_color = Color(1, 0, 0, 1)
@@ -981,27 +980,22 @@ fill_texture = ExtResource("26_cp0ph")
 
 [node name="LayeredSprite2" parent="." instance=ExtResource("24_bhh7e")]
 z_index = 12
-material = SubResource("ShaderMaterial_52ta2")
+material = SubResource("ShaderMaterial_k7dhg")
 position = Vector2(384, 384)
 scale = Vector2(144, 144)
-texture = ExtResource("26_u2nnr")
 standalone_decoration = true
 fill_color = Color(0, 0, 0, 0)
 outline_texture = ExtResource("28_hquiu")
 fill_texture = ExtResource("27_70yx1")
 
 [node name="LayeredSprite3" parent="." instance=ExtResource("24_bhh7e")]
-material = SubResource("ShaderMaterial_5ujjo")
+material = SubResource("ShaderMaterial_klx5v")
 position = Vector2(192, 288)
 scale = Vector2(192, 192)
-texture = ExtResource("26_u2nnr")
 standalone_decoration = true
 outline_color = Color(0, 0, 1, 1)
 fill_color = Color(0, 0, 1, 0.25098)
 outline_texture = ExtResource("30_s5dq8")
 fill_texture = ExtResource("29_cc3cq")
-
-[node name="ColoredObject2D" parent="." instance=ExtResource("32_66hbs")]
-position = Vector2(1080, 744)
 
 [editable path="Walls/TileBasedWall"]
