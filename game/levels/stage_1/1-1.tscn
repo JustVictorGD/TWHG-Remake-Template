@@ -927,12 +927,11 @@ script = ExtResource("3_womt2")
 [node name="Paint" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(672, 144)
 paint_id = 4
-save_behavior = 1
+save_behavior = 2
 
 [node name="Paint2" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(768, 144)
 paint_id = 4
-save_behavior = 1
 
 [node name="Paint3" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(864, 144)
@@ -940,16 +939,11 @@ paint_id = 4
 save_behavior = 1
 
 [node name="Paint4" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(960, 144)
-paint_id = 4
+position = Vector2(864, 288)
+paint_id = 2
 save_behavior = 1
 
 [node name="Paint5" parent="Paints" instance=ExtResource("21_vxatf")]
-position = Vector2(864, 288)
-paint_id = 1
-save_behavior = 1
-
-[node name="Paint6" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(960, 288)
 paint_id = 1
 save_behavior = 1

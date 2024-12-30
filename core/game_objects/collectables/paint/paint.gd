@@ -20,7 +20,28 @@ func _ready() -> void:
 func collect() -> void:
 	super()
 	
-	PaintManager.paint_progress[paint_id] = 1
+	if PaintManager.paint_progress[paint_id] == 2:
+		return # Abort if already saved to prevent downgrading from 2 to 1.
+	
+	if save_behavior != save_behaviors.AUTOMATIC_SAVE:
+		PaintManager.paint_progress[paint_id] = 1 # Set to collected.
+	else:
+		PaintManager.paint_progress[paint_id] = 2 # Set to saved.
+
+
+func drop() -> void:
+	super()
+	
+	if PaintManager.paint_progress[paint_id] == 1:
+		PaintManager.paint_progress[paint_id] = 0
+
+
+func save() -> void:
+	super()
+	
+	if PaintManager.paint_progress[paint_id] == 1:
+		if save_behavior != save_behaviors.UNSAVABLE:
+			PaintManager.paint_progress[paint_id] = 2
 
 
 func stay_collected() -> void:
