@@ -5,8 +5,8 @@ extends Node2D
 
 
 func _ready() -> void:
-	GameManager.current_level = "end_screen"
 	$Button.pressed.connect(on_button_pressed)
+	GameManager.current_level = World.starting_level_static
 	
 	$FinalDeaths.text = str("Final deaths: ", GameManager.deaths)
 	$FinalTime.text = "Final time: " + Saves.format_time(GameLoop.game_ticks)
