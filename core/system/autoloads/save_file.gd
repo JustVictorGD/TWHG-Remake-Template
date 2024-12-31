@@ -27,7 +27,6 @@ var save_dictionary: Dictionary = default_save.duplicate(true)
 
 func _ready() -> void:
 	GlobalSignal.progress_saved.connect(save)
-	GlobalSignal.checkpoint_touched.connect(update_cp_and_collectables)
 
 
 func _notification(what: int) -> void:
