@@ -154,7 +154,7 @@ func movement_update() -> void:
 		else:
 			up_crush_threshold -= pixel_movement.y
 		
-		move(corner_slide(walls, movement_direction * 4, Vector2i(500, 0), sliding_sensitivity) * speed)
+		move(corner_slide(walls, movement_direction * 4, Vector2i(0, 0), sliding_sensitivity) * speed)
 		
 		var push: Vector2i = push_out_of_walls(walls)
 		var queue_death: bool = false
