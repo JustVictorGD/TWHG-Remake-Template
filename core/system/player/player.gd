@@ -7,7 +7,7 @@ class_name Player
 #region Properties
 
 @export var speed: int = 4000 # One pixel per tick is 1,000
-@export_range(0, 41) var sliding_sensitivity: int = 32
+@export var sliding_sensitivity: float = 0.5
 @export var size: Vector2i = Vector2i(42, 42)
 
 ## How much the player is allowed to travel from a wall 
@@ -140,7 +140,7 @@ func movement_update() -> void:
 	
 	if not GameManager.ghost:
 		# Comes from the 'PushableBox' class!
-		var walls: Array[Rect2i] = get_nearby_walls()
+		var walls: Array[Rect2i] = get_nearby_walls(sliding_sensitivity)
 		
 		var up_crush_threshold: int = int(-hitbox.size.x * crush_leniency)
 		var left_crush_threshold: int = int(-hitbox.size.y * crush_leniency)
@@ -157,7 +157,7 @@ func movement_update() -> void:
 		else:
 			up_crush_threshold -= pixel_movement.y
 		
-		move(corner_slide(walls, movement_direction * 4, Vector2i(500, 0), Vector2i(21, 21)) * speed)
+		move(corner_slide(walls, movement_direction * 4, Vector2i(500, 0), sliding_sensitivity) * speed)
 		
 		var push: Vector2i = push_out_of_walls(walls)
 		var queue_death: bool = false

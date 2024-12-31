@@ -31,7 +31,6 @@ color_ramp = SubResource("GradientTexture1D_aqyqe")
 [node name="Player" type="Node2D" groups=["player"]]
 z_index = 6
 script = ExtResource("1_sxbrj")
-sliding_sensitivity = 33
 
 [node name="Sprite" type="Control" parent="."]
 layout_mode = 3

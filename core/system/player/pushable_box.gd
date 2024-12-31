@@ -13,13 +13,17 @@ var hitbox: Rect2i = Rect2i(0, 0, 42, 42)
 var subpixels: Vector2i = Vector2i(subpixel.DEFAULT, subpixel.DEFAULT)
 
 
-func get_nearby_walls() -> Array[Rect2i]:
+func get_nearby_walls(sliding_sensitivity: float) -> Array[Rect2i]:
 	var nearby_walls: Array[Rect2i] = []
 	
 	var larger_check: Rect2i = Rect2i(
 		hitbox.position - Vector2i(8, 8),
 		hitbox.size + Vector2i(16, 16)
 		)
+	
+	larger_check.position -= Vector2i(hitbox.size * sliding_sensitivity)
+	
+	larger_check.size += Vector2i(hitbox.size * sliding_sensitivity * 2)
 	
 	for wall: Rect2i in World.walls:
 		if wall.intersects(larger_check):
@@ -76,10 +80,13 @@ func push_out_rectangle(rect: Rect2i, wall: Rect2i) -> Rect2i:
 
 # This function suggests a direction in which you should move in to
 # avoid getting stuck on a corner. The way you use it is up to you.
-func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_velocity: Vector2i, sensitivity: Vector2i) -> Vector2i:
+func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_velocity: Vector2i, sensitivity: float) -> Vector2i:
 	# Save resources if there are no walls to slide around by aborting.
 	if walls.size() == 0:
 		return Vector2i.ZERO
+	
+	# I can't bother to understand why this is needed.
+	sensitivity -= 1
 	
 	# The interpreted movement direction.
 	# Expecting Vector2i.UP, LEFT, DOWN or RIGHT.
@@ -147,34 +154,32 @@ func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_vel
 	if not touching_a_wall:
 		return Vector2i.ZERO
 	
-	var box_center: Vector2i = hitbox.position + hitbox.size / 2
-	
 	# Repetition...
 	
 	# Moving either left or right.
 	if movement_direction.y == 0:
-		var distance_up: int = box_center.y - chosen_wall.position.y
-		var distance_down: int = chosen_wall.end.y - box_center.y
+		var distance_up: int = hitbox.end.y - chosen_wall.position.y
+		var distance_down: int = chosen_wall.end.y - hitbox.end.y
 		
 		# Don't slide in case of a perfect tie
 		if distance_up == distance_down:
 			return Vector2i.ZERO
 		
-		if distance_up > sensitivity.y and distance_down > sensitivity.y:
+		if distance_up > hitbox.size.y * sensitivity and distance_down > hitbox.size.y * sensitivity:
 			return Vector2i.ZERO
 		
 		return Vector2i.UP if distance_up < distance_down else Vector2i.DOWN
 	
 	# Moving either up or down.
 	else:
-		var distance_left: int = box_center.x - chosen_wall.position.x
-		var distance_right: int = chosen_wall.end.x - box_center.x
+		var distance_left: int = hitbox.position.x - chosen_wall.position.x
+		var distance_right: int = chosen_wall.end.x - hitbox.position.x
 		
 		# Don't slide in case of a perfect tie
 		if distance_left == distance_right:
 			return Vector2i.ZERO
 		
-		if distance_left > sensitivity.x and distance_right > sensitivity.x:
+		if distance_left > hitbox.size.x * sensitivity and distance_right > hitbox.size.x * sensitivity:
 			return Vector2i.ZERO
 		
 		return Vector2i.LEFT if distance_left < distance_right else Vector2i.RIGHT
