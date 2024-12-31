@@ -15,13 +15,9 @@ class_name Interface
 
 @onready var flash_timer: TickBasedTimer = $FlashTimer
 
-@onready var ticks: int = GameLoop.ticks
-var seconds: int = 0
-var minutes: int = 0
-var hours: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameLoop.update_timers.connect(update_timers)
 	$Menu.button_down.connect(menu_click)
 	
 	GlobalSignal.level_switched.connect(flash_timer.reset_and_play)
@@ -31,21 +27,12 @@ func menu_click() -> void:
 	GameManager.paused = not GameManager.paused
 
 
-func update_timers() -> void:
-	if not GameManager.finished:
-		ticks += 1
-	
-	while ticks >= 60:
-		ticks -= 60
-		seconds += 1
-	
-	while seconds >= 60:
-		seconds -= 60
-		minutes += 1
-	
-	while minutes >= 60:
-		minutes -= 60
-		hours += 1
+@warning_ignore("integer_division")
+func format_time(total_ticks: int) -> String:
+	var hours: int = total_ticks / 216_000
+	var minutes: int = total_ticks / 3_600 % 60
+	var seconds: int = total_ticks / 60 % 60
+	return str(hours) + ":%02d:%02d" % [minutes, seconds]
 
 
 func _process(_delta : float) -> void:
@@ -58,8 +45,8 @@ func _process(_delta : float) -> void:
 	if World.current_level != null:
 		bottom_text.text = World.current_level.bottom_text
 		
-	timer.text = str(hours) + (":%02d:%02d" % [minutes, seconds])
-	tick_timer.text = ".%02d" % [ticks]
+	timer.text = format_time(GameLoop.game_ticks)
+	tick_timer.text = ".%02d" % [GameLoop.game_ticks % 60]
 	fps.text = str(Engine.get_frames_per_second()) + " FPS"
 	
 	if GameManager.finished:

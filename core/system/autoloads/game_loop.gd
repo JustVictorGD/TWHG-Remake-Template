@@ -9,7 +9,9 @@ signal update_timers
 const TICK_LENGTH: float = 1/60.0
 var time: float = 0
 var ticks: int = 0
-var total_ticks: int = 0
+
+# Stops ticking upon victory.
+var game_ticks: int = 0
 
 func _process(delta: float) -> void:
 	if GameManager.current_level != "" and not GameManager.paused:
@@ -18,7 +20,9 @@ func _process(delta: float) -> void:
 		while time > TICK_LENGTH:
 			time -= TICK_LENGTH
 			ticks += 1
-			total_ticks += 1
+			
+			if not GameManager.finished:
+				game_ticks += 1
 			
 			push_internal_frame()
 

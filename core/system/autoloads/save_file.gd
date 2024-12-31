@@ -7,6 +7,7 @@ var path: String = "user://save.json"
 var default_save: Dictionary = {
 	"global": {
 		"ticks": 0,
+		"game_ticks": 0,
 		"deaths": 0 ,
 		"level": "",
 		"color": -1,
@@ -64,6 +65,7 @@ func store_save() -> void:
 
 func save() -> void:
 	save_dictionary["global"]["ticks"] = GameLoop.ticks
+	save_dictionary["global"]["game_ticks"] = GameLoop.game_ticks
 	save_dictionary["global"]["deaths"] = GameManager.deaths
 	save_dictionary["global"]["level"] = GameManager.current_level
 	
@@ -88,6 +90,7 @@ func view_save() -> void:
 
 func load_save() -> void:
 	GameLoop.ticks = save_dictionary["global"]["ticks"]
+	GameLoop.game_ticks = save_dictionary["global"]["game_ticks"]
 	GameManager.deaths = save_dictionary["global"]["deaths"]
 	GameManager.current_level = save_dictionary["global"]["level"]
 	save_loaded.emit()

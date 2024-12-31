@@ -42,7 +42,8 @@ func _ready() -> void:
 	#add_child(camera)
 	#add_child(player)
 	
-	focus_camera(current_level)
+	if current_level != null:
+		focus_camera(current_level)
 	
 	GlobalSignal.switch_level.connect(switch_level)
 	
