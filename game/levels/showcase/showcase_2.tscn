@@ -17,7 +17,7 @@
 
 [node name="TemplateLevel" type="Node2D" groups=["area"]]
 script = ExtResource("1_liv7r")
-level_code = "showcase_2"
+level_code = "2/5"
 bottom_text = "You could call this an industrial theme."
 theme = ExtResource("2_aj14a")
 metadata/_edit_lock_ = true

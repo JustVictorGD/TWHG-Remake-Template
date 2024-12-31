@@ -32,6 +32,7 @@ interface_sides = Color(0.2, 0.2, 0.2, 1)
 
 [node name="TemplateLevel" type="Node2D" groups=["area"]]
 script = ExtResource("1_6r42y")
+level_code = "3/5"
 bottom_text = "This ain't whg bruh"
 theme = SubResource("Resource_amml7")
 metadata/_edit_lock_ = true
@@ -113,8 +114,6 @@ offset_left = 480.0
 offset_top = 528.0
 offset_right = 576.0
 offset_bottom = 624.0
-open_time = 120
-close_time = 60
 
 [node name="KeyDoors" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
@@ -125,8 +124,6 @@ offset_left = 960.0
 offset_top = 336.0
 offset_right = 1056.0
 offset_bottom = 432.0
-open_time = 120
-close_time = 60
 
 [node name="Paints" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
