@@ -75,8 +75,7 @@ offset_top = 432.0
 offset_right = 816.0
 offset_bottom = 528.0
 type = 3
-level_warp = "showcase_1"
-final_destination = true
+level_warp = "showcase_5"
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")

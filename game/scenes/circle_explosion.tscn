@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://jqavj6nthx3"]
+
+[ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="1_qcq02"]
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_i5026"]
+
+[sub_resource type="GDScript" id="GDScript_0baoa"]
+resource_name = "circle_explosion"
+script/source = "extends Circle
+
+var rng = RandomNumberGenerator.new()
+
+func _ready() -> void:
+	super()
+	rotation = rng.randf_range(0, 2*PI)
+
+func animation_update() -> void:
+	super()
+	radius += 0.1
+"
+
+[sub_resource type="Resource" id="Resource_n7uv7"]
+script = ExtResource("1_qcq02")
+constant_check = false
+lock_scale = false
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0.4, 1)
+fill_color = Color(0, 1, 1, 1)
+
+[node name="CircleExplosion" type="Node2D"]
+script = SubResource("GDScript_0baoa")
+radius = 0.0
+object_count = 10
+properties = SubResource("Resource_n7uv7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.501961, 0.227451, 1)
+scale = Vector2(20, 20)
+texture = ExtResource("2_i5026")
