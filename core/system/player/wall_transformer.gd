@@ -268,15 +268,19 @@ static func stretch_case_opposites(a: Rect2i, b: Rect2i, player_pos: Vector2i, a
 	
 	# The vector is flipped 180 degrees if it points
 	# up for a less ambiguous "right" direction.
-	if deciding_vector.size.y < 0:
+	if deciding_vector.size.y <= 0:
 		deciding_vector.size *= -1
 	
 	# Mirror stretch pattern horizontally if vector points right.
-	if deciding_vector.size.x > 0:
+	if deciding_vector.size.x >= 0:
 		stretch_pattern.x *= -1
 	
 	# Flip stretch pattern 180 degrees if player is above the deciding vector.
 	if point_above_vector(player_pos, deciding_vector):
+		stretch_pattern *= -1
+	
+	# Fixing quite specific bug
+	if deciding_vector.size.x == 0 or deciding_vector.size.y == 0:
 		stretch_pattern *= -1
 	
 	return two_stretches_towards_signs(stretch_pattern)
