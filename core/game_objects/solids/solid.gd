@@ -63,7 +63,7 @@ var outer_bound: Rect2:
 
 var global_bound: Rect2:
 	get:
-		return Rect2(-outwards_2d + position, size + outwards_2d * 2)
+		return Rect2(-outwards_2d + global_position, size + outwards_2d * 2)
 
 var total_width: float:
 	get:
