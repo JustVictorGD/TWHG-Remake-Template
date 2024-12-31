@@ -5,6 +5,7 @@ var collectables_processed: bool = false
 # Game properties
 var paused: bool = false
 var snappy_movement: bool = false
+var sliding_sensitivity: float = 0.5
 
 # Player stats
 var deaths: int = 0

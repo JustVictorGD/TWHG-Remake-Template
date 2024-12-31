@@ -19,6 +19,7 @@ func _ready() -> void:
 	sfx_index = AudioServer.get_bus_index("SFX")
 	$MusicVolumeSlider.value_changed.connect(music_value_changed)
 	$SFXVolumeSlider.value_changed.connect(sfx_value_changed)
+	$SensitivitySlider.value_changed.connect(sliding_value_changed)
 
 
 func return_to_game_click() -> void:
@@ -77,6 +78,11 @@ func music_value_changed(value: float) -> void:
 
 func sfx_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(sfx_index, linear_to_db(value))
+
+
+func sliding_value_changed(value: float) -> void:
+	GameManager.sliding_sensitivity = value
+	$SensitivityPercentage.text = str(value * 100, "%")
 
 
 func _process(_delta: float) -> void:

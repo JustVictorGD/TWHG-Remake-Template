@@ -85,9 +85,6 @@ func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_vel
 	if walls.size() == 0:
 		return Vector2i.ZERO
 	
-	# I can't bother to understand why this is needed.
-	sensitivity -= 1
-	
 	# The interpreted movement direction.
 	# Expecting Vector2i.UP, LEFT, DOWN or RIGHT.
 	var movement_direction: Vector2i = sign(speed_from_input) if \
@@ -154,12 +151,15 @@ func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_vel
 	if not touching_a_wall:
 		return Vector2i.ZERO
 	
+	var half_size: Vector2i = hitbox.size / 2
+	var box_center: Vector2i = hitbox.position + half_size
+	
 	# Repetition...
 	
 	# Moving either left or right.
 	if movement_direction.y == 0:
-		var distance_up: int = hitbox.end.y - chosen_wall.position.y
-		var distance_down: int = chosen_wall.end.y - hitbox.end.y
+		var distance_up: int = box_center.y - chosen_wall.position.y + half_size.y
+		var distance_down: int = chosen_wall.end.y - box_center.y + half_size.y
 		
 		# Don't slide in case of a perfect tie
 		if distance_up == distance_down:
@@ -172,8 +172,8 @@ func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_vel
 	
 	# Moving either up or down.
 	else:
-		var distance_left: int = hitbox.position.x - chosen_wall.position.x
-		var distance_right: int = chosen_wall.end.x - hitbox.position.x
+		var distance_left: int = box_center.x - chosen_wall.position.x + half_size.x
+		var distance_right: int = chosen_wall.end.x - box_center.x + half_size.x
 		
 		# Don't slide in case of a perfect tie
 		if distance_left == distance_right:

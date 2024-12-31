@@ -7,7 +7,6 @@ class_name Player
 #region Properties
 
 @export var speed: int = 4000 # One pixel per tick is 1,000
-@export var sliding_sensitivity: float = 0.5
 @export var size: Vector2i = Vector2i(42, 42)
 
 ## How much the player is allowed to travel from a wall 
@@ -87,33 +86,26 @@ func handle_key_press(snappy_movement: bool) -> void:
 
 
 func _ready() -> void:
-	#sprite.change_shape(Rect2(Vector2.ZERO, size))
-	
 	if Engine.is_editor_hint():
 		return
 	
-	
 	hitbox.size = size
-	
-	sliding_sensitivity += 1
-	
 	fancy_hitbox.position = -size / 2
 	fancy_hitbox.scale = size
 	
 	
 	respawn_timer.timeout.connect(respawn)
-	
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
-	
 	GlobalSignal.paint_changed.connect(on_paint_change)
-	#GlobalSignal.finish.connect(finish)
 	
 	paint_id = SaveFile.save_dictionary["global"]["color"]
 
 
 func movement_update() -> void:
+	var sliding_sensitivity: float = GameManager.sliding_sensitivity
+	
 	sprite.outline_color = color_tuple.outline
 	sprite.fill_color = color_tuple.fill
 	particles.modulate = color_tuple.fill

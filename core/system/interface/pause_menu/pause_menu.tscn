@@ -31,32 +31,30 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 704.0
-offset_top = 84.0
-offset_right = -112.0
-offset_bottom = -485.0
+offset_left = 728.0
+offset_top = 108.0
+offset_right = -88.0
+offset_bottom = -461.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "Return to Game"
-alignment = 0
 
 [node name="ToMainMenu" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 704.0
-offset_top = 485.0
-offset_right = -112.0
-offset_bottom = -84.0
+offset_left = 728.0
+offset_top = 468.0
+offset_right = -88.0
+offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "To Main Menu"
-alignment = 0
 
 [node name="MusicToggle" type="Button" parent="."]
 layout_mode = 1
@@ -218,6 +216,40 @@ theme = ExtResource("2_g15fw")
 theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
 text = "Volume"
 horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sensitivity" type="Label" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 252.0
+offset_right = 920.0
+offset_bottom = 300.0
+theme = ExtResource("2_g15fw")
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+text = "Corner Sliding Sensitivity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SensitivitySlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 300.0
+offset_right = 896.0
+offset_bottom = 316.0
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="SensitivityPercentage" type="Label" parent="."]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 324.0
+offset_right = 896.0
+offset_bottom = 355.0
+theme = ExtResource("2_g15fw")
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+text = "50%"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PaintContainer" type="FlowContainer" parent="."]
