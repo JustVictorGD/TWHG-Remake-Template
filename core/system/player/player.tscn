@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="5_pw1f6"]
 
 [sub_resource type="Gradient" id="Gradient_y1mgf"]
-colors = PackedColorArray(1, 1, 1, 0.333333, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 0.25098, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_aqyqe"]
 gradient = SubResource("Gradient_y1mgf")
