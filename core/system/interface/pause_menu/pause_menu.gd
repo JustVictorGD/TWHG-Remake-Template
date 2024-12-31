@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func return_to_game_click() -> void:
-	GameManager.paused = not GameManager.paused
+	GameManager.paused = false
 
 
 func main_menu_click() -> void:

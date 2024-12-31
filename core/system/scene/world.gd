@@ -9,6 +9,8 @@ const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 ## file path will be loaded if it's an area scene.
 @export var starting_level: String
 
+static var starting_level_static: String
+
 # Tracking objects and game state.
 static var walls: Array[Rect2i] = []
 static var collected_money: int = 0
@@ -37,10 +39,8 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	rect_visualizer = $RectVisualizer
 	
-	#add_child(canvas_layer)
-	#canvas_layer.add_child(interface)
-	#add_child(camera)
-	#add_child(player)
+	# Making it easy for end_screen to reset the game.
+	starting_level_static = starting_level
 	
 	if current_level != null:
 		focus_camera(current_level)
