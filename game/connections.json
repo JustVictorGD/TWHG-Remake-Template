@@ -2,5 +2,8 @@
 	"1": "res://game/levels/stage_1/1-1.tscn",
 	"2": "res://game/levels/stage_1/main_room.tscn",
 	"3": "res://game/levels/stage_1/small_room.tscn",
-	"4": "res://game/levels/stage_1/1-3.tscn"
+	"4": "res://game/levels/stage_1/1-3.tscn",
+	"showcase_1": "res://game/levels/showcase/showcase_1.tscn",
+	"showcase_2": "res://game/levels/showcase/showcase_2.tscn",
+	"showcase_3": "res://game/levels/showcase/showcase_3.tscn",
 }

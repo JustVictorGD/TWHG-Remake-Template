@@ -1,0 +1,458 @@
+[gd_scene load_steps=23 format=4 uid="uid://uydpnj34ckqb"]
+
+[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_a58n3"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_0h3r5"]
+[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_3ac6r"]
+[ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_gs8ht"]
+[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_rp5vi"]
+[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="6_3val4"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="7_5hr4o"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_tmvdr"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_4spwr"]
+[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="10_eledb"]
+[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_fxg30"]
+[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/solids/gold_door/gold_door.tscn" id="12_gxu8d"]
+[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="13_8ftfo"]
+
+[sub_resource type="Animation" id="Animation_7liq2"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(192, 96), Vector2(552, 96)]
+}
+
+[sub_resource type="Animation" id="Animation_g5jtd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 96)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luy2p"]
+_data = {
+"RESET": SubResource("Animation_g5jtd"),
+"new_animation": SubResource("Animation_7liq2")
+}
+
+[sub_resource type="Animation" id="Animation_k7nfr"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(552, 240), Vector2(192, 240)]
+}
+
+[sub_resource type="Animation" id="Animation_4idpk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 240)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4wlvk"]
+_data = {
+"RESET": SubResource("Animation_4idpk"),
+"new_animation": SubResource("Animation_k7nfr")
+}
+
+[sub_resource type="Animation" id="Animation_no8q7"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_xpan1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcyy8"]
+_data = {
+"RESET": SubResource("Animation_xpan1"),
+"new_animation": SubResource("Animation_no8q7")
+}
+
+[node name="Showcase1" type="Node2D" groups=["area"]]
+script = ExtResource("1_a58n3")
+level_code = "showcase_1"
+bottom_text = "A new beginning: Godot Edition"
+theme = ExtResource("2_0h3r5")
+metadata/_edit_lock_ = true
+
+[node name="Floors" type="Node2D" parent="."]
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
+
+[node name="Floor" parent="Floors" instance=ExtResource("4_gs8ht")]
+offset_right = 32.0
+offset_bottom = 20.0
+color_1 = Color(0.585062, 0.585062, 0.585062, 1)
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
+
+[node name="TileBasedWall" parent="Walls" instance=ExtResource("5_rp5vi")]
+tile_map_data = PackedByteArray("AAAfAA4AAAACAAIAAAAfAA0AAAACAAIAAAAfAAwAAAACAAIAAAAfAAsAAAACAAIAAAAfAAgAAAACAAIAAAAfAAcAAAACAAIAAAAfAAYAAAACAAIAAAAfAAUAAAACAAIAAAAdAAAAAAACAAIAAAAdAP//AAACAAEAAAAcAAAAAAACAAIAAAAcAP//AAACAAEAAAAbAAAAAAACAAIAAAAbAP//AAACAAEAAAAaAAAAAAACAAIAAAAaAP//AAACAAEAAAAZAAAAAAACAAIAAAAZAP//AAACAAEAAAAYAAAAAAACAAIAAAAYAP//AAACAAEAAAAXAAAAAAACAAIAAAAXAP//AAACAAEAAAAIABQAAAACAAMAAAAIABMAAAAIAAIAAAAHABQAAAACAAMAAAAHABMAAAACAAEAAAAGABQAAAACAAMAAAAGABMAAAACAAEAAAAFABQAAAACAAMAAAAFABMAAAACAAEAAAAEABQAAAACAAMAAAAEABMAAAACAAEAAAADABQAAAACAAMAAAADABMAAAAFAAIAAAACABQAAAACAAMAAAACABMAAAACAAIAAAAfAAoAAAACAAIAAAAfAAkAAAACAAIAAAAeAP//AAACAAEAAAAeAAAAAAACAAIAAAAWAAAAAAACAAIAAAAWAP//AAACAAEAAAAVAAAAAAACAAIAAAAVAP//AAACAAEAAAAUAAAAAAACAAIAAAAUAP//AAACAAEAAAATAAAAAAAGAAEAAAATAP//AAACAAEAAAASAAAAAAACAAMAAAASAP//AAACAAEAAAARAAAAAAACAAMAAAARAP//AAACAAEAAAAQAAAAAAACAAMAAAAQAP//AAACAAEAAAAPAAAAAAACAAMAAAAPAP//AAACAAEAAAAOAAAAAAACAAMAAAAOAP//AAACAAEAAAANAAAAAAAFAAEAAAANAP//AAACAAEAAAAgABQAAAADAAMAAAAgABMAAAADAAIAAAAfABQAAAACAAMAAAAfABMAAAACAAIAAAAeABQAAAACAAMAAAAeABMAAAACAAIAAAAdABQAAAACAAMAAAAdABMAAAACAAIAAAAcABQAAAACAAMAAAAcABMAAAACAAIAAAAbABQAAAACAAMAAAAbABMAAAACAAIAAAAaABQAAAACAAMAAAAaABMAAAACAAIAAAAZABQAAAACAAMAAAAZABMAAAACAAIAAAAYABQAAAACAAMAAAAYABMAAAACAAIAAAAXABQAAAACAAMAAAAXABMAAAACAAIAAAAWABQAAAACAAMAAAAWABMAAAACAAIAAAAVABQAAAACAAMAAAAVABMAAAACAAIAAAAUABQAAAACAAMAAAAUABMAAAACAAIAAAATABQAAAACAAMAAAATABMAAAAGAAIAAAASABQAAAACAAMAAAASABMAAAACAAEAAAARABQAAAACAAMAAAARABMAAAACAAEAAAAQABQAAAACAAMAAAAQABMAAAACAAEAAAAPABQAAAACAAMAAAAPABMAAAACAAEAAAAOABQAAAACAAMAAAAOABMAAAACAAEAAAANABQAAAACAAMAAAANABMAAAACAAEAAAAMABQAAAACAAMAAAAMABMAAAACAAEAAAALABQAAAACAAMAAAALABMAAAACAAEAAAAKABQAAAACAAMAAAAKABMAAAACAAEAAAAJABQAAAACAAMAAAAJABMAAAACAAEAAAAgABIAAAADAAIAAAAgABEAAAADAAIAAAAgABAAAAADAAIAAAAgAA8AAAADAAIAAAAgAA4AAAADAAIAAAAgAA0AAAADAAIAAAAgAAwAAAADAAIAAAAgAAsAAAADAAIAAAAgAAoAAAADAAIAAAAgAAkAAAADAAIAAAAgAAgAAAADAAIAAAAgAAcAAAADAAIAAAAgAAYAAAADAAIAAAAgAAUAAAADAAIAAAAgAAQAAAADAAIAAAAgAAMAAAADAAIAAAAgAAIAAAADAAIAAAAgAAEAAAADAAIAAAAgAAAAAAADAAIAAAAgAP//AAADAAEAAAAfABIAAAACAAIAAAAfABEAAAACAAIAAAAfABAAAAACAAIAAAAfAA8AAAACAAIAAAAfAAQAAAACAAIAAAAfAAMAAAACAAIAAAAfAAIAAAACAAIAAAAfAAEAAAACAAIAAAAfAAAAAAACAAIAAAAfAP//AAACAAEAAAAeAAEAAAAGAAEAAAAdAAEAAAACAAMAAAAcAAEAAAACAAMAAAAbAAEAAAACAAMAAAAaAAEAAAACAAMAAAAZAAEAAAAIAAEAAAAYAAEAAAACAAMAAAAXAAEAAAACAAMAAAAWAAEAAAACAAMAAAAVAAEAAAACAAMAAAAUAAEAAAACAAMAAAATAAEAAAABAAMAAAANAAEAAAADAAMAAAAMAAEAAAACAAMAAAALAAEAAAACAAMAAAAKAAEAAAACAAMAAAAJAAEAAAACAAMAAAAIAAEAAAACAAMAAAAHAAEAAAACAAMAAAAGAAEAAAACAAMAAAAFAAEAAAACAAMAAAAEAAEAAAACAAMAAAADAAEAAAACAAMAAAACAAEAAAACAAMAAAABAAEAAAAFAAEAAAAeABIAAAAGAAIAAAAeABEAAAABAAIAAAAeABAAAAABAAIAAAAeAA8AAAABAAIAAAAeAA4AAAABAAIAAAAeAA0AAAABAAIAAAAeAAwAAAABAAIAAAAeAAsAAAABAAIAAAAeAAoAAAAGAAEAAAAeAAkAAAAGAAIAAAAeAAgAAAABAAIAAAAeAAcAAAABAAIAAAAeAAYAAAABAAIAAAAeAAUAAAABAAIAAAAeAAQAAAABAAIAAAAeAAMAAAABAAIAAAAeAAIAAAABAAIAAAAdABIAAAACAAEAAAAcABIAAAACAAEAAAAbABIAAAACAAEAAAAaABIAAAACAAEAAAAZABIAAAAIAAIAAAAYABIAAAACAAEAAAAXABIAAAACAAEAAAAWABIAAAACAAEAAAAVABIAAAACAAEAAAAUABIAAAAFAAIAAAATABIAAAABAAIAAAAIABIAAAAAAAIAAAABAAYAAAACAAIAAAABAAUAAAAFAAIAAAABAAQAAAADAAIAAAABAAMAAAADAAIAAAABAAIAAAADAAIAAAACAA4AAAACAAIAAAAHAA4AAAABAAAAAAAIAA4AAAAHAAAAAAAIAA8AAAAAAAIAAAAIABAAAAAAAAIAAAAIABEAAAAAAAIAAAAEAA4AAAADAAAAAAADAA4AAAAFAAQAAAACAA8AAAACAAIAAAACABAAAAACAAIAAAACABEAAAACAAIAAAACABIAAAACAAIAAAADABIAAAADAAIAAAADABEAAAADAAIAAAADABAAAAADAAIAAAADAA8AAAADAAIAAAADAA0AAAADAAIAAAADAAwAAAADAAIAAAADAAsAAAADAAIAAAADAAoAAAADAAIAAAADAAkAAAADAAIAAAADAAgAAAADAAIAAAADAAcAAAADAAIAAAADAAYAAAADAAIAAAADAAUAAAADAAEAAAACAA0AAAACAAIAAAACAAwAAAACAAIAAAACAAsAAAACAAIAAAACAAoAAAACAAIAAAACAAkAAAACAAIAAAACAAgAAAACAAIAAAACAAcAAAACAAIAAAACAAYAAAACAAIAAAACAAUAAAACAAEAAAANAA4AAAADAAMAAAANAAYAAAAFAAIAAAANAAUAAAADAAEAAAAMAA4AAAABAAMAAAAMAAcAAAABAAIAAAAMAAYAAAABAAIAAAAMAAUAAAABAAEAAAAOAAYAAAACAAEAAAATAAUAAAABAAEAAAATAAYAAAAGAAIAAAASAAYAAAACAAEAAAAPAAYAAAACAAEAAAAPAAcAAAACAAMAAAARAAYAAAACAAEAAAAQAAYAAAACAAEAAAANAA0AAAADAAIAAAANAAwAAAADAAIAAAANAAsAAAADAAIAAAAMAA0AAAABAAIAAAAMAAwAAAABAAIAAAAMAAsAAAABAAIAAAATAAwAAAABAAIAAAATAA0AAAABAAIAAAATAA4AAAABAAIAAAAUAA4AAAADAAIAAAAUAA0AAAADAAIAAAAUAAwAAAADAAIAAAAUAAsAAAADAAIAAAATAAsAAAABAAIAAAAUAAYAAAADAAIAAAAUAAUAAAADAAEAAAAcAAQAAAAHAAMAAAAcAAMAAAAAAAEAAAAcAA8AAAAHAAAAAAAMAAAAAAACAAIAAAAMAP//AAACAAEAAAALAAAAAAACAAIAAAALAP//AAACAAEAAAAKAAAAAAACAAIAAAAKAP//AAACAAEAAAAJAAAAAAACAAIAAAAJAP//AAACAAEAAAAIAAAAAAACAAIAAAAIAP//AAACAAEAAAAHAAAAAAACAAIAAAAHAP//AAACAAEAAAAGAAAAAAACAAIAAAAGAP//AAACAAEAAAAFAAAAAAACAAIAAAAFAP//AAACAAEAAAAEAAAAAAACAAIAAAAEAP//AAACAAEAAAADAAAAAAACAAIAAAADAP//AAACAAEAAAACAAAAAAACAAIAAAACAP//AAACAAEAAAABAAAAAAACAAIAAAABAP//AAACAAEAAAAAAAAAAAACAAIAAAAAAP//AAACAAEAAAAAAAEAAAACAAIAAAAAAAIAAAACAAIAAAAAAAMAAAACAAIAAAAAAAQAAAACAAIAAAAAAAUAAAACAAIAAAAAAAYAAAACAAIAAAAMAAoAAAABAAIAAAAMAAkAAAABAAIAAAAMAAgAAAABAAIAAAAOAAcAAAACAAMAAAANAAcAAAAFAAEAAAANAAgAAAADAAIAAAANAAkAAAADAAIAAAANAAoAAAADAAIAAAAZABEAAAAAAAIAAAAZABAAAAAAAAIAAAAZAA8AAAAEAAAAAAAZAAIAAAAAAAIAAAAZAAMAAAAAAAIAAAAZAAQAAAAEAAMAAAAcABAAAAAAAAMAAAAbAA8AAAACAAAAAAAaAA8AAAACAAAAAAAbAAQAAAACAAAAAAAaAAQAAAACAAAAAAAUAA8AAAADAAIAAAAUABAAAAADAAIAAAAUABEAAAADAAIAAAATABEAAAABAAIAAAATABAAAAABAAIAAAATAA8AAAABAAIAAAAUAAoAAAAFAAEAAAAUAAkAAAAFAAIAAAAUAAgAAAADAAIAAAAUAAcAAAADAAIAAAATAAoAAAABAAIAAAATAAkAAAABAAIAAAATAAgAAAABAAIAAAATAAcAAAAGAAEAAAASAAcAAAACAAMAAAARAAcAAAACAAMAAAAQAAcAAAACAAMAAAAVAAkAAAADAAEAAAAVAAoAAAADAAMAAAAdAAkAAAABAAEAAAAdAAoAAAABAAMAAAD/////AAABAAEAAAD//wAAAAABAAIAAAD//wEAAAABAAIAAAD//wIAAAABAAIAAAD//wMAAAABAAIAAAD//wQAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAABABQAAAACAAMAAAABABMAAAACAAIAAAABABIAAAACAAIAAAABABEAAAACAAIAAAABABAAAAACAAIAAAABAA8AAAACAAIAAAABAA4AAAACAAIAAAABAA0AAAACAAIAAAABAAwAAAACAAIAAAABAAsAAAACAAIAAAABAAoAAAACAAIAAAABAAkAAAACAAIAAAABAAgAAAACAAIAAAABAAcAAAACAAIAAAAAABQAAAACAAMAAAAAABMAAAACAAIAAAAAABIAAAACAAIAAAAAABEAAAACAAIAAAAAABAAAAACAAIAAAAAAA8AAAACAAIAAAAAAA4AAAACAAIAAAAAAA0AAAACAAIAAAAAAAwAAAACAAIAAAAAAAsAAAACAAIAAAAAAAoAAAACAAIAAAAAAAkAAAACAAIAAAAAAAgAAAACAAIAAAAAAAcAAAACAAIAAAD//xQAAAABAAMAAAD//xMAAAABAAIAAAD//xIAAAABAAIAAAD//xEAAAABAAIAAAD//xAAAAABAAIAAAD//w8AAAABAAIAAAD//w4AAAABAAIAAAD//w0AAAABAAIAAAD//wwAAAABAAIAAAD//wsAAAABAAIAAAD//woAAAABAAIAAAD//wkAAAABAAIAAAD//wgAAAABAAIAAAD//wcAAAABAAIAAAA=")
+metadata/_edit_lock_ = true
+
+[node name="Solid" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 648.0
+offset_top = 624.0
+offset_right = 696.0
+offset_bottom = 720.0
+script = ExtResource("6_3val4")
+outline_color = Color(0.4, 0.284, 0.284, 1)
+fill_color = Color(1, 0.7, 0.7, 1)
+
+[node name="Solid2" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 888.0
+offset_top = 624.0
+offset_right = 936.0
+offset_bottom = 720.0
+script = ExtResource("6_3val4")
+outline_color = Color(0.4, 0.284, 0.284, 1)
+fill_color = Color(1, 0.7, 0.7, 1)
+
+[node name="Checkpoints" type="Node2D" parent="."]
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
+
+[node name="Start" parent="Checkpoints" instance=ExtResource("7_5hr4o")]
+offset_left = 192.0
+offset_top = 720.0
+offset_right = 384.0
+offset_bottom = 912.0
+type = 1
+level_warp = "2"
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("7_5hr4o")]
+offset_left = 96.0
+offset_top = 96.0
+offset_right = 192.0
+offset_bottom = 240.0
+level_warp = "2"
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("7_5hr4o")]
+offset_left = 912.0
+offset_top = 96.0
+offset_right = 1008.0
+offset_bottom = 240.0
+level_warp = "2"
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("7_5hr4o")]
+offset_left = 1008.0
+offset_top = 720.0
+offset_right = 1200.0
+offset_bottom = 864.0
+level_warp = "2"
+
+[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("7_5hr4o")]
+offset_left = 672.0
+offset_top = 384.0
+offset_right = 912.0
+offset_bottom = 624.0
+type = 2
+level_warp = "showcase_2"
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
+
+[node name="BlueEnemy" parent="Enemies" instance=ExtResource("8_tmvdr")]
+position = Vector2(792, 168)
+
+[node name="Horizontal1" type="Node2D" parent="Enemies"]
+position = Vector2(192, 96)
+script = ExtResource("3_3ac6r")
+
+[node name="BlueEnemy" parent="Enemies/Horizontal1" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 24)
+
+[node name="BlueEnemy2" parent="Enemies/Horizontal1" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 72)
+
+[node name="BlueEnemy3" parent="Enemies/Horizontal1" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 120)
+
+[node name="BlueEnemy4" parent="Enemies/Horizontal1" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 312)
+
+[node name="BlueEnemy5" parent="Enemies/Horizontal1" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 360)
+
+[node name="BlueEnemy6" parent="Enemies/Horizontal1" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 408)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Horizontal1"]
+libraries = {
+"": SubResource("AnimationLibrary_luy2p")
+}
+autoplay = "new_animation"
+script = ExtResource("10_eledb")
+
+[node name="Horizontal2" type="Node2D" parent="Enemies"]
+position = Vector2(192, 240)
+script = ExtResource("3_3ac6r")
+
+[node name="BlueEnemy" parent="Enemies/Horizontal2" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 24)
+
+[node name="BlueEnemy2" parent="Enemies/Horizontal2" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 72)
+
+[node name="BlueEnemy3" parent="Enemies/Horizontal2" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 120)
+
+[node name="BlueEnemy4" parent="Enemies/Horizontal2" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 312)
+
+[node name="BlueEnemy5" parent="Enemies/Horizontal2" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 360)
+
+[node name="BlueEnemy6" parent="Enemies/Horizontal2" instance=ExtResource("8_tmvdr")]
+position = Vector2(12, 408)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Horizontal2"]
+libraries = {
+"": SubResource("AnimationLibrary_4wlvk")
+}
+autoplay = "new_animation"
+script = ExtResource("10_eledb")
+
+[node name="Spinner" type="Node2D" parent="Enemies"]
+position = Vector2(792, 168)
+script = ExtResource("3_3ac6r")
+
+[node name="BlueEnemy" parent="Enemies/Spinner" instance=ExtResource("8_tmvdr")]
+position = Vector2(0, -108)
+
+[node name="BlueEnemy5" parent="Enemies/Spinner" instance=ExtResource("8_tmvdr")]
+position = Vector2(72, 0)
+
+[node name="BlueEnemy6" parent="Enemies/Spinner" instance=ExtResource("8_tmvdr")]
+position = Vector2(108, 0)
+
+[node name="BlueEnemy7" parent="Enemies/Spinner" instance=ExtResource("8_tmvdr")]
+position = Vector2(0, 72)
+
+[node name="BlueEnemy8" parent="Enemies/Spinner" instance=ExtResource("8_tmvdr")]
+position = Vector2(0, 108)
+
+[node name="BlueEnemy2" parent="Enemies/Spinner" instance=ExtResource("8_tmvdr")]
+position = Vector2(0, -72)
+
+[node name="BlueEnemy3" parent="Enemies/Spinner" instance=ExtResource("8_tmvdr")]
+position = Vector2(-108, 0)
+
+[node name="BlueEnemy4" parent="Enemies/Spinner" instance=ExtResource("8_tmvdr")]
+position = Vector2(-72, 0)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Spinner"]
+libraries = {
+"": SubResource("AnimationLibrary_bcyy8")
+}
+autoplay = "new_animation"
+script = ExtResource("10_eledb")
+
+[node name="Coins" type="Node2D" parent="."]
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
+
+[node name="Coin" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(384, 288)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(336, 336)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(384, 336)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(432, 336)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(336, 384)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(432, 384)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(336, 432)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(384, 432)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(432, 432)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(384, 480)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1128, 456)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1176, 456)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1224, 456)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1272, 456)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1320, 456)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1128, 504)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1176, 504)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1224, 504)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1272, 504)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(1320, 504)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(600, 888)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(648, 888)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(696, 888)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("10_4spwr")]
+position = Vector2(744, 888)
+
+[node name="Keys" type="Node2D" parent="."]
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
+
+[node name="Key" parent="Keys" instance=ExtResource("11_fxg30")]
+position = Vector2(384, 384)
+key_id = 0
+
+[node name="Key2" parent="Keys" instance=ExtResource("11_fxg30")]
+position = Vector2(1296, 144)
+key_id = 1
+
+[node name="Key3" parent="Keys" instance=ExtResource("11_fxg30")]
+position = Vector2(1296, 816)
+key_id = 2
+
+[node name="GoldDoors" type="Node2D" parent="."]
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
+
+[node name="GoldDoor" parent="GoldDoors" instance=ExtResource("12_gxu8d")]
+offset_left = 696.0
+offset_top = 624.0
+offset_right = 888.0
+offset_bottom = 720.0
+open_method = 3
+
+[node name="KeyDoors" type="Node2D" parent="."]
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
+
+[node name="KeyDoor" parent="KeyDoors" instance=ExtResource("13_8ftfo")]
+offset_left = 576.0
+offset_top = 96.0
+offset_right = 672.0
+offset_bottom = 240.0
+key_id = 0
+open_method = 2
+
+[node name="KeyDoor2" parent="KeyDoors" instance=ExtResource("13_8ftfo")]
+offset_left = 1056.0
+offset_top = 432.0
+offset_right = 1392.0
+offset_bottom = 528.0
+key_id = 1
+open_method = 3
+
+[node name="KeyDoor3" parent="KeyDoors" instance=ExtResource("13_8ftfo")]
+offset_left = 432.0
+offset_top = 672.0
+offset_right = 576.0
+offset_bottom = 720.0
+key_id = 2
+open_method = 3
+
+[node name="Decoration" type="Node2D" parent="."]
+editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
+script = ExtResource("3_3ac6r")
+metadata/_edit_lock_ = true
