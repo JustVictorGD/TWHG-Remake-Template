@@ -6,8 +6,10 @@ var sfx_index: int
 var fps_values: Array = [60, 120, 240]
 var fps_value_index: int = 0
 
+
 func _ready() -> void:
 	$ReturnToGame.button_down.connect(return_to_game_click)
+	$ToMainMenu.button_down.connect(main_menu_click)
 	$MusicToggle.button_down.connect(music_click)
 	$SFXToggle.button_down.connect(sfx_click)
 	$MaxFPS.button_down.connect(max_fps_click)
@@ -18,8 +20,14 @@ func _ready() -> void:
 	$MusicVolumeSlider.value_changed.connect(music_value_changed)
 	$SFXVolumeSlider.value_changed.connect(sfx_value_changed)
 
+
 func return_to_game_click() -> void:
 	GameManager.paused = not GameManager.paused
+
+
+func main_menu_click() -> void:
+	get_tree().change_scene_to_packed(load("res://game/scenes/menu.tscn"))
+
 
 func music_click() -> void:
 	AudioServer.set_bus_mute(music_index, not AudioServer.is_bus_mute(music_index))
@@ -30,7 +38,7 @@ func music_click() -> void:
 	else:
 		$MusicToggle/State.text = "(on)"
 		$MusicVolumeSlider.editable = true
-	
+
 
 func sfx_click() -> void:
 	AudioServer.set_bus_mute(sfx_index, not AudioServer.is_bus_mute(sfx_index))
@@ -41,8 +49,7 @@ func sfx_click() -> void:
 	else:
 		$SFXToggle/State.text = "(on)"
 		$SFXVolumeSlider.editable = true
-	
-	
+
 
 func max_fps_click() -> void:
 	if fps_value_index == fps_values.size() - 1:
@@ -54,6 +61,7 @@ func max_fps_click() -> void:
 	
 	$MaxFPS/State.text = "(" + str(Engine.max_fps) + ")"
 
+
 func movement_type_click() -> void:
 	GameManager.snappy_movement = not GameManager.snappy_movement
 	
@@ -62,11 +70,14 @@ func movement_type_click() -> void:
 	else:
 		$MovementType/State.text = "Default"
 
+
 func music_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(music_index, linear_to_db(value))
 
+
 func sfx_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(sfx_index, linear_to_db(value))
+
 
 func _process(_delta: float) -> void:
 	if GameManager.paused:

@@ -31,15 +31,31 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 56.0
-offset_top = 108.0
-offset_right = -664.0
-offset_bottom = -456.0
+offset_left = 704.0
+offset_top = 84.0
+offset_right = -112.0
+offset_bottom = -485.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "Return to Game"
+alignment = 0
+
+[node name="ToMainMenu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 704.0
+offset_top = 485.0
+offset_right = -112.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g15fw")
+theme_type_variation = &"FlatButton"
+text = "To Main Menu"
 alignment = 0
 
 [node name="MusicToggle" type="Button" parent="."]
