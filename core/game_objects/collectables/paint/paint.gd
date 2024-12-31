@@ -48,6 +48,8 @@ func stay_collected() -> void:
 	hitbox.enabled = false
 	state = states.SAVED
 	sprite.set_opacity(0)
+	
+	PaintManager.paint_progress[paint_id] = 2
 
 
 func _process(_delta: float) -> void:
