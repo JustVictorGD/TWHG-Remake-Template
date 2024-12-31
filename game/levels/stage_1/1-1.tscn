@@ -530,6 +530,7 @@ offset_right = 1488.0
 offset_bottom = 240.0
 type = 2
 level_warp = "2"
+final_destination = true
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_womt2")

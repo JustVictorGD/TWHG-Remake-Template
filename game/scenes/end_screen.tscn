@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmrgen2r562ou"]
+[gd_scene load_steps=9 format=3 uid="uid://cmrgen2r562ou"]
 
 [ext_resource type="Script" path="res://core/system/scene/end_screen.gd" id="1_cwniu"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="1_r53vj"]
@@ -19,10 +19,6 @@ font_size = 96
 [sub_resource type="LabelSettings" id="LabelSettings_4x5ip"]
 font = ExtResource("1_r53vj")
 font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_upcgs"]
-font = ExtResource("1_r53vj")
-font_size = 32
 
 [node name="EndScreen" type="Node2D"]
 script = ExtResource("1_cwniu")
@@ -63,35 +59,11 @@ label_settings = SubResource("LabelSettings_4x5ip")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FinalDeaths2" type="Label" parent="."]
-offset_left = 240.0
-offset_top = 522.0
-offset_right = 1040.0
-offset_bottom = 560.0
-text = "For some reason the button below doesn't work."
-label_settings = SubResource("LabelSettings_upcgs")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="."]
-offset_left = 480.0
-offset_top = 570.0
-offset_right = 800.0
-offset_bottom = 630.0
-flat = true
-
-[node name="BackToMainMenu" type="Label" parent="Button"]
-offset_right = 320.0
-offset_bottom = 60.0
-text = "Back to Main Menu"
-label_settings = SubResource("LabelSettings_4x5ip")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Floor" parent="." instance=ExtResource("2_6ujsm")]
 offset_right = 16.0
 offset_bottom = 9.0
 scale = Vector2(80, 80)
+mouse_filter = 2
 color_1 = Color(0, 0, 0, 0.286275)
 color_2 = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
@@ -99,12 +71,28 @@ metadata/_edit_lock_ = true
 [node name="Flash" type="ColorRect" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="."]
+z_index = 300
+offset_left = 480.0
+offset_top = 570.0
+offset_right = 800.0
+offset_bottom = 630.0
+flat = true
+
+[node name="BackToMainMenu" type="Label" parent="Button"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 60.0
+text = "Back to Main Menu"
+label_settings = SubResource("LabelSettings_4x5ip")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TickBasedTimer" type="Node" parent="."]
 script = ExtResource("3_2fd14")
 autostart = true
 duration = 30
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
