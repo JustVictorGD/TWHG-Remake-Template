@@ -17,9 +17,14 @@ class_name Player
 @onready var sprite: Solid = $Sprite
 @onready var fancy_hitbox: RectangleCollider = $RectangleCollider
 
-var paint_id: int
+#var paint_id: int
 var color_tuple: ColorTuple:
-	get: return PaintManager.default_player if paint_id == -1 else PaintManager.unlockable_paints[paint_id]
+	get: 
+		if PaintManager.current_paint_id == -1:
+			return PaintManager.default_player
+		else:
+			return PaintManager.unlockable_paints[PaintManager.current_paint_id]
+		#return PaintManager.default_player if PaintManager.current_paint_id == -1 else PaintManager.unlockable_paints[paint_id]
 
 var movement_direction: Vector2 = Vector2.ZERO
 
@@ -100,7 +105,7 @@ func _ready() -> void:
 	GameLoop.update_timers.connect(update_timers)
 	GlobalSignal.paint_changed.connect(on_paint_change)
 	
-	paint_id = SaveFile.save_dictionary["global"]["color"]
+	PaintManager.current_paint_id = SaveFile.save_dictionary["global"]["color"]
 
 
 func movement_update() -> void:
@@ -208,7 +213,7 @@ func collision_update() -> void:
 		if fancy_hitbox.intersects(paint.hitbox):
 			paint.try_collect()
 			
-			paint_id = paint.paint_id
+			PaintManager.current_paint_id = paint.paint_id
 			#SaveFile.save_dictionary["global"]["color"] = paint.paint_id
 
 
@@ -259,8 +264,6 @@ func _process(delta: float) -> void:
 
 
 func on_paint_change(id: int) -> void:
-	print(id)
-	paint_id = id
 	sprite.outline_color = color_tuple.outline
 	sprite.fill_color = color_tuple.fill
 	particles.modulate = color_tuple.fill

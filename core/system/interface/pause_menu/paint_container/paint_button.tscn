@@ -24,6 +24,7 @@ layout_mode = 2
 anchor_bottom = 1.0
 offset_right = 6.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ColorRect2" type="ColorRect" parent="Outline"]
 layout_mode = 2
@@ -35,6 +36,7 @@ offset_top = -6.0
 offset_right = -6.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ColorRect3" type="ColorRect" parent="Outline"]
 layout_mode = 2
@@ -42,6 +44,7 @@ anchor_right = 1.0
 offset_left = 6.0
 offset_right = -6.0
 offset_bottom = 6.0
+mouse_filter = 1
 
 [node name="ColorRect4" type="ColorRect" parent="Outline"]
 layout_mode = 2
@@ -51,6 +54,7 @@ anchor_bottom = 1.0
 offset_left = -6.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 
 [node name="Fill" type="ColorRect" parent="."]
 layout_mode = 1
@@ -64,7 +68,54 @@ offset_bottom = -6.0
 grow_vertical = 2
 mouse_filter = 1
 
+[node name="Selected" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Selected"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Selected"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Selected"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 3.0
+offset_right = -3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+
+[node name="ColorRect4" type="ColorRect" parent="Selected"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [node name="Locked" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -67,11 +67,7 @@ func save() -> void:
 	save_dictionary["global"]["game_ticks"] = GameLoop.game_ticks
 	save_dictionary["global"]["deaths"] = GameManager.deaths
 	save_dictionary["global"]["level"] = GameManager.current_level
-	
-	var player: Player = get_tree().get_first_node_in_group("player")
-	
-	if player != null:
-		save_dictionary["global"]["color"] = player.paint_id
+	save_dictionary["global"]["color"] = PaintManager.current_paint_id
 	
 	store_save()
 

@@ -5,6 +5,7 @@ var paint_id: int
 
 @onready var outline: Control = $Outline
 @onready var fill: ColorRect = $Fill
+@onready var selected_outline: Control = $Selected
 @onready var locked_icon: Control = $Locked
 
 #PaintManager.paint_progress
@@ -28,7 +29,13 @@ func _process(delta: float) -> void:
 	else:
 		disabled = true
 		locked_icon.visible = true
+	
+	if PaintManager.current_paint_id == paint_id:
+		selected_outline.visible = true
+	else:
+		selected_outline.visible = false
 
 
 func on_click() -> void:
+	PaintManager.current_paint_id = paint_id
 	GlobalSignal.paint_changed.emit(paint_id) # Does this for now, will make it actually change the player color tomorrow

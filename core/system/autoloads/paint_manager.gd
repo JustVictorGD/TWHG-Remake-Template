@@ -5,6 +5,7 @@ extends Node
 @export var unlockable_paints: Array[ColorTuple] = []
 
 var paint_progress: PackedInt32Array = []
+var current_paint_id: int = -1
 
 
 func _ready() -> void:
