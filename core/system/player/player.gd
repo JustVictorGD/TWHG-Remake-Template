@@ -7,7 +7,6 @@ class_name Player
 #region Properties
 
 @export var speed: int = 4000 # One pixel per tick is 1,000
-@export var size: Vector2i = Vector2i(42, 42)
 
 ## How much the player is allowed to travel from a wall 
 ## push relative to its own size without getting crushed.
@@ -94,11 +93,6 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	hitbox.size = size
-	fancy_hitbox.position = -size / 2
-	fancy_hitbox.scale = size
-	
-	
 	respawn_timer.timeout.connect(respawn)
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.collision_update.connect(collision_update)
@@ -108,14 +102,20 @@ func _ready() -> void:
 	PaintManager.current_paint_id = SaveFile.save_dictionary["global"]["color"]
 
 
+func change_size(size: Vector2i) -> void:
+	hitbox.size = size
+	fancy_hitbox.position = -size / 2
+	fancy_hitbox.scale = size
+	particles.process_material.scale = size
+	sprite.change_shape(Rect2(-size / 2, size))
+
+
 func movement_update() -> void:
 	var sliding_sensitivity: float = GameManager.sliding_sensitivity
 	
 	sprite.outline_color = color_tuple.outline
 	sprite.fill_color = color_tuple.fill
 	particles.modulate = color_tuple.fill
-	
-	particles.process_material.scale = size
 	
 	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
@@ -257,10 +257,6 @@ func respawn() -> void:
 	GlobalSignal.player_respawn.emit()
 	
 	dead = false
-
-
-func _process(delta: float) -> void:
-	sprite.change_shape(Rect2(-size / 2, size))
 
 
 func on_paint_change(id: int) -> void:

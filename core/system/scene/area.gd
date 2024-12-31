@@ -14,3 +14,6 @@ class_name Area
 
 ## Used to make the camera focus properly.
 @export var area_size: Vector2i = Vector2(32, 20)
+
+## Change for small player or fat player gameplay.
+@export var player_size: Vector2i = Vector2i(42, 42)

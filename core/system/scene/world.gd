@@ -87,6 +87,8 @@ func switch_level(key: String) -> void:
 	money_requirement = 0
 	walls.clear()
 	
+	player.change_size(current_level.player_size)
+	
 	add_child(current_level)
 	focus_camera(current_level)
 	
