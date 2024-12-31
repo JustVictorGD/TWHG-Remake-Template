@@ -189,9 +189,9 @@ text = "Override Save"
 
 [node name="Square" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 608.0
+offset_left = 612.0
 offset_top = 580.0
-offset_right = 664.0
+offset_right = 668.0
 offset_bottom = 636.0
 pivot_offset = Vector2(28, 28)
 color = Color(0.4, 0, 0, 1)
