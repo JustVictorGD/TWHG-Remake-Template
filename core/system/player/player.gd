@@ -47,7 +47,7 @@ var last_direction: Vector2i = Vector2i.ZERO
 func _input(_event: InputEvent) -> void:
 	handle_key_press(GameManager.snappy_movement)
 	
-	if not dead:
+	if GameManager.allow_cheats and not dead:
 		if Input.is_action_pressed("teleport"):
 			move_to(get_global_mouse_position() * 1000)
 

@@ -1,0 +1,224 @@
+[gd_scene load_steps=22 format=4 uid="uid://bfsdswsy0fx2h"]
+
+[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_spy8h"]
+[ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
+[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_ophqw"]
+[ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_mbt7e"]
+[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_upcpb"]
+[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="6_rf4t4"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="7_csgbk"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_xy66i"]
+[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="9_u4dxt"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_ur04s"]
+[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_8srmb"]
+[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="12_0tu7b"]
+[ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
+[ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="14_0v6pu"]
+[ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
+[ext_resource type="PackedScene" uid="uid://cinjxuq8qrrk1" path="res://game/scenes/circle_explosion.tscn" id="15_uk67m"]
+[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
+
+[sub_resource type="GDScript" id="GDScript_b4mk8"]
+resource_name = "turret_random"
+script/source = "extends \"res://core/game_objects/other/turret/turret.gd\"
+
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+func fire_turret() -> void:
+	super()
+	rotation = rng.randf_range(0, 2*PI)
+"
+
+[sub_resource type="Resource" id="Resource_u7e3a"]
+script = ExtResource("14_rg33l")
+motion_trail = false
+constant_check = false
+lock_scale = false
+copy_area_theme = true
+outline_color = Color(0, 0, 0.4, 1)
+fill_color = Color(0, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_vaph1"]
+script = ExtResource("14_rg33l")
+motion_trail = false
+constant_check = false
+lock_scale = false
+copy_area_theme = true
+outline_color = Color(0, 0, 0.4, 1)
+fill_color = Color(0, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_876xa"]
+script = ExtResource("14_rg33l")
+motion_trail = false
+constant_check = false
+lock_scale = false
+copy_area_theme = true
+outline_color = Color(0, 0, 0.4, 1)
+fill_color = Color(0, 0, 1, 1)
+
+[node name="Showcase4" type="Node2D" groups=["area"]]
+script = ExtResource("1_spy8h")
+level_code = "4/4"
+bottom_text = "Basic avoidance (by audigamer)."
+theme = ExtResource("2_1ncxg")
+
+[node name="Floors" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Floor" parent="Floors" instance=ExtResource("4_mbt7e")]
+offset_right = 32.0
+offset_bottom = 20.0
+color_1 = Color(0.585062, 0.585062, 0.585062, 1)
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="TileBasedWall" parent="Walls" instance=ExtResource("5_upcpb")]
+tile_map_data = PackedByteArray("AAAAABIAAAAAAAMAAAAAABEAAAAAAAIAAAAAABAAAAAAAAIAAAAAAA8AAAAAAAIAAAAAAA4AAAAAAAIAAAAAAA0AAAAAAAIAAAAAAAwAAAAAAAIAAAAAAAsAAAAAAAIAAAAAAAoAAAAAAAIAAAAAAAkAAAAAAAIAAAAAAAgAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAQAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAIAAAAAAAIAAAAfABIAAAAAAAMAAAAfABEAAAAAAAIAAAAfABAAAAAAAAIAAAAfAA8AAAAAAAIAAAAfAA4AAAAAAAIAAAAfAA0AAAAAAAIAAAAfAAwAAAAAAAIAAAAfAAsAAAAAAAIAAAAfAAoAAAAAAAIAAAAfAAkAAAAAAAIAAAAfAAgAAAAAAAIAAAAfAAcAAAAAAAIAAAAfAAYAAAAAAAIAAAAfAAUAAAAAAAIAAAAfAAQAAAAAAAIAAAAfAAMAAAAAAAIAAAAfAAIAAAAAAAIAAAAfAAEAAAAAAAEAAAAeAAAAAAADAAAAAAAdAAAAAAACAAAAAAAcAAAAAAACAAAAAAAbAAAAAAACAAAAAAAaAAAAAAACAAAAAAAZAAAAAAACAAAAAAAYAAAAAAACAAAAAAAXAAAAAAACAAAAAAAWAAAAAAACAAAAAAAVAAAAAAACAAAAAAAUAAAAAAACAAAAAAATAAAAAAACAAAAAAASAAAAAAACAAAAAAARAAAAAAACAAAAAAAQAAAAAAACAAAAAAAPAAAAAAACAAAAAAAOAAAAAAACAAAAAAANAAAAAAACAAAAAAAMAAAAAAACAAAAAAALAAAAAAACAAAAAAAKAAAAAAACAAAAAAAJAAAAAAACAAAAAAAIAAAAAAACAAAAAAAHAAAAAAACAAAAAAAGAAAAAAACAAAAAAAFAAAAAAACAAAAAAAEAAAAAAACAAAAAAADAAAAAAACAAAAAAAeABMAAAADAAAAAAAdABMAAAACAAAAAAAcABMAAAACAAAAAAAbABMAAAACAAAAAAAaABMAAAACAAAAAAAZABMAAAACAAAAAAAYABMAAAACAAAAAAAXABMAAAACAAAAAAAWABMAAAACAAAAAAAVABMAAAACAAAAAAAUABMAAAACAAAAAAATABMAAAACAAAAAAASABMAAAACAAAAAAARABMAAAACAAAAAAAQABMAAAACAAAAAAAPABMAAAACAAAAAAAOABMAAAACAAAAAAANABMAAAACAAAAAAAMABMAAAACAAAAAAALABMAAAACAAAAAAAKABMAAAACAAAAAAAJABMAAAACAAAAAAAIABMAAAACAAAAAAAHABMAAAACAAAAAAAGABMAAAACAAAAAAAFABMAAAACAAAAAAAEABMAAAACAAAAAAADABMAAAACAAAAAAACABMAAAACAAAAAAABABMAAAABAAAAAAAAABMAAAAAAAAAAAAfABMAAAAAAAAAAAAfAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAA=")
+
+[node name="Solid" type="Control" parent="Walls"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 912.0
+offset_top = 1392.0
+offset_right = 960.0
+offset_bottom = 1440.0
+script = ExtResource("6_rf4t4")
+outline_color = Color(0.4, 0.284, 0.284, 1)
+fill_color = Color(1, 0.7, 0.7, 1)
+
+[node name="Checkpoints" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("7_csgbk")]
+offset_left = 720.0
+offset_top = 576.0
+offset_right = 816.0
+offset_bottom = 672.0
+type = 3
+level_warp = "2"
+final_destination = true
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="BlueEnemy" parent="Enemies" instance=ExtResource("8_xy66i")]
+position = Vector2(648, 1176)
+
+[node name="Circle" parent="Enemies" instance=ExtResource("9_u4dxt")]
+position = Vector2(504, 1176)
+radius = 1.0
+object_count = 7
+node = ExtResource("8_xy66i")
+
+[node name="Coins" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Coin" parent="Coins" instance=ExtResource("10_ur04s")]
+position = Vector2(168, 792)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("10_ur04s")]
+position = Vector2(264, 792)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("10_ur04s")]
+position = Vector2(360, 792)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("10_ur04s")]
+position = Vector2(456, 792)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("10_ur04s")]
+position = Vector2(1080, 792)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("10_ur04s")]
+position = Vector2(1176, 792)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("10_ur04s")]
+position = Vector2(1272, 792)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("10_ur04s")]
+position = Vector2(1368, 792)
+
+[node name="Keys" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Key" parent="Keys" instance=ExtResource("11_8srmb")]
+position = Vector2(888, 1176)
+
+[node name="GoldDoors" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="KeyDoors" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="KeyDoor" parent="KeyDoors" instance=ExtResource("12_0tu7b")]
+offset_left = 960.0
+offset_top = 1152.0
+offset_right = 1056.0
+offset_bottom = 1248.0
+open_time = 120
+close_time = 60
+
+[node name="Decoration" type="Node2D" parent="."]
+editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
+script = ExtResource("3_ophqw")
+
+[node name="Turrets1" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Turret" parent="Turrets1" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(768, 192)
+script = SubResource("GDScript_b4mk8")
+object_lifetime = 200
+shot_node = ExtResource("8_xy66i")
+properties = SubResource("Resource_u7e3a")
+velocity = Vector2(5, 0)
+fire_timer = NodePath("../../FireTimer1")
+
+[node name="VelocityComponent" type="Node2D" parent="Turrets1/Turret"]
+script = ExtResource("14_0v6pu")
+angular_velocity = 0.05
+
+[node name="Enemy" parent="Turrets1" instance=ExtResource("8_xy66i")]
+z_index = 4
+position = Vector2(768, 192)
+scale = Vector2(4, 4)
+
+[node name="Enemy2" parent="Turrets1" instance=ExtResource("8_xy66i")]
+z_index = 4
+position = Vector2(1152, 192)
+scale = Vector2(4, 4)
+
+[node name="Enemy3" parent="Turrets1" instance=ExtResource("8_xy66i")]
+z_index = 4
+position = Vector2(384, 192)
+scale = Vector2(4, 4)
+
+[node name="Turrets2" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Turret" parent="Turrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(384, 192)
+object_lifetime = 200
+shot_node = ExtResource("15_uk67m")
+properties = SubResource("Resource_vaph1")
+fire_timer = NodePath("../../FireTimer2")
+
+[node name="Turret2" parent="Turrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(1152, 192)
+object_lifetime = 200
+shot_node = ExtResource("15_uk67m")
+properties = SubResource("Resource_876xa")
+fire_timer = NodePath("../../FireTimer2")
+
+[node name="FireTimer1" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+metronome = true
+autostart = true
+duration = 2
+
+[node name="FireTimer2" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+metronome = true
+autostart = true
+duration = 60

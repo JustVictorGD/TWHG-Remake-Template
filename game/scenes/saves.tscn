@@ -43,18 +43,17 @@ script = ExtResource("1_b22i8")
 metadata/_edit_lock_ = true
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.716296, 0.716296, 0.716296, 1)
+color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.498039)
+modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

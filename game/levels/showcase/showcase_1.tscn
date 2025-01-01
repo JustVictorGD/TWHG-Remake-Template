@@ -289,7 +289,7 @@ _data = {
 
 [node name="Showcase1" type="Node2D" groups=["area"]]
 script = ExtResource("1_a58n3")
-level_code = "1/5"
+level_code = "1/4"
 bottom_text = "A new beginning: Godot Edition"
 theme = ExtResource("2_0h3r5")
 metadata/_edit_lock_ = true

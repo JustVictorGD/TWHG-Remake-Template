@@ -1,6 +1,7 @@
 class_name EnemyProperties
 extends Resource
 
+@export var motion_trail: bool = true
 @export var constant_check: bool = false
 @export var lock_scale: bool = false
 @export var copy_area_theme: bool = true

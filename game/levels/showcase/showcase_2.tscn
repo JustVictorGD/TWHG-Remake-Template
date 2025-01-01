@@ -396,7 +396,7 @@ _data = {
 
 [node name="Showcase2" type="Node2D" groups=["area"]]
 script = ExtResource("1_liv7r")
-level_code = "2/5"
+level_code = "2/4"
 bottom_text = "Thought this was \"just\" a remake?"
 theme = ExtResource("2_aj14a")
 metadata/_edit_lock_ = true

@@ -3,6 +3,7 @@ extends Node
 var collectables_processed: bool = false
 
 # Game properties
+var allow_cheats: bool = false
 var paused: bool = false
 var snappy_movement: bool = false
 var sliding_sensitivity: float = 0.5
@@ -25,14 +26,15 @@ func on_checkpoint_touch(id: int) -> void:
 	GlobalSignal.progress_saved.emit()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("speed_hack"):
-		speed_hacking = not speed_hacking
-	
-	if event.is_action_pressed("invincibility"):
-		invincible = not invincible
-	
-	if event.is_action_pressed("ghost"):
-		ghost = not ghost
+	if allow_cheats:
+		if event.is_action_pressed("speed_hack"):
+			speed_hacking = not speed_hacking
+		
+		if event.is_action_pressed("invincibility"):
+			invincible = not invincible
+		
+		if event.is_action_pressed("ghost"):
+			ghost = not ghost
 	
 	if event.is_action_pressed("pause"):
 		paused = not paused

@@ -37,7 +37,6 @@ func _notification(what: int) -> void:
 func update_cp_and_collectables(cp_id: int) -> void:
 	var current_level: String = save_dictionary["global"]["level"]
 	save_dictionary["levels"][current_level]["checkpoint_id"] = cp_id
-	print(save_dictionary)
 
 
 func add_level_to_dict(level: String) -> void:
