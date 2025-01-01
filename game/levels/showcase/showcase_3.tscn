@@ -17,24 +17,25 @@
 
 [sub_resource type="Resource" id="Resource_amml7"]
 script = ExtResource("2_l41wk")
-wall_outline = Color(0, 0.2, 0.4, 1)
-wall_fill = Color(0, 0.5, 1, 0.501961)
+wall_outline = Color(0.3, 0.3, 0.3, 1)
+wall_fill = Color(0.75, 0.75, 0.75, 1)
 tile_1 = Color(0.91, 0.91, 0.91, 1)
 tile_2 = Color(1, 1, 1, 1)
-enemy_outline = Color(0.4, 0, 0, 1)
-enemy_fill = Color(1, 0, 0, 0.501961)
+enemy_outline = Color(0, 0.4, 0, 1)
+enemy_fill = Color(0, 1, 0, 0.501961)
 gold_outline = Color(0.584, 0.467, 0, 1)
 gold_fill = Color(1, 0.8, 0, 0.501961)
-key_outline = Color(0, 0.4, 0, 1)
-key_fill = Color(0, 1, 0, 0.501961)
+key_outline = Color(0.267, 0.267, 0.267, 1)
+key_fill = Color(0.6, 0.6, 0.6, 1)
 pit = Color(0, 0, 0, 1)
 interface_sides = Color(0.2, 0.2, 0.2, 1)
 
-[node name="TemplateLevel" type="Node2D" groups=["area"]]
+[node name="Showcase3" type="Node2D" groups=["area"]]
 script = ExtResource("1_6r42y")
 level_code = "3/5"
-bottom_text = "This ain't whg bruh"
+bottom_text = "Sealed away forever."
 theme = SubResource("Resource_amml7")
+player_size = Vector2i(66, 18)
 metadata/_edit_lock_ = true
 
 [node name="Floors" type="Node2D" parent="."]
@@ -52,29 +53,106 @@ script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
 
 [node name="TileBasedWall" parent="Walls" instance=ExtResource("5_gjqii")]
-tile_map_data = PackedByteArray("AAAgABQAAAADAAMAAAAgABMAAAADAAIAAAAgABIAAAADAAIAAAAgABEAAAADAAIAAAAgABAAAAADAAIAAAAgAA8AAAADAAIAAAAgAA4AAAADAAIAAAAgAA0AAAADAAIAAAAgAAwAAAADAAIAAAAgAAsAAAADAAEAAAAgAAgAAAADAAMAAAAgAAcAAAADAAIAAAAgAAYAAAADAAIAAAAgAAUAAAADAAIAAAAgAAQAAAADAAIAAAAgAAMAAAADAAIAAAAgAAIAAAADAAIAAAAgAAEAAAADAAIAAAAgAAAAAAADAAIAAAAgAP//AAADAAEAAAAfABQAAAACAAMAAAAfABMAAAAGAAIAAAAfABIAAAABAAIAAAAfABEAAAABAAIAAAAfABAAAAABAAIAAAAfAA8AAAABAAIAAAAfAA4AAAABAAIAAAAfAA0AAAABAAIAAAAfAAwAAAABAAIAAAAfAAsAAAABAAEAAAAfAAgAAAABAAMAAAAfAAcAAAABAAIAAAAfAAYAAAABAAIAAAAfAAUAAAABAAIAAAAfAAQAAAABAAIAAAAfAAMAAAABAAIAAAAfAAIAAAABAAIAAAAfAAEAAAABAAIAAAAfAAAAAAAGAAEAAAAfAP//AAACAAEAAAAeABQAAAACAAMAAAAeABMAAAACAAEAAAAeAAAAAAACAAMAAAAeAP//AAACAAEAAAAdABQAAAACAAMAAAAdABMAAAACAAEAAAAdAAAAAAACAAMAAAAdAP//AAACAAEAAAAcABQAAAACAAMAAAAcABMAAAACAAEAAAAcAAAAAAACAAMAAAAcAP//AAACAAEAAAAbABQAAAACAAMAAAAbABMAAAACAAEAAAAbAAAAAAACAAMAAAAbAP//AAACAAEAAAAaABQAAAACAAMAAAAaABMAAAACAAEAAAAaAAAAAAACAAMAAAAaAP//AAACAAEAAAAZABQAAAACAAMAAAAZABMAAAACAAEAAAAZAAAAAAACAAMAAAAZAP//AAACAAEAAAAYABQAAAACAAMAAAAYABMAAAACAAEAAAAYAAAAAAACAAMAAAAYAP//AAACAAEAAAAXABQAAAACAAMAAAAXABMAAAACAAEAAAAXAAAAAAACAAMAAAAXAP//AAACAAEAAAAWABQAAAACAAMAAAAWABMAAAACAAEAAAAWAAAAAAACAAMAAAAWAP//AAACAAEAAAAVABQAAAACAAMAAAAVABMAAAACAAEAAAAVAAAAAAACAAMAAAAVAP//AAACAAEAAAAUABQAAAACAAMAAAAUABMAAAACAAEAAAAUAAAAAAACAAMAAAAUAP//AAACAAEAAAATABQAAAACAAMAAAATABMAAAACAAEAAAATAAAAAAACAAMAAAATAP//AAACAAEAAAASABQAAAACAAMAAAASABMAAAACAAEAAAASAAAAAAACAAMAAAASAP//AAACAAEAAAARABQAAAABAAMAAAARABMAAAABAAEAAAARAAAAAAABAAMAAAARAP//AAABAAEAAAANABQAAAACAAMAAAANABMAAAACAAEAAAANAAAAAAACAAMAAAANAP//AAACAAEAAAAMABQAAAACAAMAAAAMABMAAAACAAEAAAAMAAAAAAACAAMAAAAMAP//AAACAAEAAAALABQAAAACAAMAAAALABMAAAACAAEAAAALAAAAAAACAAMAAAALAP//AAACAAEAAAAKABQAAAACAAMAAAAKABMAAAACAAEAAAAKAAAAAAACAAMAAAAKAP//AAACAAEAAAAJABQAAAACAAMAAAAJABMAAAACAAEAAAAJAAAAAAACAAMAAAAJAP//AAACAAEAAAAIABQAAAACAAMAAAAIABMAAAACAAEAAAAIAAAAAAACAAMAAAAIAP//AAACAAEAAAAHABQAAAACAAMAAAAHABMAAAACAAEAAAAHAAAAAAACAAMAAAAHAP//AAACAAEAAAAGABQAAAACAAMAAAAGABMAAAACAAEAAAAGAAAAAAACAAMAAAAGAP//AAACAAEAAAAFABQAAAACAAMAAAAFABMAAAACAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAAEABQAAAACAAMAAAAEABMAAAACAAEAAAAEAAAAAAACAAMAAAAEAP//AAACAAEAAAADABQAAAACAAMAAAADABMAAAACAAEAAAADAAAAAAACAAMAAAADAP//AAACAAEAAAACABQAAAACAAMAAAACABMAAAACAAEAAAACAAAAAAACAAMAAAACAP//AAACAAEAAAABABQAAAACAAMAAAABABMAAAACAAEAAAABAAAAAAACAAMAAAABAP//AAACAAEAAAAAABQAAAACAAMAAAAAABMAAAAFAAIAAAAAABIAAAADAAIAAAAAABEAAAADAAIAAAAAABAAAAADAAIAAAAAAA8AAAADAAIAAAAAAA4AAAADAAIAAAAAAA0AAAADAAIAAAAAAAwAAAADAAIAAAAAAAsAAAADAAEAAAAAAAgAAAADAAMAAAAAAAcAAAADAAIAAAAAAAYAAAADAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAADAAIAAAAAAAIAAAADAAIAAAAAAAEAAAADAAIAAAAAAAAAAAAFAAEAAAAAAP//AAACAAEAAAD//xQAAAABAAMAAAD//xMAAAABAAIAAAD//xIAAAABAAIAAAD//xEAAAABAAIAAAD//xAAAAABAAIAAAD//w8AAAABAAIAAAD//w4AAAABAAIAAAD//w0AAAABAAIAAAD//wwAAAABAAIAAAD//wsAAAABAAEAAAD//wgAAAABAAMAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAD//wMAAAABAAIAAAD//wIAAAABAAIAAAD//wEAAAABAAIAAAD//wAAAAABAAIAAAD/////AAABAAEAAAAOABQAAAADAAMAAAAOABMAAAADAAEAAAAOAAAAAAADAAMAAAAOAP//AAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAAfABMAAAAGAAIAAAAfABIAAAABAAIAAAAfABEAAAABAAIAAAAfABAAAAABAAIAAAAfAA8AAAABAAIAAAAfAA4AAAABAAIAAAAfAA0AAAABAAIAAAAfAAwAAAABAAIAAAAfAAsAAAABAAIAAAAfAAgAAAABAAIAAAAfAAcAAAABAAIAAAAfAAYAAAABAAIAAAAfAAUAAAABAAIAAAAfAAQAAAABAAIAAAAfAAMAAAABAAIAAAAfAAIAAAABAAIAAAAfAAEAAAABAAIAAAAfAAAAAAAGAAEAAAAeABMAAAACAAEAAAAeAAAAAAACAAMAAAAdABMAAAACAAEAAAAdAAAAAAACAAMAAAAcABMAAAACAAEAAAAcAAAAAAACAAMAAAAbABMAAAACAAEAAAAbAAAAAAACAAMAAAAaABMAAAACAAEAAAAaAAAAAAACAAMAAAAZABMAAAACAAEAAAAZAAAAAAACAAMAAAAYABMAAAACAAEAAAAYAAAAAAACAAMAAAAXABMAAAACAAEAAAAXAAAAAAACAAMAAAAWABMAAAACAAEAAAAWAAAAAAACAAMAAAAVABMAAAACAAEAAAAVAAAAAAACAAMAAAAUABMAAAAFAAIAAAAUAAAAAAAFAAEAAAATABMAAAAGAAIAAAATAAAAAAAGAAEAAAASABMAAAACAAEAAAASAAAAAAACAAMAAAANABMAAAACAAEAAAANAAAAAAACAAMAAAAMABMAAAAFAAIAAAAMAAAAAAAFAAEAAAALABMAAAAGAAIAAAALAAAAAAAGAAEAAAAKABMAAAACAAEAAAAKAAAAAAACAAMAAAAJABMAAAACAAEAAAAJAAAAAAACAAMAAAAIABMAAAACAAEAAAAIAAAAAAACAAMAAAAHABMAAAACAAEAAAAHAAAAAAACAAMAAAAGABMAAAACAAEAAAAGAAAAAAACAAMAAAAFABMAAAACAAEAAAAFAAAAAAACAAMAAAAEABMAAAACAAEAAAAEAAAAAAACAAMAAAADABMAAAACAAEAAAADAAAAAAACAAMAAAACABMAAAACAAEAAAACAAAAAAACAAMAAAABABMAAAACAAEAAAABAAAAAAACAAMAAAAAABMAAAAFAAIAAAAAABIAAAADAAIAAAAAABEAAAADAAIAAAAAABAAAAADAAIAAAAAAA8AAAADAAIAAAAAAA4AAAADAAIAAAAAAA0AAAADAAIAAAAAAAwAAAADAAIAAAAAAAsAAAADAAIAAAAAAAgAAAADAAIAAAAAAAcAAAADAAIAAAAAAAYAAAADAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAADAAIAAAAAAAIAAAADAAIAAAAAAAEAAAADAAIAAAAAAAAAAAAFAAEAAAAAAAkAAAAFAAIAAAAAAAoAAAAFAAEAAAAfAAkAAAAGAAIAAAAfAAoAAAAGAAEAAAANAAUAAAADAAEAAAAMAAUAAAAFAAIAAAAMAAQAAAADAAIAAAAMAAMAAAADAAIAAAAMAAIAAAADAAIAAAAMAAEAAAADAAIAAAASAAUAAAABAAEAAAAeAAkAAAACAAEAAAAeAAoAAAACAAMAAAAUABIAAAADAAIAAAARABMAAAACAAEAAAAQABMAAAACAAEAAAAPABMAAAACAAEAAAAOABMAAAACAAEAAAALABIAAAABAAIAAAABAAoAAAACAAMAAAABAAkAAAACAAEAAAALAAEAAAABAAIAAAAOAAAAAAACAAMAAAAPAAAAAAACAAMAAAAQAAAAAAACAAMAAAARAAAAAAACAAMAAAATAAEAAAABAAIAAAAUAAEAAAADAAIAAAAMAAYAAAACAAMAAAANAAYAAAADAAMAAAASAAYAAAABAAMAAAATAAYAAAACAAMAAAATAAUAAAAGAAIAAAATAAQAAAABAAIAAAATAAMAAAABAAIAAAATAAIAAAABAAIAAAAMAAoAAAADAAMAAAAMAAkAAAADAAEAAAALAAoAAAACAAMAAAALAAkAAAACAAEAAAAKAAoAAAACAAMAAAAKAAkAAAACAAEAAAAJAAoAAAACAAMAAAAJAAkAAAACAAEAAAAIAAoAAAACAAMAAAAIAAkAAAACAAEAAAAHAAoAAAACAAMAAAAHAAkAAAACAAEAAAAGAAoAAAACAAMAAAAGAAkAAAACAAEAAAAFAAoAAAACAAMAAAAFAAkAAAACAAEAAAAEAAoAAAACAAMAAAAEAAkAAAACAAEAAAADAAoAAAACAAMAAAADAAkAAAACAAEAAAACAAoAAAACAAMAAAACAAkAAAACAAEAAAAdAAoAAAACAAMAAAAdAAkAAAACAAEAAAAcAAoAAAACAAMAAAAcAAkAAAACAAEAAAAbAAoAAAACAAMAAAAbAAkAAAACAAEAAAAaAAoAAAACAAMAAAAaAAkAAAACAAEAAAAZAAoAAAACAAMAAAAZAAkAAAACAAEAAAAYAAoAAAACAAMAAAAYAAkAAAACAAEAAAAXAAoAAAACAAMAAAAXAAkAAAACAAEAAAAWAAoAAAACAAMAAAAWAAkAAAACAAEAAAAVAAoAAAACAAMAAAAVAAkAAAACAAEAAAAUAAoAAAACAAMAAAAUAAkAAAACAAEAAAATAAoAAAABAAMAAAATAAkAAAABAAEAAAALAA8AAAABAAIAAAALABAAAAABAAIAAAALABEAAAABAAIAAAAUABEAAAADAAIAAAAUABAAAAADAAIAAAAUAA8AAAADAAIAAAAUAAUAAAADAAIAAAAUAAQAAAADAAIAAAAUAAMAAAADAAIAAAAUAAIAAAADAAIAAAAUAAYAAAADAAMAAAALAAYAAAABAAMAAAALAAUAAAABAAIAAAALAAQAAAABAAIAAAALAAMAAAABAAIAAAALAAIAAAABAAIAAAAMAA8AAAADAAIAAAATAA8AAAABAAIAAAAUAA4AAAADAAIAAAAUAA0AAAADAAEAAAATAA0AAAACAAEAAAATAA4AAAAGAAEAAAATABAAAAABAAIAAAATABEAAAABAAIAAAATABIAAAABAAIAAAALAA4AAAABAAIAAAAMAA4AAAAFAAEAAAANAA4AAAADAAMAAAANAA0AAAADAAEAAAAMAA0AAAACAAEAAAALAA0AAAABAAEAAAAMABAAAAADAAIAAAAMABEAAAADAAIAAAAMABIAAAADAAIAAAASAA4AAAABAAMAAAASAA0AAAABAAEAAAA=")
+metadata/_edit_lock_ = true
 
 [node name="Solid" type="Control" parent="Walls"]
+z_index = 7
 layout_mode = 3
 anchors_preset = 0
-offset_left = 912.0
-offset_top = 576.0
-offset_right = 960.0
-offset_bottom = 624.0
+offset_left = 144.0
+offset_top = 72.0
+offset_right = 192.0
+offset_bottom = 192.0
 script = ExtResource("6_uk52q")
-outline_color = Color(0.4, 0.284, 0.284, 1)
-fill_color = Color(1, 0.7, 0.7, 1)
+
+[node name="Solid2" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1344.0
+offset_top = 72.0
+offset_right = 1392.0
+offset_bottom = 192.0
+script = ExtResource("6_uk52q")
+
+[node name="Solid3" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 144.0
+offset_top = 768.0
+offset_right = 192.0
+offset_bottom = 888.0
+script = ExtResource("6_uk52q")
+
+[node name="Solid4" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1344.0
+offset_top = 768.0
+offset_right = 1392.0
+offset_bottom = 888.0
+script = ExtResource("6_uk52q")
+
+[node name="Solid5" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 120.0
+offset_top = 144.0
+offset_right = 156.0
+offset_bottom = 192.0
+script = ExtResource("6_uk52q")
+
+[node name="Solid6" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1380.0
+offset_top = 144.0
+offset_right = 1416.0
+offset_bottom = 192.0
+script = ExtResource("6_uk52q")
+
+[node name="Solid7" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 120.0
+offset_top = 768.0
+offset_right = 156.0
+offset_bottom = 816.0
+script = ExtResource("6_uk52q")
+
+[node name="Solid8" type="Control" parent="Walls"]
+z_index = 7
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1380.0
+offset_top = 768.0
+offset_right = 1416.0
+offset_bottom = 816.0
+script = ExtResource("6_uk52q")
 
 [node name="Checkpoints" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
 
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("7_i4kkf")]
-offset_left = 720.0
-offset_top = 432.0
-offset_right = 816.0
-offset_bottom = 528.0
-type = 3
+[node name="Start" parent="Checkpoints" instance=ExtResource("7_i4kkf")]
+offset_left = 624.0
+offset_top = 720.0
+offset_right = 912.0
+offset_bottom = 912.0
+type = 1
+
+[node name="Finish" parent="Checkpoints" instance=ExtResource("7_i4kkf")]
+offset_left = 624.0
+offset_top = 48.0
+offset_right = 912.0
+offset_bottom = 240.0
+type = 2
 level_warp = "showcase_5"
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -82,10 +160,19 @@ script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
 
 [node name="BlueEnemy" parent="Enemies" instance=ExtResource("8_p72ry")]
-position = Vector2(648, 360)
+position = Vector2(312, 552)
+
+[node name="BlueEnemy2" parent="Enemies" instance=ExtResource("8_p72ry")]
+position = Vector2(360, 552)
+
+[node name="BlueEnemy3" parent="Enemies" instance=ExtResource("8_p72ry")]
+position = Vector2(408, 552)
+
+[node name="BlueEnemy4" parent="Enemies" instance=ExtResource("8_p72ry")]
+position = Vector2(456, 552)
 
 [node name="Circle" parent="Enemies" instance=ExtResource("9_1o5g6")]
-position = Vector2(504, 360)
+position = Vector2(516, -264)
 radius = 1.0
 object_count = 7
 node = ExtResource("8_p72ry")
@@ -95,56 +182,769 @@ script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
 
 [node name="Coin" parent="Coins" instance=ExtResource("10_6dmdx")]
-position = Vector2(648, 600)
+position = Vector2(264, 264)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("10_6dmdx")]
+position = Vector2(312, 264)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("10_6dmdx")]
+position = Vector2(360, 264)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("10_6dmdx")]
+position = Vector2(264, 312)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("10_6dmdx")]
+position = Vector2(312, 312)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("10_6dmdx")]
+position = Vector2(360, 312)
 
 [node name="Keys" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
 
 [node name="Key" parent="Keys" instance=ExtResource("11_4a15o")]
-position = Vector2(888, 360)
+position = Vector2(96, 864)
+key_id = 0
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0.4, 1)
+fill_color = Color(0, 1, 1, 0.501961)
+
+[node name="Key2" parent="Keys" instance=ExtResource("11_4a15o")]
+position = Vector2(1440, 864)
+key_id = 1
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 1)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Key3" parent="Keys" instance=ExtResource("11_4a15o")]
+position = Vector2(96, 96)
+key_id = 2
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 0.501961)
+
+[node name="Key4" parent="Keys" instance=ExtResource("11_4a15o")]
+position = Vector2(1440, 96)
+key_id = 3
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0.4, 1)
+fill_color = Color(1, 0, 1, 0.501961)
+
+[node name="Key5" parent="Keys" instance=ExtResource("11_4a15o")]
+position = Vector2(432, 672)
+key_id = 4
+
+[node name="Key6" parent="Keys" instance=ExtResource("11_4a15o")]
+position = Vector2(384, 672)
+key_id = 5
+
+[node name="Key7" parent="Keys" instance=ExtResource("11_4a15o")]
+position = Vector2(336, 672)
+key_id = 6
+
+[node name="Key8" parent="Keys" instance=ExtResource("11_4a15o")]
+position = Vector2(288, 672)
+key_id = 7
 
 [node name="GoldDoors" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
 
 [node name="GoldDoor" parent="GoldDoors" instance=ExtResource("12_ct41l")]
-offset_left = 480.0
-offset_top = 528.0
-offset_right = 576.0
-offset_bottom = 624.0
+offset_left = 672.0
+offset_top = 240.0
+offset_right = 864.0
+offset_bottom = 336.0
+open_method = 4
+custom_method = Rect2(-1, -1, 3, 3)
+fade = true
 
 [node name="KeyDoors" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
 
 [node name="KeyDoor" parent="KeyDoors" instance=ExtResource("13_kqx47")]
-offset_left = 960.0
+offset_left = 912.0
+offset_top = 528.0
+offset_right = 1008.0
+offset_bottom = 624.0
+key_id = 0
+open_method = 4
+custom_method = Rect2(-1, -1, 3, 3)
+fade = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0.4, 1)
+fill_color = Color(0, 1, 1, 0.501961)
+
+[node name="KeyDoor2" parent="KeyDoors" instance=ExtResource("13_kqx47")]
+offset_left = 528.0
 offset_top = 336.0
-offset_right = 1056.0
+offset_right = 624.0
 offset_bottom = 432.0
+key_id = 1
+open_method = 4
+custom_method = Rect2(-1, -1, 3, 3)
+fade = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 1)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="KeyDoor3" parent="KeyDoors" instance=ExtResource("13_kqx47")]
+offset_left = 912.0
+offset_top = 336.0
+offset_right = 1008.0
+offset_bottom = 432.0
+key_id = 2
+open_method = 4
+custom_method = Rect2(-1, -1, 3, 3)
+fade = true
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 0.501961)
+
+[node name="KeyDoor4" parent="KeyDoors" instance=ExtResource("13_kqx47")]
+offset_left = 696.0
+offset_top = 408.0
+offset_right = 840.0
+offset_bottom = 552.0
+key_id = 3
+open_method = 4
+custom_method = Rect2(-2, -2, 5, 5)
+open_time = 60
+fade = true
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0.4, 1)
+fill_color = Color(1, 0, 1, 0.501961)
+
+[node name="KeyDoor5" parent="KeyDoors" instance=ExtResource("13_kqx47")]
+offset_left = 384.0
+offset_top = 768.0
+offset_right = 480.0
+offset_bottom = 864.0
+key_id = 4
+open_method = 4
+custom_method = Rect2(0, 0, 1, 1)
+fade = true
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
+
+[node name="KeyDoor6" parent="KeyDoors" instance=ExtResource("13_kqx47")]
+offset_left = 240.0
+offset_top = 768.0
+offset_right = 336.0
+offset_bottom = 864.0
+key_id = 5
+open_method = 4
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
+
+[node name="KeyDoor7" parent="KeyDoors" instance=ExtResource("13_kqx47")]
+offset_left = 96.0
+offset_top = 648.0
+offset_right = 192.0
+offset_bottom = 744.0
+key_id = 6
+open_method = 4
+custom_method = Rect2(0, 0, 0, 0)
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
+
+[node name="KeyDoor8" parent="KeyDoors" instance=ExtResource("13_kqx47")]
+offset_left = 168.0
+offset_top = 552.0
+offset_right = 228.0
+offset_bottom = 612.0
+key_id = 7
+open_method = 4
+custom_method = Rect2(-1, 0.5, 3, 0)
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0, 1)
+fill_color = Color(1, 0, 0, 1)
 
 [node name="Paints" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
 
 [node name="Paint" parent="Paints" instance=ExtResource("14_rg6jh")]
-position = Vector2(624, 192)
+position = Vector2(744, 456)
 paint_id = 1
 
 [node name="Paint2" parent="Paints" instance=ExtResource("14_rg6jh")]
-position = Vector2(720, 192)
+position = Vector2(792, 456)
 paint_id = 2
 
 [node name="Paint3" parent="Paints" instance=ExtResource("14_rg6jh")]
-position = Vector2(816, 192)
+position = Vector2(744, 504)
 paint_id = 3
 
 [node name="Paint4" parent="Paints" instance=ExtResource("14_rg6jh")]
-position = Vector2(912, 192)
+position = Vector2(792, 504)
 paint_id = 4
 
 [node name="Decoration" type="Node2D" parent="."]
-editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
+z_index = 10
 script = ExtResource("3_tw14u")
 metadata/_edit_lock_ = true
+
+[node name="Solid" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 48.0
+offset_bottom = 48.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid2" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 120.0
+offset_top = -12.0
+offset_right = 276.0
+offset_bottom = 72.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid6" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 408.0
+offset_top = -12.0
+offset_right = 564.0
+offset_bottom = 72.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid8" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 528.0
+offset_top = -12.0
+offset_right = 684.0
+offset_bottom = 36.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid9" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 972.0
+offset_top = -12.0
+offset_right = 1128.0
+offset_bottom = 36.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid10" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1344.0
+offset_top = -12.0
+offset_right = 1464.0
+offset_bottom = 24.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid11" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1260.0
+offset_top = -12.0
+offset_right = 1404.0
+offset_bottom = 60.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid12" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1032.0
+offset_top = -12.0
+offset_right = 1176.0
+offset_bottom = 60.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid13" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1140.0
+offset_top = -12.0
+offset_right = 1320.0
+offset_bottom = 84.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid14" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 792.0
+offset_top = -12.0
+offset_right = 936.0
+offset_bottom = 36.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid15" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 648.0
+offset_top = -12.0
+offset_right = 840.0
+offset_bottom = 72.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid7" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 228.0
+offset_top = -12.0
+offset_right = 468.0
+offset_bottom = 96.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid3" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 132.0
+offset_right = 72.0
+offset_bottom = 264.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid4" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 60.0
+offset_top = -12.0
+offset_right = 180.0
+offset_bottom = 12.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid5" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 60.0
+offset_right = 24.0
+offset_bottom = 180.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid16" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 420.0
+offset_right = 24.0
+offset_bottom = 540.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid19" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 864.0
+offset_right = 24.0
+offset_bottom = 948.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid20" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 672.0
+offset_right = 24.0
+offset_bottom = 756.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid23" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 576.0
+offset_right = 12.0
+offset_bottom = 660.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid28" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 672.0
+offset_top = 624.0
+offset_right = 744.0
+offset_bottom = 684.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid30" type="Control" parent="Decoration/Solid28"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 132.0
+offset_bottom = 72.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid31" type="Control" parent="Decoration/Solid28"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 156.0
+offset_top = -72.0
+offset_right = 240.0
+offset_bottom = 24.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid32" type="Control" parent="Decoration/Solid28"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 192.0
+offset_top = -108.0
+offset_right = 264.0
+offset_bottom = -36.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid33" type="Control" parent="Decoration/Solid28"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 228.0
+offset_top = -132.0
+offset_right = 300.0
+offset_bottom = -72.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid34" type="Control" parent="Decoration/Solid28"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 288.0
+offset_top = -108.0
+offset_right = 348.0
+offset_bottom = -60.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid35" type="Control" parent="Decoration/Solid28"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 324.0
+offset_top = -120.0
+offset_right = 384.0
+offset_bottom = -84.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid36" type="Control" parent="Decoration/Solid28"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 360.0
+offset_top = -144.0
+offset_right = 408.0
+offset_bottom = -96.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid37" type="Control" parent="Decoration/Solid28"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 384.0
+offset_top = -168.0
+offset_right = 420.0
+offset_bottom = -132.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid29" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 792.0
+offset_top = 612.0
+offset_right = 876.0
+offset_bottom = 672.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid24" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 564.0
+offset_top = 732.0
+offset_right = 612.0
+offset_bottom = 816.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid30" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 540.0
+offset_top = 792.0
+offset_right = 600.0
+offset_bottom = 876.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid31" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 492.0
+offset_top = 840.0
+offset_right = 588.0
+offset_bottom = 936.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid32" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 420.0
+offset_top = 888.0
+offset_right = 540.0
+offset_bottom = 984.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid33" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 348.0
+offset_top = 924.0
+offset_right = 468.0
+offset_bottom = 1020.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid34" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 516.0
+offset_top = 912.0
+offset_right = 636.0
+offset_bottom = 1008.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid35" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 600.0
+offset_top = 936.0
+offset_right = 720.0
+offset_bottom = 1032.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid25" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 540.0
+offset_top = 684.0
+offset_right = 600.0
+offset_bottom = 768.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid26" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 624.0
+offset_top = 600.0
+offset_right = 696.0
+offset_bottom = 672.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid27" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 552.0
+offset_top = 624.0
+offset_right = 636.0
+offset_bottom = 708.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid21" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 804.0
+offset_right = 48.0
+offset_bottom = 912.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid22" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 708.0
+offset_right = 60.0
+offset_bottom = 840.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid17" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 324.0
+offset_right = 72.0
+offset_bottom = 468.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Solid18" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 216.0
+offset_right = 96.0
+offset_bottom = 360.0
+script = ExtResource("6_uk52q")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0, 0.501961)
+fill_color = Color(0, 1, 0, 0.501961)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dlwvfeol3c4ar"]
+[gd_scene load_steps=18 format=4 uid="uid://bfsdswsy0fx2h"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_2p7y6"]
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_n8otw"]
@@ -11,12 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="9_6kfhk"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_qjas6"]
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_r2imm"]
-[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/solids/gold_door/gold_door.tscn" id="12_de447"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="13_kpntl"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="14_r6aap"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="15_3xdrf"]
 [ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="15_oq1b2"]
-[ext_resource type="PackedScene" uid="uid://jqavj6nthx3" path="res://game/scenes/circle_explosion.tscn" id="16_38sd2"]
+[ext_resource type="PackedScene" uid="uid://cinjxuq8qrrk1" path="res://game/scenes/circle_explosion.tscn" id="16_38sd2"]
 
 [sub_resource type="GDScript" id="GDScript_b4mk8"]
 resource_name = "turret_random"
@@ -29,7 +28,7 @@ func fire_turret() -> void:
 	rotation = rng.randf_range(0, 2*PI)
 "
 
-[node name="TemplateLevel" type="Node2D" groups=["area"]]
+[node name="TemplateLevel2" type="Node2D" groups=["area"]]
 script = ExtResource("1_2p7y6")
 level_code = "1-1"
 bottom_text = "BOTTOM TEXT"
@@ -48,7 +47,7 @@ metadata/_edit_lock_ = true
 script = ExtResource("3_wwdh4")
 
 [node name="TileBasedWall" parent="Walls" instance=ExtResource("5_4xrfy")]
-tile_map_data = PackedByteArray("AAAAABIAAAAAAAMAAAAAABEAAAAAAAIAAAAAABAAAAAAAAIAAAAAAA8AAAAAAAIAAAAAAA4AAAAAAAIAAAAAAA0AAAAAAAIAAAAAAAwAAAAAAAIAAAAAAAsAAAAAAAIAAAAAAAoAAAAAAAIAAAAAAAkAAAAAAAIAAAAAAAgAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAQAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAIAAAAAAAIAAAAAAAEAAAAAAAEAAAAfABIAAAAAAAMAAAAfABEAAAAAAAIAAAAfABAAAAAAAAIAAAAfAA8AAAAAAAIAAAAfAA4AAAAAAAIAAAAfAA0AAAAAAAIAAAAfAAwAAAAAAAIAAAAfAAsAAAAAAAIAAAAfAAoAAAAAAAIAAAAfAAkAAAAAAAIAAAAfAAgAAAAAAAIAAAAfAAcAAAAAAAIAAAAfAAYAAAAAAAIAAAAfAAUAAAAAAAIAAAAfAAQAAAAAAAIAAAAfAAMAAAAAAAIAAAAfAAIAAAAAAAIAAAAfAAEAAAAAAAEAAAAeAAAAAAADAAAAAAAdAAAAAAACAAAAAAAcAAAAAAACAAAAAAAbAAAAAAACAAAAAAAaAAAAAAACAAAAAAAZAAAAAAACAAAAAAAYAAAAAAACAAAAAAAXAAAAAAACAAAAAAAWAAAAAAACAAAAAAAVAAAAAAACAAAAAAAUAAAAAAACAAAAAAATAAAAAAACAAAAAAASAAAAAAACAAAAAAARAAAAAAACAAAAAAAQAAAAAAACAAAAAAAPAAAAAAACAAAAAAAOAAAAAAACAAAAAAANAAAAAAACAAAAAAAMAAAAAAACAAAAAAALAAAAAAACAAAAAAAKAAAAAAACAAAAAAAJAAAAAAACAAAAAAAIAAAAAAACAAAAAAAHAAAAAAACAAAAAAAGAAAAAAACAAAAAAAFAAAAAAACAAAAAAAEAAAAAAACAAAAAAADAAAAAAACAAAAAAACAAAAAAACAAAAAAABAAAAAAABAAAAAAAeABMAAAADAAAAAAAdABMAAAACAAAAAAAcABMAAAACAAAAAAAbABMAAAACAAAAAAAaABMAAAACAAAAAAAZABMAAAACAAAAAAAYABMAAAACAAAAAAAXABMAAAACAAAAAAAWABMAAAACAAAAAAAVABMAAAACAAAAAAAUABMAAAACAAAAAAATABMAAAACAAAAAAASABMAAAACAAAAAAARABMAAAACAAAAAAAQABMAAAACAAAAAAAPABMAAAACAAAAAAAOABMAAAACAAAAAAANABMAAAACAAAAAAAMABMAAAACAAAAAAALABMAAAACAAAAAAAKABMAAAACAAAAAAAJABMAAAACAAAAAAAIABMAAAACAAAAAAAHABMAAAACAAAAAAAGABMAAAACAAAAAAAFABMAAAACAAAAAAAEABMAAAACAAAAAAADABMAAAACAAAAAAACABMAAAACAAAAAAABABMAAAABAAAAAAAAABMAAAAAAAAAAAAfABMAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAABIAAAAAAAMAAAAAABEAAAAAAAIAAAAAABAAAAAAAAIAAAAAAA8AAAAAAAIAAAAAAA4AAAAAAAIAAAAAAA0AAAAAAAIAAAAAAAwAAAAAAAIAAAAAAAsAAAAAAAIAAAAAAAoAAAAAAAIAAAAAAAkAAAAAAAIAAAAAAAgAAAAAAAIAAAAAAAcAAAAAAAIAAAAAAAYAAAAAAAIAAAAAAAUAAAAAAAIAAAAAAAQAAAAAAAIAAAAAAAMAAAAAAAIAAAAAAAIAAAAAAAIAAAAfABIAAAAAAAMAAAAfABEAAAAAAAIAAAAfABAAAAAAAAIAAAAfAA8AAAAAAAIAAAAfAA4AAAAAAAIAAAAfAA0AAAAAAAIAAAAfAAwAAAAAAAIAAAAfAAsAAAAAAAIAAAAfAAoAAAAAAAIAAAAfAAkAAAAAAAIAAAAfAAgAAAAAAAIAAAAfAAcAAAAAAAIAAAAfAAYAAAAAAAIAAAAfAAUAAAAAAAIAAAAfAAQAAAAAAAIAAAAfAAMAAAAAAAIAAAAfAAIAAAAAAAIAAAAfAAEAAAAAAAEAAAAeAAAAAAADAAAAAAAdAAAAAAACAAAAAAAcAAAAAAACAAAAAAAbAAAAAAACAAAAAAAaAAAAAAACAAAAAAAZAAAAAAACAAAAAAAYAAAAAAACAAAAAAAXAAAAAAACAAAAAAAWAAAAAAACAAAAAAAVAAAAAAACAAAAAAAUAAAAAAACAAAAAAATAAAAAAACAAAAAAASAAAAAAACAAAAAAARAAAAAAACAAAAAAAQAAAAAAACAAAAAAAPAAAAAAACAAAAAAAOAAAAAAACAAAAAAANAAAAAAACAAAAAAAMAAAAAAACAAAAAAALAAAAAAACAAAAAAAKAAAAAAACAAAAAAAJAAAAAAACAAAAAAAIAAAAAAACAAAAAAAHAAAAAAACAAAAAAAGAAAAAAACAAAAAAAFAAAAAAACAAAAAAAEAAAAAAACAAAAAAADAAAAAAACAAAAAAAeABMAAAADAAAAAAAdABMAAAACAAAAAAAcABMAAAACAAAAAAAbABMAAAACAAAAAAAaABMAAAACAAAAAAAZABMAAAACAAAAAAAYABMAAAACAAAAAAAXABMAAAACAAAAAAAWABMAAAACAAAAAAAVABMAAAACAAAAAAAUABMAAAACAAAAAAATABMAAAACAAAAAAASABMAAAACAAAAAAARABMAAAACAAAAAAAQABMAAAACAAAAAAAPABMAAAACAAAAAAAOABMAAAACAAAAAAANABMAAAACAAAAAAAMABMAAAACAAAAAAALABMAAAACAAAAAAAKABMAAAACAAAAAAAJABMAAAACAAAAAAAIABMAAAACAAAAAAAHABMAAAACAAAAAAAGABMAAAACAAAAAAAFABMAAAACAAAAAAAEABMAAAACAAAAAAADABMAAAACAAAAAAACABMAAAACAAAAAAABABMAAAABAAAAAAAAABMAAAAAAAAAAAAfABMAAAAAAAAAAAAfAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAA=")
 
 [node name="Solid" type="Control" parent="Walls"]
 layout_mode = 3
@@ -69,8 +68,9 @@ offset_left = 720.0
 offset_top = 576.0
 offset_right = 816.0
 offset_bottom = 672.0
-type = 1
+type = 3
 level_warp = "2"
+final_destination = true
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_wwdh4")
@@ -88,7 +88,28 @@ node = ExtResource("8_f4yxg")
 script = ExtResource("3_wwdh4")
 
 [node name="Coin" parent="Coins" instance=ExtResource("10_qjas6")]
-position = Vector2(648, 1416)
+position = Vector2(168, 792)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("10_qjas6")]
+position = Vector2(264, 792)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("10_qjas6")]
+position = Vector2(360, 792)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("10_qjas6")]
+position = Vector2(456, 792)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("10_qjas6")]
+position = Vector2(1080, 792)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("10_qjas6")]
+position = Vector2(1176, 792)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("10_qjas6")]
+position = Vector2(1272, 792)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("10_qjas6")]
+position = Vector2(1368, 792)
 
 [node name="Keys" type="Node2D" parent="."]
 script = ExtResource("3_wwdh4")
@@ -98,14 +119,6 @@ position = Vector2(888, 1176)
 
 [node name="GoldDoors" type="Node2D" parent="."]
 script = ExtResource("3_wwdh4")
-
-[node name="GoldDoor" parent="GoldDoors" instance=ExtResource("12_de447")]
-offset_left = 480.0
-offset_top = 1344.0
-offset_right = 576.0
-offset_bottom = 1440.0
-open_time = 120
-close_time = 60
 
 [node name="KeyDoors" type="Node2D" parent="."]
 script = ExtResource("3_wwdh4")

@@ -19,4 +19,4 @@ func _process(delta: float) -> void:
 
 
 func on_button_pressed() -> void:
-	get_tree().change_scene_to_packed(preload("res://game/scenes/menu.tscn"))
+	get_tree().change_scene_to_packed(load("res://game/scenes/menu.tscn"))
