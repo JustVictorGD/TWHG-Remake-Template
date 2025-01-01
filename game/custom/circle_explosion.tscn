@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://jqavj6nthx3"]
+
+[ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="1_qcq02"]
+[ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_i5026"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="3_ji64o"]
+[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="4_osylq"]
+
+[sub_resource type="GDScript" id="GDScript_0baoa"]
+resource_name = "circle_explosion"
+script/source = "extends Circle
+
+@export var explosion_speed: float = 0.15
+
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+@onready var tbt: TickBasedTimer = $TickBasedTimer
+@onready var enemy: Enemy = $Enemy
+
+var has_exploded: bool = false
+
+func _ready() -> void:
+	super()
+	tbt.timeout.connect(on_timeout)
+	
+	rotation = rng.randf_range(0, 2*PI)
+
+
+func animation_update() -> void:
+	super()
+	if has_exploded:
+		radius += explosion_speed
+
+
+func on_timeout() -> void:
+	has_exploded = true
+	enemy.queue_free()
+	
+	var vc: VelocityComponent = get_velocity_component(self)
+	if vc != null:
+		vc.enabled = false
+
+
+static func get_velocity_component(_node: Node) -> Node:
+	for child: Node in _node.get_children():
+		if child is VelocityComponent:
+			return child
+	return null
+"
+
+[sub_resource type="Resource" id="Resource_n7uv7"]
+script = ExtResource("1_qcq02")
+motion_trail = true
+constant_check = false
+lock_scale = false
+copy_area_theme = false
+outline_color = Color(0, 0.4, 0.4, 1)
+fill_color = Color(0, 1, 1, 1)
+
+[node name="CircleExplosion" type="Node2D"]
+script = SubResource("GDScript_0baoa")
+radius = 0.0
+object_count = 10
+properties = SubResource("Resource_n7uv7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.501961, 0.227451, 1)
+scale = Vector2(20, 20)
+texture = ExtResource("2_i5026")
+
+[node name="Enemy" parent="." instance=ExtResource("3_ji64o")]
+z_index = 4
+scale = Vector2(4, 4)
+outline_color = Color(0, 0.4, 0.4, 1)
+fill_color = Color(0, 1, 1, 1)
+
+[node name="TickBasedTimer" type="Node" parent="."]
+script = ExtResource("4_osylq")
+autostart = true
+duration = 10

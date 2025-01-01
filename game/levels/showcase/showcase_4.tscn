@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bfsdswsy0fx2h"]
+[gd_scene load_steps=32 format=4 uid="uid://b2wmg6pkxgfys"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_spy8h"]
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
@@ -7,16 +7,113 @@
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_upcpb"]
 [ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="6_rf4t4"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="7_csgbk"]
+[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="8_xxr7r"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_xy66i"]
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="9_u4dxt"]
-[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_ur04s"]
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_8srmb"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="12_0tu7b"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
 [ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="14_0v6pu"]
 [ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
-[ext_resource type="PackedScene" uid="uid://cinjxuq8qrrk1" path="res://game/scenes/circle_explosion.tscn" id="15_uk67m"]
+[ext_resource type="PackedScene" uid="uid://d0ogi0aobh1wv" path="res://game/custom/circle_explosion_curving.tscn" id="15_2i6js"]
+[ext_resource type="PackedScene" uid="uid://jqavj6nthx3" path="res://game/custom/circle_explosion.tscn" id="15_uk67m"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
+[ext_resource type="PackedScene" uid="uid://bh6ggin4u7g1o" path="res://game/custom/circle_explosion_curving_2.tscn" id="18_d4cgj"]
+[ext_resource type="PackedScene" uid="uid://dbpu6toxelscq" path="res://core/game_objects/other/teleporter/teleporter.tscn" id="18_xt7ay"]
+
+[sub_resource type="Animation" id="Animation_des3y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(720, 576)]
+}
+
+[sub_resource type="Animation" id="Animation_ija4o"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(720, 576), Vector2(720, 960)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sk4pw"]
+_data = {
+"RESET": SubResource("Animation_des3y"),
+"new_animation": SubResource("Animation_ija4o")
+}
+
+[sub_resource type="Animation" id="Animation_1rpcw"]
+resource_name = "new_animation"
+length = 35.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30, 35),
+"transitions": PackedFloat32Array(1, 1, -2),
+"update": 0,
+"values": [Vector2(48, -48), Vector2(48, -48), Vector2(48, 960)]
+}
+
+[sub_resource type="Animation" id="Animation_xx06m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, -48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3mag"]
+_data = {
+"RESET": SubResource("Animation_xx06m"),
+"new_animation": SubResource("Animation_1rpcw")
+}
+
+[sub_resource type="GDScript" id="GDScript_tc1tq"]
+resource_name = "turrets1"
+script/source = "extends Folder2D
+
+@onready var main_timer1: TickBasedTimer = $\"../MainTimer1\"
+@onready var fire_timer1: TickBasedTimer = $\"../FireTimer1\"
+@onready var fire_timer1_1: TickBasedTimer = $\"../FireTimer1_1\"
+@onready var fire_timer2: TickBasedTimer = $\"../FireTimer2\"
+
+
+func _ready() -> void:
+	main_timer1.timeout.connect(on_timer1_timeout)
+
+
+func on_timer1_timeout() -> void:
+	fire_timer1.active = false
+	fire_timer1_1.active = false
+	fire_timer2.reset_and_play()
+"
 
 [sub_resource type="GDScript" id="GDScript_b4mk8"]
 resource_name = "turret_random"
@@ -27,6 +124,7 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 func fire_turret() -> void:
 	super()
 	rotation = rng.randf_range(0, 2*PI)
+	velocity = Vector2(rng.randf_range(4, 8), 0)
 "
 
 [sub_resource type="Resource" id="Resource_u7e3a"]
@@ -38,23 +136,52 @@ copy_area_theme = true
 outline_color = Color(0, 0, 0.4, 1)
 fill_color = Color(0, 0, 1, 1)
 
-[sub_resource type="Resource" id="Resource_vaph1"]
-script = ExtResource("14_rg33l")
-motion_trail = false
-constant_check = false
-lock_scale = false
-copy_area_theme = true
-outline_color = Color(0, 0, 0.4, 1)
-fill_color = Color(0, 0, 1, 1)
+[sub_resource type="GDScript" id="GDScript_mv58q"]
+script/source = "extends Folder2D
 
-[sub_resource type="Resource" id="Resource_876xa"]
-script = ExtResource("14_rg33l")
-motion_trail = false
-constant_check = false
-lock_scale = false
-copy_area_theme = true
-outline_color = Color(0, 0, 0.4, 1)
-fill_color = Color(0, 0, 1, 1)
+@onready var main_timer2: TickBasedTimer = $\"../MainTimer2\"
+@onready var fire_timer2: TickBasedTimer = $\"../FireTimer2\"
+@onready var fire_timer3: TickBasedTimer = $\"../FireTimer3\"
+
+
+func _ready() -> void:
+	main_timer2.timeout.connect(on_timer2_timeout)
+
+
+func on_timer2_timeout() -> void:
+	fire_timer2.active = false
+	fire_timer3.reset_and_play()
+"
+
+[sub_resource type="GDScript" id="GDScript_00tcd"]
+script/source = "extends Folder2D
+
+@onready var main_timer3: TickBasedTimer = $\"../MainTimer3\"
+@onready var main_timer4: TickBasedTimer = $\"../MainTimer4\"
+
+@onready var fire_timer1: TickBasedTimer = $\"../FireTimer1\"
+@onready var fire_timer2: TickBasedTimer = $\"../FireTimer2\"
+@onready var fire_timer3: TickBasedTimer = $\"../FireTimer3\"
+@onready var fire_timer4: TickBasedTimer = $\"../FireTimer4\"
+
+
+func _ready() -> void:
+	main_timer3.timeout.connect(on_timer3_timeout)
+	main_timer4.timeout.connect(on_timer4_timeout)
+
+
+func on_timer3_timeout() -> void:
+	fire_timer3.active = false
+	fire_timer4.reset_and_play()
+	fire_timer1.reset_and_play()
+	#$Turret.queue_free()
+
+
+func on_timer4_timeout() -> void:
+	fire_timer2.reset_and_play()
+	fire_timer3.reset_and_play()
+	Engine.time_scale = 0.5
+"
 
 [node name="Showcase4" type="Node2D" groups=["area"]]
 script = ExtResource("1_spy8h")
@@ -96,9 +223,32 @@ offset_left = 720.0
 offset_top = 576.0
 offset_right = 816.0
 offset_bottom = 672.0
-type = 3
+type = 1
 level_warp = "2"
 final_destination = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Checkpoints/Checkpoint"]
+libraries = {
+"": SubResource("AnimationLibrary_sk4pw")
+}
+autoplay = "new_animation"
+script = ExtResource("8_xxr7r")
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("7_csgbk")]
+offset_left = 48.0
+offset_top = -48.0
+offset_right = 1488.0
+offset_bottom = 0.0
+type = 2
+level_warp = "2"
+final_destination = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Checkpoints/Checkpoint2"]
+libraries = {
+"": SubResource("AnimationLibrary_q3mag")
+}
+autoplay = "new_animation"
+script = ExtResource("8_xxr7r")
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")
@@ -112,32 +262,13 @@ radius = 1.0
 object_count = 7
 node = ExtResource("8_xy66i")
 
+[node name="Enemy" parent="Enemies" instance=ExtResource("8_xy66i")]
+z_index = 4
+position = Vector2(768, 192)
+scale = Vector2(4, 4)
+
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")
-
-[node name="Coin" parent="Coins" instance=ExtResource("10_ur04s")]
-position = Vector2(168, 792)
-
-[node name="Coin2" parent="Coins" instance=ExtResource("10_ur04s")]
-position = Vector2(264, 792)
-
-[node name="Coin3" parent="Coins" instance=ExtResource("10_ur04s")]
-position = Vector2(360, 792)
-
-[node name="Coin4" parent="Coins" instance=ExtResource("10_ur04s")]
-position = Vector2(456, 792)
-
-[node name="Coin5" parent="Coins" instance=ExtResource("10_ur04s")]
-position = Vector2(1080, 792)
-
-[node name="Coin6" parent="Coins" instance=ExtResource("10_ur04s")]
-position = Vector2(1176, 792)
-
-[node name="Coin7" parent="Coins" instance=ExtResource("10_ur04s")]
-position = Vector2(1272, 792)
-
-[node name="Coin8" parent="Coins" instance=ExtResource("10_ur04s")]
-position = Vector2(1368, 792)
 
 [node name="Keys" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")
@@ -164,7 +295,7 @@ editor_description = "This folder doesn't get scanned at launch. Put everything 
 script = ExtResource("3_ophqw")
 
 [node name="Turrets1" type="Node2D" parent="."]
-script = ExtResource("3_ophqw")
+script = SubResource("GDScript_tc1tq")
 
 [node name="Turret" parent="Turrets1" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
 position = Vector2(768, 192)
@@ -175,43 +306,70 @@ properties = SubResource("Resource_u7e3a")
 velocity = Vector2(5, 0)
 fire_timer = NodePath("../../FireTimer1")
 
-[node name="VelocityComponent" type="Node2D" parent="Turrets1/Turret"]
-script = ExtResource("14_0v6pu")
-angular_velocity = 0.05
-
-[node name="Enemy" parent="Turrets1" instance=ExtResource("8_xy66i")]
-z_index = 4
+[node name="Turret2" parent="Turrets1" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
 position = Vector2(768, 192)
-scale = Vector2(4, 4)
-
-[node name="Enemy2" parent="Turrets1" instance=ExtResource("8_xy66i")]
-z_index = 4
-position = Vector2(1152, 192)
-scale = Vector2(4, 4)
-
-[node name="Enemy3" parent="Turrets1" instance=ExtResource("8_xy66i")]
-z_index = 4
-position = Vector2(384, 192)
-scale = Vector2(4, 4)
+script = SubResource("GDScript_b4mk8")
+object_lifetime = 200
+shot_node = ExtResource("8_xy66i")
+properties = SubResource("Resource_u7e3a")
+velocity = Vector2(5, 0)
+fire_timer = NodePath("../../FireTimer1_1")
 
 [node name="Turrets2" type="Node2D" parent="."]
-script = ExtResource("3_ophqw")
+script = SubResource("GDScript_mv58q")
 
 [node name="Turret" parent="Turrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(384, 192)
+position = Vector2(768, 192)
+script = SubResource("GDScript_b4mk8")
 object_lifetime = 200
 shot_node = ExtResource("15_uk67m")
-properties = SubResource("Resource_vaph1")
+velocity = Vector2(5, 0)
+fire_on_load = false
 fire_timer = NodePath("../../FireTimer2")
 
-[node name="Turret2" parent="Turrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(1152, 192)
+[node name="VelocityComponent" type="Node2D" parent="Turrets2/Turret"]
+script = ExtResource("14_0v6pu")
+angular_velocity = 0.5
+
+[node name="Turrets3" type="Node2D" parent="."]
+script = SubResource("GDScript_00tcd")
+
+[node name="Turret" parent="Turrets3" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(768, 192)
+script = SubResource("GDScript_b4mk8")
 object_lifetime = 200
-shot_node = ExtResource("15_uk67m")
-properties = SubResource("Resource_876xa")
-fire_timer = NodePath("../../FireTimer2")
+shot_node = ExtResource("15_2i6js")
+velocity = Vector2(5, 0)
+fire_on_load = false
+fire_timer = NodePath("../../FireTimer3")
+
+[node name="VelocityComponent" type="Node2D" parent="Turrets3/Turret"]
+script = ExtResource("14_0v6pu")
+angular_velocity = 0.5
+
+[node name="Turrets4" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Turret" parent="Turrets4" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(768, 192)
+script = SubResource("GDScript_b4mk8")
+object_lifetime = 200
+shot_node = ExtResource("18_d4cgj")
+velocity = Vector2(5, 0)
+fire_on_load = false
+fire_timer = NodePath("../../FireTimer4")
+
+[node name="VelocityComponent" type="Node2D" parent="Turrets4/Turret"]
+script = ExtResource("14_0v6pu")
+angular_velocity = 0.5
 
 [node name="FireTimer1" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+metronome = true
+autostart = true
+duration = 2
+
+[node name="FireTimer1_1" type="Node" parent="."]
 script = ExtResource("16_3tb50")
 metronome = true
 autostart = true
@@ -220,5 +378,39 @@ duration = 2
 [node name="FireTimer2" type="Node" parent="."]
 script = ExtResource("16_3tb50")
 metronome = true
+duration = 25
+
+[node name="FireTimer3" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+metronome = true
+duration = 30
+
+[node name="FireTimer4" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+metronome = true
+duration = 50
+
+[node name="MainTimer1" type="Node" parent="."]
+script = ExtResource("16_3tb50")
 autostart = true
-duration = 60
+duration = 200
+
+[node name="MainTimer2" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+autostart = true
+duration = 600
+
+[node name="MainTimer3" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+autostart = true
+duration = 1000
+
+[node name="MainTimer4" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+autostart = true
+duration = 1200
+
+[node name="Teleporter" parent="." instance=ExtResource("18_xt7ay")]
+position = Vector2(768, 1008)
+scale = Vector2(2, 2)
+destination_room = "avoidance_entrance"
