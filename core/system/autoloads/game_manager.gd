@@ -3,7 +3,7 @@ extends Node
 var collectables_processed: bool = false
 
 # Game properties
-var allow_cheats: bool = false
+var allow_cheats: bool = true
 var paused: bool = false
 var snappy_movement: bool = false
 var sliding_sensitivity: float = 0.5
