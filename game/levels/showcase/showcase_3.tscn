@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://2le3q4h6o4g3"]
+[gd_scene load_steps=18 format=4 uid="uid://2le3q4h6o4g3"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_6r42y"]
 [ext_resource type="Script" path="res://core/custom_resources/area_theme.gd" id="2_l41wk"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/solids/gold_door/gold_door.tscn" id="12_ct41l"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="13_kqx47"]
 [ext_resource type="PackedScene" uid="uid://dk82f13qdaip0" path="res://core/game_objects/collectables/paint/paint.tscn" id="14_rg6jh"]
+[ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="15_fx64h"]
+[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_f2k6s"]
 
 [sub_resource type="Resource" id="Resource_amml7"]
 script = ExtResource("2_l41wk")
@@ -948,3 +950,16 @@ decorative = true
 copy_area_theme = false
 outline_color = Color(0, 0.4, 0, 0.501961)
 fill_color = Color(0, 1, 0, 0.501961)
+
+[node name="Turret" parent="." node_paths=PackedStringArray("fire_timer") instance=ExtResource("15_fx64h")]
+position = Vector2(1320, 648)
+rotation = 0.785397
+shot_node = ExtResource("8_p72ry")
+velocity = Vector2(5, 0)
+fire_timer = NodePath("TickBasedTimer")
+
+[node name="TickBasedTimer" type="Node" parent="Turret"]
+script = ExtResource("16_f2k6s")
+metronome = true
+autostart = true
+duration = 30

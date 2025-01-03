@@ -30,9 +30,10 @@ func fire_turret() -> void:
 	var copy: Node = shot_node.instantiate()
 	
 		
-	get_parent().add_child(copy)
+	#get_parent().add_child(copy)
 	
 	if owner is Area:
+		owner.add_child(copy)
 		copy.owner = self.owner
 	
 	if copy is Coin:
