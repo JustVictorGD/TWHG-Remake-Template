@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://c8sq2kufkxcgb"]
+[gd_scene load_steps=24 format=4 uid="uid://c8sq2kufkxcgb"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_nimlw"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_b13nt"]
@@ -11,23 +11,6 @@
 [ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="8_v3lcr"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_66bql"]
 [ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/solids/gold_door/gold_door.tscn" id="11_jk8vc"]
-
-[sub_resource type="Animation" id="Animation_0d1hx"]
-resource_name = "new_animation"
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -288)]
-}
 
 [sub_resource type="Animation" id="Animation_lothf"]
 length = 0.001
@@ -44,10 +27,82 @@ tracks/0/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_0d1hx"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -288)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0174"]
 _data = {
 "RESET": SubResource("Animation_lothf"),
 "new_animation": SubResource("Animation_0d1hx")
+}
+
+[sub_resource type="Animation" id="Animation_1kwpu"]
+resource_name = "new_animation"
+length = 0.75
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 288)]
+}
+
+[sub_resource type="Animation" id="Animation_kn5in"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4xsgh"]
+_data = {
+"RESET": SubResource("Animation_kn5in"),
+"new_animation": SubResource("Animation_1kwpu")
+}
+
+[sub_resource type="Animation" id="Animation_ow3dy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wubvi"]
@@ -68,7 +123,13 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(672, 0), Vector2(672, -672), Vector2(0, -672), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ow3dy"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_13oii"]
+_data = {
+"RESET": SubResource("Animation_ow3dy"),
+"new_animation": SubResource("Animation_wubvi")
+}
+
+[sub_resource type="Animation" id="Animation_jniqj"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -81,12 +142,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_13oii"]
-_data = {
-"RESET": SubResource("Animation_ow3dy"),
-"new_animation": SubResource("Animation_wubvi")
 }
 
 [sub_resource type="Animation" id="Animation_26j33"]
@@ -105,21 +160,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(480, 0), Vector2(480, -480), Vector2(0, -480), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_jniqj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_06qan"]
@@ -186,27 +226,15 @@ metadata/_edit_lock_ = true
 script = ExtResource("3_lgm30")
 
 [node name="Enemy" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
-position = Vector2(408, 648)
-
-[node name="Enemy2" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
-position = Vector2(456, 648)
-
-[node name="Enemy3" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
-position = Vector2(408, 360)
-
-[node name="Enemy4" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
-position = Vector2(456, 360)
-
-[node name="Enemy5" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
 position = Vector2(120, 888)
 
-[node name="Enemy6" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
+[node name="Enemy2" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
 position = Vector2(168, 888)
 
-[node name="Enemy7" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
+[node name="Enemy3" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
 position = Vector2(120, 600)
 
-[node name="Enemy8" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
+[node name="Enemy4" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
 position = Vector2(168, 600)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group"]
@@ -215,32 +243,21 @@ libraries = {
 }
 autoplay = "new_animation"
 script = ExtResource("8_v3lcr")
+start_time = 45
 
 [node name="Group2" type="Node2D" parent="Enemies"]
 script = ExtResource("3_lgm30")
 
 [node name="Enemy" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
-position = Vector2(504, 648)
-
-[node name="Enemy2" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
-position = Vector2(552, 648)
-
-[node name="Enemy3" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
-position = Vector2(504, 360)
-
-[node name="Enemy4" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
-position = Vector2(552, 360)
-
-[node name="Enemy5" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
 position = Vector2(216, 888)
 
-[node name="Enemy6" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
+[node name="Enemy2" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
 position = Vector2(264, 888)
 
-[node name="Enemy7" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
+[node name="Enemy3" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
 position = Vector2(216, 600)
 
-[node name="Enemy8" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
+[node name="Enemy4" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
 position = Vector2(264, 600)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
@@ -249,7 +266,51 @@ libraries = {
 }
 autoplay = "new_animation"
 script = ExtResource("8_v3lcr")
-start_time = 30
+
+[node name="Group3" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Group3" instance=ExtResource("8_ac8bc")]
+position = Vector2(408, 360)
+
+[node name="Enemy2" parent="Enemies/Group3" instance=ExtResource("8_ac8bc")]
+position = Vector2(456, 360)
+
+[node name="Enemy3" parent="Enemies/Group3" instance=ExtResource("8_ac8bc")]
+position = Vector2(408, 72)
+
+[node name="Enemy4" parent="Enemies/Group3" instance=ExtResource("8_ac8bc")]
+position = Vector2(456, 72)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group3"]
+libraries = {
+"": SubResource("AnimationLibrary_4xsgh")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 23
+
+[node name="Group4" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Group4" instance=ExtResource("8_ac8bc")]
+position = Vector2(504, 360)
+
+[node name="Enemy2" parent="Enemies/Group4" instance=ExtResource("8_ac8bc")]
+position = Vector2(552, 360)
+
+[node name="Enemy3" parent="Enemies/Group4" instance=ExtResource("8_ac8bc")]
+position = Vector2(504, 72)
+
+[node name="Enemy4" parent="Enemies/Group4" instance=ExtResource("8_ac8bc")]
+position = Vector2(552, 72)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group4"]
+libraries = {
+"": SubResource("AnimationLibrary_4xsgh")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
 
 [node name="Square" type="Node2D" parent="Enemies"]
 script = ExtResource("3_lgm30")

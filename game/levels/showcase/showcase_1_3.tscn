@@ -308,7 +308,8 @@ offset_left = 384.0
 offset_top = 384.0
 offset_right = 576.0
 offset_bottom = 576.0
-type = 1
+type = 3
+level_warp = "showcase_2"
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_wku1j")
@@ -670,7 +671,12 @@ script = ExtResource("3_wku1j")
 metadata/_edit_lock_ = true
 
 [node name="Key" parent="Keys" instance=ExtResource("13_k6xj1")]
-position = Vector2(216, 480)
+position = Vector2(168, 480)
+key_id = 0
+
+[node name="Key2" parent="Keys" instance=ExtResource("13_k6xj1")]
+position = Vector2(264, 480)
+key_id = 1
 
 [node name="GoldDoors" type="Node2D" parent="."]
 script = ExtResource("3_wku1j")
@@ -685,6 +691,17 @@ offset_left = 864.0
 offset_top = 192.0
 offset_right = 960.0
 offset_bottom = 336.0
+key_id = 0
+open_method = 4
+custom_method = Rect2(-0.25, -0.25, 1.5, 1.5)
+fade = true
+
+[node name="KeyDoor2" parent="KeyDoors" instance=ExtResource("14_be5q4")]
+offset_left = 864.0
+offset_top = 624.0
+offset_right = 960.0
+offset_bottom = 768.0
+key_id = 1
 open_method = 4
 custom_method = Rect2(-0.25, -0.25, 1.5, 1.5)
 fade = true
