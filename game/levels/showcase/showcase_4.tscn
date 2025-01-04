@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://b2wmg6pkxgfys"]
+[gd_scene load_steps=35 format=4 uid="uid://b2wmg6pkxgfys"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_spy8h"]
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
@@ -57,6 +57,21 @@ _data = {
 "new_animation": SubResource("Animation_ija4o")
 }
 
+[sub_resource type="Animation" id="Animation_xx06m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, -48)]
+}
+
 [sub_resource type="Animation" id="Animation_1rpcw"]
 resource_name = "new_animation"
 length = 35.0
@@ -74,21 +89,6 @@ tracks/0/keys = {
 "values": [Vector2(48, -48), Vector2(48, -48), Vector2(48, 960)]
 }
 
-[sub_resource type="Animation" id="Animation_xx06m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(48, -48)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q3mag"]
 _data = {
 "RESET": SubResource("Animation_xx06m"),
@@ -99,10 +99,10 @@ _data = {
 resource_name = "turrets1"
 script/source = "extends Folder2D
 
-@onready var main_timer1: TickBasedTimer = $\"../MainTimer1\"
-@onready var fire_timer1: TickBasedTimer = $\"../FireTimer1\"
-@onready var fire_timer1_1: TickBasedTimer = $\"../FireTimer1_1\"
-@onready var fire_timer2: TickBasedTimer = $\"../FireTimer2\"
+@onready var main_timer1: TickBasedTimer = $\"../../MainTimer1\"
+@onready var fire_timer1: TickBasedTimer = $\"../../FireTimer1\"
+@onready var fire_timer1_1: TickBasedTimer = $\"../../FireTimer1_1\"
+@onready var fire_timer2: TickBasedTimer = $\"../../FireTimer2\"
 
 
 func _ready() -> void:
@@ -139,9 +139,9 @@ fill_color = Color(0, 0, 1, 1)
 [sub_resource type="GDScript" id="GDScript_mv58q"]
 script/source = "extends Folder2D
 
-@onready var main_timer2: TickBasedTimer = $\"../MainTimer2\"
-@onready var fire_timer2: TickBasedTimer = $\"../FireTimer2\"
-@onready var fire_timer3: TickBasedTimer = $\"../FireTimer3\"
+@onready var main_timer2: TickBasedTimer = $\"../../MainTimer2\"
+@onready var fire_timer2: TickBasedTimer = $\"../../FireTimer2\"
+@onready var fire_timer3: TickBasedTimer = $\"../../FireTimer3\"
 
 
 func _ready() -> void:
@@ -156,18 +156,18 @@ func on_timer2_timeout() -> void:
 [sub_resource type="GDScript" id="GDScript_00tcd"]
 script/source = "extends Folder2D
 
-@onready var main_timer3: TickBasedTimer = $\"../MainTimer3\"
-@onready var main_timer4: TickBasedTimer = $\"../MainTimer4\"
+@onready var main_timer3: TickBasedTimer = $\"../../MainTimer3\"
+@onready var main_timer4: TickBasedTimer = $\"../../MainTimer4\"
 
-@onready var fire_timer1: TickBasedTimer = $\"../FireTimer1\"
-@onready var fire_timer2: TickBasedTimer = $\"../FireTimer2\"
-@onready var fire_timer3: TickBasedTimer = $\"../FireTimer3\"
-@onready var fire_timer4: TickBasedTimer = $\"../FireTimer4\"
+@onready var fire_timer1: TickBasedTimer = $\"../../FireTimer1\"
+@onready var fire_timer2: TickBasedTimer = $\"../../FireTimer2\"
+@onready var fire_timer3: TickBasedTimer = $\"../../FireTimer3\"
+@onready var fire_timer4: TickBasedTimer = $\"../../FireTimer4\"
 
 
 func _ready() -> void:
 	main_timer3.timeout.connect(on_timer3_timeout)
-	main_timer4.timeout.connect(on_timer4_timeout)
+	#main_timer4.timeout.connect(on_timer4_timeout)
 
 
 func on_timer3_timeout() -> void:
@@ -177,11 +177,49 @@ func on_timer3_timeout() -> void:
 	#$Turret.queue_free()
 
 
-func on_timer4_timeout() -> void:
-	fire_timer2.reset_and_play()
-	fire_timer3.reset_and_play()
-	Engine.time_scale = 0.5
+#func on_timer4_timeout() -> void:
+	#fire_timer2.reset_and_play()
+	#fire_timer3.reset_and_play()
 "
+
+[sub_resource type="Animation" id="Animation_0ad2t"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 2
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1344, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vqf1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2fmb"]
+_data = {
+"RESET": SubResource("Animation_vqf1c"),
+"new_animation": SubResource("Animation_0ad2t")
+}
 
 [node name="Showcase4" type="Node2D" groups=["area"]]
 script = ExtResource("1_spy8h")
@@ -262,11 +300,6 @@ radius = 1.0
 object_count = 7
 node = ExtResource("8_xy66i")
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("8_xy66i")]
-z_index = 4
-position = Vector2(768, 192)
-scale = Vector2(4, 4)
-
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")
 
@@ -293,75 +326,6 @@ close_time = 60
 [node name="Decoration" type="Node2D" parent="."]
 editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
 script = ExtResource("3_ophqw")
-
-[node name="Turrets1" type="Node2D" parent="."]
-script = SubResource("GDScript_tc1tq")
-
-[node name="Turret" parent="Turrets1" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(768, 192)
-script = SubResource("GDScript_b4mk8")
-object_lifetime = 200
-shot_node = ExtResource("8_xy66i")
-properties = SubResource("Resource_u7e3a")
-velocity = Vector2(5, 0)
-fire_timer = NodePath("../../FireTimer1")
-
-[node name="Turret2" parent="Turrets1" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(768, 192)
-script = SubResource("GDScript_b4mk8")
-object_lifetime = 200
-shot_node = ExtResource("8_xy66i")
-properties = SubResource("Resource_u7e3a")
-velocity = Vector2(5, 0)
-fire_timer = NodePath("../../FireTimer1_1")
-
-[node name="Turrets2" type="Node2D" parent="."]
-script = SubResource("GDScript_mv58q")
-
-[node name="Turret" parent="Turrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(768, 192)
-script = SubResource("GDScript_b4mk8")
-object_lifetime = 200
-shot_node = ExtResource("15_uk67m")
-velocity = Vector2(5, 0)
-fire_on_load = false
-fire_timer = NodePath("../../FireTimer2")
-
-[node name="VelocityComponent" type="Node2D" parent="Turrets2/Turret"]
-script = ExtResource("14_0v6pu")
-angular_velocity = 0.5
-
-[node name="Turrets3" type="Node2D" parent="."]
-script = SubResource("GDScript_00tcd")
-
-[node name="Turret" parent="Turrets3" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(768, 192)
-script = SubResource("GDScript_b4mk8")
-object_lifetime = 200
-shot_node = ExtResource("15_2i6js")
-velocity = Vector2(5, 0)
-fire_on_load = false
-fire_timer = NodePath("../../FireTimer3")
-
-[node name="VelocityComponent" type="Node2D" parent="Turrets3/Turret"]
-script = ExtResource("14_0v6pu")
-angular_velocity = 0.5
-
-[node name="Turrets4" type="Node2D" parent="."]
-script = ExtResource("3_ophqw")
-
-[node name="Turret" parent="Turrets4" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(768, 192)
-script = SubResource("GDScript_b4mk8")
-object_lifetime = 200
-shot_node = ExtResource("18_d4cgj")
-velocity = Vector2(5, 0)
-fire_on_load = false
-fire_timer = NodePath("../../FireTimer4")
-
-[node name="VelocityComponent" type="Node2D" parent="Turrets4/Turret"]
-script = ExtResource("14_0v6pu")
-angular_velocity = 0.5
 
 [node name="FireTimer1" type="Node" parent="."]
 script = ExtResource("16_3tb50")
@@ -414,3 +378,87 @@ duration = 1200
 position = Vector2(768, 1008)
 scale = Vector2(2, 2)
 destination_room = "avoidance_entrance"
+
+[node name="Turrets" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Turrets1" type="Node2D" parent="Turrets"]
+script = SubResource("GDScript_tc1tq")
+
+[node name="Turret" parent="Turrets/Turrets1" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(96, 192)
+script = SubResource("GDScript_b4mk8")
+object_lifetime = 200
+shot_node = ExtResource("8_xy66i")
+properties = SubResource("Resource_u7e3a")
+velocity = Vector2(5, 0)
+fire_timer = NodePath("../../../FireTimer1")
+
+[node name="Turret2" parent="Turrets/Turrets1" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(96, 192)
+script = SubResource("GDScript_b4mk8")
+object_lifetime = 200
+shot_node = ExtResource("8_xy66i")
+properties = SubResource("Resource_u7e3a")
+velocity = Vector2(5, 0)
+fire_timer = NodePath("../../../FireTimer1_1")
+
+[node name="Turrets2" type="Node2D" parent="Turrets"]
+script = SubResource("GDScript_mv58q")
+
+[node name="Turret" parent="Turrets/Turrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(96, 192)
+script = SubResource("GDScript_b4mk8")
+object_lifetime = 200
+shot_node = ExtResource("15_uk67m")
+velocity = Vector2(5, 0)
+fire_on_load = false
+fire_timer = NodePath("../../../FireTimer2")
+
+[node name="VelocityComponent" type="Node2D" parent="Turrets/Turrets2/Turret"]
+script = ExtResource("14_0v6pu")
+angular_velocity = 0.5
+
+[node name="Turrets3" type="Node2D" parent="Turrets"]
+script = SubResource("GDScript_00tcd")
+
+[node name="Turret" parent="Turrets/Turrets3" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(96, 192)
+script = SubResource("GDScript_b4mk8")
+object_lifetime = 200
+shot_node = ExtResource("15_2i6js")
+velocity = Vector2(5, 0)
+fire_on_load = false
+fire_timer = NodePath("../../../FireTimer3")
+
+[node name="VelocityComponent" type="Node2D" parent="Turrets/Turrets3/Turret"]
+script = ExtResource("14_0v6pu")
+angular_velocity = 0.5
+
+[node name="Turrets4" type="Node2D" parent="Turrets"]
+script = ExtResource("3_ophqw")
+
+[node name="Turret" parent="Turrets/Turrets4" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
+position = Vector2(96, 192)
+script = SubResource("GDScript_b4mk8")
+object_lifetime = 200
+shot_node = ExtResource("18_d4cgj")
+velocity = Vector2(5, 0)
+fire_on_load = false
+fire_timer = NodePath("../../../FireTimer4")
+
+[node name="VelocityComponent" type="Node2D" parent="Turrets/Turrets4/Turret"]
+script = ExtResource("14_0v6pu")
+angular_velocity = 0.5
+
+[node name="Enemy" parent="Turrets" instance=ExtResource("8_xy66i")]
+z_index = 4
+position = Vector2(96, 192)
+scale = Vector2(4, 4)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Turrets"]
+libraries = {
+"": SubResource("AnimationLibrary_c2fmb")
+}
+autoplay = "new_animation"
+script = ExtResource("8_xxr7r")

@@ -1,0 +1,725 @@
+[gd_scene load_steps=36 format=4 uid="uid://c3slb0duyce7e"]
+
+[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_1ydjq"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_1oisw"]
+[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_wku1j"]
+[ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_xnnds"]
+[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_40xmo"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="6_txssx"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="7_cm06k"]
+[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="8_j0ckt"]
+[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="9_kbp8m"]
+[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="9_tc4mg"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_4ntyq"]
+[ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="10_r3tve"]
+[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="13_k6xj1"]
+[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="14_be5q4"]
+[ext_resource type="PackedScene" uid="uid://dk82f13qdaip0" path="res://core/game_objects/collectables/paint/paint.tscn" id="14_vsfcl"]
+[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="15_vu3hv"]
+[ext_resource type="PackedScene" uid="uid://dbpu6toxelscq" path="res://core/game_objects/other/teleporter/teleporter.tscn" id="17_tcm0w"]
+
+[sub_resource type="Animation" id="Animation_j4ror"]
+resource_name = "new_animation"
+length = 3.0
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -744)]
+}
+
+[sub_resource type="Animation" id="Animation_gfdti"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qbpuh"]
+_data = {
+"RESET": SubResource("Animation_gfdti"),
+"new_animation": SubResource("Animation_j4ror")
+}
+
+[sub_resource type="Animation" id="Animation_mas2s"]
+resource_name = "new_animation"
+length = 3.0
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(744, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kxrlo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qe7s8"]
+_data = {
+"RESET": SubResource("Animation_kxrlo"),
+"new_animation": SubResource("Animation_mas2s")
+}
+
+[sub_resource type="Animation" id="Animation_opciy"]
+resource_name = "new_animation"
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 312)]
+}
+
+[sub_resource type="Animation" id="Animation_cx7vt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i80uc"]
+_data = {
+"RESET": SubResource("Animation_cx7vt"),
+"new_animation": SubResource("Animation_opciy")
+}
+
+[sub_resource type="Animation" id="Animation_vqkq1"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 312)]
+}
+
+[sub_resource type="Animation" id="Animation_5wc7p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a3mtf"]
+_data = {
+"RESET": SubResource("Animation_5wc7p"),
+"new_animation": SubResource("Animation_vqkq1")
+}
+
+[sub_resource type="Animation" id="Animation_tuoga"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(456, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mhv3s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbp0n"]
+_data = {
+"RESET": SubResource("Animation_mhv3s"),
+"new_animation": SubResource("Animation_tuoga")
+}
+
+[sub_resource type="Animation" id="Animation_lasyv"]
+resource_name = "new_animation"
+length = 6.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1368, 600), Vector2(1368, 600), Vector2(1368, 816), Vector2(1608, 816)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.392699, -0.392699, 0.392699, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bh2jd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1368, 600)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_me0fg"]
+_data = {
+"RESET": SubResource("Animation_bh2jd"),
+"new_animation": SubResource("Animation_lasyv")
+}
+
+[node name="Showcase1" type="Node2D" groups=["area"]]
+script = ExtResource("1_1ydjq")
+level_code = "2/16"
+bottom_text = "A new beginning: Godot Edition"
+theme = ExtResource("2_1oisw")
+metadata/_edit_lock_ = true
+
+[node name="Floors" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="Floor" parent="Floors" instance=ExtResource("4_xnnds")]
+offset_right = 32.0
+offset_bottom = 20.0
+color_1 = Color(0.585062, 0.585062, 0.585062, 1)
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="TileBasedWall" parent="Walls" instance=ExtResource("5_40xmo")]
+tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAIAAAD//wEAAAABAAIAAAD//wIAAAABAAIAAAD//wMAAAABAAIAAAD//wQAAAABAAIAAAD//wUAAAABAAIAAAD//wYAAAABAAIAAAD//wcAAAABAAIAAAD//wgAAAABAAIAAAD//wkAAAABAAIAAAD//woAAAABAAIAAAD//wsAAAABAAIAAAD//wwAAAABAAIAAAD//w0AAAABAAIAAAD//w4AAAABAAIAAAD//xAAAAABAAIAAAD//xEAAAABAAIAAAD//xIAAAABAAIAAAD//xMAAAABAAIAAAD//xQAAAABAAMAAAAAAP//AAACAAEAAAAAAAAAAAACAAIAAAAAAAEAAAACAAIAAAAAAAIAAAACAAIAAAAAAAMAAAACAAIAAAAAAAQAAAACAAIAAAAAAAUAAAACAAIAAAAAAAYAAAACAAIAAAAAAAcAAAACAAIAAAAAAAgAAAACAAIAAAAAAAkAAAACAAIAAAAAAAoAAAACAAIAAAAAAAsAAAACAAIAAAAAAAwAAAACAAIAAAAAAA0AAAACAAIAAAAAAA4AAAACAAIAAAAAABAAAAACAAIAAAAAABEAAAACAAIAAAAAABIAAAACAAIAAAAAABMAAAACAAIAAAAAABQAAAACAAMAAAABAP//AAACAAEAAAABAAAAAAACAAIAAAABAAEAAAAFAAEAAAABAAIAAAADAAIAAAABAAMAAAADAAIAAAABAAQAAAADAAIAAAABAAUAAAADAAIAAAABAAYAAAADAAIAAAABAAcAAAADAAIAAAABAAgAAAADAAIAAAABAAkAAAADAAIAAAABAAoAAAADAAIAAAABAAsAAAADAAIAAAABAAwAAAADAAIAAAABAA0AAAADAAIAAAABABIAAAAFAAIAAAABABMAAAACAAIAAAABABQAAAACAAMAAAACAP//AAACAAEAAAACAAAAAAACAAIAAAACAAEAAAACAAMAAAACABIAAAACAAEAAAACABMAAAACAAIAAAACABQAAAACAAMAAAADAP//AAACAAEAAAADAAAAAAACAAIAAAADAAEAAAACAAMAAAADABIAAAACAAEAAAADABMAAAACAAIAAAADABQAAAACAAMAAAAEAP//AAACAAEAAAAEAAAAAAACAAIAAAAEAAEAAAACAAMAAAAEABIAAAACAAEAAAAEABMAAAACAAIAAAAEABQAAAACAAMAAAAFAP//AAACAAEAAAAFAAAAAAACAAIAAAAFAAEAAAACAAMAAAAFABIAAAACAAEAAAAFABMAAAACAAIAAAAFABQAAAACAAMAAAAGAP//AAACAAEAAAAGAAAAAAACAAIAAAAGAAEAAAACAAMAAAAGABIAAAACAAEAAAAGABMAAAACAAIAAAAGABQAAAACAAMAAAAHAP//AAACAAEAAAAHAAAAAAACAAIAAAAHAAEAAAACAAMAAAAHABIAAAACAAEAAAAHABMAAAACAAIAAAAHABQAAAACAAMAAAAIAP//AAACAAEAAAAIAAAAAAACAAIAAAAIAAEAAAACAAMAAAAKAP//AAACAAEAAAAKAAAAAAACAAIAAAAKAAEAAAACAAMAAAAKABIAAAACAAEAAAAKABMAAAACAAIAAAAKABQAAAACAAMAAAALAP//AAACAAEAAAALAAAAAAACAAIAAAALAAEAAAACAAMAAAALABIAAAACAAEAAAALABMAAAACAAIAAAALABQAAAACAAMAAAAMAP//AAACAAEAAAAMAAAAAAACAAIAAAAMAAEAAAACAAMAAAAMABIAAAACAAEAAAAMABMAAAACAAIAAAAMABQAAAACAAMAAAANAP//AAACAAEAAAANAAAAAAACAAIAAAANAAEAAAACAAMAAAANABIAAAACAAEAAAANABMAAAACAAIAAAANABQAAAACAAMAAAAOAP//AAACAAEAAAAOAAAAAAACAAIAAAAOAAEAAAACAAMAAAAOABIAAAACAAEAAAAOABMAAAACAAIAAAAOABQAAAACAAMAAAAPAP//AAACAAEAAAAPAAAAAAACAAIAAAAPAAEAAAACAAMAAAAPABIAAAACAAEAAAAPABMAAAACAAIAAAAPABQAAAACAAMAAAAQAP//AAACAAEAAAAQAAAAAAACAAIAAAAQAAEAAAACAAMAAAAQABIAAAACAAEAAAAQABMAAAACAAIAAAAQABQAAAACAAMAAAARAP//AAACAAEAAAARAAAAAAACAAIAAAARAAEAAAACAAMAAAARABIAAAACAAEAAAARABMAAAACAAIAAAARABQAAAACAAMAAAASAP//AAACAAEAAAASAAAAAAACAAIAAAASAAEAAAAGAAEAAAASABIAAAAGAAIAAAASABMAAAACAAIAAAASABQAAAACAAMAAAATAP//AAACAAEAAAATAAAAAAACAAIAAAATAAEAAAAFAAEAAAATABIAAAAFAAIAAAATABMAAAACAAIAAAATABQAAAACAAMAAAAUAP//AAACAAEAAAAUAAAAAAACAAIAAAAUAAEAAAACAAMAAAAUABIAAAACAAEAAAAUABMAAAACAAIAAAAUABQAAAACAAMAAAAVAP//AAACAAEAAAAVAAAAAAACAAIAAAAVAAEAAAACAAMAAAAVABIAAAACAAEAAAAVABMAAAACAAIAAAAVABQAAAACAAMAAAAWAP//AAACAAEAAAAWAAAAAAACAAIAAAAWAAEAAAACAAMAAAAWABIAAAACAAEAAAAWABMAAAACAAIAAAAWABQAAAACAAMAAAAXAP//AAACAAEAAAAXAAAAAAACAAIAAAAXAAEAAAACAAMAAAAXABIAAAACAAEAAAAXABMAAAACAAIAAAAXABQAAAACAAMAAAAYAP//AAACAAEAAAAYAAAAAAACAAIAAAAYAAEAAAACAAMAAAAYABIAAAACAAEAAAAYABMAAAACAAIAAAAYABQAAAACAAMAAAAZAP//AAACAAEAAAAZAAAAAAACAAIAAAAZAAEAAAACAAMAAAAZABIAAAACAAEAAAAZABMAAAACAAIAAAAZABQAAAACAAMAAAAaAP//AAACAAEAAAAaAAAAAAACAAIAAAAaAAEAAAACAAMAAAAaABIAAAACAAEAAAAaABMAAAACAAIAAAAaABQAAAACAAMAAAAbAP//AAACAAEAAAAbAAAAAAACAAIAAAAbAAEAAAACAAMAAAAbABIAAAACAAEAAAAbABMAAAACAAIAAAAbABQAAAACAAMAAAAcAP//AAACAAEAAAAcAAAAAAACAAIAAAAcAAEAAAACAAMAAAAcABIAAAACAAEAAAAcABMAAAACAAIAAAAcABQAAAACAAMAAAAdAP//AAACAAEAAAAdAAAAAAACAAIAAAAdAAEAAAACAAMAAAAdABIAAAACAAEAAAAdABMAAAACAAIAAAAdABQAAAACAAMAAAAeAP//AAACAAEAAAAeAAAAAAACAAIAAAAeAAEAAAAGAAEAAAAeAAIAAAABAAIAAAAeAAMAAAABAAIAAAAeAAQAAAABAAIAAAAeAAUAAAABAAIAAAAeAAYAAAABAAIAAAAeAAcAAAABAAIAAAAeAAgAAAABAAIAAAAeAAkAAAAGAAIAAAAeAAoAAAAGAAEAAAAeAAsAAAABAAIAAAAeAAwAAAABAAIAAAAeAA0AAAABAAIAAAAeAA4AAAABAAIAAAAeABIAAAACAAEAAAAeABMAAAACAAIAAAAeABQAAAACAAMAAAAfAP//AAACAAEAAAAfAAAAAAACAAIAAAAfAAEAAAACAAIAAAAfAAIAAAACAAIAAAAfAAMAAAACAAIAAAAfAAQAAAACAAIAAAAfAAUAAAACAAIAAAAfAAYAAAACAAIAAAAfAAcAAAACAAIAAAAfAAgAAAACAAIAAAAfAAkAAAACAAIAAAAfAAoAAAACAAIAAAAfAAsAAAACAAIAAAAfAAwAAAACAAIAAAAfAA0AAAACAAIAAAAfAA4AAAACAAIAAAAfABIAAAACAAEAAAAfABMAAAACAAIAAAAfABQAAAACAAMAAAAgAA4AAAADAAIAAAAgAAgAAAADAAIAAAAgAAcAAAADAAIAAAAgAAYAAAADAAIAAAAgAAUAAAADAAIAAAAgAAQAAAADAAIAAAAgAAMAAAADAAIAAAAgAAIAAAADAAIAAAAgAAEAAAADAAIAAAAgAAAAAAADAAIAAAAgAP//AAADAAEAAAAgAAkAAAADAAIAAAAgAAoAAAADAAIAAAAgAAsAAAADAAIAAAAgAAwAAAADAAIAAAAgAA0AAAADAAIAAAAgABIAAAADAAEAAAAgABMAAAADAAIAAAAgABQAAAADAAMAAAAeAA8AAAABAAMAAAAfAA8AAAACAAMAAAAgAA8AAAADAAMAAAAAAA8AAAACAAIAAAD//w8AAAABAAIAAAAIABIAAAACAAEAAAAIABMAAAACAAIAAAAIABQAAAACAAMAAAAJABIAAAACAAEAAAAJABMAAAACAAIAAAAJABQAAAACAAMAAAAJAAEAAAACAAMAAAAJAAAAAAACAAIAAAAJAP//AAACAAEAAAABAA4AAAADAAIAAAABAA8AAAADAAIAAAABABAAAAADAAIAAAABABEAAAADAAIAAAAHAAcAAAAEAAAAAAAHAAgAAAAAAAIAAAAHAAkAAAAAAAIAAAAHAAoAAAAAAAIAAAAHAAsAAAAAAAIAAAAHAAwAAAAEAAMAAAAIAAwAAAACAAAAAAAJAAwAAAACAAAAAAAKAAwAAAACAAAAAAALAAwAAAACAAAAAAAMAAwAAAAHAAMAAAAMAAsAAAAAAAEAAAAMAAgAAAAAAAMAAAAMAAcAAAAHAAAAAAALAAcAAAACAAAAAAAKAAcAAAACAAAAAAAJAAcAAAACAAAAAAAIAAcAAAACAAAAAAASAAIAAAABAAIAAAASAAMAAAABAAMAAAASAAcAAAABAAEAAAASAAgAAAABAAIAAAASAAkAAAABAAIAAAASAAoAAAABAAIAAAASAAsAAAABAAIAAAASAAwAAAABAAMAAAASABAAAAABAAEAAAASABEAAAABAAIAAAATAAkAAAAFAAIAAAAUAAkAAAACAAEAAAAVAAkAAAACAAEAAAAWAAkAAAACAAEAAAAXAAkAAAACAAEAAAAYAAkAAAACAAEAAAAZAAkAAAACAAEAAAAaAAkAAAACAAEAAAAbAAkAAAACAAEAAAAcAAkAAAACAAEAAAAdAAkAAAACAAEAAAAdAAoAAAACAAMAAAAcAAoAAAACAAMAAAAbAAoAAAACAAMAAAAaAAoAAAACAAMAAAAZAAoAAAACAAMAAAAYAAoAAAACAAMAAAAXAAoAAAACAAMAAAAWAAoAAAACAAMAAAAVAAoAAAACAAMAAAAUAAoAAAACAAMAAAATAAoAAAAFAAEAAAATAAMAAAADAAMAAAATAAIAAAADAAIAAAATAAcAAAADAAEAAAATAAgAAAADAAIAAAATAAsAAAADAAIAAAATAAwAAAADAAMAAAATABAAAAADAAEAAAATABEAAAADAAIAAAA=")
+metadata/_edit_lock_ = true
+
+[node name="Checkpoints" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("6_txssx")]
+offset_left = 384.0
+offset_top = 384.0
+offset_right = 576.0
+offset_bottom = 576.0
+type = 1
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="Group1" type="Node2D" parent="Enemies"]
+script = ExtResource("3_wku1j")
+
+[node name="Enemy" parent="Enemies/Group1" instance=ExtResource("7_cm06k")]
+position = Vector2(120, 852)
+
+[node name="Enemy2" parent="Enemies/Group1" instance=ExtResource("7_cm06k")]
+position = Vector2(216, 852)
+
+[node name="Enemy3" parent="Enemies/Group1" instance=ExtResource("7_cm06k")]
+position = Vector2(312, 852)
+
+[node name="Enemy4" parent="Enemies/Group1" instance=ExtResource("7_cm06k")]
+position = Vector2(696, 852)
+
+[node name="Enemy5" parent="Enemies/Group1" instance=ExtResource("7_cm06k")]
+position = Vector2(792, 852)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
+libraries = {
+"": SubResource("AnimationLibrary_qbpuh")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+
+[node name="Group2" type="Node2D" parent="Enemies"]
+script = ExtResource("3_wku1j")
+
+[node name="Enemy" parent="Enemies/Group2" instance=ExtResource("7_cm06k")]
+position = Vector2(168, 852)
+
+[node name="Enemy2" parent="Enemies/Group2" instance=ExtResource("7_cm06k")]
+position = Vector2(264, 852)
+
+[node name="Enemy3" parent="Enemies/Group2" instance=ExtResource("7_cm06k")]
+position = Vector2(648, 852)
+
+[node name="Enemy4" parent="Enemies/Group2" instance=ExtResource("7_cm06k")]
+position = Vector2(744, 852)
+
+[node name="Enemy5" parent="Enemies/Group2" instance=ExtResource("7_cm06k")]
+position = Vector2(840, 852)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
+libraries = {
+"": SubResource("AnimationLibrary_qbpuh")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+start_time = 180
+
+[node name="Group3" type="Node2D" parent="Enemies"]
+script = ExtResource("3_wku1j")
+
+[node name="Enemy" parent="Enemies/Group3" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 696)
+
+[node name="Enemy3" parent="Enemies/Group3" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 312)
+
+[node name="Enemy4" parent="Enemies/Group3" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 216)
+
+[node name="Enemy5" parent="Enemies/Group3" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 120)
+
+[node name="Enemy2" parent="Enemies/Group3" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 792)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group3"]
+libraries = {
+"": SubResource("AnimationLibrary_qe7s8")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+start_time = 90
+
+[node name="Group4" type="Node2D" parent="Enemies"]
+script = ExtResource("3_wku1j")
+
+[node name="Enemy" parent="Enemies/Group4" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 744)
+
+[node name="Enemy3" parent="Enemies/Group4" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 648)
+
+[node name="Enemy4" parent="Enemies/Group4" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 264)
+
+[node name="Enemy5" parent="Enemies/Group4" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 168)
+
+[node name="Enemy2" parent="Enemies/Group4" instance=ExtResource("7_cm06k")]
+position = Vector2(108, 840)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group4"]
+libraries = {
+"": SubResource("AnimationLibrary_qe7s8")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+start_time = 270
+
+[node name="Group5" type="Node2D" parent="Enemies"]
+script = ExtResource("3_wku1j")
+
+[node name="Enemy" parent="Enemies/Group5" instance=ExtResource("7_cm06k")]
+position = Vector2(984, 540)
+
+[node name="Enemy2" parent="Enemies/Group5" instance=ExtResource("7_cm06k")]
+position = Vector2(1080, 540)
+
+[node name="Enemy3" parent="Enemies/Group5" instance=ExtResource("7_cm06k")]
+position = Vector2(1176, 540)
+
+[node name="Enemy4" parent="Enemies/Group5" instance=ExtResource("7_cm06k")]
+position = Vector2(1272, 540)
+
+[node name="Enemy5" parent="Enemies/Group5" instance=ExtResource("7_cm06k")]
+position = Vector2(1368, 540)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group5"]
+libraries = {
+"": SubResource("AnimationLibrary_i80uc")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+
+[node name="Group6" type="Node2D" parent="Enemies"]
+script = ExtResource("3_wku1j")
+
+[node name="Enemy" parent="Enemies/Group6" instance=ExtResource("7_cm06k")]
+position = Vector2(1032, 540)
+
+[node name="Enemy2" parent="Enemies/Group6" instance=ExtResource("7_cm06k")]
+position = Vector2(1128, 540)
+
+[node name="Enemy3" parent="Enemies/Group6" instance=ExtResource("7_cm06k")]
+position = Vector2(1224, 540)
+
+[node name="Enemy4" parent="Enemies/Group6" instance=ExtResource("7_cm06k")]
+position = Vector2(1320, 540)
+
+[node name="Enemy5" parent="Enemies/Group6" instance=ExtResource("7_cm06k")]
+position = Vector2(1416, 540)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group6"]
+libraries = {
+"": SubResource("AnimationLibrary_a3mtf")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+
+[node name="Group7" type="Node2D" parent="Enemies"]
+script = ExtResource("3_wku1j")
+
+[node name="Enemy" parent="Enemies/Group7" instance=ExtResource("7_cm06k")]
+position = Vector2(972, 120)
+
+[node name="Enemy2" parent="Enemies/Group7" instance=ExtResource("7_cm06k")]
+position = Vector2(972, 168)
+
+[node name="Enemy3" parent="Enemies/Group7" instance=ExtResource("7_cm06k")]
+position = Vector2(972, 360)
+
+[node name="Enemy4" parent="Enemies/Group7" instance=ExtResource("7_cm06k")]
+position = Vector2(972, 408)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group7"]
+libraries = {
+"": SubResource("AnimationLibrary_tbp0n")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+
+[node name="Group8" type="Node2D" parent="Enemies"]
+script = ExtResource("3_wku1j")
+
+[node name="Enemy" parent="Enemies/Group8" instance=ExtResource("7_cm06k")]
+position = Vector2(972, 264)
+
+[node name="Enemy2" parent="Enemies/Group8" instance=ExtResource("7_cm06k")]
+position = Vector2(972, 216)
+
+[node name="Enemy3" parent="Enemies/Group8" instance=ExtResource("7_cm06k")]
+position = Vector2(972, 312)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group8"]
+libraries = {
+"": SubResource("AnimationLibrary_tbp0n")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+start_time = 90
+
+[node name="Circle" parent="Enemies" instance=ExtResource("9_kbp8m")]
+position = Vector2(1200, 336)
+rotation = 1.57079
+radius = 1.5
+object_count = 2
+
+[node name="VelocityComponent" type="Node2D" parent="Enemies/Circle"]
+script = ExtResource("10_r3tve")
+angular_velocity = 2.356
+metadata/_edit_lock_ = true
+
+[node name="Circle2" parent="Enemies" instance=ExtResource("9_kbp8m")]
+position = Vector2(1056, 768)
+rotation = 1.57079
+radius = 1.5
+object_count = 2
+
+[node name="VelocityComponent" type="Node2D" parent="Enemies/Circle2"]
+script = ExtResource("10_r3tve")
+angular_velocity = 2.356
+metadata/_edit_lock_ = true
+
+[node name="Circle5" parent="Enemies" instance=ExtResource("9_kbp8m")]
+position = Vector2(1200, 192)
+radius = 1.5
+object_count = 2
+
+[node name="VelocityComponent" type="Node2D" parent="Enemies/Circle5"]
+script = ExtResource("10_r3tve")
+angular_velocity = 2.356
+metadata/_edit_lock_ = true
+
+[node name="Circle6" parent="Enemies" instance=ExtResource("9_kbp8m")]
+position = Vector2(1344, 768)
+radius = 1.5
+object_count = 2
+
+[node name="VelocityComponent" type="Node2D" parent="Enemies/Circle6"]
+script = ExtResource("10_r3tve")
+angular_velocity = 2.356
+metadata/_edit_lock_ = true
+
+[node name="Turrets" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+
+[node name="FireTimer" type="Node" parent="Turrets"]
+script = ExtResource("9_tc4mg")
+metronome = true
+autostart = true
+duration = 60
+
+[node name="Coins" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="Circle" parent="Coins" instance=ExtResource("9_kbp8m")]
+position = Vector2(744, 744)
+radius = 1.5
+object_count = 6
+node = ExtResource("10_4ntyq")
+
+[node name="Circle3" parent="Coins" instance=ExtResource("9_kbp8m")]
+position = Vector2(216, 216)
+radius = 1.5
+object_count = 6
+node = ExtResource("10_4ntyq")
+
+[node name="Circle5" parent="Coins" instance=ExtResource("9_kbp8m")]
+position = Vector2(480, 216)
+radius = 2.0
+object_count = 3
+
+[node name="VelocityComponent" type="Node2D" parent="Coins/Circle5"]
+script = ExtResource("10_r3tve")
+angular_velocity = 1.571
+metadata/_edit_lock_ = true
+
+[node name="Circle7" parent="Coins" instance=ExtResource("9_kbp8m")]
+position = Vector2(480, 744)
+radius = 2.0
+object_count = 3
+
+[node name="VelocityComponent" type="Node2D" parent="Coins/Circle7"]
+script = ExtResource("10_r3tve")
+angular_velocity = 1.571
+metadata/_edit_lock_ = true
+
+[node name="Circle6" parent="Coins" instance=ExtResource("9_kbp8m")]
+position = Vector2(744, 480)
+rotation = -3.14159
+radius = 2.0
+object_count = 3
+
+[node name="VelocityComponent" type="Node2D" parent="Coins/Circle6"]
+script = ExtResource("10_r3tve")
+angular_velocity = -1.571
+metadata/_edit_lock_ = true
+
+[node name="Circle8" parent="Coins" instance=ExtResource("9_kbp8m")]
+position = Vector2(216, 480)
+rotation = -3.14159
+radius = 2.0
+object_count = 3
+
+[node name="VelocityComponent" type="Node2D" parent="Coins/Circle8"]
+script = ExtResource("10_r3tve")
+angular_velocity = -1.571
+metadata/_edit_lock_ = true
+
+[node name="Circle2" parent="Coins" instance=ExtResource("9_kbp8m")]
+position = Vector2(216, 744)
+rotation = 0.523598
+radius = 1.5
+object_count = 6
+node = ExtResource("10_4ntyq")
+
+[node name="Circle4" parent="Coins" instance=ExtResource("9_kbp8m")]
+position = Vector2(744, 216)
+rotation = 0.523598
+radius = 1.5
+object_count = 6
+node = ExtResource("10_4ntyq")
+
+[node name="Coin13" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1368, 360)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1368, 312)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1368, 264)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1368, 216)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1368, 168)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1176, 600)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1224, 600)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1272, 600)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1128, 600)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1080, 600)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("10_4ntyq")]
+position = Vector2(1032, 600)
+
+[node name="Keys" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="Key" parent="Keys" instance=ExtResource("13_k6xj1")]
+position = Vector2(216, 480)
+
+[node name="GoldDoors" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="KeyDoors" type="Node2D" parent="."]
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="KeyDoor" parent="KeyDoors" instance=ExtResource("14_be5q4")]
+offset_left = 864.0
+offset_top = 192.0
+offset_right = 960.0
+offset_bottom = 336.0
+open_method = 4
+custom_method = Rect2(-0.25, -0.25, 1.5, 1.5)
+fade = true
+
+[node name="Decoration" type="Node2D" parent="."]
+editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
+script = ExtResource("3_wku1j")
+metadata/_edit_lock_ = true
+
+[node name="Solid" type="Control" parent="Decoration"]
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1440.0
+offset_top = 756.0
+offset_right = 1584.0
+offset_bottom = 876.0
+script = ExtResource("15_vu3hv")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0.284, 0.284, 0.4, 0.784314)
+fill_color = Color(0.7, 0.7, 1, 0.784314)
+
+[node name="Paint" parent="." instance=ExtResource("14_vsfcl")]
+position = Vector2(1368, 600)
+save_behavior = 1
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Paint"]
+libraries = {
+"": SubResource("AnimationLibrary_me0fg")
+}
+autoplay = "new_animation"
+script = ExtResource("8_j0ckt")
+
+[node name="Teleporter" parent="." instance=ExtResource("17_tcm0w")]
+position = Vector2(1584, 816)
+scale = Vector2(1, 2)
+destination_room = "secret_1"

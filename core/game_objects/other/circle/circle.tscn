@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfobwvq7x8k6i"]
+[gd_scene load_steps=4 format=3 uid="uid://dfobwvq7x8k6i"]
 
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="1_2b3mu"]
 [ext_resource type="Script" path="res://core/game_objects/other/circle/circle.gd" id="1_rj8eg"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="2_anjsi"]
 
 [node name="Circle" type="Node2D"]
 script = ExtResource("1_rj8eg")
 radius = 10.0
+node = ExtResource("2_anjsi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.501961, 0.227451, 1)

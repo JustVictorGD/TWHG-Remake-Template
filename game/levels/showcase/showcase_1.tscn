@@ -289,7 +289,7 @@ _data = {
 
 [node name="Showcase1" type="Node2D" groups=["area"]]
 script = ExtResource("1_a58n3")
-level_code = "1/4"
+level_code = "1/16"
 bottom_text = "A new beginning: Godot Edition"
 theme = ExtResource("2_0h3r5")
 metadata/_edit_lock_ = true
@@ -375,7 +375,7 @@ offset_top = 384.0
 offset_right = 912.0
 offset_bottom = 624.0
 type = 2
-level_warp = "avoidance_entrance"
+level_warp = "showcase_1_1"
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_3ac6r")

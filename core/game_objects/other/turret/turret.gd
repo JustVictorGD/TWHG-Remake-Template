@@ -46,7 +46,7 @@ func fire_turret() -> void:
 	if copy is GameObject2D:
 		copy._ready()
 	
-	copy.position = position
+	copy.global_position = global_position
 	
 	var vc: VelocityComponent = VelocityComponent.new(velocity.rotated(rotation))
 	copy.add_child(vc)
