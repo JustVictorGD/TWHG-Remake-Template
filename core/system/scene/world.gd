@@ -66,7 +66,7 @@ func focus_camera(area: Area) -> void:
 	camera.position = area.position + Vector2(area.area_size) / 2 * 48
 
 
-func switch_level(key: String) -> void:
+func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> void:
 	if not connections.has(key):
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 		return
@@ -93,19 +93,23 @@ func switch_level(key: String) -> void:
 	focus_camera(current_level)
 	
 	SaveFile.add_level_to_dict(key)
-	load_room_state()
+	load_room_state(teleport_position)
 
-func load_room_state() -> void:
+func load_room_state(teleport_position: Vector2 = Vector2.ZERO) -> void:
 	# Assign checkpoint ids and spawn the player on the correct one
 	var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
 	
 	for i: int in range(checkpoints.size()):
 		checkpoints[i].id = i
 		
-		var current_cp: int = SaveFile.save_dictionary["levels"][GameManager.current_level]["checkpoint_id"]
-		
-		if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
-			player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
+		if teleport_position == Vector2.ZERO:
+			var current_cp: int = SaveFile.save_dictionary["levels"][GameManager.current_level]["checkpoint_id"]
+			
+			if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
+				player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
+		else:
+			player.move_to(Vector2i(teleport_position * 1000))
+			print(player.position)
 	
 	# Add extra coins count
 	collected_money += SaveFile.save_dictionary["levels"][GameManager.current_level]["extra_coins"]

@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
 [ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="14_0v6pu"]
 [ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
-[ext_resource type="PackedScene" uid="uid://cinjxuq8qrrk1" path="res://game/scenes/circle_explosion.tscn" id="15_uk67m"]
+[ext_resource type="PackedScene" uid="uid://jqavj6nthx3" path="res://game/scenes/circle_explosion.tscn" id="15_uk67m"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
 
 [sub_resource type="GDScript" id="GDScript_b4mk8"]
