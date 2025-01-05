@@ -11,8 +11,6 @@
 
 [sub_resource type="Environment" id="Environment_s0ysr"]
 background_mode = 3
-glow_intensity = 0.25
-glow_bloom = 0.5
 fog_light_energy = 4.12
 
 [sub_resource type="GDScript" id="GDScript_5ao8b"]

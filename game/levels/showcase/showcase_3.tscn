@@ -155,7 +155,7 @@ offset_top = 48.0
 offset_right = 912.0
 offset_bottom = 240.0
 type = 2
-level_warp = "showcase_4"
+level_warp = "avoidance_entrance"
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
@@ -177,7 +177,6 @@ position = Vector2(456, 552)
 position = Vector2(516, -264)
 radius = 1.0
 object_count = 7
-node = ExtResource("8_p72ry")
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("3_tw14u")
