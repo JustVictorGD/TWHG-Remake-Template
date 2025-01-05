@@ -732,4 +732,4 @@ destination_position = Vector2(96, 96)
 
 [node name="Destroyer" parent="." instance=ExtResource("15_m3vhu")]
 position = Vector2(240, 624)
-groups_to_check = Array[String](["enemies1"])
+groups_to_check = Array[String](["enemies1", "player"])

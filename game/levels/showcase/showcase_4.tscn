@@ -1,6 +1,5 @@
 [gd_scene load_steps=20 format=4 uid="uid://bfsdswsy0fx2h"]
 
-[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_spy8h"]
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
 [ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_ophqw"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_mbt7e"]
@@ -18,12 +17,37 @@
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
 [ext_resource type="PackedScene" uid="uid://crkebrttift1m" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="18_wfjwe"]
 
+[sub_resource type="GDScript" id="GDScript_khhan"]
+script/source = "extends Area
+
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+@onready var timer: TickBasedTimer = $Timer3
+
+func _ready() -> void:
+	timer.timeout.connect(on_timer_timeout)
+
+func on_timer_timeout() -> void:
+	for node: Node in get_tree().get_nodes_in_group(\"1\"):
+		if node is Enemy:
+			node.outline_color = Color(rng.randf(), rng.randf(), rng.randf())
+			node.fill_color = Color(rng.randf(), rng.randf(), rng.randf())
+		
+		var vc: VelocityComponent = get_vc(node)
+		vc.velocity.x = 0
+		vc.velocity.y = rng.randf_range(4, 8)
+
+static func get_vc(node: Node) -> Node:
+	for child: Node in node.get_children():
+		if child is VelocityComponent:
+			return child
+	return null
+"
+
 [sub_resource type="GDScript" id="GDScript_b4mk8"]
 resource_name = "turret_random"
 script/source = "extends \"res://core/game_objects/other/turret/turret.gd\"
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-
 func fire_turret() -> void:
 	super()
 	rotation = rng.randf_range(0, 2*PI)
@@ -32,14 +56,14 @@ func fire_turret() -> void:
 [sub_resource type="Resource" id="Resource_u7e3a"]
 script = ExtResource("14_rg33l")
 motion_trail = false
-constant_check = false
+constant_check = true
 lock_scale = false
-copy_area_theme = true
-outline_color = Color(0, 0, 0.4, 1)
-fill_color = Color(0, 0, 1, 1)
+copy_area_theme = false
+outline_color = Color(0.4, 0, 0.4, 1)
+fill_color = Color(1, 0, 1, 1)
 
 [node name="Showcase4" type="Node2D" groups=["area"]]
-script = ExtResource("1_spy8h")
+script = SubResource("GDScript_khhan")
 level_code = "4/4"
 bottom_text = "Basic avoidance (by audigamer)."
 theme = ExtResource("2_1ncxg")
@@ -155,6 +179,7 @@ object_lifetime = -1
 shot_node = ExtResource("8_xy66i")
 properties = SubResource("Resource_u7e3a")
 velocity = Vector2(10, 0)
+group = "1"
 fire_timer = NodePath("../../FireTimer1")
 
 [node name="VelocityComponent" type="Node2D" parent="Turrets1/Turret"]
@@ -180,6 +205,12 @@ script = ExtResource("16_3tb50")
 metronome = true
 autostart = true
 duration = 20
+
+[node name="Timer3" type="Node" parent="."]
+script = ExtResource("16_3tb50")
+metronome = true
+autostart = true
+duration = 120
 
 [node name="Destroyer" parent="." instance=ExtResource("18_wfjwe")]
 position = Vector2(-24, 480)

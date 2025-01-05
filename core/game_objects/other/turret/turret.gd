@@ -6,6 +6,8 @@ extends Node2D
 @export var shot_node: PackedScene
 @export var properties: Resource
 @export var velocity: Vector2 = Vector2.ZERO
+## The group which gets added to the shot object when it gets created.
+@export var group: String = ""
 @export var fire_on_load: bool = true
 @export var fire_timer: TickBasedTimer
 @export var fire_event_id: int
@@ -45,6 +47,9 @@ func fire_turret() -> void:
 	
 	if copy is GameObject2D:
 		copy._ready()
+	
+	if group != "":
+		copy.add_to_group(group)
 	
 	copy.position = position
 	
