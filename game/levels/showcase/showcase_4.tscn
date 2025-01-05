@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bfsdswsy0fx2h"]
+[gd_scene load_steps=20 format=4 uid="uid://bfsdswsy0fx2h"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_spy8h"]
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
 [ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="14_0v6pu"]
 [ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
-[ext_resource type="PackedScene" uid="uid://jqavj6nthx3" path="res://game/scenes/circle_explosion.tscn" id="15_uk67m"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
+[ext_resource type="PackedScene" uid="uid://crkebrttift1m" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="18_wfjwe"]
 
 [sub_resource type="GDScript" id="GDScript_b4mk8"]
 resource_name = "turret_random"
@@ -30,24 +30,6 @@ func fire_turret() -> void:
 "
 
 [sub_resource type="Resource" id="Resource_u7e3a"]
-script = ExtResource("14_rg33l")
-motion_trail = false
-constant_check = false
-lock_scale = false
-copy_area_theme = true
-outline_color = Color(0, 0, 0.4, 1)
-fill_color = Color(0, 0, 1, 1)
-
-[sub_resource type="Resource" id="Resource_vaph1"]
-script = ExtResource("14_rg33l")
-motion_trail = false
-constant_check = false
-lock_scale = false
-copy_area_theme = true
-outline_color = Color(0, 0, 0.4, 1)
-fill_color = Color(0, 0, 1, 1)
-
-[sub_resource type="Resource" id="Resource_876xa"]
 script = ExtResource("14_rg33l")
 motion_trail = false
 constant_check = false
@@ -169,10 +151,10 @@ script = ExtResource("3_ophqw")
 [node name="Turret" parent="Turrets1" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
 position = Vector2(768, 192)
 script = SubResource("GDScript_b4mk8")
-object_lifetime = 200
+object_lifetime = -1
 shot_node = ExtResource("8_xy66i")
 properties = SubResource("Resource_u7e3a")
-velocity = Vector2(5, 0)
+velocity = Vector2(10, 0)
 fire_timer = NodePath("../../FireTimer1")
 
 [node name="VelocityComponent" type="Node2D" parent="Turrets1/Turret"]
@@ -184,41 +166,33 @@ z_index = 4
 position = Vector2(768, 192)
 scale = Vector2(4, 4)
 
-[node name="Enemy2" parent="Turrets1" instance=ExtResource("8_xy66i")]
-z_index = 4
-position = Vector2(1152, 192)
-scale = Vector2(4, 4)
-
-[node name="Enemy3" parent="Turrets1" instance=ExtResource("8_xy66i")]
-z_index = 4
-position = Vector2(384, 192)
-scale = Vector2(4, 4)
-
 [node name="Turrets2" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")
-
-[node name="Turret" parent="Turrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(384, 192)
-object_lifetime = 200
-shot_node = ExtResource("15_uk67m")
-properties = SubResource("Resource_vaph1")
-fire_timer = NodePath("../../FireTimer2")
-
-[node name="Turret2" parent="Turrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("13_xviyu")]
-position = Vector2(1152, 192)
-object_lifetime = 200
-shot_node = ExtResource("15_uk67m")
-properties = SubResource("Resource_876xa")
-fire_timer = NodePath("../../FireTimer2")
 
 [node name="FireTimer1" type="Node" parent="."]
 script = ExtResource("16_3tb50")
 metronome = true
 autostart = true
-duration = 2
+duration = 1
 
 [node name="FireTimer2" type="Node" parent="."]
 script = ExtResource("16_3tb50")
 metronome = true
 autostart = true
-duration = 60
+duration = 20
+
+[node name="Destroyer" parent="." instance=ExtResource("18_wfjwe")]
+position = Vector2(-24, 480)
+scale = Vector2(1, 22)
+
+[node name="Destroyer2" parent="." instance=ExtResource("18_wfjwe")]
+position = Vector2(1560, 480)
+scale = Vector2(1, 22)
+
+[node name="Destroyer3" parent="." instance=ExtResource("18_wfjwe")]
+position = Vector2(768, -24)
+scale = Vector2(32, 1)
+
+[node name="Destroyer4" parent="." instance=ExtResource("18_wfjwe")]
+position = Vector2(768, 984)
+scale = Vector2(32, 1)

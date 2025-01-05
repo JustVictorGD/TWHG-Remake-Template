@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://uydpnj34ckqb"]
+[gd_scene load_steps=37 format=4 uid="uid://uydpnj34ckqb"]
 
 [ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_a58n3"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_0h3r5"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/solids/gold_door/gold_door.tscn" id="12_gxu8d"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="13_8ftfo"]
 [ext_resource type="PackedScene" uid="uid://dbpu6toxelscq" path="res://core/game_objects/other/teleporter/teleporter.tscn" id="14_gfgxs"]
+[ext_resource type="PackedScene" uid="uid://crkebrttift1m" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="15_m3vhu"]
 
 [sub_resource type="Animation" id="Animation_g5jtd"]
 length = 0.001
@@ -433,7 +434,7 @@ position = Vector2(12, 312)
 [node name="BlueEnemy5" parent="Enemies/Horizontal2" instance=ExtResource("8_tmvdr")]
 position = Vector2(12, 360)
 
-[node name="BlueEnemy6" parent="Enemies/Horizontal2" instance=ExtResource("8_tmvdr")]
+[node name="BlueEnemy6" parent="Enemies/Horizontal2" groups=["enemies1"] instance=ExtResource("8_tmvdr")]
 position = Vector2(12, 408)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Horizontal2"]
@@ -728,3 +729,7 @@ metadata/_edit_lock_ = true
 position = Vector2(336, 768)
 destination_room = "showcase_4"
 destination_position = Vector2(96, 96)
+
+[node name="Destroyer" parent="." instance=ExtResource("15_m3vhu")]
+position = Vector2(240, 624)
+groups_to_check = Array[String](["enemies1"])
