@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bfsdswsy0fx2h"]
+[gd_scene load_steps=19 format=4 uid="uid://bfsdswsy0fx2h"]
 
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
 [ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_ophqw"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_8srmb"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="12_0tu7b"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
-[ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="14_0v6pu"]
 [ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
 [ext_resource type="PackedScene" uid="uid://crkebrttift1m" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="18_wfjwe"]
@@ -27,14 +26,13 @@ func _ready() -> void:
 	timer.timeout.connect(on_timer_timeout)
 
 func on_timer_timeout() -> void:
+	var player: Node = get_tree().get_first_node_in_group(\"player\")
 	for node: Node in get_tree().get_nodes_in_group(\"1\"):
-		if node is Enemy:
-			node.outline_color = Color(rng.randf(), rng.randf(), rng.randf())
-			node.fill_color = Color(rng.randf(), rng.randf(), rng.randf())
+		var pointing_to_player: Vector2 = player.global_position - node.global_position
+		pointing_to_player = pointing_to_player.normalized()
 		
 		var vc: VelocityComponent = get_vc(node)
-		vc.velocity.x = 0
-		vc.velocity.y = rng.randf_range(4, 8)
+		vc.velocity = -20 * pointing_to_player
 
 static func get_vc(node: Node) -> Node:
 	for child: Node in node.get_children():
@@ -48,9 +46,21 @@ resource_name = "turret_random"
 script/source = "extends \"res://core/game_objects/other/turret/turret.gd\"
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+#last_copy
+
 func fire_turret() -> void:
 	super()
+	var vc: VelocityComponent = get_vc(last_copy)
+	#vc.velocity.y
+	vc.acceleration = Vector2(0, 0.05)
 	rotation = rng.randf_range(0, 2*PI)
+
+static func get_vc(node: Node) -> VelocityComponent:
+	for child: Node in node.get_children():
+		if child is VelocityComponent:
+			return child
+	return null
 "
 
 [sub_resource type="Resource" id="Resource_u7e3a"]
@@ -178,13 +188,9 @@ script = SubResource("GDScript_b4mk8")
 object_lifetime = -1
 shot_node = ExtResource("8_xy66i")
 properties = SubResource("Resource_u7e3a")
-velocity = Vector2(10, 0)
+velocity = Vector2(5, 0)
 group = "1"
 fire_timer = NodePath("../../FireTimer1")
-
-[node name="VelocityComponent" type="Node2D" parent="Turrets1/Turret"]
-script = ExtResource("14_0v6pu")
-angular_velocity = 0.05
 
 [node name="Enemy" parent="Turrets1" instance=ExtResource("8_xy66i")]
 z_index = 4
@@ -198,7 +204,7 @@ script = ExtResource("3_ophqw")
 script = ExtResource("16_3tb50")
 metronome = true
 autostart = true
-duration = 1
+duration = 2
 
 [node name="FireTimer2" type="Node" parent="."]
 script = ExtResource("16_3tb50")
@@ -210,7 +216,7 @@ duration = 20
 script = ExtResource("16_3tb50")
 metronome = true
 autostart = true
-duration = 120
+duration = 180
 
 [node name="Destroyer" parent="." instance=ExtResource("18_wfjwe")]
 position = Vector2(-24, 480)

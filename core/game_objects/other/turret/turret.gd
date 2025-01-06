@@ -13,6 +13,7 @@ extends Node2D
 @export var fire_event_id: int
 
 var scene: PackedScene = PackedScene.new()
+var last_copy: Node
 
 func _ready() -> void:
 	GlobalSignal.event.connect(on_event)
@@ -29,39 +30,39 @@ func fire_turret() -> void:
 	if shot_node == null:
 		push_warning("No scene is chosen, turret won't work.")
 		return
-	var copy: Node = shot_node.instantiate()
+	last_copy = shot_node.instantiate()
 	
 		
-	#get_parent().add_child(copy)
+	#get_parent().add_child(last_copy)
 	
 	if owner is Area:
-		owner.add_child(copy)
-		copy.owner = self.owner
+		owner.add_child(last_copy)
+		last_copy.owner = self.owner
 	
-	if copy is Coin:
-		copy.store_behavior = copy.store_behaviors.INCREMENT_TOTAL
+	if last_copy is Coin:
+		last_copy.store_behavior = last_copy.store_behaviors.INCREMENT_TOTAL
 	
-	if copy is Enemy:
+	if last_copy is Enemy:
 		if properties != null and properties is EnemyProperties:
-			copy.set_properties(properties)
+			last_copy.set_properties(properties)
 	
-	if copy is GameObject2D:
-		copy._ready()
+	if last_copy is GameObject2D:
+		last_copy._ready()
 	
 	if group != "":
-		copy.add_to_group(group)
+		last_copy.add_to_group(group)
 	
-	copy.position = position
+	last_copy.position = position
 	
 	var vc: VelocityComponent = VelocityComponent.new(velocity.rotated(rotation))
-	copy.add_child(vc)
+	last_copy.add_child(vc)
 	
 	var tbt: TickBasedTimer = TickBasedTimer.new(object_lifetime, false, false, true)
-	copy.add_child(tbt)
+	last_copy.add_child(tbt)
 	
 	await tbt.timeout
 	
-	copy.queue_free()
+	last_copy.queue_free()
 	
 	
 
