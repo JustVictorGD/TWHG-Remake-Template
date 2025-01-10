@@ -46,6 +46,7 @@ const PIXEL: PackedScene = preload("res://core/game_objects/solids/pixel.tscn")
 
 #region Non-export variables
 
+var sprite: Node2D = Node2D.new()
 var fill: Sprite2D = PIXEL.instantiate()
 var outline: Node2D = Node2D.new()
 var top: Sprite2D = PIXEL.instantiate()
@@ -79,8 +80,9 @@ func _ready() -> void:
 		if child is Node2D:
 			child.queue_free()
 	
-	add_child(fill)
-	add_child(outline)
+	add_child(sprite)
+	sprite.add_child(fill)
+	sprite.add_child(outline)
 	
 	var segments: Array[Sprite2D] = [top, left, bottom, right]
 	
@@ -102,8 +104,9 @@ func _ready() -> void:
 
 
 func wall_update() -> void:
-	global_position = round(global_position)
-	World.walls[hitbox_index] = Rect2i(global_bound)
+	sprite.position = floor(global_position) - global_position
+	
+	World.walls[hitbox_index] = Rect2i(-outwards_2d + global_position, size + outwards_2d * 2)
 
 
 func _process(_delta: float) -> void:
