@@ -62,8 +62,21 @@ script = ExtResource("3_flmhf")
 [node name="Solid" type="Control" parent="Decoration"]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 528.0
+offset_top = 624.0
+offset_right = 624.0
+offset_bottom = 672.0
+script = ExtResource("6_idrh2")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0.4, 0.284, 0.284, 0.498039)
+fill_color = Color(1, 0.7, 0.7, 0.498039)
+
+[node name="Solid2" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
 offset_left = 720.0
-offset_top = 576.0
+offset_top = 624.0
 offset_right = 816.0
 offset_bottom = 672.0
 script = ExtResource("6_idrh2")
@@ -72,7 +85,25 @@ copy_area_theme = false
 outline_color = Color(0.4, 0.284, 0.284, 0.498039)
 fill_color = Color(1, 0.7, 0.7, 0.498039)
 
+[node name="Solid3" type="Control" parent="Decoration"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 912.0
+offset_top = 624.0
+offset_right = 1008.0
+offset_bottom = 672.0
+script = ExtResource("6_idrh2")
+decorative = true
+copy_area_theme = false
+outline_color = Color(0.4, 0.284, 0.284, 0.498039)
+fill_color = Color(1, 0.7, 0.7, 0.498039)
+
 [node name="Teleporter" parent="." instance=ExtResource("8_bifim")]
-position = Vector2(768, 624)
-scale = Vector2(2, 2)
+position = Vector2(576, 648)
+scale = Vector2(2, 1)
 destination_room = "showcase_4"
+
+[node name="Teleporter2" parent="." instance=ExtResource("8_bifim")]
+position = Vector2(768, 648)
+scale = Vector2(2, 1)
+destination_room = "showcase_4_1"

@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="14_0v6pu"]
 [ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
 [ext_resource type="PackedScene" uid="uid://d0ogi0aobh1wv" path="res://game/custom/circle_explosion_curving.tscn" id="15_2i6js"]
-[ext_resource type="PackedScene" uid="uid://jqavj6nthx3" path="res://game/custom/circle_explosion.tscn" id="15_uk67m"]
+[ext_resource type="PackedScene" uid="uid://jqavj6nthx3" path="res://game/custom/circle_explosion_2.tscn" id="15_uk67m"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
 [ext_resource type="PackedScene" uid="uid://bh6ggin4u7g1o" path="res://game/custom/circle_explosion_curving_2.tscn" id="18_d4cgj"]
 [ext_resource type="PackedScene" uid="uid://dbpu6toxelscq" path="res://core/game_objects/other/teleporter/teleporter.tscn" id="18_xt7ay"]
@@ -182,6 +182,21 @@ func on_timer3_timeout() -> void:
 	#fire_timer3.reset_and_play()
 "
 
+[sub_resource type="Animation" id="Animation_vqf1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_0ad2t"]
 resource_name = "new_animation"
 length = 2.0
@@ -198,21 +213,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1344, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vqf1c"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c2fmb"]
@@ -298,7 +298,6 @@ position = Vector2(648, 1176)
 position = Vector2(504, 1176)
 radius = 1.0
 object_count = 7
-node = ExtResource("8_xy66i")
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")

@@ -1,7 +1,8 @@
 class_name VelocityComponent
 extends Node
 
-@export var velocity: Vector2 = Vector2.ZERO
+@export var velocity: Vector2 = Vector2.ZERO # Движение или скорост
+# Вектор2 е вектор с X и Y координати
 @export var acceleration: Vector2 = Vector2.ZERO
 @export var angular_velocity: float = 0
 @export var angular_acceleration: float = 0

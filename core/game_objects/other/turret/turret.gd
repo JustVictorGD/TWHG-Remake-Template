@@ -1,4 +1,5 @@
 extends Node2D
+class_name Turret
 
 ## Time until the object gets destroyed in frames. 60 frames = 1 second. 
 ## Set this to -1 if you don't want the enemy destroyed.
@@ -52,7 +53,7 @@ func fire_turret() -> void:
 	if group != "":
 		last_copy.add_to_group(group)
 	
-	last_copy.global_position = global_position
+	last_copy.position = position
 	
 	var vc: VelocityComponent = VelocityComponent.new(velocity.rotated(rotation))
 	last_copy.add_child(vc)
@@ -62,7 +63,8 @@ func fire_turret() -> void:
 	
 	await tbt.timeout
 	
-	last_copy.queue_free()
+	if last_copy != null:
+		last_copy.queue_free()
 	
 	
 

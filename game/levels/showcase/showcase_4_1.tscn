@@ -1,0 +1,465 @@
+[gd_scene load_steps=33 format=4 uid="uid://4rfso3ffri4f"]
+
+[ext_resource type="Resource" uid="uid://dvx5cgtcu2ell" path="res://game/themes/custom/dark_green_theme.tres" id="1_xv8fu"]
+[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_coheb"]
+[ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_lnrdh"]
+[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_sdmvd"]
+[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="6_fkh6t"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="7_nqfc4"]
+[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="8_s3374"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="9_sa61o"]
+[ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="10_myo2n"]
+[ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_fa27m"]
+[ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="12_lit8y"]
+[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="13_e7mb2"]
+[ext_resource type="PackedScene" uid="uid://dbpu6toxelscq" path="res://core/game_objects/other/teleporter/teleporter.tscn" id="14_h0f6l"]
+[ext_resource type="PackedScene" uid="uid://ceacwhjr0k7uy" path="res://game/custom/circle_explosion_1.tscn" id="14_t3tfb"]
+[ext_resource type="AudioStream" uid="uid://babytjnvoh1vm" path="res://core/misc_assets/Ryu - sakura stormＬＯＮＧ.mp3" id="15_5bq51"]
+[ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="15_caflq"]
+[ext_resource type="PackedScene" uid="uid://dfdd16mul4x1" path="res://game/custom/circle_explosion_3.tscn" id="15_wd6nw"]
+[ext_resource type="PackedScene" uid="uid://27jbnlypmehh" path="res://game/custom/circle_explosion_4.tscn" id="16_8ffl1"]
+[ext_resource type="Script" path="res://core/game_objects/other/turret/turret_extension.gd" id="17_34hv4"]
+[ext_resource type="PackedScene" uid="uid://crkebrttift1m" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="17_204mu"]
+
+[sub_resource type="GDScript" id="GDScript_mvynq"]
+script/source = "extends Area
+@onready var start_delay: TickBasedTimer = $StartDelay
+@onready var beat: TickBasedAnimator = $Beat
+@onready var method_caller: TickBasedAnimator = $MethodCaller
+
+func _ready() -> void:
+	start_delay.timeout.connect(start_beat)
+
+func start_beat() -> void:
+	beat.play(\"new_animation\")
+	method_caller.play(\"new_animation\")
+
+func _process(delta: float) -> void:
+	if beat.is_playing():
+		self.theme.wall_fill.g = beat.current_animation_position / 6
+
+func change_enemy_directions() -> void:
+	var enemies: Array[Node] = get_tree().get_nodes_in_group(\"enemies\")
+	for e: Node in enemies:
+		var vc = get_vc(e)
+		if vc != null:
+			vc.velocity.x *= -0.75
+
+static func get_vc(node: Node) -> Node:
+	for c: Node in node.get_children():
+		if c is VelocityComponent:
+			return c
+	return null
+"
+
+[sub_resource type="Animation" id="Animation_des3y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 576)]
+}
+
+[sub_resource type="Animation" id="Animation_ija4o"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(192, 576), Vector2(192, 1008)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sk4pw"]
+_data = {
+"RESET": SubResource("Animation_des3y"),
+"new_animation": SubResource("Animation_ija4o")
+}
+
+[sub_resource type="Animation" id="Animation_xx06m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_1rpcw"]
+resource_name = "new_animation"
+length = 35.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30, 35),
+"transitions": PackedFloat32Array(1, 1, -2),
+"update": 0,
+"values": [Vector2(48, -48), Vector2(48, -48), Vector2(48, 960)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3mag"]
+_data = {
+"RESET": SubResource("Animation_xx06m"),
+"new_animation": SubResource("Animation_1rpcw")
+}
+
+[sub_resource type="Animation" id="Animation_vauq8"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_xo0ex"]
+resource_name = "new_animation"
+loop_mode = 1
+step = 0.25
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ys75"]
+_data = {
+"RESET": SubResource("Animation_vauq8"),
+"new_animation": SubResource("Animation_xo0ex")
+}
+
+[sub_resource type="Animation" id="Animation_6hriu"]
+resource_name = "new_animation"
+length = 60.0
+step = 0.25
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FirstTurrets/Turret")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2.5, 3, 3.5, 4.56667, 5, 5.5, 6, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}, {
+"args": [],
+"method": &"fire_turret"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FirstTurrets/Turret3")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire_turret"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FirstTurrets/Turret2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire_turret"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ryu-SakuraStormＬｏｎｇ")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FirstTurrets2/TickBasedTimer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_and_play"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(16),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_enemy_directions"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfejr"]
+_data = {
+"new_animation": SubResource("Animation_6hriu")
+}
+
+[node name="Showcase4" type="Node2D" groups=["area"]]
+script = SubResource("GDScript_mvynq")
+theme = ExtResource("1_xv8fu")
+
+[node name="Floors" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="Floor" parent="Floors" instance=ExtResource("4_lnrdh")]
+offset_right = 32.0
+offset_bottom = 20.0
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="TileBasedWall" parent="Walls" instance=ExtResource("5_sdmvd")]
+tile_map_data = PackedByteArray("AAAAABIAAAACAAIAAAAAABEAAAAFAAIAAAAAABAAAAADAAIAAAAAAA8AAAADAAIAAAAAAA4AAAADAAIAAAAAAA0AAAADAAIAAAAAAAwAAAADAAIAAAAAAAsAAAADAAIAAAAAAAoAAAADAAIAAAAAAAkAAAADAAIAAAAAAAgAAAADAAIAAAAAAAcAAAADAAIAAAAAAAYAAAADAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAADAAIAAAAAAAIAAAAFAAEAAAAfABIAAAACAAIAAAAfABEAAAAGAAIAAAAfABAAAAABAAIAAAAfAA8AAAABAAIAAAAfAA4AAAABAAIAAAAfAA0AAAABAAIAAAAfAAIAAAAGAAEAAAAfAAEAAAACAAIAAAAeAAAAAAACAAIAAAAdAAAAAAAGAAEAAAAcAAAAAAACAAMAAAAbAAAAAAACAAMAAAAaAAAAAAACAAMAAAAZAAAAAAACAAMAAAAYAAAAAAACAAMAAAAXAAAAAAACAAMAAAAWAAAAAAACAAMAAAAVAAAAAAACAAMAAAAUAAAAAAACAAMAAAATAAAAAAACAAMAAAASAAAAAAACAAMAAAARAAAAAAACAAMAAAAQAAAAAAACAAMAAAAPAAAAAAACAAMAAAAOAAAAAAACAAMAAAANAAAAAAACAAMAAAAMAAAAAAACAAMAAAALAAAAAAACAAMAAAAKAAAAAAACAAMAAAAJAAAAAAACAAMAAAAIAAAAAAACAAMAAAAHAAAAAAACAAMAAAAGAAAAAAACAAMAAAAFAAAAAAACAAMAAAAEAAAAAAACAAMAAAADAAAAAAACAAMAAAAeABMAAAACAAIAAAAdABMAAAAGAAIAAAAcABMAAAACAAEAAAAbABMAAAACAAEAAAAaABMAAAACAAEAAAAZABMAAAACAAEAAAAYABMAAAACAAEAAAAXABMAAAACAAEAAAAWABMAAAACAAEAAAAVABMAAAACAAEAAAAUABMAAAACAAEAAAATABMAAAACAAEAAAASABMAAAACAAEAAAARABMAAAACAAEAAAAQABMAAAACAAEAAAAPABMAAAACAAEAAAAOABMAAAACAAEAAAANABMAAAACAAEAAAAMABMAAAACAAEAAAALABMAAAACAAEAAAAKABMAAAACAAEAAAAJABMAAAACAAEAAAAIABMAAAACAAEAAAAHABMAAAACAAEAAAAGABMAAAACAAEAAAAFABMAAAACAAEAAAAEABMAAAACAAEAAAADABMAAAACAAEAAAACABMAAAAFAAIAAAABABMAAAACAAIAAAAAABMAAAACAAIAAAAfABMAAAACAAIAAAAfAAAAAAACAAIAAAABAAAAAAACAAIAAAACAAAAAAAFAAEAAAAAAAAAAAACAAIAAAAAAAEAAAACAAIAAAABAAEAAAACAAIAAAACAAEAAAADAAIAAAACAAIAAAADAAMAAAABAAIAAAACAAMAAAABABIAAAACAAIAAAACABIAAAADAAIAAAACABEAAAADAAEAAAABABEAAAACAAEAAAAeABIAAAACAAIAAAAdABIAAAABAAIAAAAdABEAAAABAAEAAAAeABEAAAACAAEAAAAdAAEAAAABAAIAAAAdAAIAAAABAAMAAAAeAAIAAAACAAMAAAAeAAEAAAACAAIAAAAfAAMAAAABAAIAAAAfAAQAAAABAAIAAAAfAAUAAAABAAIAAAAfAAYAAAABAAIAAAAfAAcAAAABAAIAAAAfAAgAAAABAAIAAAAfAAkAAAABAAIAAAAfAAoAAAABAAIAAAAfAAsAAAABAAIAAAAfAAwAAAABAAIAAAAgAP//AAADAAEAAAAgAAAAAAADAAIAAAAgAAEAAAADAAIAAAAgAAIAAAADAAIAAAAgAAMAAAADAAIAAAAgAAQAAAADAAIAAAAgAAUAAAADAAIAAAAgAAYAAAADAAIAAAAgAAcAAAADAAIAAAAgAAgAAAADAAIAAAAgAAkAAAADAAIAAAAgAAoAAAADAAIAAAAgAAsAAAADAAIAAAAgABIAAAADAAIAAAAgABEAAAADAAIAAAAgAAwAAAADAAIAAAAgAA0AAAADAAIAAAAgAA4AAAADAAIAAAAgAA8AAAADAAIAAAAgABAAAAADAAIAAAAgABMAAAADAAIAAAAgABQAAAADAAMAAAAfABQAAAACAAMAAAAeABQAAAACAAMAAAAdABQAAAACAAMAAAAcABQAAAACAAMAAAAbABQAAAACAAMAAAAaABQAAAACAAMAAAAZABQAAAACAAMAAAAAABQAAAACAAMAAAABABQAAAACAAMAAAACABQAAAACAAMAAAADABQAAAACAAMAAAAEABQAAAACAAMAAAAFABQAAAACAAMAAAAGABQAAAACAAMAAAAHABQAAAACAAMAAAAIABQAAAACAAMAAAAJABQAAAACAAMAAAAKABQAAAACAAMAAAALABQAAAACAAMAAAAMABQAAAACAAMAAAANABQAAAACAAMAAAAOABQAAAACAAMAAAAPABQAAAACAAMAAAAQABQAAAACAAMAAAARABQAAAACAAMAAAASABQAAAACAAMAAAATABQAAAACAAMAAAAUABQAAAACAAMAAAAVABQAAAACAAMAAAAWABQAAAACAAMAAAAXABQAAAACAAMAAAAYABQAAAACAAMAAAD//wAAAAABAAIAAAD//wEAAAABAAIAAAD//wIAAAABAAIAAAD//wMAAAABAAIAAAD//wQAAAABAAIAAAD//wUAAAABAAIAAAD//wYAAAABAAIAAAD//wcAAAABAAIAAAD//wgAAAABAAIAAAD//wkAAAABAAIAAAD//woAAAABAAIAAAD//wsAAAABAAIAAAD//wwAAAABAAIAAAD//w0AAAABAAIAAAD//w4AAAABAAIAAAD//w8AAAABAAIAAAD//xAAAAABAAIAAAD//xEAAAABAAIAAAD//xIAAAABAAIAAAD//xMAAAABAAIAAAD//xQAAAABAAMAAAAdAP//AAACAAEAAAAcAP//AAACAAEAAAAbAP//AAACAAEAAAAaAP//AAACAAEAAAAZAP//AAACAAEAAAAYAP//AAACAAEAAAAXAP//AAACAAEAAAAWAP//AAACAAEAAAAVAP//AAACAAEAAAAUAP//AAACAAEAAAATAP//AAACAAEAAAASAP//AAACAAEAAAARAP//AAACAAEAAAAQAP//AAACAAEAAAAPAP//AAACAAEAAAAOAP//AAACAAEAAAANAP//AAACAAEAAAAMAP//AAACAAEAAAALAP//AAACAAEAAAAKAP//AAACAAEAAAAJAP//AAACAAEAAAAIAP//AAACAAEAAAAHAP//AAACAAEAAAAGAP//AAACAAEAAAAFAP//AAACAAEAAAAEAP//AAACAAEAAAADAP//AAACAAEAAAACAP//AAACAAEAAAABAP//AAACAAEAAAAAAP//AAACAAEAAAD/////AAABAAEAAAAeAP//AAACAAEAAAAfAP//AAACAAEAAAA=")
+constant_check = true
+
+[node name="Solid" type="Control" parent="Walls"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 912.0
+offset_top = 1392.0
+offset_right = 960.0
+offset_bottom = 1440.0
+script = ExtResource("6_fkh6t")
+outline_color = Color(0.4, 0.284, 0.284, 1)
+fill_color = Color(1, 0.7, 0.7, 1)
+
+[node name="Checkpoints" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("7_nqfc4")]
+offset_left = 192.0
+offset_top = 576.0
+offset_right = 288.0
+offset_bottom = 672.0
+type = 1
+level_warp = "2"
+final_destination = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Checkpoints/Checkpoint"]
+libraries = {
+"": SubResource("AnimationLibrary_sk4pw")
+}
+autoplay = "new_animation"
+script = ExtResource("8_s3374")
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("7_nqfc4")]
+offset_left = 48.0
+offset_top = -48.0
+offset_right = 1488.0
+offset_bottom = 0.0
+type = 2
+level_warp = "2"
+final_destination = true
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Checkpoints/Checkpoint2"]
+libraries = {
+"": SubResource("AnimationLibrary_q3mag")
+}
+autoplay = "new_animation"
+script = ExtResource("8_s3374")
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="BlueEnemy" parent="Enemies" instance=ExtResource("9_sa61o")]
+position = Vector2(648, 1176)
+
+[node name="Circle" parent="Enemies" instance=ExtResource("10_myo2n")]
+position = Vector2(504, 1176)
+radius = 1.0
+object_count = 7
+
+[node name="Coins" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="Keys" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="Key" parent="Keys" instance=ExtResource("11_fa27m")]
+position = Vector2(888, 1176)
+
+[node name="GoldDoors" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="KeyDoors" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="KeyDoor" parent="KeyDoors" instance=ExtResource("12_lit8y")]
+offset_left = 960.0
+offset_top = 1152.0
+offset_right = 1056.0
+offset_bottom = 1248.0
+open_time = 120
+close_time = 60
+
+[node name="Decoration" type="Node2D" parent="."]
+editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
+script = ExtResource("3_coheb")
+
+[node name="Teleporter" parent="." instance=ExtResource("14_h0f6l")]
+position = Vector2(240, 1056)
+scale = Vector2(2, 2)
+destination_room = "avoidance_entrance"
+
+[node name="FirstTurrets" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="Turret" parent="FirstTurrets" instance=ExtResource("15_caflq")]
+position = Vector2(768, 480)
+object_lifetime = -1
+shot_node = ExtResource("14_t3tfb")
+fire_on_load = false
+
+[node name="Turret2" parent="FirstTurrets" instance=ExtResource("15_caflq")]
+position = Vector2(768, 480)
+object_lifetime = -1
+shot_node = ExtResource("15_wd6nw")
+fire_on_load = false
+
+[node name="Turret3" parent="FirstTurrets" instance=ExtResource("15_caflq")]
+position = Vector2(768, 480)
+object_lifetime = -1
+shot_node = ExtResource("16_8ffl1")
+fire_on_load = false
+
+[node name="FirstTurrets2" type="Node2D" parent="."]
+script = ExtResource("3_coheb")
+
+[node name="Turret" parent="FirstTurrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("15_caflq")]
+position = Vector2(1536, 96)
+script = ExtResource("17_34hv4")
+object_lifetime = -1
+shot_node = ExtResource("9_sa61o")
+velocity = Vector2(-13, 0)
+fire_on_load = false
+fire_timer = NodePath("../TickBasedTimer")
+
+[node name="TickBasedTimer" type="Node" parent="FirstTurrets2"]
+script = ExtResource("13_e7mb2")
+metronome = true
+duration = 3
+
+[node name="Turret2" parent="FirstTurrets2" node_paths=PackedStringArray("fire_timer") instance=ExtResource("15_caflq")]
+position = Vector2(0, 96)
+script = ExtResource("17_34hv4")
+object_lifetime = -1
+shot_node = ExtResource("9_sa61o")
+velocity = Vector2(-13, 0)
+fire_on_load = false
+fire_timer = NodePath("../TickBasedTimer")
+
+[node name="TickBasedTimer2" type="Node" parent="FirstTurrets2"]
+script = ExtResource("13_e7mb2")
+metronome = true
+duration = 3
+
+[node name="Ryu-SakuraStormＬｏｎｇ" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_5bq51")
+bus = &"Music"
+
+[node name="StartDelay" type="Node" parent="."]
+script = ExtResource("13_e7mb2")
+metronome = true
+autostart = true
+duration = 60
+
+[node name="Beat" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1ys75")
+}
+script = ExtResource("8_s3374")
+bpm = 184.0
+
+[node name="MethodCaller" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gfejr")
+}
+script = ExtResource("8_s3374")
+bpm = 184.0
+
+[node name="Destroyer" parent="." instance=ExtResource("17_204mu")]
+position = Vector2(-72, 480)
+scale = Vector2(1, 22)
+
+[node name="Destroyer2" parent="." instance=ExtResource("17_204mu")]
+position = Vector2(1608, 480)
+scale = Vector2(1, 22)
+
+[node name="Destroyer3" parent="." instance=ExtResource("17_204mu")]
+position = Vector2(768, -72)
+scale = Vector2(34, 1)
+
+[node name="Destroyer4" parent="." instance=ExtResource("17_204mu")]
+position = Vector2(768, 1032)
+scale = Vector2(34, 1)

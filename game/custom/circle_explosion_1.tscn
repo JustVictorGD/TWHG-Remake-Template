@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceacwhjr0k7uy"]
+
+[ext_resource type="Script" path="res://game/custom/circle_explosion.gd" id="1_mbomu"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="2_yi2kv"]
+
+[node name="CircleExplosion" type="Node2D"]
+script = ExtResource("1_mbomu")
+object_count = 10
+object = ExtResource("2_yi2kv")
+speed = 7.5

@@ -102,7 +102,7 @@ func _ready() -> void:
 
 
 func wall_update() -> void:
-	global_position = round(global_position)
+	#global_position = round(global_position)
 	World.walls[hitbox_index] = Rect2i(global_bound)
 
 

@@ -726,9 +726,14 @@ script = ExtResource("3_3ac6r")
 metadata/_edit_lock_ = true
 
 [node name="Teleporter" parent="." instance=ExtResource("14_gfgxs")]
-position = Vector2(336, 768)
-destination_room = "showcase_4"
-destination_position = Vector2(96, 96)
+position = Vector2(360, 744)
+destination_room = "avoidance_entrance"
+destination_position = Vector2(720, 288)
+
+[node name="Teleporter2" parent="." instance=ExtResource("14_gfgxs")]
+position = Vector2(216, 744)
+destination_room = "showcase_2"
+destination_position = Vector2(288, 816)
 
 [node name="Destroyer" parent="." instance=ExtResource("15_m3vhu")]
 position = Vector2(240, 624)
