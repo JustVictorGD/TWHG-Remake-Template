@@ -20,10 +20,10 @@ var flying: bool = false # Ignore terrains
 var speed_hacking: bool = false # Doubles speed
 
 func _ready() -> void:
-	GlobalSignal.checkpoint_touched.connect(on_checkpoint_touch)
+	Signals.checkpoint_touched.connect(on_checkpoint_touch)
 
 func on_checkpoint_touch(id: int) -> void:
-	GlobalSignal.progress_saved.emit()
+	Signals.progress_saved.emit()
 
 func _input(event: InputEvent) -> void:
 	if allow_cheats:

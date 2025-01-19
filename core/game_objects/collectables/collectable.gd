@@ -68,8 +68,8 @@ func _ready() -> void:
 		GameLoop.update_timers.connect(update_timers)
 		GameLoop.movement_update.connect(movement_update)
 		
-		GlobalSignal.checkpoint_touched.connect(checkpoint_touched)
-		GlobalSignal.player_respawn.connect(player_respawn)
+		Signals.checkpoint_touched.connect(checkpoint_touched)
+		Signals.player_respawn.connect(player_respawn)
 		
 		drop_animation.timeout.connect(finish_animation)
 	
@@ -124,7 +124,7 @@ func collect() -> void:
 	
 	update_state()
 	
-	GlobalSignal.anything_collected.emit()
+	Signals.anything_collected.emit()
 
 
 func drop() -> void:

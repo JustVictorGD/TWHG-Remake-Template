@@ -16,7 +16,7 @@ var scene: PackedScene = PackedScene.new()
 var last_copy: Node
 
 func _ready() -> void:
-	GlobalSignal.event.connect(on_event)
+	Signals.event.connect(on_event)
 	# Makes the cyan square invisible in-game
 	$Sprite2D.modulate.a = 0
 	

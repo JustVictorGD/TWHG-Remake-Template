@@ -97,7 +97,7 @@ func _ready() -> void:
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.collision_update.connect(collision_update)
 	GameLoop.update_timers.connect(update_timers)
-	GlobalSignal.paint_changed.connect(on_paint_change)
+	Signals.paint_changed.connect(on_paint_change)
 	
 	PaintManager.current_paint_id = SaveFile.save_dictionary["global"]["color"]
 
@@ -234,7 +234,7 @@ func update_timers() -> void:
 #region Gameplay Functions
 
 func collect_coin(id: int) -> void:
-	GlobalSignal.coin_collected.emit(id)
+	Signals.coin_collected.emit(id)
 
 
 func enemy_death() -> void:
@@ -245,7 +245,7 @@ func enemy_death() -> void:
 	respawn_timer.reset_and_play()
 	death_animation.reset_and_play()
 	
-	GlobalSignal.player_death.emit()
+	Signals.player_death.emit()
 
 
 func respawn() -> void:
@@ -254,7 +254,7 @@ func respawn() -> void:
 			move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
 	
 	respawn_animation.reset_and_play()
-	GlobalSignal.player_respawn.emit()
+	Signals.player_respawn.emit()
 	
 	dead = false
 

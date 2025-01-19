@@ -25,7 +25,7 @@ buses/default_bus_layout="res://core/misc_assets/resources/default_bus_layout.tr
 GameManager="*res://core/system/autoloads/game_manager.gd"
 GameLoop="*res://core/system/autoloads/game_loop.gd"
 SFX="*res://core/system/autoloads/sfx.tscn"
-GlobalSignal="*res://core/system/autoloads/global_signal.gd"
+Signals="*res://core/system/autoloads/signals.gd"
 SaveFile="*res://core/system/autoloads/save_file.gd"
 PaintManager="*res://core/system/autoloads/paint_manager.tscn"
 

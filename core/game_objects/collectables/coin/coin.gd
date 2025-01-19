@@ -25,7 +25,7 @@ func collect() -> void:
 	super()
 	
 	World.collected_money += 1
-	GlobalSignal.coin_collected.emit()
+	Signals.coin_collected.emit()
 
 
 func stay_collected() -> void:

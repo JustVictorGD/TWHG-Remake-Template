@@ -46,9 +46,9 @@ var hitbox: RectangleCollider = RectangleCollider.new()
 func _ready() -> void:
 	GameLoop.movement_update.connect(movement_update)
 	GameLoop.update_timers.connect(update_timers)
-	GlobalSignal.checkpoint_touched.connect(any_checkpoint_touched)
-	GlobalSignal.anything_collected.connect(anything_collected)
-	GlobalSignal.player_death.connect(player_death)
+	Signals.checkpoint_touched.connect(any_checkpoint_touched)
+	Signals.anything_collected.connect(anything_collected)
+	Signals.player_death.connect(player_death)
 	
 	movement_update()
 	
@@ -103,7 +103,7 @@ func select() -> void:
 	if state != states.SELECTED:
 		flash_animation.reset_and_play()
 		state = states.SELECTED
-		GlobalSignal.checkpoint_touched.emit(id)
+		Signals.checkpoint_touched.emit(id)
 		
 		SaveFile.update_cp_and_collectables(id)
 		SaveFile.save()
@@ -121,7 +121,7 @@ func win() -> void:
 	warp_timer.reset_and_play()
 	
 	if final_destination:
-		GlobalSignal.finish.emit()
+		Signals.finish.emit()
 		GameManager.finished = true
 
 
@@ -130,4 +130,4 @@ func warp_level() -> void:
 		get_tree().change_scene_to_packed(preload("res://game/scenes/end_screen.tscn"))
 	
 	elif level_warp != "":
-		GlobalSignal.switch_level.emit(level_warp)
+		Signals.switch_level.emit(level_warp)

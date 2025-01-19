@@ -45,7 +45,7 @@ func _ready() -> void:
 	if current_level != null:
 		focus_camera(current_level)
 	
-	GlobalSignal.switch_level.connect(switch_level)
+	Signals.switch_level.connect(switch_level)
 	
 	var stored_level: String = SaveFile.save_dictionary["global"]["level"]
 	
@@ -75,7 +75,7 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 		current_level.queue_free()
 		await current_level.tree_exited
 	
-	GlobalSignal.level_switched.emit()
+	Signals.level_switched.emit()
 	GameManager.current_level = key
 	
 	current_level = load(connections[key]).instantiate()

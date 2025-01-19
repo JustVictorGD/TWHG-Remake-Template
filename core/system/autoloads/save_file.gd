@@ -26,7 +26,7 @@ var default_save: Dictionary = {
 var save_dictionary: Dictionary = default_save.duplicate(true)
 
 func _ready() -> void:
-	GlobalSignal.progress_saved.connect(save)
+	Signals.progress_saved.connect(save)
 
 
 func _notification(what: int) -> void:

@@ -20,7 +20,7 @@ class_name Interface
 func _ready() -> void:
 	$Menu.button_down.connect(menu_click)
 	
-	GlobalSignal.level_switched.connect(flash_timer.reset_and_play)
+	Signals.level_switched.connect(flash_timer.reset_and_play)
 
 
 func menu_click() -> void:

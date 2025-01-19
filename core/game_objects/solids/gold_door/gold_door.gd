@@ -13,8 +13,8 @@ func _ready() -> void:
 	super()
 	
 	if not Engine.is_editor_hint():
-		GlobalSignal.coin_collected.connect(coin_collected)
-		GlobalSignal.player_respawn.connect(player_respawn)
+		Signals.coin_collected.connect(coin_collected)
+		Signals.player_respawn.connect(player_respawn)
 		
 		if money_requirement <= 0:
 			money_requirement += World.money_requirement

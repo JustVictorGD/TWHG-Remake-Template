@@ -6,7 +6,7 @@ extends Control
 @onready var timer: TickBasedTimer = $Win/TickBasedTimer
 
 func _ready() -> void:
-	GlobalSignal.finish.connect(on_finish)
+	Signals.finish.connect(on_finish)
 
 func _process(delta: float) -> void:
 	

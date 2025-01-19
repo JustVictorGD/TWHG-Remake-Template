@@ -43,7 +43,7 @@ func on_collision_enter(node: Node) -> void:
 		#final_position = Vector2(node.position.x, destination_position.y)
 
 	if destination_room != "":
-		GlobalSignal.switch_level.emit(destination_room, destination_position)
+		Signals.switch_level.emit(destination_room, destination_position)
 	elif is_relative:
 		node.move(destination_position * 1000)
 	else:
