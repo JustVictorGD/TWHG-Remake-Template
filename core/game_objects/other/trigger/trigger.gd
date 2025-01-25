@@ -24,9 +24,9 @@ func _process(_delta: float) -> void:
 
 func on_collision_enter(node: Node) -> void:
 	modulate = activated_color
-	GlobalSignal.event.emit(event_id, true)
+	Signals.event.emit(event_id, true)
 
 func on_all_collisions_exited() -> void:
 	if button_mode:
 		modulate = deactivated_color
-		GlobalSignal.event.emit(event_id, false)
+		Signals.event.emit(event_id, false)
