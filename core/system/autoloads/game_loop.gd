@@ -13,18 +13,16 @@ var ticks: int = 0
 # Stops ticking upon victory.
 var game_ticks: int = 0
 
-func _process(delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	if GameManager.current_level != "" and not GameManager.paused:
-		time += delta
+		ticks += 1
 		
-		while time > TICK_LENGTH:
-			time -= TICK_LENGTH
-			ticks += 1
-			
-			if not GameManager.finished:
-				game_ticks += 1
-			
-			push_internal_frame()
+		if not GameManager.finished:
+			game_ticks += 1
+		
+		push_internal_frame()
+
 
 func push_internal_frame() -> void:
 	animation_update.emit() # Reserved for AnimationPlayer
