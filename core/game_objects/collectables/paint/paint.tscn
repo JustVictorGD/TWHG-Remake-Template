@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://brxa1aj0qdr67" path="res://core/components/masked_sprite/masked_sprite.tscn" id="3_3btvp"]
 [ext_resource type="Texture2D" uid="uid://br3x13o51ul6q" path="res://core/game_objects/collectables/paint/paint outline quadruple precision.png" id="3_yie6p"]
 [ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="4_2d4e7"]
-[ext_resource type="Script" path="res://core/components/colliders/circle_collider.gd" id="4_t8bvy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t003k"]
 resource_local_to_scene = true
@@ -18,18 +17,23 @@ shader_parameter/fill_scale = Vector2(1, 1)
 shader_parameter/outline_texture = ExtResource("3_yie6p")
 shader_parameter/fill_texture = ExtResource("2_w8x3d")
 
-[node name="Paint" type="Node2D" node_paths=PackedStringArray("sprite") groups=["collectables", "paints"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2u65d"]
+radius = 32.0
+
+[node name="Paint" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox") groups=["collectables", "paints"]]
 script = ExtResource("1_xq6tu")
 sound = 6
 sprite = NodePath("MaskedSprite")
-
-[node name="CircleCollider" type="Node2D" parent="."]
-script = ExtResource("4_t8bvy")
-radius = 32.0
-multi_activate = false
+hitbox = NodePath("Hitbox")
 
 [node name="MaskedSprite" parent="." instance=ExtResource("3_3btvp")]
 material = SubResource("ShaderMaterial_t003k")
 scale = Vector2(96, 96)
 outline_texture = ExtResource("3_yie6p")
 fill_texture = ExtResource("2_w8x3d")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["paints"]]
+collision_mask = 0
+
+[node name="CircleShape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_2u65d")

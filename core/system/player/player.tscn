@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://db78gabyxxg2y"]
+[gd_scene load_steps=13 format=3 uid="uid://db78gabyxxg2y"]
 
 [ext_resource type="Script" path="res://core/system/player/player.gd" id="1_sxbrj"]
 [ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="2_k8eip"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="3_buqh6"]
 [ext_resource type="Script" path="res://core/components/colliders/rectangle_collider.gd" id="4_v5d1p"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="5_pw1f6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnmxk"]
+size = Vector2(42, 42)
 
 [sub_resource type="Gradient" id="Gradient_y1mgf"]
 colors = PackedColorArray(1, 1, 1, 0.25098, 1, 1, 1, 0)
@@ -44,6 +47,12 @@ fill_theme_link = ""
 outline_color = Color(0.4, 0, 0, 1)
 fill_color = Color(1, 0, 0, 1)
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_pnmxk")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 z_index = -1
@@ -78,3 +87,5 @@ duration = 15
 [node name="RespawnAnimationTimer" type="Node" parent="."]
 script = ExtResource("5_pw1f6")
 duration = 6
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_area_entered"]

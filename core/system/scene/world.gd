@@ -143,6 +143,9 @@ func assign_collectable_ids(group_name: String) -> void:
 	var nodes: Array[Node] = get_tree().get_nodes_in_group(group_name)
 	var states: Array = SaveFile.save_dictionary["levels"][GameManager.current_level][group_name]
 	for i: int in range(nodes.size()):
+		if nodes[i] is Area2D:
+			continue
+		
 		nodes[i].id = i
 		
 		# Extend the array until it has all coins' states

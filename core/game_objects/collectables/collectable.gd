@@ -46,7 +46,6 @@ enum store_behaviors {
 	DONT_STORE ## Doesn't store anything
 }
 
-var hitbox: AbstractCollider
 
 var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
@@ -102,7 +101,7 @@ func try_save() -> bool:
 
 func stay_collected() -> void:
 	state = states.SAVED
-	hitbox.enabled = false
+	Utilities.disable_area(hitbox)
 	modulate.a = 0
 
 
@@ -112,7 +111,7 @@ func collect() -> void:
 	else:
 		state = states.SAVED
 	
-	hitbox.enabled = false
+	Utilities.disable_area(hitbox)
 	
 	collect_animation.reset_and_play()
 	
@@ -130,9 +129,8 @@ func collect() -> void:
 func drop() -> void:
 	state = states.UNCOLLECTED
 	drop_animation.reset_and_play()
-	hitbox.enabled = true
+	Utilities.enable_area(hitbox)
 	update_state()
-	
 
 
 func save() -> void:
@@ -154,6 +152,7 @@ func update_state() -> void:
 	
 	if store_behavior == store_behaviors.INCREMENT_TOTAL:
 		if self is Coin:
+			pass
 			if state == states.SAVED:
 				SaveFile.save_dictionary["levels"][GameManager.current_level]["extra_coins"] += 1
 		else:

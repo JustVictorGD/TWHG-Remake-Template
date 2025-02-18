@@ -16,7 +16,6 @@ class_name Enemy
 @export var outline_shader: ShaderMaterial
 @export var fill_shader: ShaderMaterial
 
-@onready var hitbox: CircleCollider = $CircleCollider
 var id: int
 
 @onready var particles: GPUParticles2D = $GPUParticles2D
@@ -43,14 +42,9 @@ func _ready() -> void:
 		
 		if not GameLoop.is_connected("movement_update", movement_update):
 			GameLoop.movement_update.connect(movement_update)
-		
-		if not lock_scale:
-			hitbox.lock_scale = false
 
 
 func movement_update() -> void:
-	hitbox.global_position = self.global_position
-	
 	if lock_scale:
 		global_scale = Vector2(1, 1)
 

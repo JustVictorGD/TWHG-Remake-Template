@@ -33,7 +33,7 @@ func collision_update() -> void:
 	for node: Node in nodes_to_check:
 		var collider: AbstractCollider = get_collider(node)
 		
-		if self.intersects(collider):
+		if collider != null and self.intersects(collider):
 			collisions.append(node)
 			
 			if multi_activate or (not multi_activate and not previous_collisions.has(node)):
@@ -49,7 +49,7 @@ func get_collider(node: Node) -> AbstractCollider:
 	for child: Node in node.get_children():
 		if child is AbstractCollider:
 			return child
-	push_warning("Node " + node.to_string() + "'s collider is not found.")
+	#push_warning("Node " + node.to_string() + "'s collider is not found.")
 	return null
 
 

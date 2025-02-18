@@ -726,10 +726,10 @@ script = ExtResource("3_3ac6r")
 metadata/_edit_lock_ = true
 
 [node name="Teleporter" parent="." instance=ExtResource("14_gfgxs")]
-position = Vector2(336, 768)
+position = Vector2(384, 912)
 destination_room = "showcase_4"
 destination_position = Vector2(96, 96)
 
 [node name="Destroyer" parent="." instance=ExtResource("15_m3vhu")]
-position = Vector2(240, 624)
+position = Vector2(192, 672)
 groups_to_check = Array[String](["enemies1", "player"])

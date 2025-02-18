@@ -4,6 +4,8 @@ class_name GameObject2D
 
 ## Required for automatic theme support and color updates.
 @export var sprite: MaskedSprite
+## The game will scream at you if this is null.
+@export var hitbox: Area2D
 
 ## Makes colors constantly get checked in game. Probably costs some
 ## performance but allows themes with gradually changing colors.
@@ -34,6 +36,10 @@ class_name GameObject2D
 func _ready() -> void:
 	if sprite == null:
 		return
+	
+	if hitbox == null:
+		push_error("Hitbox of the GameObject '", name,
+				"' is null! Trying to use it will lead to crashes.")
 	
 	sprite.update_textures()
 	sprite.update_colors()
