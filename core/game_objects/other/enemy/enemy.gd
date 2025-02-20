@@ -70,3 +70,8 @@ func set_properties(properties: EnemyProperties) -> void:
 	if properties.fill_shader != null:
 	#	fill.material = properties.fill_shader
 		particles.material = properties.fill_shader
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("destroyer"):
+		queue_free()

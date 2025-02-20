@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bfsdswsy0fx2h"]
+[gd_scene load_steps=19 format=4 uid="uid://bfsdswsy0fx2h"]
 
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
 [ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_ophqw"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="12_0tu7b"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
 [ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
+[ext_resource type="PackedScene" uid="uid://2m4vpjsrwf3x" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="15_g2r1u"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
 
 [sub_resource type="GDScript" id="GDScript_khhan"]
@@ -216,3 +217,28 @@ script = ExtResource("16_3tb50")
 metronome = true
 autostart = true
 duration = 180
+
+[node name="Destroyers" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
+
+[node name="Destroyer" parent="Destroyers" instance=ExtResource("15_g2r1u")]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 0.0
+offset_bottom = 1008.0
+
+[node name="Destroyer2" parent="Destroyers" instance=ExtResource("15_g2r1u")]
+offset_left = 1536.0
+offset_top = -48.0
+offset_right = 1584.0
+offset_bottom = 1008.0
+
+[node name="Destroyer3" parent="Destroyers" instance=ExtResource("15_g2r1u")]
+offset_top = -48.0
+offset_right = 1536.0
+offset_bottom = 0.0
+
+[node name="Destroyer4" parent="Destroyers" instance=ExtResource("15_g2r1u")]
+offset_top = 960.0
+offset_right = 1536.0
+offset_bottom = 1008.0
