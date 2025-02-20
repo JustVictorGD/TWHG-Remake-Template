@@ -14,7 +14,6 @@ class_name Player
 
 @onready var particles: GPUParticles2D = $GPUParticles2D
 @onready var sprite: Solid = $Sprite
-@onready var fancy_hitbox: RectangleCollider = $RectangleCollider
 
 #var paint_id: int
 var color_tuple: ColorTuple:
@@ -104,8 +103,6 @@ func _ready() -> void:
 
 func change_size(size: Vector2i) -> void:
 	hitbox.size = size
-	fancy_hitbox.position = -size / 2
-	fancy_hitbox.scale = size
 	particles.process_material.scale = size
 	sprite.change_shape(Rect2(-size / 2, size))
 	
@@ -195,18 +192,7 @@ func check_object_collisions() -> void:
 	if not GameManager.collectables_processed:
 		return
 	
-	fancy_hitbox.enabled = true
 	World.touched_checkpoint_ids.clear()
-	
-	if dead:
-		fancy_hitbox.enabled = false
-		return
-	
-	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
-		if fancy_hitbox.intersects(checkpoint.hitbox):
-			checkpoint.select()
-			World.touched_checkpoint_ids.append(checkpoint.id)
-			last_checkpoint_id = checkpoint.id
 
 
 func update_timers() -> void:
@@ -243,8 +229,9 @@ func enemy_death() -> void:
 
 func respawn() -> void:
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
+		print(checkpoint.id, ", ", last_checkpoint_id)
 		if checkpoint.id == last_checkpoint_id:
-			move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
+			move_to(checkpoint.collision_shape_2d.global_position * 1000 + Vector2(500, 500))
 	
 	respawn_animation.reset_and_play()
 	Signals.player_respawn.emit()
@@ -266,6 +253,13 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies") and not GameManager.invincible:
 		enemy_death()
 		return
+	
+	if area.is_in_group("checkpoint"):
+		var parent: Node = area.get_parent()
+		
+		if parent is Checkpoint:
+			parent.select()
+			last_checkpoint_id = parent.id
 	
 	if area.is_in_group("coins"):
 		# The Area2D's parent is expected to be of the Coin class.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bfsdswsy0fx2h"]
+[gd_scene load_steps=18 format=4 uid="uid://bfsdswsy0fx2h"]
 
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
 [ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_ophqw"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
 [ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
-[ext_resource type="PackedScene" uid="uid://crkebrttift1m" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="18_wfjwe"]
 
 [sub_resource type="GDScript" id="GDScript_khhan"]
 script/source = "extends Area
@@ -217,19 +216,3 @@ script = ExtResource("16_3tb50")
 metronome = true
 autostart = true
 duration = 180
-
-[node name="Destroyer" parent="." instance=ExtResource("18_wfjwe")]
-position = Vector2(-24, 480)
-scale = Vector2(1, 22)
-
-[node name="Destroyer2" parent="." instance=ExtResource("18_wfjwe")]
-position = Vector2(1560, 480)
-scale = Vector2(1, 22)
-
-[node name="Destroyer3" parent="." instance=ExtResource("18_wfjwe")]
-position = Vector2(768, -24)
-scale = Vector2(32, 1)
-
-[node name="Destroyer4" parent="." instance=ExtResource("18_wfjwe")]
-position = Vector2(768, 984)
-scale = Vector2(32, 1)

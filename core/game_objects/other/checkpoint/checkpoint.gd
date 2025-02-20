@@ -21,6 +21,8 @@ class_name Checkpoint
 @onready var warp_timer: TickBasedTimer = $WarpDelayTimer
 var state: states = states.NOT_SELECTED
 
+@onready var collision_shape_2d: CollisionShape2D = $Hitbox/CollisionShape2D
+
 enum types {
 	CHECKPOINT,
 	START,
@@ -40,33 +42,19 @@ const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 @onready var flash_animation: TickBasedTimer = $FlashAnimationTimer
 var id: int = -1
 
-var hitbox: RectangleCollider = RectangleCollider.new()
 # The RectangleCollider in the scene tree currently does nothing.
 
 func _ready() -> void:
-	GameLoop.movement_update.connect(movement_update)
+	collision_shape_2d.shape.size = self.size
+	collision_shape_2d.position = self.size / 2
+	
 	GameLoop.update_timers.connect(update_timers)
 	Signals.checkpoint_touched.connect(any_checkpoint_touched)
 	Signals.anything_collected.connect(anything_collected)
 	Signals.player_death.connect(player_death)
 	
-	movement_update()
-	
 	warp_timer.duration = warp_time
 	warp_timer.timeout.connect(warp_level)
-
-
-func movement_update() -> void:
-	var previous_rotation: float = rotation
-	
-	rotation = 0
-	
-	hitbox.position = self.global_position
-	hitbox.scale = self.size
-	hitbox.rotation = previous_rotation
-	hitbox.pivot_offset = self.pivot_offset
-	
-	rotation = previous_rotation
 
 
 func update_timers() -> void:

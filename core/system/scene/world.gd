@@ -106,7 +106,7 @@ func load_room_state(teleport_position: Vector2 = Vector2.ZERO) -> void:
 			var current_cp: int = SaveFile.save_dictionary["levels"][GameManager.current_level]["checkpoint_id"]
 			
 			if i == current_cp or (current_cp == -1 and checkpoints[i].is_start()):
-				player.move_to(checkpoints[i].hitbox.get_center() * 1000 + Vector2(500, 500))
+				player.move_to((checkpoints[i].global_position + checkpoints[i].size / 2) * 1000 + Vector2(500, 500))
 		else:
 			player.move_to(Vector2i(teleport_position * 1000))
 			print(player.position)

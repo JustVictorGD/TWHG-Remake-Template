@@ -51,6 +51,10 @@ project/assembly_name="TWHG Remake Template"
 
 export/convert_text_resources_to_binary=false
 
+[global_group]
+
+checkpoint=""
+
 [input]
 
 up={
