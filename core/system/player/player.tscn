@@ -4,8 +4,10 @@
 [ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="2_k8eip"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_qubyp"]
 [ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="3_buqh6"]
-[ext_resource type="Script" path="res://core/components/colliders/rectangle_collider.gd" id="4_v5d1p"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="5_pw1f6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnmxk"]
+size = Vector2(42, 42)
 
 [sub_resource type="Gradient" id="Gradient_y1mgf"]
 colors = PackedColorArray(1, 1, 1, 0.25098, 1, 1, 1, 0)
@@ -44,6 +46,13 @@ fill_theme_link = ""
 outline_color = Color(0.4, 0, 0, 1)
 fill_color = Color(1, 0, 0, 1)
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_pnmxk")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 z_index = -1
@@ -62,11 +71,6 @@ enabled = false
 [node name="TerrainVelocityComponent" type="Node2D" parent="."]
 script = ExtResource("3_buqh6")
 
-[node name="RectangleCollider" type="Node2D" parent="."]
-position = Vector2(-21, -21)
-scale = Vector2(26, 66)
-script = ExtResource("4_v5d1p")
-
 [node name="RespawnTimer" type="Node" parent="."]
 script = ExtResource("5_pw1f6")
 duration = 30
@@ -78,3 +82,5 @@ duration = 15
 [node name="RespawnAnimationTimer" type="Node" parent="."]
 script = ExtResource("5_pw1f6")
 duration = 6
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_area_entered"]

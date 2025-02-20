@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://core/game_objects/collectables/key/key.gd" id="1_n7evj"]
 [ext_resource type="Texture2D" uid="uid://cykrjltlwlbtd" path="res://core/game_objects/collectables/key/key_outline.png" id="3_l4rgn"]
-[ext_resource type="Script" path="res://core/components/colliders/circle_collider.gd" id="3_p0ict"]
 [ext_resource type="PackedScene" uid="uid://brxa1aj0qdr67" path="res://core/components/masked_sprite/masked_sprite.tscn" id="3_uki4b"]
 [ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="4_0p48g"]
 [ext_resource type="Texture2D" uid="uid://dyy8fd8kaymlg" path="res://core/game_objects/collectables/key/key_fill.png" id="4_5hayw"]
@@ -18,19 +17,25 @@ shader_parameter/fill_scale = Vector2(1, 1)
 shader_parameter/outline_texture = ExtResource("3_l4rgn")
 shader_parameter/fill_texture = ExtResource("4_5hayw")
 
-[node name="Key" type="Node2D" node_paths=PackedStringArray("sprite") groups=["collectables", "keys"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rb5dr"]
+radius = 21.0
+
+[node name="Key" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox") groups=["collectables", "keys"]]
 script = ExtResource("1_n7evj")
 sound = 5
 sprite = NodePath("MaskedSprite")
+hitbox = NodePath("Hitbox")
 outline_theme_link = "key_outline"
 fill_theme_link = "key_fill"
-
-[node name="CircleCollider" type="Node2D" parent="."]
-script = ExtResource("3_p0ict")
-radius = 21.0
 
 [node name="MaskedSprite" parent="." instance=ExtResource("3_uki4b")]
 material = SubResource("ShaderMaterial_qe6y7")
 scale = Vector2(64, 64)
 outline_texture = ExtResource("3_l4rgn")
 fill_texture = ExtResource("4_5hayw")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["keys"]]
+collision_mask = 0
+
+[node name="CircleShape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_rb5dr")

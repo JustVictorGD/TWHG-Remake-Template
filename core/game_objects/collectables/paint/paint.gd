@@ -12,11 +12,6 @@ var color_tuple: ColorTuple:
 var is_ghost: bool = false
 
 
-func _ready() -> void:
-	super()
-	hitbox = $CircleCollider
-
-
 func collect() -> void:
 	super()
 	

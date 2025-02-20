@@ -17,8 +17,6 @@ func _ready() -> void:
 	sprite.update_scale()
 	
 	update_colors()
-	
-	hitbox = $CircleCollider
 
 
 func _process(delta: float) -> void:
@@ -48,12 +46,6 @@ func drop() -> void:
 	for key_door: Door in get_tree().get_nodes_in_group("key_doors"):
 		if key_door.key_id == key_id:
 			key_door.untrigger_door()
-
-
-func movement_update() -> void:
-	hitbox.global_position = self.global_position
-	hitbox.radius = self.global_scale.x * 21 # 21 units is the default scale of the key.
-	# This assumes that enemy scale.x and scale.y are equal as oval hitboxes are not implemented.
 
 
 func update_colors() -> void:

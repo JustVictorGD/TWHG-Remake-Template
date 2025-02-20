@@ -12,8 +12,6 @@ func _ready() -> void:
 	if motion_trail:
 		$GPUParticles2D.emitting = true
 	
-	hitbox = $CircleCollider
-	
 	if not registered:
 		World.money_requirement += 1
 	

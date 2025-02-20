@@ -28,6 +28,7 @@ SFX="*res://core/system/autoloads/sfx.tscn"
 Signals="*res://core/system/autoloads/signals.gd"
 SaveFile="*res://core/system/autoloads/save_file.gd"
 PaintManager="*res://core/system/autoloads/paint_manager.tscn"
+Utilities="*res://core/system/autoloads/utilities.gd"
 
 [debug]
 
@@ -49,6 +50,16 @@ project/assembly_name="TWHG Remake Template"
 [editor]
 
 export/convert_text_resources_to_binary=false
+
+[global_group]
+
+checkpoint=""
+enemies=""
+keys=""
+coins=""
+collectables=""
+destroyer=""
+teleporter=""
 
 [input]
 

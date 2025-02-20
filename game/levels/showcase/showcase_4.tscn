@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="12_0tu7b"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
 [ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
+[ext_resource type="PackedScene" uid="uid://2m4vpjsrwf3x" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="15_g2r1u"]
 [ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
-[ext_resource type="PackedScene" uid="uid://crkebrttift1m" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="18_wfjwe"]
 
 [sub_resource type="GDScript" id="GDScript_khhan"]
 script/source = "extends Area
@@ -218,18 +218,27 @@ metronome = true
 autostart = true
 duration = 180
 
-[node name="Destroyer" parent="." instance=ExtResource("18_wfjwe")]
-position = Vector2(-24, 480)
-scale = Vector2(1, 22)
+[node name="Destroyers" type="Node2D" parent="."]
+script = ExtResource("3_ophqw")
 
-[node name="Destroyer2" parent="." instance=ExtResource("18_wfjwe")]
-position = Vector2(1560, 480)
-scale = Vector2(1, 22)
+[node name="Destroyer" parent="Destroyers" instance=ExtResource("15_g2r1u")]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 0.0
+offset_bottom = 1008.0
 
-[node name="Destroyer3" parent="." instance=ExtResource("18_wfjwe")]
-position = Vector2(768, -24)
-scale = Vector2(32, 1)
+[node name="Destroyer2" parent="Destroyers" instance=ExtResource("15_g2r1u")]
+offset_left = 1536.0
+offset_top = -48.0
+offset_right = 1584.0
+offset_bottom = 1008.0
 
-[node name="Destroyer4" parent="." instance=ExtResource("18_wfjwe")]
-position = Vector2(768, 984)
-scale = Vector2(32, 1)
+[node name="Destroyer3" parent="Destroyers" instance=ExtResource("15_g2r1u")]
+offset_top = -48.0
+offset_right = 1536.0
+offset_bottom = 0.0
+
+[node name="Destroyer4" parent="Destroyers" instance=ExtResource("15_g2r1u")]
+offset_top = 960.0
+offset_right = 1536.0
+offset_bottom = 1008.0

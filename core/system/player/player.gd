@@ -14,7 +14,6 @@ class_name Player
 
 @onready var particles: GPUParticles2D = $GPUParticles2D
 @onready var sprite: Solid = $Sprite
-@onready var fancy_hitbox: RectangleCollider = $RectangleCollider
 
 #var paint_id: int
 var color_tuple: ColorTuple:
@@ -104,10 +103,10 @@ func _ready() -> void:
 
 func change_size(size: Vector2i) -> void:
 	hitbox.size = size
-	fancy_hitbox.position = -size / 2
-	fancy_hitbox.scale = size
 	particles.process_material.scale = size
 	sprite.change_shape(Rect2(-size / 2, size))
+	
+	$Hitbox/CollisionShape2D.shape.size = size
 
 
 func movement_update() -> void:
@@ -181,40 +180,19 @@ func movement_update() -> void:
 
 
 func collision_update() -> void:
+	# It's important to call this function after the physics engine updates.
+	call_deferred("check_object_collisions")
+
+
+func check_object_collisions() -> void:
+	if not is_instance_valid(get_tree()): return
+	
+	await get_tree().physics_frame
+	
 	if not GameManager.collectables_processed:
 		return
 	
-	fancy_hitbox.enabled = true
 	World.touched_checkpoint_ids.clear()
-	
-	if dead:
-		fancy_hitbox.enabled = false
-		return
-	
-	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
-		if fancy_hitbox.intersects(checkpoint.hitbox):
-			checkpoint.select()
-			World.touched_checkpoint_ids.append(checkpoint.id)
-			last_checkpoint_id = checkpoint.id
-	
-	for coin: Coin in get_tree().get_nodes_in_group("coins"):
-		if fancy_hitbox.intersects(coin.hitbox):
-			coin.try_collect()
-	
-	for enemy: Enemy in get_tree().get_nodes_in_group("enemies"):
-		if not GameManager.invincible and not GameManager.finished and fancy_hitbox.intersects(enemy.hitbox):
-			enemy_death()
-	
-	for key: Key in get_tree().get_nodes_in_group("keys"):
-		if fancy_hitbox.intersects(key.hitbox):
-			key.try_collect()
-	
-	for paint: Paint in get_tree().get_nodes_in_group("paints"):
-		if fancy_hitbox.intersects(paint.hitbox):
-			paint.try_collect()
-			
-			PaintManager.current_paint_id = paint.paint_id
-			#SaveFile.save_dictionary["global"]["color"] = paint.paint_id
 
 
 func update_timers() -> void:
@@ -239,6 +217,7 @@ func collect_coin(id: int) -> void:
 
 func enemy_death() -> void:
 	dead = true
+	
 	GameManager.deaths += 1
 	SFX.play(SFX.sounds.ENEMY_DEATH)
 	
@@ -250,8 +229,9 @@ func enemy_death() -> void:
 
 func respawn() -> void:
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
+		print(checkpoint.id, ", ", last_checkpoint_id)
 		if checkpoint.id == last_checkpoint_id:
-			move_to(checkpoint.hitbox.get_center() * 1000 + Vector2(500, 500))
+			move_to(checkpoint.collision_shape_2d.global_position * 1000 + Vector2(500, 500))
 	
 	respawn_animation.reset_and_play()
 	Signals.player_respawn.emit()
@@ -265,3 +245,42 @@ func on_paint_change(id: int) -> void:
 	particles.modulate = color_tuple.fill
 
 #endregion
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if dead: return
+	
+	if area.is_in_group("enemies") and not GameManager.invincible:
+		enemy_death()
+		return
+	
+	if area.is_in_group("checkpoint"):
+		var parent: Node = area.get_parent()
+		
+		if parent is Checkpoint:
+			parent.select()
+			last_checkpoint_id = parent.id
+	
+	if area.is_in_group("coins"):
+		# The Area2D's parent is expected to be of the Coin class.
+		area.get_parent().try_collect()
+	
+	if area.is_in_group("keys"):
+		# The Area2D's parent is expected to be of the Key class.
+		area.get_parent().try_collect()
+	
+	if area.is_in_group("paints"):
+		if area.get_parent() is Paint:
+			var paint: Paint = area.get_parent()
+			
+			paint.try_collect()
+			PaintManager.current_paint_id = paint.paint_id
+	
+	if area.is_in_group("teleporter"):
+		var parent: Node = area.get_parent()
+		
+		if parent is Teleporter:
+			if parent.teleportation_type == Teleporter.Types.POSITION:
+				move_to(parent.target_position * 1000 + Vector2(500, 500))
+			else:
+				Signals.switch_level.emit(parent.target_level)

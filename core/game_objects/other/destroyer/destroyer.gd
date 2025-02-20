@@ -1,16 +1,19 @@
+@tool
+extends Control
 class_name Destroyer
-extends Node2D
 
-@export var groups_to_check: Array[String] = ["enemies"]
-@onready var collider: RectangleCollider = $RectangleCollider
+@onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+
 
 func _ready() -> void:
-	collider.groups_to_check = groups_to_check
-	collider.collision_entered.connect(on_collision_entered)
-	
+	sync_collision()
+
 
 func _process(delta: float) -> void:
-	collider.scale = 48 * scale
+	if Engine.is_editor_hint():
+		sync_collision()
 
-func on_collision_entered(node: Node) -> void:
-	node.queue_free()
+
+func sync_collision() -> void:
+	collision_shape_2d.shape.size = size
+	collision_shape_2d.position = size / 2
