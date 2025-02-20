@@ -59,6 +59,7 @@ keys=""
 coins=""
 collectables=""
 destroyer=""
+teleporter=""
 
 [input]
 

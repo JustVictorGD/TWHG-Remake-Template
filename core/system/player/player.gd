@@ -275,3 +275,12 @@ func _on_area_entered(area: Area2D) -> void:
 			
 			paint.try_collect()
 			PaintManager.current_paint_id = paint.paint_id
+	
+	if area.is_in_group("teleporter"):
+		var parent: Node = area.get_parent()
+		
+		if parent is Teleporter:
+			if parent.teleportation_type == Teleporter.Types.POSITION:
+				move_to(parent.target_position * 1000 + Vector2(500, 500))
+			else:
+				Signals.switch_level.emit(parent.target_level)

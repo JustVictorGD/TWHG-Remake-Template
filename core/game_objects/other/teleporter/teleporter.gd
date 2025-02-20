@@ -1,8 +1,15 @@
 @tool
 extends Control
-class_name Destroyer
+class_name Teleporter
+
+@export var teleportation_type: Types = Types.POSITION
+@export var target_position: Vector2
+@export var target_level: String
 
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+
+
+enum Types { POSITION, LEVEL }
 
 
 func _ready() -> void:
