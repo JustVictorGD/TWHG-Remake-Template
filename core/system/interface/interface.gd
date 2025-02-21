@@ -44,9 +44,9 @@ func _process(_delta : float) -> void:
 	
 	if World.current_level != null:
 		bottom_text.text = World.current_level.bottom_text
-		
-	timer.text = format_time(GameLoop.game_ticks)
-	tick_timer.text = ".%02d" % [GameLoop.game_ticks % 60]
+	
+	timer.text = format_time(GameManager.time)
+	tick_timer.text = ".%02d" % [GameManager.time % 60]
 	fps.text = str(Engine.get_frames_per_second()) + " FPS"
 	
 	if GameManager.finished:

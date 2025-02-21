@@ -25,7 +25,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	GameLoop.animation_update.connect(animation_update)
+	GameManager.animation_update.connect(animation_update)
 	
 	# Makes the orange square invisible in-game
 	$Sprite2D.modulate.a = 0

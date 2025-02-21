@@ -48,7 +48,7 @@ func _ready() -> void:
 	collision_shape_2d.shape.size = self.size
 	collision_shape_2d.position = self.size / 2
 	
-	GameLoop.update_timers.connect(update_timers)
+	GameManager.update_timers.connect(update_timers)
 	Signals.checkpoint_touched.connect(any_checkpoint_touched)
 	Signals.anything_collected.connect(anything_collected)
 	Signals.player_death.connect(player_death)

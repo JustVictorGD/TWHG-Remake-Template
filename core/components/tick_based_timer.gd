@@ -17,7 +17,7 @@ var remaining_time: int
 
 func _init(_duration: int = 1, _metronome: bool = false, _reversed: bool = false, _autostart: bool = false) -> void:
 	if not Engine.is_editor_hint():
-		GameLoop.update_timers.connect(update_timers)
+		GameManager.update_timers.connect(update_timers)
 	
 	duration = _duration
 	metronome = _metronome

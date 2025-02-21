@@ -93,9 +93,9 @@ func _ready() -> void:
 		return
 	
 	respawn_timer.timeout.connect(respawn)
-	GameLoop.movement_update.connect(movement_update)
-	GameLoop.collision_update.connect(collision_update)
-	GameLoop.update_timers.connect(update_timers)
+	GameManager.movement_update.connect(movement_update)
+	GameManager.collision_update.connect(collision_update)
+	GameManager.update_timers.connect(update_timers)
 	Signals.paint_changed.connect(on_paint_change)
 	
 	#PaintManager.current_paint_id = SaveFile.save_dictionary["global"]["color"]

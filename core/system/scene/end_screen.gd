@@ -9,10 +9,7 @@ func _ready() -> void:
 	GameManager.current_level = World.starting_level_static
 	
 	$FinalDeaths.text = str("Final deaths: ", GameManager.deaths)
-	$FinalTime.text = "Final time: " + format_time(GameLoop.game_ticks)
-	
-	GameManager.reset_stats()
-	print(GameLoop.game_ticks)
+	$FinalTime.text = "Final time: " + format_time(GameManager.time)
 
 
 func _process(delta: float) -> void:
@@ -20,6 +17,8 @@ func _process(delta: float) -> void:
 
 
 func on_button_pressed() -> void:
+	GameManager.reset_stats()
+	
 	get_tree().change_scene_to_packed(load("res://game/scenes/world.tscn"))
 
 

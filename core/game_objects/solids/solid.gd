@@ -100,7 +100,7 @@ func _ready() -> void:
 		World.walls.append(Rect2i(global_bound))
 		
 		if dynamic_hitbox:
-			GameLoop.wall_update.connect(wall_update)
+			GameManager.wall_update.connect(wall_update)
 
 
 func wall_update() -> void:

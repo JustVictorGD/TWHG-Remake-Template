@@ -40,8 +40,8 @@ func _ready() -> void:
 			if sprite != null:
 				particles.modulate = sprite.fill_color
 		
-		if not GameLoop.is_connected("movement_update", movement_update):
-			GameLoop.movement_update.connect(movement_update)
+		if not GameManager.is_connected("movement_update", movement_update):
+			GameManager.movement_update.connect(movement_update)
 
 
 func movement_update() -> void:

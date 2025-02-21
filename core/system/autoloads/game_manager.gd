@@ -1,5 +1,12 @@
 extends Node
 
+# Game loop signals
+signal animation_update
+signal wall_update
+signal movement_update
+signal collision_update
+signal update_timers
+
 var collectables_processed: bool = false
 
 # Game properties
@@ -19,16 +26,14 @@ var ghost: bool = false # Ignore walls
 var flying: bool = false # Ignore terrains
 var speed_hacking: bool = false # Doubles speed
 
-
-func _ready() -> void:
-	Signals.checkpoint_touched.connect(on_checkpoint_touch)
-
-
-func on_checkpoint_touch(id: int) -> void:
-	Signals.progress_saved.emit()
+# Measured in ticks where 1 second equals 60 ticks.
+var time: int = 0
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		paused = not paused
+	
 	if allow_cheats:
 		if event.is_action_pressed("speed_hack"):
 			speed_hacking = not speed_hacking
@@ -38,9 +43,21 @@ func _input(event: InputEvent) -> void:
 		
 		if event.is_action_pressed("ghost"):
 			ghost = not ghost
-	
-	if event.is_action_pressed("pause"):
-		paused = not paused
+
+
+func _physics_process(delta: float) -> void:
+	if GameManager.current_level != "" and not GameManager.paused:
+		if not GameManager.finished:
+			time += 1
+		push_internal_frame()
+
+
+func push_internal_frame() -> void:
+	animation_update.emit() # Reserved for AnimationPlayer
+	wall_update.emit() # Needs to be separate to avoid order of operation conflicts.
+	movement_update.emit() # Player's and other objects' movement.
+	collision_update.emit() # All the player/object checks are done now.
+	update_timers.emit()
 
 
 func reset_stats() -> void:
@@ -53,4 +70,4 @@ func reset_stats() -> void:
 	finished = false
 	
 	deaths = 0
-	GameLoop.game_ticks = 0
+	time = 0

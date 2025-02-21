@@ -10,13 +10,13 @@ class_name TickBasedAnimator
 var started: bool = false
 
 func _ready() -> void:
-	GameLoop.animation_update.connect(animation_update)
+	GameManager.animation_update.connect(animation_update)
 	callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
 
 func animation_update() -> void:
 	if not started:
-		advance(GameLoop.TICK_LENGTH * start_time)
+		advance(1.0 / Engine.physics_ticks_per_second * start_time)
 		started = true
 	
-	advance(GameLoop.TICK_LENGTH * (bpm / 60))
+	advance(1.0 / Engine.physics_ticks_per_second * (bpm / 60))
 	pass

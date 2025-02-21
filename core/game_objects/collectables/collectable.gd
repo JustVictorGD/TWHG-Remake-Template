@@ -48,8 +48,8 @@ func _ready() -> void:
 	super()
 	
 	if not registered and not Engine.is_editor_hint():
-		GameLoop.update_timers.connect(update_timers)
-		GameLoop.movement_update.connect(movement_update)
+		GameManager.update_timers.connect(update_timers)
+		GameManager.movement_update.connect(movement_update)
 		
 		Signals.checkpoint_touched.connect(checkpoint_touched)
 		Signals.player_respawn.connect(player_respawn)

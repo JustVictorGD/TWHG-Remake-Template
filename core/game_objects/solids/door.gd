@@ -46,7 +46,7 @@ func _ready() -> void:
 	close_timer.timeout.connect(finish_closing)
 	
 	if not Engine.is_editor_hint():
-		GameLoop.update_timers.connect(update_timers)
+		GameManager.update_timers.connect(update_timers)
 
 
 func stay_triggered() -> void:

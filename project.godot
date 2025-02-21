@@ -23,7 +23,6 @@ buses/default_bus_layout="res://core/misc_assets/resources/default_bus_layout.tr
 [autoload]
 
 GameManager="*res://core/system/autoloads/game_manager.gd"
-GameLoop="*res://core/system/autoloads/game_loop.gd"
 SFX="*res://core/system/autoloads/sfx.tscn"
 Signals="*res://core/system/autoloads/signals.gd"
 PaintManager="*res://core/system/autoloads/paint_manager.tscn"

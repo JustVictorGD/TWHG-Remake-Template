@@ -9,7 +9,7 @@ extends Node
 @onready var parent: Node = self.get_parent()
 
 func _init(_velocity: Vector2 = velocity) -> void:
-	GameLoop.movement_update.connect(movement_update)
+	GameManager.movement_update.connect(movement_update)
 	velocity = _velocity
 
 func movement_update() -> void:
