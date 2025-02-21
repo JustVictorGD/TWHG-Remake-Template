@@ -5,13 +5,14 @@ extends Node2D
 
 
 func _ready() -> void:
-	SaveFile.clear_save()
-	
 	$Button.pressed.connect(on_button_pressed)
 	GameManager.current_level = World.starting_level_static
 	
 	$FinalDeaths.text = str("Final deaths: ", GameManager.deaths)
-	$FinalTime.text = "Final time: " + Saves.format_time(GameLoop.game_ticks)
+	$FinalTime.text = "Final time: " + format_time(GameLoop.game_ticks)
+	
+	GameManager.reset_stats()
+	print(GameLoop.game_ticks)
 
 
 func _process(delta: float) -> void:
@@ -19,4 +20,13 @@ func _process(delta: float) -> void:
 
 
 func on_button_pressed() -> void:
-	get_tree().change_scene_to_packed(load("res://game/scenes/menu.tscn"))
+	get_tree().change_scene_to_packed(load("res://game/scenes/world.tscn"))
+
+
+@warning_ignore("integer_division")
+func format_time(total_ticks: int) -> String:
+	var hours: int = total_ticks / 216_000
+	var minutes: int = total_ticks / 3_600 % 60
+	var seconds: int = total_ticks / 60 % 60
+	var ticks: int = total_ticks % 60
+	return "%02d:%02d:%02d.%02d" % [hours, minutes, seconds, ticks]

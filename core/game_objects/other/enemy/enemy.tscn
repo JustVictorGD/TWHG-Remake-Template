@@ -54,7 +54,7 @@ scale = Vector2(32, 32)
 outline_texture = ExtResource("2_s808a")
 fill_texture = ExtResource("3_3npqu")
 
-[node name="Hitbox" type="Area2D" parent="." groups=["enemies"]]
+[node name="Hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

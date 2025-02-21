@@ -20,7 +20,7 @@ shader_parameter/fill_texture = ExtResource("4_5hayw")
 [sub_resource type="CircleShape2D" id="CircleShape2D_rb5dr"]
 radius = 21.0
 
-[node name="Key" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox") groups=["collectables", "keys"]]
+[node name="Key" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox")]
 script = ExtResource("1_n7evj")
 sound = 5
 sprite = NodePath("MaskedSprite")
@@ -34,7 +34,7 @@ scale = Vector2(64, 64)
 outline_texture = ExtResource("3_l4rgn")
 fill_texture = ExtResource("4_5hayw")
 
-[node name="Hitbox" type="Area2D" parent="." groups=["keys"]]
+[node name="Hitbox" type="Area2D" parent="." groups=["key"]]
 collision_mask = 0
 
 [node name="CircleShape" type="CollisionShape2D" parent="Hitbox"]

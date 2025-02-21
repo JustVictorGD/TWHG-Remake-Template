@@ -93,9 +93,6 @@ func select() -> void:
 		state = states.SELECTED
 		Signals.checkpoint_touched.emit(id)
 		
-		SaveFile.update_cp_and_collectables(id)
-		SaveFile.save()
-		
 		if is_finish() and World.collected_money >= World.money_requirement \
 				and not GameManager.finished:
 			win()

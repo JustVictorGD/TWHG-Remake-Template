@@ -98,7 +98,7 @@ func _ready() -> void:
 	GameLoop.update_timers.connect(update_timers)
 	Signals.paint_changed.connect(on_paint_change)
 	
-	PaintManager.current_paint_id = SaveFile.save_dictionary["global"]["color"]
+	#PaintManager.current_paint_id = SaveFile.save_dictionary["global"]["color"]
 
 
 func change_size(size: Vector2i) -> void:
@@ -180,11 +180,6 @@ func movement_update() -> void:
 
 
 func collision_update() -> void:
-	# It's important to call this function after the physics engine updates.
-	call_deferred("check_object_collisions")
-
-
-func check_object_collisions() -> void:
 	if not is_instance_valid(get_tree()): return
 	
 	await get_tree().physics_frame
@@ -250,7 +245,7 @@ func on_paint_change(id: int) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if dead: return
 	
-	if area.is_in_group("enemies") and not GameManager.invincible:
+	if area.is_in_group("enemy") and not GameManager.invincible:
 		enemy_death()
 		return
 	
@@ -261,15 +256,15 @@ func _on_area_entered(area: Area2D) -> void:
 			parent.select()
 			last_checkpoint_id = parent.id
 	
-	if area.is_in_group("coins"):
+	if area.is_in_group("coin"):
 		# The Area2D's parent is expected to be of the Coin class.
 		area.get_parent().try_collect()
 	
-	if area.is_in_group("keys"):
+	if area.is_in_group("key"):
 		# The Area2D's parent is expected to be of the Key class.
 		area.get_parent().try_collect()
 	
-	if area.is_in_group("paints"):
+	if area.is_in_group("paint"):
 		if area.get_parent() is Paint:
 			var paint: Paint = area.get_parent()
 			

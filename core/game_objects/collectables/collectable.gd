@@ -15,10 +15,6 @@ class_name Collectable
 ## Controls when the collectable state becomes saved. Not to be confused with Store Behavior.
 @export var save_behavior: save_behaviors = save_behaviors.NORMAL
 
-## Whether or not this collectable's state gets stored in the save file.
-## Disable this if the collectable will be instanced in runtime.
-@export var store_behavior: store_behaviors = store_behaviors.STORE_STATE
-
 # Only really exists for paints, as they can both become semi-transparent
 # from a special mode (ghost paints) and can have a fading animation.
 var opacity_multiplier: float = 1.0
@@ -40,12 +36,6 @@ enum save_behaviors {
 	UNSAVABLE ## Saving is completely disabled.
 }
 
-enum store_behaviors {
-	STORE_STATE, ## Stores the collectable's state as a separate number
-	INCREMENT_TOTAL, ## Increments the total collected collectables in the group. Currently only supported for coins. Useful for collectables which get instanced in runtime.
-	DONT_STORE ## Doesn't store anything
-}
-
 
 var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
@@ -54,14 +44,8 @@ var state: states = states.UNCOLLECTED
 
 var id: int
 
-var group: String
-var group_states: Array # Gets the states of all collectables in the same group.
-
 func _ready() -> void:
 	super()
-	
-	if not is_in_group("collectables"):
-		push_warning("Node extending 'Collectable' expected to be in \"collectables\" group.")
 	
 	if not registered and not Engine.is_editor_hint():
 		GameLoop.update_timers.connect(update_timers)
@@ -121,8 +105,6 @@ func collect() -> void:
 	if save_behavior == save_behaviors.AUTOMATIC_SAVE:
 		save()
 	
-	update_state()
-	
 	Signals.anything_collected.emit()
 
 
@@ -130,7 +112,6 @@ func drop() -> void:
 	state = states.UNCOLLECTED
 	drop_animation.reset_and_play()
 	Utilities.enable_area(hitbox)
-	update_state()
 
 
 func save() -> void:
@@ -138,25 +119,6 @@ func save() -> void:
 		return
 	
 	state = states.SAVED
-	update_state()
-
-
-func update_state() -> void:
-	if store_behavior == store_behaviors.STORE_STATE:
-		
-		if group_states.size() == 0:
-			push_warning("Collectable state array for group " + group + " is not created.")
-			return
-		
-		group_states[id] = 1 if state == states.SAVED else 0
-	
-	if store_behavior == store_behaviors.INCREMENT_TOTAL:
-		if self is Coin:
-			pass
-			if state == states.SAVED:
-				SaveFile.save_dictionary["levels"][GameManager.current_level]["extra_coins"] += 1
-		else:
-			push_warning("Saving the amount of incremented collectables is only supported for coins.")
 
 
 func movement_update() -> void:

@@ -41,7 +41,7 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_m2vw6")
 color_ramp = SubResource("GradientTexture1D_pjmya")
 
-[node name="Coin" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox") groups=["coins", "collectables"]]
+[node name="Coin" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox")]
 z_index = 2
 position = Vector2(1, 0)
 script = ExtResource("1_k1jfa")
@@ -61,7 +61,7 @@ fill_color = Color(1, 1, 0, 1)
 outline_texture = ExtResource("2_wfxgp")
 fill_texture = ExtResource("2_wfxgp")
 
-[node name="Hitbox" type="Area2D" parent="." groups=["coins"]]
+[node name="Hitbox" type="Area2D" parent="." groups=["coin"]]
 collision_mask = 0
 
 [node name="CircleShape" type="CollisionShape2D" parent="Hitbox"]

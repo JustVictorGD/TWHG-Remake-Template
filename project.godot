@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TWHG Remake Template"
-run/main_scene="res://game/scenes/menu.tscn"
+run/main_scene="res://game/scenes/world.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
 config/icon="res://core/misc_assets/images/TWHG Remake Template.png"
@@ -26,7 +26,6 @@ GameManager="*res://core/system/autoloads/game_manager.gd"
 GameLoop="*res://core/system/autoloads/game_loop.gd"
 SFX="*res://core/system/autoloads/sfx.tscn"
 Signals="*res://core/system/autoloads/signals.gd"
-SaveFile="*res://core/system/autoloads/save_file.gd"
 PaintManager="*res://core/system/autoloads/paint_manager.tscn"
 Utilities="*res://core/system/autoloads/utilities.gd"
 
@@ -54,12 +53,13 @@ export/convert_text_resources_to_binary=false
 [global_group]
 
 checkpoint=""
-enemies=""
-keys=""
-coins=""
-collectables=""
 destroyer=""
 teleporter=""
+area=""
+key=""
+coin=""
+paint=""
+enemy=""
 
 [input]
 

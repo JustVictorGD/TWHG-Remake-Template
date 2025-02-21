@@ -19,11 +19,14 @@ var ghost: bool = false # Ignore walls
 var flying: bool = false # Ignore terrains
 var speed_hacking: bool = false # Doubles speed
 
+
 func _ready() -> void:
 	Signals.checkpoint_touched.connect(on_checkpoint_touch)
 
+
 func on_checkpoint_touch(id: int) -> void:
 	Signals.progress_saved.emit()
+
 
 func _input(event: InputEvent) -> void:
 	if allow_cheats:
@@ -38,3 +41,16 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("pause"):
 		paused = not paused
+
+
+func reset_stats() -> void:
+	invincible = false
+	ghost = false
+	flying = false
+	speed_hacking = false
+	
+	paused = false
+	finished = false
+	
+	deaths = 0
+	GameLoop.game_ticks = 0
