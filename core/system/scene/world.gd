@@ -37,9 +37,6 @@ func _ready() -> void:
 	# Making it easy for end_screen to reset the game.
 	starting_level_static = starting_level
 	
-	#if current_level != null:
-	#	focus_camera(current_level)
-	
 	Signals.switch_level.connect(switch_level)
 	
 	switch_level(starting_level)
