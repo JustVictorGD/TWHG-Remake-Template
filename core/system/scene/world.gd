@@ -37,12 +37,13 @@ func _ready() -> void:
 	# Making it easy for end_screen to reset the game.
 	starting_level_static = starting_level
 	
-	if current_level != null:
-		focus_camera(current_level)
+	#if current_level != null:
+	#	focus_camera(current_level)
 	
 	Signals.switch_level.connect(switch_level)
 	
 	switch_level(starting_level)
+
 
 func focus_camera(area: Area) -> void:
 	if area == null:
@@ -59,13 +60,15 @@ func focus_camera(area: Area) -> void:
 
 
 func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> void:
+	#await GameManager.game_loop_finished
+	
 	if not connections.has(key):
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 		return
 	
 	if current_level != null:
+		remove_child(current_level)
 		current_level.queue_free()
-		await current_level.tree_exited
 	
 	Signals.level_switched.emit()
 	GameManager.current_level = key
@@ -127,7 +130,8 @@ static func json_to_dict(json_path: String) -> Dictionary:
 	item_def_file.close()
 	
 	return item_lookup
-	
+
+
 static func get_child_by_name(node: Node, target_name: String) -> Node:
 	for child: Node in node.get_children():
 		if child.name == target_name:

@@ -278,4 +278,5 @@ func _on_area_entered(area: Area2D) -> void:
 			if parent.teleportation_type == Teleporter.Types.POSITION:
 				move_to(parent.target_position * 1000 + Vector2(500, 500))
 			else:
+				await GameManager.update_timers
 				Signals.switch_level.emit(parent.target_level)
