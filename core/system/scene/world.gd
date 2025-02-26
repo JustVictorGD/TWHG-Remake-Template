@@ -37,9 +37,9 @@ func _ready() -> void:
 	# Making it easy for end_screen to reset the game.
 	starting_level_static = starting_level
 	
-	Signals.switch_level.connect(switch_level)
+	Signals.switch_level.connect(queue_switch_level)
 	
-	switch_level(starting_level)
+	queue_switch_level(starting_level)
 
 
 func focus_camera(area: Area) -> void:
@@ -56,9 +56,11 @@ func focus_camera(area: Area) -> void:
 	camera.position = area.position + Vector2(area.area_size) / 2 * 48
 
 
+func queue_switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> void:
+	call_deferred("switch_level", key, teleport_position)
+
+
 func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> void:
-	#await GameManager.game_loop_finished
-	
 	if not connections.has(key):
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 		return
