@@ -15,10 +15,31 @@ var paused: bool = false
 var snappy_movement: bool = false
 var sliding_sensitivity: float = 0.5
 
+var last_checkpoint_id: int = -1:
+	set(value):
+		last_checkpoint_id = value
+		SaveData.data["global"]["last_checkpoint_id"] = value
+
+var last_checkpoint_area: int # Unused... for now.
+
+# Measured in ticks where 1 second equals 60 ticks.
+var time: int = 0:
+	set(value):
+		time = value
+		SaveData.data["global"]["time"] = value
+
 # Player stats
-var deaths: int = 0
+var deaths: int = 0:
+	set(value):
+		deaths = value
+		SaveData.data["global"]["deaths"] = value
+
+var current_level: String:
+	set(value):
+		current_level = value
+		SaveData.data["global"]["current_level"] = value
+
 var finished: bool = false
-var current_level: String
 
 # Special player states
 var invincible: bool = false # Death can't trigger
@@ -26,8 +47,9 @@ var ghost: bool = false # Ignore walls
 var flying: bool = false # Ignore terrains
 var speed_hacking: bool = false # Doubles speed
 
-# Measured in ticks where 1 second equals 60 ticks.
-var time: int = 0
+
+func _ready() -> void:
+	Signals.load_game.connect(load_game)
 
 
 func _input(event: InputEvent) -> void:
@@ -71,3 +93,15 @@ func reset_stats() -> void:
 	
 	deaths = 0
 	time = 0
+
+
+func load_game() -> void:
+	deaths = Utilities.fallback(
+		SaveData.try_get_data(["global", "deaths"]),
+		0)
+	time = Utilities.fallback(
+		SaveData.try_get_data(["global", "time"]),
+		0)
+	last_checkpoint_id = Utilities.fallback(
+		SaveData.try_get_data(["global", "last_checkpoint_id"]),
+		-1)

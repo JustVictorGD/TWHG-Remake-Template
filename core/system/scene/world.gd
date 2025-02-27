@@ -38,6 +38,7 @@ func _ready() -> void:
 	starting_level_static = starting_level
 	
 	Signals.switch_level.connect(queue_switch_level)
+	Signals.load_game.connect(load_game)
 	
 	queue_switch_level(starting_level)
 
@@ -86,28 +87,47 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 	add_child(current_level)
 	focus_camera(current_level)
 	
-	load_room_state(teleport_position)
+	load_room_state(GameManager.last_checkpoint_id, teleport_position)
 
 
-func load_room_state(teleport_position: Vector2 = Vector2.ZERO) -> void:
+func load_room_state(checkpoint_id: int = -1, teleport_position: Vector2 = Vector2.ZERO) -> void:
+	GameManager.collectables_processed = true
+	
 	# Assign checkpoint ids and spawn the player on the correct one
 	var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
 	
 	for i: int in range(checkpoints.size()):
 		checkpoints[i].id = i
-		
-		if teleport_position == Vector2.ZERO:
-			if checkpoints[i].is_start():
-				player.move_to((checkpoints[i].global_position + checkpoints[i].size / 2) * 1000 + Vector2(500, 500))
-		else:
-			player.move_to(Vector2i(teleport_position * 1000))
-			print(player.position)
-	
-	GameManager.collectables_processed = true
 	
 	for gold_door: GoldDoor in get_tree().get_nodes_in_group("gold_doors"):
 		if collected_money >= gold_door.money_requirement:
 			gold_door.stay_triggered()
+	
+	if teleport_position != Vector2.ZERO:
+		player.move_to(Vector2i(teleport_position * 1000))
+		return
+	
+	if checkpoint_id != -1:
+		if Utilities.index_in_range(checkpoint_id, checkpoints.size()):
+			# this huge line sucks
+			player.move_to((checkpoints[checkpoint_id].global_position + \
+					checkpoints[checkpoint_id].size / 2) * 1000 + Vector2(500, 500))
+		else:
+			push_error("Checkpoint ID stuff idk check world.gd -> load_room_state()")
+	else:
+		for i: int in range(checkpoints.size()):
+			if checkpoints[i].is_start():
+				player.move_to((checkpoints[i].global_position + checkpoints[i].size / 2) * 1000 + Vector2(500, 500))
+				return
+			push_error("No starting checkpoint found.")
+
+
+
+func load_game() -> void:
+	queue_switch_level(Utilities.fallback(
+		SaveData.try_get_data(["global", "current_level"]),
+		starting_level
+		))
 
 
 static func try_get(array: Array, index: int) -> Variant:

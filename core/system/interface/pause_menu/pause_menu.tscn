@@ -56,6 +56,36 @@ theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "To Main Menu"
 
+[node name="LoadGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 368.0
+offset_top = 468.0
+offset_right = -496.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g15fw")
+theme_type_variation = &"FlatButton"
+text = "Load Game"
+
+[node name="WipeSave" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 512.0
+offset_top = 468.0
+offset_right = -352.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g15fw")
+theme_type_variation = &"FlatButton"
+text = "Wipe Save"
+
 [node name="MusicToggle" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15

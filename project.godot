@@ -27,6 +27,7 @@ SFX="*res://core/system/autoloads/sfx.tscn"
 Signals="*res://core/system/autoloads/signals.gd"
 PaintManager="*res://core/system/autoloads/paint_manager.tscn"
 Utilities="*res://core/system/autoloads/utilities.gd"
+SaveData="*res://core/system/autoloads/save_data.gd"
 
 [debug]
 

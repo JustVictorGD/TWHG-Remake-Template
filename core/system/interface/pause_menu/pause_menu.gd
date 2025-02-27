@@ -10,6 +10,8 @@ var fps_value_index: int = 0
 func _ready() -> void:
 	$ReturnToGame.button_down.connect(return_to_game_click)
 	$ToMainMenu.button_down.connect(main_menu_click)
+	$LoadGame.button_down.connect(load_game_click)
+	$WipeSave.button_down.connect(wipe_save_click)
 	$MusicToggle.button_down.connect(music_click)
 	$SFXToggle.button_down.connect(sfx_click)
 	$MaxFPS.button_down.connect(max_fps_click)
@@ -28,6 +30,14 @@ func return_to_game_click() -> void:
 
 func main_menu_click() -> void:
 	get_tree().change_scene_to_packed(load("res://game/scenes/menu.tscn"))
+
+
+func load_game_click() -> void:
+	SaveData.load_game(0)
+
+
+func wipe_save_click() -> void:
+	SaveData.wipe_save(0)
 
 
 func music_click() -> void:

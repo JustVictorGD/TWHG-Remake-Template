@@ -92,6 +92,7 @@ func select() -> void:
 		flash_animation.reset_and_play()
 		state = states.SELECTED
 		Signals.checkpoint_touched.emit(id)
+		SaveData.save_game()
 		
 		if is_finish() and World.collected_money >= World.money_requirement \
 				and not GameManager.finished:

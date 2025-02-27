@@ -31,9 +31,6 @@ var movement_direction: Vector2 = Vector2.ZERO
 @onready var death_animation: TickBasedTimer = $DeathAnimationTimer
 @onready var respawn_animation: TickBasedTimer = $RespawnAnimationTimer
 
-# Respawning
-var last_checkpoint_id: int = -1
-var last_checkpoint_area: int # Unused... for now.
 var dead: bool = false # Invincible but disables movement and is temporary
 
 # Used for the snappy movement option.
@@ -224,8 +221,8 @@ func enemy_death() -> void:
 
 func respawn() -> void:
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
-		print(checkpoint.id, ", ", last_checkpoint_id)
-		if checkpoint.id == last_checkpoint_id:
+		print(checkpoint.id, ", ", GameManager.last_checkpoint_id)
+		if checkpoint.id == GameManager.last_checkpoint_id:
 			move_to(checkpoint.collision_shape_2d.global_position * 1000 + Vector2(500, 500))
 	
 	respawn_animation.reset_and_play()
@@ -253,8 +250,8 @@ func _on_area_entered(area: Area2D) -> void:
 		var parent: Node = area.get_parent()
 		
 		if parent is Checkpoint:
+			GameManager.last_checkpoint_id = parent.id
 			parent.select()
-			last_checkpoint_id = parent.id
 	
 	if area.is_in_group("coin"):
 		# The Area2D's parent is expected to be of the Coin class.
