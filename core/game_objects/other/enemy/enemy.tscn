@@ -61,7 +61,7 @@ collision_mask = 128
 shape = SubResource("CircleShape2D_yer0x")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-z_index = -1
+z_index = -8
 emitting = false
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_mf8v6")

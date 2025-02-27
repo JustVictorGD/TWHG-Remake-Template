@@ -55,7 +55,7 @@ shape = SubResource("RectangleShape2D_pnmxk")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-z_index = -1
+z_index = -8
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_jfo76")
 texture = ExtResource("2_qubyp")
