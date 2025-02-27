@@ -105,3 +105,6 @@ func load_game() -> void:
 	last_checkpoint_id = Utilities.fallback(
 		SaveData.try_get_data(["global", "last_checkpoint_id"]),
 		-1)
+	current_level = Utilities.fallback(
+		SaveData.try_get_data(["global", "current_level"]),
+		"")

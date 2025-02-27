@@ -28,7 +28,7 @@ static var rect_visualizer: Node
 
 # Level switching.
 var connections: Dictionary = json_to_dict("res://game/connections.json")
-static var current_level: Area = null
+static var active_level: Area = null
 
 
 func _ready() -> void:
@@ -40,7 +40,9 @@ func _ready() -> void:
 	Signals.switch_level.connect(queue_switch_level)
 	Signals.load_game.connect(load_game)
 	
-	queue_switch_level(starting_level)
+	queue_switch_level(Utilities.fallback(
+		SaveData.try_get_data(["global", "current_level"]),
+		starting_level))
 
 
 func focus_camera(area: Area) -> void:
@@ -66,14 +68,14 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 		return
 	
-	if current_level != null:
-		remove_child(current_level)
-		current_level.queue_free()
+	if active_level != null:
+		remove_child(active_level)
+		active_level.queue_free()
 	
 	Signals.level_switched.emit()
 	GameManager.current_level = key
 	
-	current_level = load(connections[key]).instantiate()
+	active_level = load(connections[key]).instantiate()
 	
 	GameManager.finished = false
 	GameManager.invincible = false
@@ -82,10 +84,10 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 	money_requirement = 0
 	walls.clear()
 	
-	player.change_size(current_level.player_size)
+	player.change_size(active_level.player_size)
 	
-	add_child(current_level)
-	focus_camera(current_level)
+	add_child(active_level)
+	focus_camera(active_level)
 	
 	load_room_state(GameManager.last_checkpoint_id, teleport_position)
 

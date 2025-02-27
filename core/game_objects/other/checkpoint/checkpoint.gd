@@ -112,6 +112,8 @@ func win() -> void:
 
 
 func warp_level() -> void:
+	GameManager.last_checkpoint_id = -1
+	
 	if final_destination:
 		get_tree().change_scene_to_packed(preload("res://game/scenes/end_screen.tscn"))
 	

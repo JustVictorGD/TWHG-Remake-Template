@@ -36,14 +36,14 @@ func format_time(total_ticks: int) -> String:
 
 
 func _process(_delta : float) -> void:
-	level_code.text = "Level: " + World.current_level.level_code
+	level_code.text = "Level: " + World.active_level.level_code
 	
 	money.text = "$ " + str(World.collected_money) + \
 			" / " + str(World.money_requirement)
 	deaths.text = "Deaths: " + str(GameManager.deaths)
 	
-	if World.current_level != null:
-		bottom_text.text = World.current_level.bottom_text
+	if World.active_level != null:
+		bottom_text.text = World.active_level.bottom_text
 	
 	timer.text = format_time(GameManager.time)
 	tick_timer.text = ".%02d" % [GameManager.time % 60]
@@ -58,5 +58,5 @@ func _process(_delta : float) -> void:
 	
 	flash.color.a = flash_timer.get_progress_left()
 	
-	if World.current_level.theme != null:
-		sides.modulate = World.current_level.theme.interface_sides
+	if World.active_level.theme != null:
+		sides.modulate = World.active_level.theme.interface_sides
