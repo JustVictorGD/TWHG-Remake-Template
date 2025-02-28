@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsvyehfhimk2k"]
+
+[ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="1_r0t2a"]
+
+[sub_resource type="Gradient" id="Gradient_wytoc"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.751073, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4yyi2"]
+gradient = SubResource("Gradient_wytoc")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3l7kl"]
+font_size = 144
+outline_size = 40
+outline_color = Color(0, 0, 0, 1)
+
+[node name="LevelSelect" type="Node2D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_r0t2a")]
+z_index = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 16.0
+offset_bottom = 9.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(80, 80)
+copy_area_theme = false
+color_1 = Color(0.14, 0.14, 0.14, 1)
+color_2 = Color(0.31, 0.31, 0.31, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(20, 11.25)
+texture = SubResource("GradientTexture2D_4yyi2")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 200.0
+offset_right = 1080.0
+offset_bottom = 200.0
+text = "Level Select"
+label_settings = SubResource("LabelSettings_3l7kl")
+horizontal_alignment = 1
+vertical_alignment = 1

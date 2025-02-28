@@ -36,6 +36,9 @@ func format_time(total_ticks: int) -> String:
 
 
 func _process(_delta : float) -> void:
+	if not is_instance_valid(World.active_level):
+		return
+	
 	level_code.text = "Level: " + World.active_level.level_code
 	
 	money.text = "$ " + str(World.collected_money) + \

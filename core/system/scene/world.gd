@@ -40,23 +40,14 @@ func _ready() -> void:
 	Signals.switch_level.connect(queue_switch_level)
 	Signals.load_game.connect(load_game)
 	
+	load_game()
+
+
+func load_game() -> void:
 	queue_switch_level(Utilities.fallback(
 		SaveData.try_get_data(["global", "current_level"]),
-		starting_level))
-
-
-func focus_camera(area: Area) -> void:
-	if area == null:
-		return
-	
-	camera.zoom.x = PLAYABLE_WINDOW.size.x / (area.area_size.x * 48)
-	camera.zoom.y = camera.zoom.x
-	shader_container.size = PLAYABLE_WINDOW.size
-	shader_container.position = PLAYABLE_WINDOW.position
-	
-	# The "area_size" of areas is measured in tiles, which are 48x48 pixels in size.
-	# The value in pixels is halved because the halfway point is needed.
-	camera.position = area.position + Vector2(area.area_size) / 2 * 48
+		starting_level
+		))
 
 
 func queue_switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> void:
@@ -64,6 +55,9 @@ func queue_switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) 
 
 
 func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> void:
+	if key == "NULL_LEVEL":
+		key = starting_level
+	
 	if not connections.has(key):
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 		return
@@ -90,6 +84,20 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 	focus_camera(active_level)
 	
 	load_room_state(GameManager.last_checkpoint_id, teleport_position)
+
+
+func focus_camera(area: Area) -> void:
+	if area == null:
+		return
+	
+	camera.zoom.x = PLAYABLE_WINDOW.size.x / (area.area_size.x * 48)
+	camera.zoom.y = camera.zoom.x
+	shader_container.size = PLAYABLE_WINDOW.size
+	shader_container.position = PLAYABLE_WINDOW.position
+	
+	# The "area_size" of areas is measured in tiles, which are 48x48 pixels in size.
+	# The value in pixels is halved because the halfway point is needed.
+	camera.position = area.position + Vector2(area.area_size) / 2 * 48
 
 
 func load_room_state(checkpoint_id: int = -1, teleport_position: Vector2 = Vector2.ZERO) -> void:
@@ -122,26 +130,6 @@ func load_room_state(checkpoint_id: int = -1, teleport_position: Vector2 = Vecto
 				player.move_to((checkpoints[i].global_position + checkpoints[i].size / 2) * 1000 + Vector2(500, 500))
 				return
 			push_error("No starting checkpoint found.")
-
-
-
-func load_game() -> void:
-	queue_switch_level(Utilities.fallback(
-		SaveData.try_get_data(["global", "current_level"]),
-		starting_level
-		))
-
-
-static func try_get(array: Array, index: int) -> Variant:
-	# Negative check
-	if index < 0:
-		if index * -1 <= array.size():
-			return array[index]
-	else:
-		if abs(index) <= array.size() - 1:
-			return array[index]
-	
-	return null
 
 
 static func json_to_dict(json_path: String) -> Dictionary:

@@ -13,7 +13,6 @@ config_version=5
 config/name="TWHG Remake Template"
 run/main_scene="res://game/scenes/world.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-run/max_fps=60
 config/icon="res://core/misc_assets/images/TWHG Remake Template.png"
 
 [audio]

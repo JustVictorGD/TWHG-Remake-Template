@@ -107,4 +107,4 @@ func load_game() -> void:
 		-1)
 	current_level = Utilities.fallback(
 		SaveData.try_get_data(["global", "current_level"]),
-		"")
+		"NULL_LEVEL")

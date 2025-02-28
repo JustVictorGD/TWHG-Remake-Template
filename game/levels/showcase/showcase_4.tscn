@@ -23,6 +23,8 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var timer: TickBasedTimer = $Timer3
 
 func _ready() -> void:
+	super()
+	
 	timer.timeout.connect(on_timer_timeout)
 
 func on_timer_timeout() -> void:
@@ -75,6 +77,7 @@ fill_color = Color(1, 0, 1, 1)
 [node name="Showcase4" type="Node2D" groups=["area"]]
 script = SubResource("GDScript_khhan")
 level_code = "4/4"
+code_name = "showcase_4"
 bottom_text = "Basic avoidance (by audigamer)."
 theme = ExtResource("2_1ncxg")
 

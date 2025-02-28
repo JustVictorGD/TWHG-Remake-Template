@@ -221,7 +221,6 @@ func enemy_death() -> void:
 
 func respawn() -> void:
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
-		print(checkpoint.id, ", ", GameManager.last_checkpoint_id)
 		if checkpoint.id == GameManager.last_checkpoint_id:
 			move_to(checkpoint.collision_shape_2d.global_position * 1000 + Vector2(500, 500))
 	

@@ -35,6 +35,7 @@ interface_sides = Color(0.2, 0.2, 0.2, 1)
 [node name="Showcase3" type="Node2D" groups=["area"]]
 script = ExtResource("1_6r42y")
 level_code = "3/4"
+code_name = "showcase_3"
 bottom_text = "Sealed away forever."
 theme = SubResource("Resource_amml7")
 player_size = Vector2i(66, 18)

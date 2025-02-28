@@ -11,12 +11,22 @@ func _ready() -> void:
 	load_game()
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("0"):
+		print(data)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_game()
+
+
 func save_game(id: int = 0) -> void:
 	Signals.save_game.emit()
 	
 	var file: FileAccess = FileAccess.open(get_save_path(id), FileAccess.WRITE)
 	
-	if not file:
+	if not is_instance_valid(file):
 		print_debug("An error happened while saving data: ", FileAccess.get_open_error())
 		return
 	
@@ -26,10 +36,13 @@ func save_game(id: int = 0) -> void:
 func load_game(id: int = 0) -> void:
 	var file: String = FileAccess.get_file_as_string(get_save_path(id))
 	
-	if not file:
-		return
+	if not is_instance_valid(file):
+		wipe_save(id)
+		save_game(id)
 	
-	data = JSON.parse_string(file)
+	if JSON.parse_string(file):
+		data = JSON.parse_string(file)
+	
 	Signals.load_game.emit()
 
 
@@ -38,7 +51,7 @@ func wipe_save(id: int = 0) -> void:
 	
 	var file: FileAccess = FileAccess.open(get_save_path(id), FileAccess.WRITE)
 	
-	if not file:
+	if not is_instance_valid(file):
 		print("An error happened while wiping data: ", FileAccess.get_open_error())
 		return
 	
@@ -51,17 +64,16 @@ func get_save_path(id: int) -> String:
 
 func try_get_data(path: Array) -> Variant:
 	if path.is_empty():
-		return
+		return null
 	
 	var target: Variant = data
 	var tries: int = 0
 	
 	for key: Variant in path:
-		if not is_key_valid(key): return
-		if target is not Array and target is not Dictionary: return
+		if not is_key_valid(key): return null
+		if target is not Array and target is not Dictionary: return null
 		
 		tries += 1
-		
 		var last_element: bool = (tries == path.size())
 		
 		if target is Dictionary:
@@ -75,15 +87,15 @@ func try_get_data(path: Array) -> Variant:
 		else: # 'target' is an array
 			if key is not int: return null
 			
-			if key >= 0 and key + 1 > target.size(): return
-			if key < 0 and abs(key) > target.size(): return
+			if key >= 0 and key + 1 > target.size(): return null
+			if key < 0 and abs(key) > target.size(): return null
 			
 			if not last_element:
 				target = target[key]
 			else:
 				return target[key]
 	
-	return
+	return null
 
 
 func is_key_valid(key: Variant) -> bool:
