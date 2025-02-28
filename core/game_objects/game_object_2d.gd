@@ -32,6 +32,22 @@ class_name GameObject2D
 # call the function once and store its output in a variable.
 @onready var in_editor: bool = Engine.is_editor_hint()
 
+## Returns the nearest "Area" on the node tree. Returns null if nothing
+## is found. Doesn't loop through nodes again after already succeeding.
+var area: Area = null:
+	get:
+		if is_instance_valid(area): return area
+		
+		var parent: Node = get_parent()
+		
+		while is_instance_valid(parent) and not (parent is Area):
+			if parent is Window: return null # "Window" is the highest node
+			
+			parent = parent.get_parent()
+		
+		area = parent
+		return area
+
 
 func _ready() -> void:
 	if sprite == null:
