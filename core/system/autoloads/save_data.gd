@@ -67,35 +67,27 @@ func try_get_data(path: Array) -> Variant:
 		return null
 	
 	var target: Variant = data
-	var tries: int = 0
 	
-	for key: Variant in path:
-		if not is_key_valid(key): return null
-		if target is not Array and target is not Dictionary: return null
-		
-		tries += 1
-		var last_element: bool = (tries == path.size())
+	for i: int in path.size():
+		var key: Variant = path[i]
+		if not is_key_valid(key):
+			return null
 		
 		if target is Dictionary:
-			if key not in target.keys(): return null
-			
-			if not last_element:
-				target = target[key]
-			else:
-				return target[key]
+			if key not in target:
+				return null
+			target = target[key]
 		
-		else: # 'target' is an array
-			if key is not int: return null
-			
-			if key >= 0 and key + 1 > target.size(): return null
-			if key < 0 and abs(key) > target.size(): return null
-			
-			if not last_element:
+		elif target is Array:
+			if key is int and -target.size() <= key < target.size():
 				target = target[key]
 			else:
-				return target[key]
+				return null
+		
+		else:
+			return null
 	
-	return null
+	return target
 
 
 func is_key_valid(key: Variant) -> bool:

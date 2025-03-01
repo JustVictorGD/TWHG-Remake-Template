@@ -24,6 +24,9 @@ var id: int
 func _ready() -> void:
 	super()
 	
+	if is_instance_valid(area):
+		area.persistent_data["message"] = "This is working correctly"
+	
 	# There's currently a problem with additional shaders now that 2
 	# sprites of the enemy have been merged into one MaskedSprite.
 	
@@ -72,6 +75,6 @@ func set_properties(properties: EnemyProperties) -> void:
 		particles.material = properties.fill_shader
 
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("destroyer"):
+func _on_hitbox_area_entered(area2d: Area2D) -> void:
+	if area2d.is_in_group("destroyer"):
 		queue_free()

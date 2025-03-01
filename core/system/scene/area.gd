@@ -23,6 +23,25 @@ class_name Area
 ## Change for small player or fat player gameplay.
 @export var player_size: Vector2i = Vector2i(42, 42)
 
+## Used by 'persistent_data' to skip subsequent searches after a successful one.
+var data_is_valid: bool = false
+
+var persistent_data: Dictionary:
+	get:
+		if data_is_valid: return persistent_data
+		
+		if SaveData.try_get_data(["areas", code_name]) is Dictionary:
+			data_is_valid = true
+		elif SaveData.try_get_data(["areas"]) is Dictionary:
+			SaveData.data["areas"][code_name] = {}
+		else:
+			SaveData.data["areas"] = {}
+			SaveData.data["areas"][code_name] = {}
+		
+		data_is_valid = true
+		persistent_data = SaveData.data["areas"][code_name]
+		return persistent_data
+
 
 func _ready() -> void:
 	if "levels" not in SaveData.data.keys():
