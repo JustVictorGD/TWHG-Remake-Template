@@ -41,11 +41,3 @@ var persistent_data: Dictionary:
 		data_is_valid = true
 		persistent_data = SaveData.data["areas"][code_name]
 		return persistent_data
-
-
-func _ready() -> void:
-	if "levels" not in SaveData.data.keys():
-		SaveData.data["levels"] = {}
-	
-	if code_name not in SaveData.data["levels"].keys():
-		SaveData.data["levels"][code_name] = { "current_checkpoint": -1 }

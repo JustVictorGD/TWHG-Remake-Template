@@ -15,6 +15,9 @@ class_name Collectable
 ## Controls when the collectable state becomes saved. Not to be confused with Store Behavior.
 @export var save_behavior: save_behaviors = save_behaviors.NORMAL
 
+## Used for saving the collectable's state to file, more specifically an array.
+@export var array_name: String
+
 # Only really exists for paints, as they can both become semi-transparent
 # from a special mode (ghost paints) and can have a fading animation.
 var opacity_multiplier: float = 1.0
@@ -47,14 +50,25 @@ var id: int
 func _ready() -> void:
 	super()
 	
-	if not registered and not Engine.is_editor_hint():
-		GameManager.update_timers.connect(update_timers)
-		GameManager.movement_update.connect(movement_update)
+	if not in_editor:
+		print(array_name != "")
 		
-		Signals.checkpoint_touched.connect(checkpoint_touched)
-		Signals.player_respawn.connect(player_respawn)
+		if is_instance_valid(area) and array_name != "":
+			print("Instance valid.")
+			if array_name not in area.persistent_data.keys():
+				print("- Array name not in persistent keys.")
+				area.persistent_data[array_name] = []
+			
+			area.persistent_data[array_name].append(0)
 		
-		drop_animation.timeout.connect(finish_animation)
+		if not registered:
+			GameManager.update_timers.connect(update_timers)
+			GameManager.movement_update.connect(movement_update)
+			
+			Signals.checkpoint_touched.connect(checkpoint_touched)
+			Signals.player_respawn.connect(player_respawn)
+			
+			drop_animation.timeout.connect(finish_animation)
 	
 	registered = true
 

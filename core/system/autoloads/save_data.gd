@@ -49,6 +49,8 @@ func load_game(id: int = 0) -> void:
 func wipe_save(id: int = 0) -> void:
 	Signals.wipe_save.emit()
 	
+	data = {"global": {}}
+	
 	var file: FileAccess = FileAccess.open(get_save_path(id), FileAccess.WRITE)
 	
 	if not is_instance_valid(file):

@@ -24,9 +24,6 @@ var id: int
 func _ready() -> void:
 	super()
 	
-	if is_instance_valid(area):
-		area.persistent_data["message"] = "This is working correctly"
-	
 	# There's currently a problem with additional shaders now that 2
 	# sprites of the enemy have been merged into one MaskedSprite.
 	

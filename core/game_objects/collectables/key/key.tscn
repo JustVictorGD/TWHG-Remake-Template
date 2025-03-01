@@ -23,6 +23,7 @@ radius = 21.0
 [node name="Key" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox")]
 script = ExtResource("1_n7evj")
 sound = 5
+array_name = "keys"
 sprite = NodePath("MaskedSprite")
 hitbox = NodePath("Hitbox")
 outline_theme_link = "key_outline"
