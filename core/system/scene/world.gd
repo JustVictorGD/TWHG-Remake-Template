@@ -68,6 +68,7 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 	
 	Signals.level_switched.emit()
 	GameManager.current_level = key
+	IdGenerator.data = {}
 	
 	active_level = load(connections[key]).instantiate()
 	
