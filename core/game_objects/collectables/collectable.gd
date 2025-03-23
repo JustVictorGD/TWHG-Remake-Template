@@ -16,7 +16,7 @@ const ARRAY_FAIL_MESSAGE: String = "SAVE ARRAY FAILED"
 @export var sound: SFX.sounds = SFX.sounds.NONE
 
 ## Controls when the collectable state becomes saved. Not to be confused with Store Behavior.
-@export var save_behavior: save_behaviors = save_behaviors.NORMAL
+@export var save_behavior: SaveBehaviors = SaveBehaviors.NORMAL
 
 ## Used for saving the collectable's state to file, more specifically an array.
 @export var array_name: String
@@ -51,13 +51,13 @@ var opacity_multiplier: float = 1.0
 # This condition is false only for the first _ready() call.
 var registered: bool = false
 
-enum states {
-	UNCOLLECTED,
-	PICKED_UP, # Goes back to UNCOLLECTED if the player dies
-	SAVED
+enum States {
+	UNCOLLECTED = 0, # Numbers are here for code clarity.
+	PICKED_UP = 1, ## Goes back to uncollected if the player dies
+	SAVED = 2
 }
 
-enum save_behaviors {
+enum SaveBehaviors {
 	NORMAL, ## Collecting and saving work as normal.
 	AUTOMATIC_SAVE, ## Automatically saves when collected, won't get dropped on death.
 	UNSAVABLE ## Saving is completely disabled.
@@ -67,7 +67,7 @@ enum save_behaviors {
 var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 
-var state: states = states.UNCOLLECTED
+var state: States = States.UNCOLLECTED
 var id: int
 
 
@@ -77,11 +77,15 @@ func _ready() -> void:
 	if not in_editor:
 		id = IdGenerator.get_group(id_group)
 		
-		if save_array != [ARRAY_FAIL_MESSAGE]:
-			id = save_array.size()
+		while save_array.size() <= id:
 			save_array.append(0)
 		
+		state = save_array[id]
+		
 		if not registered:
+			if state != States.UNCOLLECTED:
+				stay_collected()
+			
 			GameManager.update_timers.connect(update_timers)
 			GameManager.movement_update.connect(movement_update)
 			
@@ -94,7 +98,7 @@ func _ready() -> void:
 
 
 func try_collect() -> bool:
-	if state == states.UNCOLLECTED:
+	if state == States.UNCOLLECTED:
 		collect()
 		return true
 	
@@ -102,7 +106,7 @@ func try_collect() -> bool:
 
 
 func try_drop() -> bool:
-	if state == states.PICKED_UP:
+	if state == States.PICKED_UP:
 		drop()
 		return true
 	
@@ -110,7 +114,7 @@ func try_drop() -> bool:
 
 
 func try_save() -> bool:
-	if state == states.PICKED_UP:
+	if state == States.PICKED_UP:
 		save()
 		return true
 	
@@ -118,41 +122,45 @@ func try_save() -> bool:
 
 
 func stay_collected() -> void:
-	state = states.SAVED
+	state = States.SAVED
 	Utilities.disable_area(hitbox)
 	modulate.a = 0
 
 
 func collect() -> void:
-	if World.touched_checkpoint_ids.size() == 0:
-		state = states.PICKED_UP
-	else:
-		state = states.SAVED
-	
 	Utilities.disable_area(hitbox)
-	
 	collect_animation.reset_and_play()
 	
 	if plays_sound:
 		SFX.play(sound)
 	
-	if save_behavior == save_behaviors.AUTOMATIC_SAVE:
+	if save_behavior == SaveBehaviors.AUTOMATIC_SAVE:
 		save()
 	
 	Signals.anything_collected.emit()
+	
+	if World.touched_checkpoint_ids.size() == 0:
+		state = States.PICKED_UP
+	else:
+		state = States.SAVED
+	
+	save_array[id] = state
 
 
 func drop() -> void:
-	state = states.UNCOLLECTED
 	drop_animation.reset_and_play()
 	Utilities.enable_area(hitbox)
+	
+	state = States.UNCOLLECTED
+	save_array[id] = state
 
 
 func save() -> void:
-	if save_behavior == save_behaviors.UNSAVABLE:
+	if save_behavior == SaveBehaviors.UNSAVABLE:
 		return
 	
-	state = states.SAVED
+	state = States.SAVED
+	save_array[id] = state
 
 
 func movement_update() -> void:
@@ -167,7 +175,7 @@ func update_timers() -> void:
 		push_error("What have you done to make a collectable lose its sprite node?")
 		return
 	
-	if state != states.UNCOLLECTED:
+	if state != States.UNCOLLECTED:
 		if collect_animation.active:
 			sprite.set_opacity(collect_animation.get_progress_left() * opacity_multiplier)
 		else:

@@ -18,7 +18,7 @@ func collect() -> void:
 	if PaintManager.paint_progress[paint_id] == 2:
 		return # Abort if already saved to prevent downgrading from 2 to 1.
 	
-	if save_behavior != save_behaviors.AUTOMATIC_SAVE:
+	if save_behavior != SaveBehaviors.AUTOMATIC_SAVE:
 		PaintManager.paint_progress[paint_id] = 1 # Set to collected.
 	else:
 		PaintManager.paint_progress[paint_id] = 2 # Set to saved.
@@ -35,13 +35,14 @@ func save() -> void:
 	super()
 	
 	if PaintManager.paint_progress[paint_id] == 1:
-		if save_behavior != save_behaviors.UNSAVABLE:
+		if save_behavior != SaveBehaviors.UNSAVABLE:
 			PaintManager.paint_progress[paint_id] = 2
 
 
 func stay_collected() -> void:
-	hitbox.enabled = false
-	state = states.SAVED
+	Utilities.disable_area(hitbox)
+	
+	state = States.SAVED
 	sprite.set_opacity(0)
 	
 	PaintManager.paint_progress[paint_id] = 2
@@ -65,7 +66,7 @@ func _process(_delta: float) -> void:
 		sprite.outline_color = Color.BLACK
 		sprite.fill_color = Color.MAGENTA
 	
-	if not in_editor and state == states.UNCOLLECTED:
+	if not in_editor and state == States.UNCOLLECTED:
 		if PaintManager.paint_progress[paint_id] != 0:
 			opacity_multiplier = 0.5
 		else:

@@ -110,10 +110,6 @@ func load_room_state(checkpoint_id: int = -1, teleport_position: Vector2 = Vecto
 	for i: int in range(checkpoints.size()):
 		checkpoints[i].id = i
 	
-	for gold_door: GoldDoor in get_tree().get_nodes_in_group("gold_doors"):
-		if collected_money >= gold_door.money_requirement:
-			gold_door.stay_triggered()
-	
 	if teleport_position != Vector2.ZERO:
 		player.move_to(Vector2i(teleport_position * 1000))
 		return

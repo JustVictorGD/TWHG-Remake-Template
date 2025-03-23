@@ -18,6 +18,9 @@ func _ready() -> void:
 		
 		if money_requirement <= 0:
 			money_requirement += World.money_requirement
+		
+		if World.collected_money >= money_requirement:
+			stay_triggered()
 
 
 func coin_collected() -> void:

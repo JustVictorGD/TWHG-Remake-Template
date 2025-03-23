@@ -52,7 +52,7 @@ func _process(_delta : float) -> void:
 	
 	timer.text = format_time(GameManager.time)
 	tick_timer.text = ".%02d" % [GameManager.time % 60]
-	fps.text = str(Engine.get_frames_per_second()) + " FPS"
+	fps.text = str(int(Engine.get_frames_per_second())) + " FPS"
 	
 	if GameManager.finished:
 		timer.modulate = Color.GOLD

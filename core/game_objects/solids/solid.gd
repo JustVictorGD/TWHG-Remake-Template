@@ -105,7 +105,6 @@ func _ready() -> void:
 
 func wall_update() -> void:
 	sprite.position = floor(global_position) - global_position
-	
 	World.walls[hitbox_index] = Rect2i(-outwards_2d + global_position, size + outwards_2d * 2)
 
 
@@ -174,6 +173,7 @@ func change_shape(rect: Rect2) -> void:
 
 
 # A Rect2 can't really be turned off but it can be moved billions of pixels away.
+# Warning: This sets dynamic_hitbox to false.
 func nullify_hitbox() -> void:
 	if not decorative:
 		World.walls[hitbox_index] = Rect2(-4294967296, -4294967296, 0, 0)

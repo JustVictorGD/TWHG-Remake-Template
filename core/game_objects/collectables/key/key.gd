@@ -26,10 +26,14 @@ func _process(delta: float) -> void:
 
 func stay_collected() -> void:
 	super()
-	for key_door: Door in get_tree().get_nodes_in_group("key_doors"):
-		if key_door.key_id == key_id:
-			key_door.stay_triggered()
 	
+	for key_door: KeyDoor in get_tree().get_nodes_in_group("key_doors"):
+		if key_door.key_id == key_id:
+			if not key_door.is_initialized:
+				await key_door.initialized
+			
+			key_door.stay_triggered()
+
 
 func collect() -> void:
 	# Call the collect() function of the Collectable class.
