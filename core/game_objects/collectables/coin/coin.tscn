@@ -1,21 +1,21 @@
 [gd_scene load_steps=13 format=3 uid="uid://b1dbw36tkmvwy"]
 
-[ext_resource type="Script" path="res://core/game_objects/collectables/coin/coin.gd" id="1_k1jfa"]
+[ext_resource type="Script" uid="uid://dcbp13rcj68rv" path="res://core/game_objects/collectables/coin/coin.gd" id="1_k1jfa"]
 [ext_resource type="Texture2D" uid="uid://sfeanntnhuwr" path="res://core/game_objects/collectables/coin/Coin.png" id="2_a33l2"]
 [ext_resource type="Texture2D" uid="uid://d1ch3bxh6knag" path="res://core/game_objects/collectables/coin/coin_outline.png" id="2_wfxgp"]
 [ext_resource type="PackedScene" uid="uid://brxa1aj0qdr67" path="res://core/components/masked_sprite/masked_sprite.tscn" id="4_gsoaw"]
-[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="5_41e0h"]
+[ext_resource type="Shader" uid="uid://d3fbqmq7mqbdv" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="5_41e0h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hp5v8"]
 resource_local_to_scene = true
 shader = ExtResource("5_41e0h")
 shader_parameter/opacity = 1.0
+shader_parameter/outline_texture = ExtResource("2_wfxgp")
+shader_parameter/fill_texture = ExtResource("2_wfxgp")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/fill_color = Color(1, 1, 0, 1)
 shader_parameter/outline_scale = Vector2(0.6, 0.6)
 shader_parameter/fill_scale = Vector2(0.3, 0.3)
-shader_parameter/outline_texture = ExtResource("2_wfxgp")
-shader_parameter/fill_texture = ExtResource("2_wfxgp")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ixegw"]
 radius = 13.0
@@ -41,12 +41,13 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_m2vw6")
 color_ramp = SubResource("GradientTexture1D_pjmya")
 
-[node name="Coin" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox")]
+[node name="Coin" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox") groups=["coin_ids"]]
 z_index = 2
 position = Vector2(1, 0)
 script = ExtResource("1_k1jfa")
 sound = 2
 array_name = "coins"
+id_group = "coins"
 sprite = NodePath("MaskedSprite")
 hitbox = NodePath("Hitbox")
 outline_theme_link = "gold_outline"
@@ -73,9 +74,9 @@ modulate = Color(1, 0.8, 0, 1)
 z_index = -1
 emitting = false
 amount = 15
-process_material = SubResource("ParticleProcessMaterial_sapgp")
 texture = ExtResource("2_a33l2")
 lifetime = 0.5
 fixed_fps = 60
 interpolate = false
 fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_sapgp")

@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=4 uid="uid://bfsdswsy0fx2h"]
 
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_1ncxg"]
-[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_ophqw"]
+[ext_resource type="Script" uid="uid://gl2d7dv5wh5s" path="res://core/system/folder_2d.gd" id="3_ophqw"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_mbt7e"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_upcpb"]
-[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="6_rf4t4"]
+[ext_resource type="Script" uid="uid://b8he7thpslgv1" path="res://core/game_objects/solids/solid.gd" id="6_rf4t4"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="7_csgbk"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_xy66i"]
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="9_u4dxt"]
@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_8srmb"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="12_0tu7b"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="13_xviyu"]
-[ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
+[ext_resource type="Script" uid="uid://b5tqvv5g8byrw" path="res://core/custom_resources/enemy_properties.gd" id="14_rg33l"]
 [ext_resource type="PackedScene" uid="uid://2m4vpjsrwf3x" path="res://core/game_objects/other/destroyer/destroyer.tscn" id="15_g2r1u"]
-[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
+[ext_resource type="Script" uid="uid://dbvamlrxvnbh2" path="res://core/components/tick_based_timer.gd" id="16_3tb50"]
 
 [sub_resource type="GDScript" id="GDScript_khhan"]
 script/source = "extends Area
@@ -23,8 +23,6 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var timer: TickBasedTimer = $Timer3
 
 func _ready() -> void:
-	super()
-	
 	timer.timeout.connect(on_timer_timeout)
 
 func on_timer_timeout() -> void:
@@ -139,30 +137,38 @@ position = Vector2(168, 792)
 
 [node name="Coin2" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(264, 792)
+id_group = "coins"
 
 [node name="Coin3" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(360, 792)
+id_group = "coins"
 
 [node name="Coin4" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(456, 792)
+id_group = "coins"
 
 [node name="Coin5" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(1080, 792)
+id_group = "coins"
 
 [node name="Coin6" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(1176, 792)
+id_group = "coins"
 
 [node name="Coin7" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(1272, 792)
+id_group = "coins"
 
 [node name="Coin8" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(1368, 792)
+id_group = "coins"
 
 [node name="Keys" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")
 
 [node name="Key" parent="Keys" instance=ExtResource("11_8srmb")]
 position = Vector2(888, 1176)
+id_group = "keys"
 
 [node name="GoldDoors" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")

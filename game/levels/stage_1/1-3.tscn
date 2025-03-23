@@ -1,10 +1,10 @@
 [gd_scene load_steps=24 format=4 uid="uid://bsw5v7lee15e2"]
 
-[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_xlul0"]
-[ext_resource type="Script" path="res://core/custom_resources/area_theme.gd" id="2_f4ofl"]
-[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_qv0m8"]
+[ext_resource type="Script" uid="uid://ls7lnt2trggs" path="res://core/system/scene/area.gd" id="1_xlul0"]
+[ext_resource type="Script" uid="uid://dk16hbygnppm1" path="res://core/custom_resources/area_theme.gd" id="2_f4ofl"]
+[ext_resource type="Script" uid="uid://gl2d7dv5wh5s" path="res://core/system/folder_2d.gd" id="3_qv0m8"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_rxscb"]
-[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="5_sflpq"]
+[ext_resource type="Script" uid="uid://b8he7thpslgv1" path="res://core/game_objects/solids/solid.gd" id="5_sflpq"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="6_h8ggs"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="7_itjy8"]
 [ext_resource type="Material" uid="uid://xuwi4n7ff2it" path="res://core/shaders/screen_gradient/fill_gradient.tres" id="7_k0rsa"]
@@ -12,14 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_svj4m"]
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="9_pjoyj"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_wed7a"]
-[ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="11_ao6wr"]
+[ext_resource type="Script" uid="uid://cdpy2xoy315vw" path="res://core/components/velocity_component/velocity_component.gd" id="11_ao6wr"]
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_hvxuf"]
-[ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="11_vvlxt"]
+[ext_resource type="Script" uid="uid://b5tqvv5g8byrw" path="res://core/custom_resources/enemy_properties.gd" id="11_vvlxt"]
 [ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/solids/gold_door/gold_door.tscn" id="12_nkv72"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="13_b7sy1"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="14_4u7yo"]
-[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="15_h5vts"]
-[ext_resource type="PackedScene" uid="uid://dbpu6toxelscq" path="res://core/game_objects/other/teleporter/teleporter.tscn" id="20_8xh5c"]
+[ext_resource type="Script" uid="uid://dbvamlrxvnbh2" path="res://core/components/tick_based_timer.gd" id="15_h5vts"]
+[ext_resource type="PackedScene" uid="uid://bmlrlt3osablc" path="res://core/game_objects/other/teleporter/teleporter.tscn" id="20_8xh5c"]
 
 [sub_resource type="Resource" id="Resource_84pyo"]
 script = ExtResource("2_f4ofl")
@@ -38,6 +38,7 @@ interface_sides = Color(0.79, 0.5214, 0.5214, 1)
 
 [sub_resource type="Resource" id="Resource_c6vs7"]
 script = ExtResource("11_vvlxt")
+motion_trail = true
 constant_check = false
 lock_scale = false
 copy_area_theme = true
@@ -48,6 +49,7 @@ outline_shader = ExtResource("7_yux3v")
 
 [sub_resource type="Resource" id="Resource_yr6iw"]
 script = ExtResource("11_vvlxt")
+motion_trail = true
 constant_check = false
 lock_scale = false
 copy_area_theme = true
@@ -284,17 +286,17 @@ editor_description = "This folder doesn't get scanned at launch. Put everything 
 script = ExtResource("3_qv0m8")
 
 [node name="Teleporter" parent="." instance=ExtResource("20_8xh5c")]
-position = Vector2(-24, 480)
+offset_left = -24.0
+offset_top = 480.0
+offset_right = -24.0
+offset_bottom = 480.0
 scale = Vector2(1, 2)
-destination_position = Vector2(1512, 480)
-is_relative = false
-teleporter_setting = 1
 
 [node name="Teleporter2" parent="." instance=ExtResource("20_8xh5c")]
-position = Vector2(1560, 480)
+offset_left = 1560.0
+offset_top = 480.0
+offset_right = 1560.0
+offset_bottom = 480.0
 scale = Vector2(1, 2)
-destination_position = Vector2(32, 480)
-is_relative = false
-teleporter_setting = 1
 
 [editable path="Walls/TileBasedWall"]

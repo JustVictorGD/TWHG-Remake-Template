@@ -1,5 +1,8 @@
+@tool
 extends GameObject2D
 class_name Collectable
+
+const ARRAY_FAIL_MESSAGE: String = "SAVE ARRAY FAILED"
 
 ## Print debug information. (WIP, does nothing)
 @export var tracking: bool = false
@@ -17,6 +20,27 @@ class_name Collectable
 
 ## Used for saving the collectable's state to file, more specifically an array.
 @export var array_name: String
+
+@export var id_group: String
+
+## Used by 'save_array' to avoid repeating complex operations after a success.
+var array_valid: bool = false
+
+var save_array: Array:
+	get:
+		if array_valid: return save_array
+		
+		if not is_instance_valid(area) or array_name == "":
+			return [ARRAY_FAIL_MESSAGE]
+		
+		if array_name not in area.persistent_data.keys():
+			area.persistent_data[array_name] = []
+		
+		array_valid = true
+		save_array = area.persistent_data[array_name]
+		return save_array
+
+
 
 # Only really exists for paints, as they can both become semi-transparent
 # from a special mode (ghost paints) and can have a fading animation.
@@ -44,22 +68,18 @@ var collect_animation: TickBasedTimer = TickBasedTimer.new(6)
 var drop_animation: TickBasedTimer = TickBasedTimer.new(6)
 
 var state: states = states.UNCOLLECTED
-
 var id: int
+
 
 func _ready() -> void:
 	super()
 	
 	if not in_editor:
-		print(array_name != "")
+		id = IdGenerator.get_group(id_group)
 		
-		if is_instance_valid(area) and array_name != "":
-			print("Instance valid.")
-			if array_name not in area.persistent_data.keys():
-				print("- Array name not in persistent keys.")
-				area.persistent_data[array_name] = []
-			
-			area.persistent_data[array_name].append(0)
+		if save_array != [ARRAY_FAIL_MESSAGE]:
+			id = save_array.size()
+			save_array.append(0)
 		
 		if not registered:
 			GameManager.update_timers.connect(update_timers)

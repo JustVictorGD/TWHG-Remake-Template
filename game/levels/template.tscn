@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=4 uid="uid://cqaqxbbo5mla6"]
 
-[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_3o1ei"]
+[ext_resource type="Script" uid="uid://ls7lnt2trggs" path="res://core/system/scene/area.gd" id="1_3o1ei"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_pbtqy"]
-[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_ivdn3"]
+[ext_resource type="Script" uid="uid://gl2d7dv5wh5s" path="res://core/system/folder_2d.gd" id="3_ivdn3"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_joj78"]
-[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="6_pnra0"]
+[ext_resource type="Script" uid="uid://b8he7thpslgv1" path="res://core/game_objects/solids/solid.gd" id="6_pnra0"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="7_rgh5d"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_awqji"]
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="9_xdiei"]

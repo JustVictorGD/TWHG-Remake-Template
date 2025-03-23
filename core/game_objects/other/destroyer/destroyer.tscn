@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://2m4vpjsrwf3x"]
 
-[ext_resource type="Script" path="res://core/game_objects/other/destroyer/destroyer.gd" id="1_dwi2a"]
+[ext_resource type="Script" uid="uid://dyk8j5djxwcvo" path="res://core/game_objects/other/destroyer/destroyer.gd" id="1_dwi2a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stn6n"]
 resource_local_to_scene = true

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cfose7pjgg8lv"]
 
-[ext_resource type="Shader" path="res://core/shaders/screen_gradient/screen_gradient_shader.gdshader" id="1_2loyk"]
+[ext_resource type="Shader" uid="uid://cvx03ethohnqw" path="res://core/shaders/screen_gradient/screen_gradient_shader.gdshader" id="1_2loyk"]
 
 [sub_resource type="Gradient" id="Gradient_ohy4m"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -12,5 +12,5 @@ fill_from = Vector2(1, 1)
 
 [resource]
 shader = ExtResource("1_2loyk")
-shader_parameter/overlay_opacity = 1.0
 shader_parameter/gradient_texture = SubResource("GradientTexture2D_71mko")
+shader_parameter/overlay_opacity = 1.0

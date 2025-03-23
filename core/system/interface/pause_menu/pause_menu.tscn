@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://btuvdtlg5u165"]
 
-[ext_resource type="Script" path="res://core/system/interface/pause_menu/pause_menu.gd" id="1_eyytm"]
+[ext_resource type="Script" uid="uid://bcygdpa10puv6" path="res://core/system/interface/pause_menu/pause_menu.gd" id="1_eyytm"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="2_g15fw"]
-[ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_container.gd" id="3_orb62"]
+[ext_resource type="Script" uid="uid://0k0kcrsoeqyv" path="res://core/system/interface/pause_menu/paint_container/paint_container.gd" id="3_orb62"]
 
 [sub_resource type="Theme" id="Theme_ddqyr"]
 

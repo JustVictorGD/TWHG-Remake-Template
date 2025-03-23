@@ -1,21 +1,21 @@
 [gd_scene load_steps=8 format=3 uid="uid://b0dbbdclyjpxo"]
 
-[ext_resource type="Script" path="res://core/game_objects/collectables/key/key.gd" id="1_n7evj"]
+[ext_resource type="Script" uid="uid://u2n7g165s6mu" path="res://core/game_objects/collectables/key/key.gd" id="1_n7evj"]
 [ext_resource type="Texture2D" uid="uid://cykrjltlwlbtd" path="res://core/game_objects/collectables/key/key_outline.png" id="3_l4rgn"]
 [ext_resource type="PackedScene" uid="uid://brxa1aj0qdr67" path="res://core/components/masked_sprite/masked_sprite.tscn" id="3_uki4b"]
-[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="4_0p48g"]
+[ext_resource type="Shader" uid="uid://d3fbqmq7mqbdv" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="4_0p48g"]
 [ext_resource type="Texture2D" uid="uid://dyy8fd8kaymlg" path="res://core/game_objects/collectables/key/key_fill.png" id="4_5hayw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qe6y7"]
 resource_local_to_scene = true
 shader = ExtResource("4_0p48g")
 shader_parameter/opacity = 1.0
+shader_parameter/outline_texture = ExtResource("3_l4rgn")
+shader_parameter/fill_texture = ExtResource("4_5hayw")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 1)
 shader_parameter/outline_scale = Vector2(1, 1)
 shader_parameter/fill_scale = Vector2(1, 1)
-shader_parameter/outline_texture = ExtResource("3_l4rgn")
-shader_parameter/fill_texture = ExtResource("4_5hayw")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rb5dr"]
 radius = 21.0
@@ -24,6 +24,7 @@ radius = 21.0
 script = ExtResource("1_n7evj")
 sound = 5
 array_name = "keys"
+id_group = "keys"
 sprite = NodePath("MaskedSprite")
 hitbox = NodePath("Hitbox")
 outline_theme_link = "key_outline"

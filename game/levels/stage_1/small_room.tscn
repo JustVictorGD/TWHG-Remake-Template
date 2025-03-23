@@ -1,16 +1,16 @@
 [gd_scene load_steps=19 format=3 uid="uid://ihcdg7j8edmp"]
 
-[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_4r10h"]
+[ext_resource type="Script" uid="uid://ls7lnt2trggs" path="res://core/system/scene/area.gd" id="1_4r10h"]
 [ext_resource type="Resource" uid="uid://bnkml2vts6jbf" path="res://game/themes/custom/orange_theme.tres" id="2_clx40"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="3_w0ebs"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="5_b85qo"]
-[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="6_1elcq"]
+[ext_resource type="Script" uid="uid://gl2d7dv5wh5s" path="res://core/system/folder_2d.gd" id="6_1elcq"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="7_66r1i"]
-[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="7_vtrin"]
-[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="8_m2jsx"]
+[ext_resource type="Script" uid="uid://b8he7thpslgv1" path="res://core/game_objects/solids/solid.gd" id="7_vtrin"]
+[ext_resource type="Script" uid="uid://cc65l40ksv5uw" path="res://core/components/tick_based_animator.gd" id="8_m2jsx"]
 [ext_resource type="PackedScene" uid="uid://bs5rt1uniqm2g" path="res://core/game_objects/other/turret/turret.tscn" id="9_x0h7h"]
-[ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="10_1hxpd"]
-[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="10_baewg"]
+[ext_resource type="Script" uid="uid://b5tqvv5g8byrw" path="res://core/custom_resources/enemy_properties.gd" id="10_1hxpd"]
+[ext_resource type="Script" uid="uid://dbvamlrxvnbh2" path="res://core/components/tick_based_timer.gd" id="10_baewg"]
 
 [sub_resource type="Animation" id="Animation_y3mh4"]
 length = 0.001
@@ -46,8 +46,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lixfg"]
 _data = {
-"RESET": SubResource("Animation_y3mh4"),
-"new_animation": SubResource("Animation_pmfjl")
+&"RESET": SubResource("Animation_y3mh4"),
+&"new_animation": SubResource("Animation_pmfjl")
 }
 
 [sub_resource type="Animation" id="Animation_ybkw4"]
@@ -84,12 +84,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cyuu8"]
 _data = {
-"RESET": SubResource("Animation_ybkw4"),
-"new_animation": SubResource("Animation_ornn3")
+&"RESET": SubResource("Animation_ybkw4"),
+&"new_animation": SubResource("Animation_ornn3")
 }
 
 [sub_resource type="Resource" id="Resource_0vqd2"]
 script = ExtResource("10_1hxpd")
+motion_trail = true
 constant_check = false
 lock_scale = false
 copy_area_theme = false

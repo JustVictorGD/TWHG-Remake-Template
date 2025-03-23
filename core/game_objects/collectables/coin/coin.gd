@@ -9,8 +9,6 @@ class_name Coin
 
 
 func _ready() -> void:
-	print("Coin: The ID I got is ", IdGenerator.get_group("coins"))
-	
 	if motion_trail:
 		$GPUParticles2D.emitting = true
 	

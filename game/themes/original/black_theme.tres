@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AreaTheme" load_steps=2 format=3 uid="uid://dne7ujc3p4rof"]
 
-[ext_resource type="Script" path="res://core/custom_resources/area_theme.gd" id="1_x0o8p"]
+[ext_resource type="Script" uid="uid://dk16hbygnppm1" path="res://core/custom_resources/area_theme.gd" id="1_x0o8p"]
 
 [resource]
 script = ExtResource("1_x0o8p")
@@ -15,3 +15,4 @@ gold_fill = Color(1, 0.8, 0, 1)
 key_outline = Color(0.267, 0.267, 0.267, 1)
 key_fill = Color(0.6, 0.6, 0.6, 1)
 pit = Color(0, 0, 0, 1)
+interface_sides = Color(0.2, 0.2, 0.2, 1)

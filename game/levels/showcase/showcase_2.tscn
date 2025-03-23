@@ -1,13 +1,13 @@
 [gd_scene load_steps=45 format=4 uid="uid://bmfj6stcw3tmb"]
 
-[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_liv7r"]
+[ext_resource type="Script" uid="uid://ls7lnt2trggs" path="res://core/system/scene/area.gd" id="1_liv7r"]
 [ext_resource type="Resource" uid="uid://bnkml2vts6jbf" path="res://game/themes/custom/orange_theme.tres" id="2_aj14a"]
-[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_2whpu"]
+[ext_resource type="Script" uid="uid://gl2d7dv5wh5s" path="res://core/system/folder_2d.gd" id="3_2whpu"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_5avu2"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_ocv1l"]
-[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="6_wwbfh"]
+[ext_resource type="Script" uid="uid://b8he7thpslgv1" path="res://core/game_objects/solids/solid.gd" id="6_wwbfh"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="7_2isxx"]
-[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="7_j0l1l"]
+[ext_resource type="Script" uid="uid://cc65l40ksv5uw" path="res://core/components/tick_based_animator.gd" id="7_j0l1l"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_qk68h"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_idkol"]
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_rt1mg"]
@@ -49,8 +49,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0lbd4"]
 _data = {
-"RESET": SubResource("Animation_4vlqw"),
-"new_animation": SubResource("Animation_mxxaa")
+&"RESET": SubResource("Animation_4vlqw"),
+&"new_animation": SubResource("Animation_mxxaa")
 }
 
 [sub_resource type="Animation" id="Animation_kg0s1"]
@@ -87,8 +87,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a3ftb"]
 _data = {
-"RESET": SubResource("Animation_kg0s1"),
-"new_animation": SubResource("Animation_uh50e")
+&"RESET": SubResource("Animation_kg0s1"),
+&"new_animation": SubResource("Animation_uh50e")
 }
 
 [sub_resource type="Animation" id="Animation_8ba32"]
@@ -125,8 +125,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bf5oa"]
 _data = {
-"RESET": SubResource("Animation_8ba32"),
-"new_animation": SubResource("Animation_gfoed")
+&"RESET": SubResource("Animation_8ba32"),
+&"new_animation": SubResource("Animation_gfoed")
 }
 
 [sub_resource type="Animation" id="Animation_xcn2k"]
@@ -163,8 +163,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yalpx"]
 _data = {
-"RESET": SubResource("Animation_xcn2k"),
-"new_animation": SubResource("Animation_8rwlh")
+&"RESET": SubResource("Animation_xcn2k"),
+&"new_animation": SubResource("Animation_8rwlh")
 }
 
 [sub_resource type="Animation" id="Animation_3y3in"]
@@ -201,8 +201,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ipx1"]
 _data = {
-"RESET": SubResource("Animation_3y3in"),
-"new_animation": SubResource("Animation_8mjap")
+&"RESET": SubResource("Animation_3y3in"),
+&"new_animation": SubResource("Animation_8mjap")
 }
 
 [sub_resource type="Animation" id="Animation_wwdoy"]
@@ -239,8 +239,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vi45x"]
 _data = {
-"RESET": SubResource("Animation_wwdoy"),
-"new_animation": SubResource("Animation_ejvoh")
+&"RESET": SubResource("Animation_wwdoy"),
+&"new_animation": SubResource("Animation_ejvoh")
 }
 
 [sub_resource type="Animation" id="Animation_nn6ku"]
@@ -276,8 +276,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_12mpa"]
 _data = {
-"RESET": SubResource("Animation_nn6ku"),
-"new_animation": SubResource("Animation_j4dud")
+&"RESET": SubResource("Animation_nn6ku"),
+&"new_animation": SubResource("Animation_j4dud")
 }
 
 [sub_resource type="Animation" id="Animation_7am4n"]
@@ -313,8 +313,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lymuf"]
 _data = {
-"RESET": SubResource("Animation_7am4n"),
-"new_animation": SubResource("Animation_o6f14")
+&"RESET": SubResource("Animation_7am4n"),
+&"new_animation": SubResource("Animation_o6f14")
 }
 
 [sub_resource type="Animation" id="Animation_5g3rg"]
@@ -351,8 +351,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2vnkr"]
 _data = {
-"RESET": SubResource("Animation_5g3rg"),
-"new_animation": SubResource("Animation_eqxi2")
+&"RESET": SubResource("Animation_5g3rg"),
+&"new_animation": SubResource("Animation_eqxi2")
 }
 
 [sub_resource type="Animation" id="Animation_r6our"]
@@ -390,8 +390,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r5vph"]
 _data = {
-"RESET": SubResource("Animation_r6our"),
-"new_animation": SubResource("Animation_574jw")
+&"RESET": SubResource("Animation_r6our"),
+&"new_animation": SubResource("Animation_574jw")
 }
 
 [node name="Showcase2" type="Node2D" groups=["area"]]

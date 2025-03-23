@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://i1lhbw6e250o"]
 
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_3j6sm"]
-[ext_resource type="Script" path="res://core/system/interface/pause_menu/paint_container/paint_button.gd" id="2_xbfm7"]
+[ext_resource type="Script" uid="uid://x3nivc80ka88" path="res://core/system/interface/pause_menu/paint_container/paint_button.gd" id="2_xbfm7"]
 
 [node name="Button" type="Button"]
 self_modulate = Color(1, 1, 1, 0)

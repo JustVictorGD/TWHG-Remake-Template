@@ -1,18 +1,18 @@
 [gd_scene load_steps=33 format=4 uid="uid://c1bhjs030vqlv"]
 
-[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_ttfq5"]
+[ext_resource type="Script" uid="uid://ls7lnt2trggs" path="res://core/system/scene/area.gd" id="1_ttfq5"]
 [ext_resource type="Resource" uid="uid://d4jty23uuw4bw" path="res://game/themes/custom/pink_theme.tres" id="2_y2utv"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="3_if1iy"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="4_3uxk1"]
-[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="4_gna1d"]
+[ext_resource type="Script" uid="uid://gl2d7dv5wh5s" path="res://core/system/folder_2d.gd" id="4_gna1d"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="5_ujh7a"]
 [ext_resource type="PackedScene" uid="uid://dfobwvq7x8k6i" path="res://core/game_objects/other/circle/circle.tscn" id="6_72w4j"]
-[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="7_8uesn"]
+[ext_resource type="Script" uid="uid://cc65l40ksv5uw" path="res://core/components/tick_based_animator.gd" id="7_8uesn"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_v7h88"]
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="9_uqk8l"]
 [ext_resource type="PackedScene" uid="uid://ctie7hckoi342" path="res://core/game_objects/solids/key_door/key_door.tscn" id="10_k0gxq"]
 [ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/solids/gold_door/gold_door.tscn" id="11_x8hxl"]
-[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="12_bcmw2"]
+[ext_resource type="Script" uid="uid://b8he7thpslgv1" path="res://core/game_objects/solids/solid.gd" id="12_bcmw2"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="13_0s7js"]
 
 [sub_resource type="Animation" id="Animation_t1oa8"]
@@ -48,8 +48,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hu2f0"]
 _data = {
-"RESET": SubResource("Animation_t1oa8"),
-"new_animation": SubResource("Animation_68scm")
+&"RESET": SubResource("Animation_t1oa8"),
+&"new_animation": SubResource("Animation_68scm")
 }
 
 [sub_resource type="Animation" id="Animation_0fenc"]
@@ -111,8 +111,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1fkvn"]
 _data = {
-"RESET": SubResource("Animation_0fenc"),
-"new_animation": SubResource("Animation_rtw32")
+&"RESET": SubResource("Animation_0fenc"),
+&"new_animation": SubResource("Animation_rtw32")
 }
 
 [sub_resource type="Animation" id="Animation_bj3x1"]
@@ -174,8 +174,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7e6"]
 _data = {
-"RESET": SubResource("Animation_bj3x1"),
-"new_animation": SubResource("Animation_6ji3t")
+&"RESET": SubResource("Animation_bj3x1"),
+&"new_animation": SubResource("Animation_6ji3t")
 }
 
 [sub_resource type="Animation" id="Animation_rhsyr"]
@@ -212,8 +212,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_04hee"]
 _data = {
-"RESET": SubResource("Animation_rhsyr"),
-"new_animation": SubResource("Animation_dt221")
+&"RESET": SubResource("Animation_rhsyr"),
+&"new_animation": SubResource("Animation_dt221")
 }
 
 [sub_resource type="Animation" id="Animation_i0ar4"]
@@ -249,8 +249,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ypg5j"]
 _data = {
-"RESET": SubResource("Animation_i0ar4"),
-"new_animation": SubResource("Animation_ukhjm")
+&"RESET": SubResource("Animation_i0ar4"),
+&"new_animation": SubResource("Animation_ukhjm")
 }
 
 [sub_resource type="Animation" id="Animation_ubdws"]
@@ -288,8 +288,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rxq0a"]
 _data = {
-"RESET": SubResource("Animation_ubdws"),
-"new_animation": SubResource("Animation_trcub")
+&"RESET": SubResource("Animation_ubdws"),
+&"new_animation": SubResource("Animation_trcub")
 }
 
 [node name="MainRoom" type="Node2D" groups=["area"]]

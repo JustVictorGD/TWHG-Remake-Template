@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://db78gabyxxg2y"]
 
-[ext_resource type="Script" path="res://core/system/player/player.gd" id="1_sxbrj"]
-[ext_resource type="Script" path="res://core/game_objects/solids/solid.gd" id="2_k8eip"]
+[ext_resource type="Script" uid="uid://cv47d51hgldec" path="res://core/system/player/player.gd" id="1_sxbrj"]
+[ext_resource type="Script" uid="uid://b8he7thpslgv1" path="res://core/game_objects/solids/solid.gd" id="2_k8eip"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_qubyp"]
-[ext_resource type="Script" path="res://core/components/velocity_component/velocity_component.gd" id="3_buqh6"]
-[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="5_pw1f6"]
+[ext_resource type="Script" uid="uid://cdpy2xoy315vw" path="res://core/components/velocity_component/velocity_component.gd" id="3_buqh6"]
+[ext_resource type="Script" uid="uid://dbvamlrxvnbh2" path="res://core/components/tick_based_timer.gd" id="5_pw1f6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnmxk"]
 size = Vector2(42, 42)
@@ -57,12 +57,12 @@ shape = SubResource("RectangleShape2D_pnmxk")
 modulate = Color(1, 0, 0, 1)
 z_index = -8
 amount = 15
-process_material = SubResource("ParticleProcessMaterial_jfo76")
 texture = ExtResource("2_qubyp")
 lifetime = 0.5
 fixed_fps = 60
 interpolate = false
 fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_jfo76")
 
 [node name="InputVelocityComponent" type="Node2D" parent="."]
 script = ExtResource("3_buqh6")

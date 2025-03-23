@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cmrgen2r562ou"]
 
-[ext_resource type="Script" path="res://core/system/scene/end_screen.gd" id="1_cwniu"]
+[ext_resource type="Script" uid="uid://hleid1nunjt7" path="res://core/system/scene/end_screen.gd" id="1_cwniu"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="1_r53vj"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="2_6ujsm"]
-[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="3_2fd14"]
+[ext_resource type="Script" uid="uid://dbvamlrxvnbh2" path="res://core/components/tick_based_timer.gd" id="3_2fd14"]
 
 [sub_resource type="Gradient" id="Gradient_i2ar1"]
 offsets = PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.8, 0.9, 1)

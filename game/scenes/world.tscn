@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://55jl8jvoqiur"]
 
-[ext_resource type="Script" path="res://core/system/scene/world.gd" id="1_vvjqr"]
-[ext_resource type="Script" path="res://core/system/scene/rect_visualizer.gd" id="2_55ix0"]
+[ext_resource type="Script" uid="uid://cdafyawad848r" path="res://core/system/scene/world.gd" id="1_vvjqr"]
+[ext_resource type="Script" uid="uid://djwqnffna1ku" path="res://core/system/scene/rect_visualizer.gd" id="2_55ix0"]
 [ext_resource type="PackedScene" uid="uid://jn6lkoo3vdrt" path="res://core/system/interface/interface.tscn" id="3_vj0hv"]
-[ext_resource type="Shader" path="res://core/shaders/vignette/vignette.gdshader" id="4_dvtww"]
+[ext_resource type="Shader" uid="uid://d0w75y1eddoxe" path="res://core/shaders/vignette/vignette.gdshader" id="4_dvtww"]
 [ext_resource type="PackedScene" uid="uid://db78gabyxxg2y" path="res://core/system/player/player.tscn" id="4_n1yce"]
-[ext_resource type="Script" path="res://core/system/scene/shader_container.gd" id="4_rpnxj"]
-[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="5_7upe0"]
+[ext_resource type="Script" uid="uid://8nsid5o4y7ww" path="res://core/system/scene/shader_container.gd" id="4_rpnxj"]
+[ext_resource type="Script" uid="uid://dbvamlrxvnbh2" path="res://core/components/tick_based_timer.gd" id="5_7upe0"]
 [ext_resource type="Material" uid="uid://xauxknlfrump" path="res://core/shaders/vignette/vignette.tres" id="5_iye3r"]
 
 [sub_resource type="Environment" id="Environment_s0ysr"]

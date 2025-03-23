@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://brxa1aj0qdr67"]
 
-[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="1_nrwfu"]
-[ext_resource type="Script" path="res://core/components/masked_sprite/masked_sprite.gd" id="2_6dbmt"]
+[ext_resource type="Shader" uid="uid://d3fbqmq7mqbdv" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="1_nrwfu"]
+[ext_resource type="Script" uid="uid://pambr8xqauom" path="res://core/components/masked_sprite/masked_sprite.gd" id="2_6dbmt"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_rg5sm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_et4mx"]

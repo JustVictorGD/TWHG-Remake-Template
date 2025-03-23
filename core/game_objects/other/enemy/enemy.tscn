@@ -1,21 +1,21 @@
 [gd_scene load_steps=13 format=3 uid="uid://d2tu2qgth8he6"]
 
-[ext_resource type="Script" path="res://core/game_objects/other/enemy/enemy.gd" id="1_0mjwl"]
+[ext_resource type="Script" uid="uid://7vjuxqahxl7d" path="res://core/game_objects/other/enemy/enemy.gd" id="1_0mjwl"]
 [ext_resource type="Texture2D" uid="uid://bt6njoie05rxm" path="res://core/game_objects/other/enemy/enemy_outline.png" id="2_s808a"]
 [ext_resource type="Texture2D" uid="uid://qp3hlpihs6sm" path="res://core/game_objects/other/enemy/enemy_fill.png" id="3_3npqu"]
 [ext_resource type="PackedScene" uid="uid://brxa1aj0qdr67" path="res://core/components/masked_sprite/masked_sprite.tscn" id="4_hmlag"]
-[ext_resource type="Shader" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="5_cbuks"]
+[ext_resource type="Shader" uid="uid://d3fbqmq7mqbdv" path="res://core/components/masked_sprite/masked_sprite.gdshader" id="5_cbuks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5dbp"]
 resource_local_to_scene = true
 shader = ExtResource("5_cbuks")
 shader_parameter/opacity = 1.0
+shader_parameter/outline_texture = ExtResource("2_s808a")
+shader_parameter/fill_texture = ExtResource("3_3npqu")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 1)
 shader_parameter/outline_scale = Vector2(1, 1)
 shader_parameter/fill_scale = Vector2(1, 1)
-shader_parameter/outline_texture = ExtResource("2_s808a")
-shader_parameter/fill_texture = ExtResource("3_3npqu")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yer0x"]
 radius = 7.0
@@ -64,11 +64,11 @@ shape = SubResource("CircleShape2D_yer0x")
 z_index = -8
 emitting = false
 amount = 15
-process_material = SubResource("ParticleProcessMaterial_mf8v6")
 texture = ExtResource("3_3npqu")
 lifetime = 0.5
 fixed_fps = 60
 interpolate = false
 fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_mf8v6")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

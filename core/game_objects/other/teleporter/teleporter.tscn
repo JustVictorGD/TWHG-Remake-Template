@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmlrlt3osablc"]
 
-[ext_resource type="Script" path="res://core/game_objects/other/teleporter/teleporter.gd" id="1_yc62x"]
+[ext_resource type="Script" uid="uid://b7ds7r2r0sgny" path="res://core/game_objects/other/teleporter/teleporter.gd" id="1_yc62x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stn6n"]
 resource_local_to_scene = true

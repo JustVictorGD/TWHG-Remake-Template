@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://csfgjflaug8s3"]
 
 [ext_resource type="AudioStream" uid="uid://0rswldab7ydh" path="res://core/misc_assets/sfx/enemyDeathSoundTrim.mp3" id="1_e4xx7"]
-[ext_resource type="Script" path="res://core/system/autoloads/sfx.gd" id="1_mivbn"]
+[ext_resource type="Script" uid="uid://coo61ue21pg0u" path="res://core/system/autoloads/sfx.gd" id="1_mivbn"]
 [ext_resource type="AudioStream" uid="uid://bu84u2jmyt44x" path="res://core/misc_assets/sfx/checkSoundTrim.mp3" id="3_lkdm5"]
 [ext_resource type="AudioStream" uid="uid://bmw6501vnycx0" path="res://core/misc_assets/sfx/coinSoundTrim.mp3" id="4_phojv"]
 [ext_resource type="AudioStream" uid="uid://bno35o3repwfl" path="res://core/misc_assets/sfx/winSound.mp3" id="5_6rhof"]

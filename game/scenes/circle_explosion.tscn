@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://jqavj6nthx3"]
 
-[ext_resource type="Script" path="res://core/custom_resources/enemy_properties.gd" id="1_qcq02"]
+[ext_resource type="Script" uid="uid://b5tqvv5g8byrw" path="res://core/custom_resources/enemy_properties.gd" id="1_qcq02"]
 [ext_resource type="Texture2D" uid="uid://ray81isa7cuw" path="res://core/misc_assets/images/Blank pixel.png" id="2_i5026"]
 
 [sub_resource type="GDScript" id="GDScript_0baoa"]
