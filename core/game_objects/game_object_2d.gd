@@ -68,6 +68,7 @@ func _ready() -> void:
 
 func update_colors() -> void:
 	if sprite == null:
+		push_error("GameObject2D didn't find its sprite node.")
 		return
 	
 	var theme: AreaTheme

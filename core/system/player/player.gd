@@ -18,11 +18,7 @@ class_name Player
 #var paint_id: int
 var color_tuple: ColorTuple:
 	get: 
-		if PaintManager.current_paint_id == -1:
-			return PaintManager.default_player
-		else:
-			return PaintManager.unlockable_paints[PaintManager.current_paint_id]
-		#return PaintManager.default_player if PaintManager.current_paint_id == -1 else PaintManager.unlockable_paints[paint_id]
+		return PaintManager.get_coating(PaintManager.current_coating)
 
 var movement_direction: Vector2 = Vector2.ZERO
 
@@ -94,8 +90,6 @@ func _ready() -> void:
 	GameManager.collision_update.connect(collision_update)
 	GameManager.update_timers.connect(update_timers)
 	Signals.paint_changed.connect(on_paint_change)
-	
-	#PaintManager.current_paint_id = SaveFile.save_dictionary["global"]["color"]
 
 
 func change_size(size: Vector2i) -> void:
@@ -109,9 +103,10 @@ func change_size(size: Vector2i) -> void:
 func movement_update() -> void:
 	var sliding_sensitivity: float = GameManager.sliding_sensitivity
 	
-	sprite.outline_color = color_tuple.outline
-	sprite.fill_color = color_tuple.fill
-	particles.modulate = color_tuple.fill
+	if is_instance_valid(color_tuple):
+		sprite.outline_color = color_tuple.outline
+		sprite.fill_color = color_tuple.fill
+		particles.modulate = color_tuple.fill
 	
 	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
@@ -265,7 +260,7 @@ func _on_area_entered(area: Area2D) -> void:
 			var paint: Paint = area.get_parent()
 			
 			paint.try_collect()
-			PaintManager.current_paint_id = paint.paint_id
+			PaintManager.current_coating = paint.coating_id
 	
 	if area.is_in_group("teleporter"):
 		var parent: Node = area.get_parent()

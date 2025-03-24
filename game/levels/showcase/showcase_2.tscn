@@ -1254,6 +1254,7 @@ metadata/_edit_lock_ = true
 
 [node name="Paint" parent="Paints" instance=ExtResource("14_c1imf")]
 position = Vector2(768, 576)
+coating_id = 1
 
 [node name="Decoration" type="Node2D" parent="."]
 editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."

@@ -27,6 +27,7 @@ array_name = "paints"
 id_group = "paints"
 sprite = NodePath("MaskedSprite")
 hitbox = NodePath("Hitbox")
+copy_area_theme = false
 
 [node name="MaskedSprite" parent="." instance=ExtResource("3_3btvp")]
 material = SubResource("ShaderMaterial_t003k")

@@ -374,19 +374,19 @@ metadata/_edit_lock_ = true
 
 [node name="Paint" parent="Paints" instance=ExtResource("14_rg6jh")]
 position = Vector2(744, 456)
-paint_id = 1
+coating_id = 2
 
 [node name="Paint2" parent="Paints" instance=ExtResource("14_rg6jh")]
 position = Vector2(792, 456)
-paint_id = 2
+coating_id = 3
 
 [node name="Paint3" parent="Paints" instance=ExtResource("14_rg6jh")]
 position = Vector2(744, 504)
-paint_id = 3
+coating_id = 4
 
 [node name="Paint4" parent="Paints" instance=ExtResource("14_rg6jh")]
 position = Vector2(792, 504)
-paint_id = 4
+coating_id = 5
 
 [node name="Decoration" type="Node2D" parent="."]
 z_index = 10

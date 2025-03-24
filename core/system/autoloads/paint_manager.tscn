@@ -3,38 +3,44 @@
 [ext_resource type="Script" uid="uid://w7te4j1s0tgu" path="res://core/system/autoloads/paint_manager.gd" id="1_iav1l"]
 [ext_resource type="Script" uid="uid://gp0oq8m0mpvl" path="res://core/custom_resources/color_tuple.gd" id="2_n2obn"]
 
-[sub_resource type="Resource" id="Resource_fcuxf"]
+[sub_resource type="Resource" id="Resource_niwuq"]
+script = ExtResource("2_n2obn")
+outline = Color(0, 0, 0, 1)
+fill = Color(1, 0, 1, 1)
+metadata/_custom_type_script = "uid://gp0oq8m0mpvl"
+
+[sub_resource type="Resource" id="Resource_gtmlq"]
 script = ExtResource("2_n2obn")
 outline = Color(0.4, 0, 0, 1)
 fill = Color(1, 0, 0, 1)
+metadata/_custom_type_script = "uid://gp0oq8m0mpvl"
 
-[sub_resource type="Resource" id="Resource_aq1i0"]
+[sub_resource type="Resource" id="Resource_1m6cu"]
 script = ExtResource("2_n2obn")
 outline = Color(0, 0.301961, 0, 1)
 fill = Color(0, 0.752941, 0, 1)
+metadata/_custom_type_script = "uid://gp0oq8m0mpvl"
 
-[sub_resource type="Resource" id="Resource_cb1wg"]
+[sub_resource type="Resource" id="Resource_b0wq3"]
 script = ExtResource("2_n2obn")
 outline = Color(0, 0, 0.4, 1)
 fill = Color(0, 0, 1, 1)
+metadata/_custom_type_script = "uid://gp0oq8m0mpvl"
 
-[sub_resource type="Resource" id="Resource_7x0ta"]
+[sub_resource type="Resource" id="Resource_mpmrc"]
+script = ExtResource("2_n2obn")
+outline = Color(0.4, 0.32, 0, 1)
+fill = Color(1, 0.8, 0, 1)
+metadata/_custom_type_script = "uid://gp0oq8m0mpvl"
+
+[sub_resource type="Resource" id="Resource_k48y4"]
 script = ExtResource("2_n2obn")
 outline = Color(0.4, 0, 0.4, 1)
 fill = Color(1, 0, 1, 1)
-
-[sub_resource type="Resource" id="Resource_b05vv"]
-script = ExtResource("2_n2obn")
-outline = Color(0.2, 0.2, 0.2, 1)
-fill = Color(0.5, 0.5, 0.5, 1)
-
-[sub_resource type="Resource" id="Resource_gjhpk"]
-script = ExtResource("2_n2obn")
-outline = Color(0.4, 0.36, 0, 1)
-fill = Color(1, 0.9, 0, 1)
+metadata/_custom_type_script = "uid://gp0oq8m0mpvl"
 
 [node name="PaintManager" type="Node"]
 script = ExtResource("1_iav1l")
-default_player = SubResource("Resource_fcuxf")
-ghost_tint = Color(0.361294, 0.695266, 0.999998, 0.25)
-unlockable_paints = Array[ExtResource("2_n2obn")]([SubResource("Resource_aq1i0"), SubResource("Resource_cb1wg"), SubResource("Resource_7x0ta"), SubResource("Resource_b05vv"), SubResource("Resource_gjhpk")])
+error_coating = SubResource("Resource_niwuq")
+coatings = Array[ExtResource("2_n2obn")]([SubResource("Resource_gtmlq"), SubResource("Resource_1m6cu"), SubResource("Resource_b0wq3"), SubResource("Resource_mpmrc"), SubResource("Resource_k48y4")])
+instant_unlocks = PackedInt32Array(0)
