@@ -22,10 +22,9 @@ var color_tuple: ColorTuple:
 
 var movement_direction: Vector2 = Vector2.ZERO
 
-# Timers, used for fading the player in and out.
-@onready var respawn_timer: TickBasedTimer = $RespawnTimer
-@onready var death_animation: TickBasedTimer = $DeathAnimationTimer
-@onready var respawn_animation: TickBasedTimer = $RespawnAnimationTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var respawn_timer: Timer = $RespawnTimer
+
 
 var dead: bool = false # Invincible but disables movement and is temporary
 
@@ -85,9 +84,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	respawn_timer.timeout.connect(respawn)
 	GameManager.movement_update.connect(movement_update)
-	GameManager.update_timers.connect(update_timers)
 	Signals.paint_changed.connect(on_paint_change)
 
 
@@ -170,18 +167,6 @@ func movement_update() -> void:
 				enemy_death()
 
 
-func update_timers() -> void:
-	sprite.modulate.a = 1
-	
-	if death_animation.active:
-		sprite.modulate.a = death_animation.get_progress_left()
-	elif dead: # Short time after the animation ends
-		sprite.modulate.a = 0
-	
-	if respawn_animation.active == true:
-		sprite.modulate.a = respawn_animation.get_progress()
-
-
 #endregion
 
 #region Gameplay Functions
@@ -191,26 +176,25 @@ func collect_coin(id: int) -> void:
 
 
 func enemy_death() -> void:
+	animation_player.play("death")
 	dead = true
 	
 	GameManager.deaths += 1
 	SFX.play(SFX.sounds.ENEMY_DEATH)
-	
-	respawn_timer.reset_and_play()
-	death_animation.reset_and_play()
-	
 	Signals.player_death.emit()
+	
+	respawn_timer.start()
 
 
 func respawn() -> void:
+	animation_player.play("respawn")
+	dead = false
+	
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoints"):
 		if checkpoint.id == GameManager.last_checkpoint_id:
 			move_to(checkpoint.collision_shape_2d.global_position * 1000 + Vector2(500, 500))
 	
-	respawn_animation.reset_and_play()
 	Signals.player_respawn.emit()
-	
-	dead = false
 
 
 func on_paint_change(id: int) -> void:
