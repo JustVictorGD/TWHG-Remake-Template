@@ -151,6 +151,9 @@ func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_vel
 	if not touching_a_wall:
 		return Vector2i.ZERO
 	
+	if chosen_wall.position.x == -2147483648:
+		return Vector2i.ZERO
+	
 	var half_size: Vector2i = hitbox.size / 2
 	var box_center: Vector2i = hitbox.position + half_size
 	
