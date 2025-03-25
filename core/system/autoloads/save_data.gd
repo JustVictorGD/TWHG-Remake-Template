@@ -17,13 +17,12 @@ func _input(event: InputEvent) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		print(GameManager.touched_checkpoint_ids.size())
-		
 		if GameManager.touched_checkpoint_ids.size() != 0:
-			print("Saving safely")
+			print("Saving safely :D")
 			save_game()
 		else:
-			print("Saving unsafely")
+			print("Saving unsafely >:(")
+			Signals.player_respawn.emit() # Making all collectables drop.
 			save_game(0, false)
 
 
