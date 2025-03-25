@@ -233,11 +233,6 @@ func _on_area_entered(area: Area2D) -> void:
 		enemy_death()
 		return
 	
-	if area.is_in_group("checkpoint"):
-		if parent is Checkpoint:
-			GameManager.last_checkpoint_id = parent.id
-			parent.select()
-	
 	if area.is_in_group("coin"):
 		# The Area2D's parent is expected to be of the Coin class.
 		parent.try_collect()

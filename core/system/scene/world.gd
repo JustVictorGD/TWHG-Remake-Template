@@ -5,12 +5,12 @@ class_name World
 # 1280x720 pixel viewport.
 const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 
+## Used for turning the world node into a sort of singleton for easier access.
+static var instance: World
+
 ## Enter a key from "res://game/connections.json" here, and the associated
 ## file path will be loaded if it's an area scene.
-@export var starting_level: String
-
-static var starting_level_static: String
-static var rect_visualizer: Node
+@export var starting_level_code: String
 
 # Important nodes.
 @onready var canvas_layer: CanvasLayer = $UILayer
@@ -21,14 +21,12 @@ static var rect_visualizer: Node
 
 # Level switching.
 var connections: Dictionary = json_to_dict("res://game/connections.json")
-static var active_level: Area = null
+var active_level: Area = null
 
 
 func _ready() -> void:
-	rect_visualizer = $RectVisualizer
-	
-	# Making it easy for end_screen to reset the game.
-	starting_level_static = starting_level
+	instance = self
+	GameManager.starting_level_code = self.starting_level_code
 	
 	Signals.switch_level.connect(queue_switch_level)
 	Signals.load_game.connect(load_game)
@@ -39,7 +37,7 @@ func _ready() -> void:
 func load_game() -> void:
 	queue_switch_level(Utilities.fallback(
 		SaveData.try_get_data(["global", "current_level"]),
-		starting_level
+		starting_level_code
 		))
 
 
@@ -49,7 +47,7 @@ func queue_switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) 
 
 func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> void:
 	if key == "NULL_LEVEL":
-		key = starting_level
+		key = starting_level_code
 	
 	if not connections.has(key):
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")

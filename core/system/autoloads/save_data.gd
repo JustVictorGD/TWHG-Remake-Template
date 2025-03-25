@@ -45,10 +45,6 @@ func save_game(id: int = 0, safe: bool = true) -> void:
 func load_game(id: int = 0) -> void:
 	var file: String = FileAccess.get_file_as_string(get_save_path(id))
 	
-	if not is_instance_valid(file):
-		wipe_save(id)
-		save_game(id)
-	
 	if JSON.parse_string(file):
 		data = JSON.parse_string(file)
 	

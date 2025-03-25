@@ -22,6 +22,7 @@ var last_checkpoint_area: int # Unused... for now.
 var time: int = 0
 var deaths: int = 0
 
+var starting_level_code: String
 var current_level: String
 
 var finished: bool = false

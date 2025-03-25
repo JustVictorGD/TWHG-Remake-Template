@@ -124,6 +124,9 @@ func warp_level() -> void:
 
 
 func player_entered() -> void:
+	GameManager.last_checkpoint_id = id
+	select()
+	
 	GameManager.touched_checkpoint_ids.append(id)
 
 
