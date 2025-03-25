@@ -43,7 +43,6 @@ color_ramp = SubResource("GradientTexture1D_pjmya")
 
 [node name="Coin" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox") groups=["coin_ids"]]
 z_index = 2
-position = Vector2(1, 0)
 script = ExtResource("1_k1jfa")
 sound = 2
 array_name = "coins"

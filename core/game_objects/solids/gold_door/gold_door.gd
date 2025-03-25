@@ -17,17 +17,17 @@ func _ready() -> void:
 		Signals.player_respawn.connect(player_respawn)
 		
 		if money_requirement <= 0:
-			money_requirement += World.money_requirement
+			money_requirement += GameManager.money_requirement
 		
-		if World.collected_money >= money_requirement:
+		if GameManager.collected_money >= money_requirement:
 			stay_triggered()
 
 
 func coin_collected() -> void:
-	if World.collected_money >= money_requirement:
+	if GameManager.collected_money >= money_requirement:
 		trigger_door()
 
 
 func player_respawn() -> void:
-	if World.collected_money < money_requirement:
+	if GameManager.collected_money < money_requirement:
 		untrigger_door()

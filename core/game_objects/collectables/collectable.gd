@@ -139,7 +139,7 @@ func collect() -> void:
 	
 	Signals.anything_collected.emit()
 	
-	if World.touched_checkpoint_ids.size() == 0:
+	if GameManager.touched_checkpoint_ids.is_empty():
 		state = States.PICKED_UP
 	else:
 		state = States.SAVED

@@ -96,8 +96,8 @@ func _ready() -> void:
 	change_shape(outer_bound)
 	
 	if not decorative and not in_editor:
-		hitbox_index = World.walls.size()
-		World.walls.append(Rect2i(global_bound))
+		hitbox_index = GameManager.walls.size()
+		GameManager.walls.append(Rect2i(global_bound))
 		
 		if dynamic_hitbox:
 			GameManager.wall_update.connect(wall_update)
@@ -105,7 +105,7 @@ func _ready() -> void:
 
 func wall_update() -> void:
 	sprite.position = floor(global_position) - global_position
-	World.walls[hitbox_index] = Rect2i(-outwards_2d + global_position, size + outwards_2d * 2)
+	GameManager.walls[hitbox_index] = Rect2i(-outwards_2d + global_position, size + outwards_2d * 2)
 
 
 func _process(_delta: float) -> void:
@@ -176,7 +176,7 @@ func change_shape(rect: Rect2) -> void:
 # Warning: This sets dynamic_hitbox to false.
 func nullify_hitbox() -> void:
 	if not decorative:
-		World.walls[hitbox_index] = Rect2(-4294967296, -4294967296, 0, 0)
+		GameManager.walls[hitbox_index] = Rect2(-4294967296, -4294967296, 0, 0)
 
 
 

@@ -43,8 +43,8 @@ func _process(_delta : float) -> void:
 	
 	level_code.text = "Level: " + World.active_level.level_code
 	
-	money.text = "$ " + str(World.collected_money) + \
-			" / " + str(World.money_requirement)
+	money.text = "$ " + str(GameManager.collected_money) + \
+			" / " + str(GameManager.money_requirement)
 	deaths.text = "Deaths: " + str(GameManager.deaths)
 	
 	if World.active_level != null:

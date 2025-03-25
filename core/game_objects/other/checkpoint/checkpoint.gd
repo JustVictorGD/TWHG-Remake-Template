@@ -40,11 +40,14 @@ const ORIGINAL_COLOR: Color = Color(0.643, 0.996, 0.639)
 const FLASH_COLOR: Color = Color(0.478, 0.745, 0.478)
 
 @onready var flash_animation: TickBasedTimer = $FlashAnimationTimer
-var id: int = -1
+var id: int
 
 # The RectangleCollider in the scene tree currently does nothing.
 
 func _ready() -> void:
+	if not Engine.is_editor_hint():
+		id = IdGenerator.get_group("checkpoints")
+	
 	collision_shape_2d.shape.size = self.size
 	collision_shape_2d.position = self.size / 2
 	
@@ -78,7 +81,7 @@ func any_checkpoint_touched(_id: int) -> void:
 
 
 func anything_collected() -> void:
-	if state == states.SELECTED and self.id not in World.touched_checkpoint_ids:
+	if state == states.SELECTED and self.id not in GameManager.touched_checkpoint_ids:
 		state = states.UPDATED
 
 
@@ -94,10 +97,9 @@ func select() -> void:
 		Signals.checkpoint_touched.emit(id)
 		SaveData.save_game()
 		
-		if is_finish() and World.collected_money >= World.money_requirement \
+		if is_finish() and GameManager.collected_money >= GameManager.money_requirement \
 				and not GameManager.finished:
 			win()
-		
 		else:
 			SFX.play(SFX.sounds.CHECKPOINT)
 
@@ -119,3 +121,14 @@ func warp_level() -> void:
 	
 	elif level_warp != "":
 		Signals.switch_level.emit(level_warp)
+
+
+func player_entered() -> void:
+	GameManager.touched_checkpoint_ids.append(id)
+
+
+func player_exited() -> void:
+	var index: int = GameManager.touched_checkpoint_ids.find(id)
+	
+	if index != -1:
+		GameManager.touched_checkpoint_ids.remove_at(index)

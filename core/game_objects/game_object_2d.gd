@@ -100,3 +100,10 @@ func _process(delta: float) -> void:
 		return
 	
 	update_colors()
+
+
+func player_entered() -> void:
+	pass
+
+func player_exited() -> void:
+	pass

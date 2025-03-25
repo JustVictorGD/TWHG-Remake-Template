@@ -25,7 +25,7 @@ func get_nearby_walls(sliding_sensitivity: float) -> Array[Rect2i]:
 	
 	larger_check.size += Vector2i(hitbox.size * sliding_sensitivity * 2)
 	
-	for wall: Rect2i in World.walls:
+	for wall: Rect2i in GameManager.walls:
 		if wall.intersects(larger_check):
 			nearby_walls.append(wall)
 	

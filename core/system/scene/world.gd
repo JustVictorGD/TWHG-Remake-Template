@@ -10,13 +10,6 @@ const PLAYABLE_WINDOW: Rect2 = Rect2(160, 60, 960, 600)
 @export var starting_level: String
 
 static var starting_level_static: String
-
-# Tracking objects and game state.
-static var walls: Array[Rect2i] = []
-static var collected_money: int = 0
-static var money_requirement: int = 0
-static var touched_checkpoint_ids: PackedInt32Array = []
-
 static var rect_visualizer: Node
 
 # Important nodes.
@@ -75,9 +68,9 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 	GameManager.finished = false
 	GameManager.invincible = false
 	
-	collected_money = 0
-	money_requirement = 0
-	walls.clear()
+	GameManager.collected_money = 0
+	GameManager.money_requirement = 0
+	GameManager.walls.clear()
 	
 	player.change_size(active_level.player_size)
 	
@@ -105,26 +98,25 @@ func load_room_state(checkpoint_id: int = -1, teleport_position: Vector2 = Vecto
 	GameManager.collectables_processed = true
 	
 	# Assign checkpoint ids and spawn the player on the correct one
-	var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints")
-	
-	for i: int in range(checkpoints.size()):
-		checkpoints[i].id = i
+	var checkpoints: Array[Node] = get_tree().get_nodes_in_group("checkpoints") as Array[Node]
 	
 	if teleport_position != Vector2.ZERO:
 		player.move_to(Vector2i(teleport_position * 1000))
 		return
 	
+	# this code needs to be cleaned up so much
 	if checkpoint_id != -1:
 		if Utilities.index_in_range(checkpoint_id, checkpoints.size()):
-			# this huge line sucks
 			player.move_to((checkpoints[checkpoint_id].global_position + \
-					checkpoints[checkpoint_id].size / 2) * 1000 + Vector2(500, 500))
+					checkpoints[checkpoint_id].size / 2) * 1000)
+			checkpoints[checkpoint_id].state = Checkpoint.states.SELECTED
 		else:
-			push_error("Checkpoint ID stuff idk check world.gd -> load_room_state()")
+			push_error("Checkpoint ID was out of range when loading the level.")
 	else:
 		for i: int in range(checkpoints.size()):
 			if checkpoints[i].is_start():
-				player.move_to((checkpoints[i].global_position + checkpoints[i].size / 2) * 1000 + Vector2(500, 500))
+				player.move_to((checkpoints[i].global_position + checkpoints[i].size / 2) * 1000)
+				checkpoints[i].state = Checkpoint.states.SELECTED
 				return
 			push_error("No starting checkpoint found.")
 

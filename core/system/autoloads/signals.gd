@@ -13,10 +13,11 @@ signal level_switched # Just a signal
 
 signal finish
 
-# These 2 should only be emitted from SaveData functions,
+# These should only be "emitted" from SaveData functions,
 # otherwise the save files aren't properly interacted with.
-signal save_game
-signal load_game
-signal wipe_save
+signal save_game()
+signal load_game()
+signal wipe_save()
+signal save_unsafely()
 
 signal event(id: int, state: bool)

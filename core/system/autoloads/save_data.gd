@@ -6,7 +6,6 @@ var data: Dictionary = {
 	"global": {}
 }
 
-
 func _ready() -> void:
 	load_game()
 
@@ -18,11 +17,21 @@ func _input(event: InputEvent) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		save_game()
+		print(GameManager.touched_checkpoint_ids.size())
+		
+		if GameManager.touched_checkpoint_ids.size() != 0:
+			print("Saving safely")
+			save_game()
+		else:
+			print("Saving unsafely")
+			save_game(0, false)
 
 
-func save_game(id: int = 0) -> void:
-	Signals.save_game.emit()
+func save_game(id: int = 0, safe: bool = true) -> void:
+	if safe:
+		Signals.save_game.emit()
+	else:
+		Signals.save_unsafely.emit()
 	
 	var file: FileAccess = FileAccess.open(get_save_path(id), FileAccess.WRITE)
 	

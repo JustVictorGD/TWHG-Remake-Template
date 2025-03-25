@@ -21,7 +21,7 @@ var previous_cells: Array[Vector2i] = []
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		for cell: Vector2i in get_used_cells():
-			World.walls.append(Rect2i(
+			GameManager.walls.append(Rect2i(
 				Vector2i(cell.x * 48 - 3, cell.y * 48 - 3) + Vector2i(global_position),
 				Vector2i(54, 54)))
 	

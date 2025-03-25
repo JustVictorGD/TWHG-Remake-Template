@@ -71,7 +71,7 @@ func untrigger_door() -> void:
 	if triggered:
 		close_timer.reset_and_play()
 		
-		World.walls[hitbox_index] = Rect2i(global_bound)
+		GameManager.walls[hitbox_index] = Rect2i(global_bound)
 		
 		SFX.play(SFX.sounds.CLOSE_DOOR)
 		triggered = false

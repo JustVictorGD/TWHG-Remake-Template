@@ -87,7 +87,6 @@ func _ready() -> void:
 	
 	respawn_timer.timeout.connect(respawn)
 	GameManager.movement_update.connect(movement_update)
-	GameManager.collision_update.connect(collision_update)
 	GameManager.update_timers.connect(update_timers)
 	Signals.paint_changed.connect(on_paint_change)
 
@@ -171,17 +170,6 @@ func movement_update() -> void:
 				enemy_death()
 
 
-func collision_update() -> void:
-	if not is_instance_valid(get_tree()): return
-	
-	await get_tree().physics_frame
-	
-	if not GameManager.collectables_processed:
-		return
-	
-	World.touched_checkpoint_ids.clear()
-
-
 func update_timers() -> void:
 	sprite.modulate.a = 1
 	
@@ -236,37 +224,45 @@ func on_paint_change(id: int) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if dead: return
 	
+	var parent: Node = area.get_parent()
+	
+	if parent is GameObject2D or parent is Checkpoint:
+		parent.player_entered()
+	
 	if area.is_in_group("enemy") and not GameManager.invincible:
 		enemy_death()
 		return
 	
 	if area.is_in_group("checkpoint"):
-		var parent: Node = area.get_parent()
-		
 		if parent is Checkpoint:
 			GameManager.last_checkpoint_id = parent.id
 			parent.select()
 	
 	if area.is_in_group("coin"):
 		# The Area2D's parent is expected to be of the Coin class.
-		area.get_parent().try_collect()
+		parent.try_collect()
 	
 	if area.is_in_group("key"):
 		# The Area2D's parent is expected to be of the Key class.
-		area.get_parent().try_collect()
+		parent.try_collect()
 	
 	if area.is_in_group("paint"):
-		if area.get_parent() is Paint:
+		if parent is Paint:
 			var paint: Paint = area.get_parent()
 			
 			paint.try_collect()
 			PaintManager.current_coating = paint.coating_id
 	
 	if area.is_in_group("teleporter"):
-		var parent: Node = area.get_parent()
-		
 		if parent is Teleporter:
 			if parent.teleportation_type == Teleporter.Types.POSITION:
 				move_to(parent.target_position * 1000 + Vector2(500, 500))
 			else:
 				Signals.switch_level.emit(parent.target_level)
+
+
+func _on_area_exited(area: Area2D) -> void:
+	var parent: Node = area.get_parent()
+	
+	if parent is GameObject2D or parent is Checkpoint:
+		area.get_parent().player_exited()
