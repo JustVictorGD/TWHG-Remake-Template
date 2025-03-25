@@ -439,7 +439,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/UpwardsElevator/Solid"]
 libraries = {
-"": SubResource("AnimationLibrary_0lbd4")
+&"": SubResource("AnimationLibrary_0lbd4")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -459,7 +459,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/UpwardsElevator/Solid2"]
 libraries = {
-"": SubResource("AnimationLibrary_0lbd4")
+&"": SubResource("AnimationLibrary_0lbd4")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -480,7 +480,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/UpwardsElevator/Solid3"]
 libraries = {
-"": SubResource("AnimationLibrary_0lbd4")
+&"": SubResource("AnimationLibrary_0lbd4")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -504,7 +504,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/DownwardsElevator/Solid4"]
 libraries = {
-"": SubResource("AnimationLibrary_a3ftb")
+&"": SubResource("AnimationLibrary_a3ftb")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -523,7 +523,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/DownwardsElevator/Solid5"]
 libraries = {
-"": SubResource("AnimationLibrary_a3ftb")
+&"": SubResource("AnimationLibrary_a3ftb")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -543,7 +543,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/DownwardsElevator/Solid6"]
 libraries = {
-"": SubResource("AnimationLibrary_a3ftb")
+&"": SubResource("AnimationLibrary_a3ftb")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -626,7 +626,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/Dumbbells1"]
 libraries = {
-"": SubResource("AnimationLibrary_bf5oa")
+&"": SubResource("AnimationLibrary_bf5oa")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -673,7 +673,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/Dumbbells2"]
 libraries = {
-"": SubResource("AnimationLibrary_yalpx")
+&"": SubResource("AnimationLibrary_yalpx")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -693,7 +693,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/Solid"]
 libraries = {
-"": SubResource("AnimationLibrary_7ipx1")
+&"": SubResource("AnimationLibrary_7ipx1")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -713,7 +713,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/Solid2"]
 libraries = {
-"": SubResource("AnimationLibrary_vi45x")
+&"": SubResource("AnimationLibrary_vi45x")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -772,7 +772,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/Crossgrid1"]
 libraries = {
-"": SubResource("AnimationLibrary_12mpa")
+&"": SubResource("AnimationLibrary_12mpa")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -831,7 +831,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/Crossgrid2"]
 libraries = {
-"": SubResource("AnimationLibrary_lymuf")
+&"": SubResource("AnimationLibrary_lymuf")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -865,7 +865,7 @@ fill_theme_link = "key_fill"
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls/Tunnel"]
 libraries = {
-"": SubResource("AnimationLibrary_2vnkr")
+&"": SubResource("AnimationLibrary_2vnkr")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -1019,7 +1019,7 @@ position = Vector2(96, 96)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Box1"]
 libraries = {
-"": SubResource("AnimationLibrary_r5vph")
+&"": SubResource("AnimationLibrary_r5vph")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -1042,7 +1042,7 @@ position = Vector2(96, 96)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Box2"]
 libraries = {
-"": SubResource("AnimationLibrary_r5vph")
+&"": SubResource("AnimationLibrary_r5vph")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -1066,7 +1066,7 @@ position = Vector2(96, 96)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Box3"]
 libraries = {
-"": SubResource("AnimationLibrary_r5vph")
+&"": SubResource("AnimationLibrary_r5vph")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")
@@ -1090,7 +1090,7 @@ position = Vector2(96, 96)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Box4"]
 libraries = {
-"": SubResource("AnimationLibrary_r5vph")
+&"": SubResource("AnimationLibrary_r5vph")
 }
 autoplay = "new_animation"
 script = ExtResource("7_j0l1l")

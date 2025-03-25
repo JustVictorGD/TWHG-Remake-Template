@@ -137,38 +137,30 @@ position = Vector2(168, 792)
 
 [node name="Coin2" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(264, 792)
-id_group = "coins"
 
 [node name="Coin3" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(360, 792)
-id_group = "coins"
 
 [node name="Coin4" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(456, 792)
-id_group = "coins"
 
 [node name="Coin5" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(1080, 792)
-id_group = "coins"
 
 [node name="Coin6" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(1176, 792)
-id_group = "coins"
 
 [node name="Coin7" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(1272, 792)
-id_group = "coins"
 
 [node name="Coin8" parent="Coins" instance=ExtResource("10_ur04s")]
 position = Vector2(1368, 792)
-id_group = "coins"
 
 [node name="Keys" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")
 
 [node name="Key" parent="Keys" instance=ExtResource("11_8srmb")]
 position = Vector2(888, 1176)
-id_group = "keys"
 
 [node name="GoldDoors" type="Node2D" parent="."]
 script = ExtResource("3_ophqw")
