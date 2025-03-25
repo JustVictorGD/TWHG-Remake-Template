@@ -21,3 +21,4 @@ signal wipe_save()
 signal save_unsafely()
 
 signal event(id: int, state: bool)
+signal trails_toggled()

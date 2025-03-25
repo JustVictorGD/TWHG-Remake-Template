@@ -9,6 +9,7 @@ var fps_value_index: int = 0
 
 func _ready() -> void:
 	$ReturnToGame.button_down.connect(return_to_game_click)
+	$MotionTrails.button_down.connect(motion_trails_click)
 	$ToMainMenu.button_down.connect(main_menu_click)
 	$LoadGame.button_down.connect(load_game_click)
 	$WipeSave.button_down.connect(wipe_save_click)
@@ -22,10 +23,18 @@ func _ready() -> void:
 	$MusicVolumeSlider.value_changed.connect(music_value_changed)
 	$SFXVolumeSlider.value_changed.connect(sfx_value_changed)
 	$SensitivitySlider.value_changed.connect(sliding_value_changed)
+	
+	Signals.load_game.connect(update_trails)
+	update_trails()
 
 
 func return_to_game_click() -> void:
 	GameManager.paused = false
+
+
+func motion_trails_click() -> void:
+	GameManager.motion_trails = not GameManager.motion_trails
+	update_trails()
 
 
 func main_menu_click() -> void:
@@ -100,3 +109,8 @@ func _process(_delta: float) -> void:
 		self.visible = true
 	else:
 		self.visible = false
+
+
+func update_trails() -> void:
+	$MotionTrails/State.text = "(on)" if GameManager.motion_trails else "(off)"
+	Signals.trails_toggled.emit()

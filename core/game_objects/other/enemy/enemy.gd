@@ -35,13 +35,14 @@ func _ready() -> void:
 	
 	if not in_editor:
 		if motion_trail:
-			particles.emitting = true
+			particles.emitting = GameManager.motion_trails
 			
 			if sprite != null:
 				particles.modulate = sprite.fill_color
 		
 		if not GameManager.is_connected("movement_update", movement_update):
 			GameManager.movement_update.connect(movement_update)
+			Signals.trails_toggled.connect(trails_toggled)
 
 
 func movement_update() -> void:
@@ -70,6 +71,10 @@ func set_properties(properties: EnemyProperties) -> void:
 	if properties.fill_shader != null:
 	#	fill.material = properties.fill_shader
 		particles.material = properties.fill_shader
+
+
+func trails_toggled() -> void:
+	particles.emitting = GameManager.motion_trails
 
 
 func _on_hitbox_area_entered(area2d: Area2D) -> void:

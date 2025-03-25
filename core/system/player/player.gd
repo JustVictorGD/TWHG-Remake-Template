@@ -86,6 +86,7 @@ func _ready() -> void:
 	
 	GameManager.movement_update.connect(movement_update)
 	Signals.paint_changed.connect(on_paint_change)
+	Signals.trails_toggled.connect(trails_toggled)
 
 
 func change_size(size: Vector2i) -> void:
@@ -106,14 +107,11 @@ func movement_update() -> void:
 	
 	var speed_hack_multiplier: int = 2 if GameManager.speed_hacking else 1
 	
-	if not dead:
-		particles.emitting = true
-		$TerrainVelocityComponent.enabled = true
-		$InputVelocityComponent.enabled = true
-	else:
-		particles.emitting = false
-		$TerrainVelocityComponent.enabled = false
-		$InputVelocityComponent.enabled = false
+	particles.emitting = GameManager.motion_trails and not dead
+	$TerrainVelocityComponent.enabled = not dead
+	$InputVelocityComponent.enabled = not dead
+	
+	if dead:
 		return
 	
 	var movement: Vector2i = movement_direction * speed * speed_hack_multiplier
@@ -201,6 +199,11 @@ func on_paint_change(id: int) -> void:
 	sprite.outline_color = color_tuple.outline
 	sprite.fill_color = color_tuple.fill
 	particles.modulate = color_tuple.fill
+
+
+func trails_toggled() -> void:
+	particles.emitting = GameManager.motion_trails
+
 
 #endregion
 

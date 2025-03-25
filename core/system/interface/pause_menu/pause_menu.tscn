@@ -41,6 +41,31 @@ theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "Return to Game"
 
+[node name="MotionTrails" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 704.0
+offset_top = 180.0
+offset_right = -64.0
+offset_bottom = -389.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g15fw")
+theme_type_variation = &"FlatButton"
+text = "Motion Trails"
+alignment = 0
+
+[node name="State" type="Label" parent="MotionTrails"]
+layout_mode = 0
+offset_left = 144.0
+offset_right = 192.0
+offset_bottom = 31.0
+text = "(off)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="ToMainMenu" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -196,13 +221,15 @@ vertical_alignment = 1
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 52.0
-offset_right = 192.0
-offset_bottom = 100.0
+offset_left = 320.0
+offset_top = 36.0
+offset_right = 656.0
+offset_bottom = 84.0
 theme = ExtResource("2_g15fw")
 theme_override_font_sizes/font_size = 35
 text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MusicVolumeSlider" type="HSlider" parent="."]
 layout_mode = 0

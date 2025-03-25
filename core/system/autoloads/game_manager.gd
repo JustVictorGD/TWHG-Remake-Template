@@ -14,6 +14,7 @@ var allow_cheats: bool = true
 var paused: bool = false
 var snappy_movement: bool = false
 var sliding_sensitivity: float = 0.5
+var motion_trails: bool = false
 
 var last_checkpoint_id: int = -1
 var last_checkpoint_area: int # Unused... for now.
@@ -95,6 +96,7 @@ func save_game() -> void:
 	SaveData.data["global"]["time"] = time
 	SaveData.data["global"]["last_checkpoint_id"] = last_checkpoint_id
 	SaveData.data["global"]["current_level"] = current_level
+	SaveData.data["global"]["motion_trails"] = motion_trails
 
 
 func load_game() -> void:
@@ -110,6 +112,9 @@ func load_game() -> void:
 	current_level = Utilities.fallback(
 		SaveData.try_get_data(["global", "current_level"]),
 		"NULL_LEVEL")
+	motion_trails = Utilities.fallback(
+		SaveData.try_get_data(["global", "motion_trails"]),
+		false)
 
 
 func save_unsafely() -> void:
