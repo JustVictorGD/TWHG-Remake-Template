@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://emohoynp8joi"]
+[gd_scene load_steps=6 format=3 uid="uid://emohoynp8joi"]
 
 [ext_resource type="Script" uid="uid://t044vrbexenw" path="res://core/game_objects/solids/gold_door/gold_door.gd" id="1_7flc8"]
+
+[sub_resource type="Animation" id="Animation_aannf"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l6q8w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_x38gu"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x38gu"]
+_data = {
+&"RESET": SubResource("Animation_l6q8w"),
+&"close": SubResource("Animation_x38gu"),
+&"open": SubResource("Animation_aannf")
+}
 
 [node name="GoldDoor" type="ColorRect" groups=["gold_doors"]]
 z_index = 5
@@ -14,3 +66,8 @@ outline_theme_link = "gold_outline"
 fill_theme_link = "gold_fill"
 outline_color = Color(0.584314, 0.466667, 0, 1)
 fill_color = Color(1, 0.8, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x38gu")
+}

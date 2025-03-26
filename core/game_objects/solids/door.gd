@@ -2,6 +2,14 @@
 extends Solid
 class_name Door
 
+## Internal values for the 4 open method presets.
+const INTERNAL_METHODS: Array[Rect2] = [
+	Rect2(0, 0, 1, 0),
+	Rect2(0, 0, 0, 1),
+	Rect2(0, 1, 1, 0),
+	Rect2(1, 0, 0, 1)
+]
+
 ## Debug purposes.
 @export var tracking: bool = false
 
@@ -21,36 +29,32 @@ class_name Door
 ## Choose whether or not the door fades away as it opens.
 @export var fade: bool = false
 
+## This is only exported so that it's detectable by AnimationPlayer nodes.
+@export var progress_left: float = 1
+
+var old_progress_left: float = 1
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
 enum open_methods {
 	UP, LEFT, DOWN, RIGHT, CUSTOM
 }
-# Internal values for the 4 open method presets.
-const INTERNAL_METHODS: Array[Rect2] = [
-	Rect2(0, 0, 1, 0),
-	Rect2(0, 0, 0, 1),
-	Rect2(0, 1, 1, 0),
-	Rect2(1, 0, 0, 1)
-]
-
-# Adding @onready is required to make them react to the export variables.
-@onready var open_timer: TickBasedTimer = TickBasedTimer.new(open_time)
-@onready var close_timer: TickBasedTimer = TickBasedTimer.new(close_time)
 
 var triggered: bool = false
 
 
 func _ready() -> void:
-	# Call the _ready() function from the Solid class.
 	super()
 	
-	close_timer.timeout.connect(finish_closing)
-	
-	if not Engine.is_editor_hint():
-		GameManager.update_timers.connect(update_timers)
+	# The exact step is arbitrary. It just needs to happen before the player moves.
+	if not in_editor:
+		GameManager.animation_update.connect(handle_animation)
 
 
 func stay_triggered() -> void:
-	modulate.a = 0
+	progress_left = 0
+	
 	nullify_hitbox()
 	triggered = true
 
@@ -58,7 +62,8 @@ func stay_triggered() -> void:
 func trigger_door() -> void:
 	# Don't trigger while already triggered.
 	if not triggered:
-		open_timer.reset_and_play()
+		animation_player.play(&"open")
+		animation_player.speed_scale = 1.0 / open_time * 60
 		
 		nullify_hitbox()
 		
@@ -69,24 +74,13 @@ func trigger_door() -> void:
 func untrigger_door() -> void:
 	# Don't untrigger while already not triggered.
 	if triggered:
-		close_timer.reset_and_play()
+		animation_player.play(&"close")
+		animation_player.speed_scale = 1.0 / close_time * 60
 		
 		GameManager.walls[hitbox_index] = Rect2i(global_bound)
 		
 		SFX.play(SFX.sounds.CLOSE_DOOR)
 		triggered = false
-
-
-func update_timers() -> void:
-	if open_timer.active:
-		handle_animation(open_timer.get_progress_left())
-	
-	if close_timer.active:
-		handle_animation(close_timer.get_progress())
-
-
-func finish_closing() -> void:
-	handle_animation(1)
 
 
 func sine_in(t: float) -> float:
@@ -99,7 +93,12 @@ func sine_in_out(t: float) -> float:
 	return -0.5 * (cos(PI * t) - 1)
 
 
-func handle_animation(progress_left: float) -> void:
+func handle_animation() -> void:
+	if progress_left == old_progress_left:
+		return # Avoiding unnecessary logic if no change happens.
+	
+	old_progress_left = progress_left
+	
 	if fade:
 		modulate.a = progress_left
 	
