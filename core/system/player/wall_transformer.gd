@@ -227,17 +227,27 @@ static func get_stretch(a: Rect2i, b: Rect2i, player: Rect2i) -> Array[Rect2i]:
 	elif (a_signs.x == b_signs.x) != (a_signs.y == b_signs.y):
 		return stretch_case_half_match(a, b, player, a_signs, b_signs)
 	
-	# Case C: Signs are opposites and walls overlap on both or no axes.
+	# Case C: Distance is 0 on one of the axes.
+	elif (distance.x == 0) != (distance.y == 0):
+		return stretch_case_zero(a, b, player_pos, distance, a_signs, b_signs)
+	
+	# Case D: Signs are opposites and walls overlap on both or no axes.
 	elif (distance.x < 0) == (distance.y < 0):
 		return stretch_case_opposites(a, b, player_pos, a_signs, b_signs)
 	
-	# Case D: Signs are opposites and walls overlap on one axis.
+	# Case E: Signs are opposites and walls overlap on one axis.
 	else:
 		return stretch_case_tunnel(a, b, player_pos, a_signs, b_signs)
 
 
 @warning_ignore("unused_parameter")
-static func stretch_case_half_match(a: Rect2i, b: Rect2i, player: Rect2i, a_signs: Vector2i, b_signs: Vector2i) -> Array[Rect2i]:
+static func stretch_case_half_match(
+	a: Rect2i,
+	b: Rect2i,
+	player: Rect2i,
+	a_signs: Vector2i,
+	b_signs: Vector2i
+) -> Array[Rect2i]:
 	var stretch_pattern: Vector2i
 	
 	if a_signs.x == b_signs.x:
@@ -250,6 +260,37 @@ static func stretch_case_half_match(a: Rect2i, b: Rect2i, player: Rect2i, a_sign
 			stretch_pattern = a_signs if a.position.y < b.position.y else b_signs
 		else:
 			stretch_pattern = a_signs if a.end.y > b.end.y else b_signs
+	
+	return two_stretches_towards_signs(stretch_pattern)
+
+
+static func stretch_case_zero(a: Rect2i,
+	b: Rect2i,
+	player_pos: Vector2i,
+	distance: Vector2i,
+	a_signs: Vector2i,
+	b_signs: Vector2i
+) -> Array[Rect2i]:
+	var stretch_pattern: Vector2i = Vector2i(1, 1)
+	
+	var center: Vector2i = (get_rect_corner(a, a_signs) + \
+			get_rect_corner(b, b_signs)) * 0.5
+	
+	var horizontal: bool = distance.x > distance.y
+	var inverted: bool = player_pos.y > center.y if horizontal else player_pos.x > center.x
+	var down_right_form: bool = (a.position.x < b.position.x) == (a.position.y < b.position.y)
+	
+	# Seemingly arbitrary inversions. It's needed to make every case act properly.
+	if down_right_form:
+		stretch_pattern.y *= -1
+	
+	if not horizontal:
+		stretch_pattern *= -1
+	elif not down_right_form:
+		stretch_pattern *= -1
+	
+	if inverted:
+		stretch_pattern *= -1
 	
 	return two_stretches_towards_signs(stretch_pattern)
 
