@@ -278,7 +278,11 @@ static func stretch_case_zero(a: Rect2i,
 	
 	var horizontal: bool = distance.x > distance.y
 	var inverted: bool = player_pos.y > center.y if horizontal else player_pos.x > center.x
-	var down_right_form: bool = (a.position.x < b.position.x) == (a.position.y < b.position.y)
+	
+	var a_center: Vector2 = Vector2(a.position) + a.size * 0.5
+	var b_center: Vector2 = Vector2(b.position) + b.size * 0.5
+	
+	var down_right_form: bool = (a_center.x < b_center.x) == (a_center.y < b_center.y)
 	
 	# Seemingly arbitrary inversions. It's needed to make every case act properly.
 	if down_right_form:
