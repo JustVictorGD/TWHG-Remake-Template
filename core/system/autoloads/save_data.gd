@@ -1,13 +1,15 @@
 extends Node
 
+
+const DEFAULT_DATA: String = "{\"global\": {}}"
+
 # Store whatever persistent data you want inside this dictionary.
 # This singleton's primary purpose is to deal with the .json file
 var data: Dictionary = {
 	"global": {}
 }
 
-func _ready() -> void:
-	load_game()
+var current_save: int = -1
 
 
 func _input(event: InputEvent) -> void:
@@ -17,22 +19,26 @@ func _input(event: InputEvent) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		if GameManager.touched_checkpoint_ids.size() != 0:
-			print("Saving safely :D")
-			save_game()
-		else:
-			print("Saving unsafely >:(")
-			Signals.player_respawn.emit() # Making all collectables drop.
-			save_game(0, false)
+		exit()
 
 
-func save_game(id: int = 0, safe: bool = true) -> void:
+func exit() -> void:
+	if GameManager.touched_checkpoint_ids.size() != 0:
+		print("Saving safely :D")
+		save_game()
+	else:
+		print("Saving unsafely >:(")
+		Signals.player_respawn.emit() # Making all collectables drop.
+		save_game(false)
+
+
+func save_game(safe: bool = true) -> void:
 	if safe:
 		Signals.save_game.emit()
 	else:
 		Signals.save_unsafely.emit()
 	
-	var file: FileAccess = FileAccess.open(get_save_path(id), FileAccess.WRITE)
+	var file: FileAccess = FileAccess.open(get_save_path(), FileAccess.WRITE)
 	
 	if not is_instance_valid(file):
 		print_debug("An error happened while saving data: ", FileAccess.get_open_error())
@@ -41,31 +47,29 @@ func save_game(id: int = 0, safe: bool = true) -> void:
 	file.store_string(str(JSON.stringify(data)))
 
 
-func load_game(id: int = 0) -> void:
-	var file: String = FileAccess.get_file_as_string(get_save_path(id))
+func load_game() -> void:
+	var file: String = FileAccess.get_file_as_string(get_save_path())
 	
-	if JSON.parse_string(file):
+	if file.is_empty():
+		data = JSON.parse_string(DEFAULT_DATA)
+	elif JSON.parse_string(file):
 		data = JSON.parse_string(file)
 	
 	Signals.load_game.emit()
 
 
-func wipe_save(id: int = 0) -> void:
+func wipe_save(id: int = -1) -> void:
+	if id == -1: id = current_save
+	
 	Signals.wipe_save.emit()
 	
 	data = {"global": {}}
 	
-	var file: FileAccess = FileAccess.open(get_save_path(id), FileAccess.WRITE)
-	
-	if not is_instance_valid(file):
-		print("An error happened while wiping data: ", FileAccess.get_open_error())
-		return
-	
-	file.store_string("{\"global\": {}}")
+	DirAccess.remove_absolute(get_save_path(id))
 
 
-func get_save_path(id: int) -> String:
-	return str("user://save_", id, ".json")
+func get_save_path(id: int = -1) -> String:
+	return str("user://save_", current_save if id == -1 else id, ".json")
 
 
 func try_get_data(path: Array) -> Variant:

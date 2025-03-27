@@ -18,8 +18,8 @@ func _process(delta: float) -> void:
 
 func on_button_pressed() -> void:
 	GameManager.reset_stats()
-	SaveData.wipe_save(0)
-	SaveData.load_game(0)
+	SaveData.wipe_save()
+	SaveData.load_game()
 	
 	get_tree().change_scene_to_packed(load("res://game/scenes/world.tscn"))
 

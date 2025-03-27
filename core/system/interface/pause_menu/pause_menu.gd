@@ -24,8 +24,16 @@ func _ready() -> void:
 	$SFXVolumeSlider.value_changed.connect(sfx_value_changed)
 	$SensitivitySlider.value_changed.connect(sliding_value_changed)
 	
-	Signals.load_game.connect(update_trails)
+	Signals.load_game.connect(load_game)
 	update_trails()
+
+
+func load_game() -> void:
+	update_trails()
+	
+	$SensitivitySlider.value = GameManager.sliding_sensitivity
+	print($SensitivitySlider.value)
+	print(GameManager.sliding_sensitivity)
 
 
 func return_to_game_click() -> void:
@@ -38,15 +46,16 @@ func motion_trails_click() -> void:
 
 
 func main_menu_click() -> void:
-	get_tree().change_scene_to_packed(load("res://game/scenes/menu.tscn"))
+	SaveData.exit()
+	get_tree().change_scene_to_packed(load("res://game/scenes/save_select.tscn"))
 
 
 func load_game_click() -> void:
-	SaveData.load_game(0)
+	SaveData.load_game()
 
 
 func wipe_save_click() -> void:
-	SaveData.wipe_save(0)
+	SaveData.wipe_save()
 
 
 func music_click() -> void:

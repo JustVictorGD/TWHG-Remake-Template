@@ -97,6 +97,7 @@ func save_game() -> void:
 	SaveData.data["global"]["last_checkpoint_id"] = last_checkpoint_id
 	SaveData.data["global"]["current_level"] = current_level
 	SaveData.data["global"]["motion_trails"] = motion_trails
+	SaveData.data["global"]["sliding_sensitivity"] = sliding_sensitivity
 
 
 func load_game() -> void:
@@ -115,6 +116,9 @@ func load_game() -> void:
 	motion_trails = Utilities.fallback(
 		SaveData.try_get_data(["global", "motion_trails"]),
 		false)
+	sliding_sensitivity = Utilities.fallback(
+		SaveData.try_get_data(["global", "sliding_sensitivity"]),
+		0.5)
 
 
 func save_unsafely() -> void:

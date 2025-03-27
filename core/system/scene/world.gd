@@ -31,7 +31,7 @@ func _ready() -> void:
 	Signals.switch_level.connect(queue_switch_level)
 	Signals.load_game.connect(load_game)
 	
-	load_game()
+	SaveData.load_game()
 
 
 func load_game() -> void:
