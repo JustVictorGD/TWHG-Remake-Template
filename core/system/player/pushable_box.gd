@@ -210,7 +210,6 @@ func move(movement: Vector2i) -> void:
 # This function uses subpixels. Multiply any input in pixels by 1000.
 func move_to(given_position: Vector2i) -> void:
 	position = given_position / 1000
-	
 	subpixels = given_position % 1000
 	
 	clamp_subpixels()
@@ -224,8 +223,15 @@ func clamp_subpixels() -> void:
 	)
 	
 	subpixels -= wraps * subpixel.RANGE
-	position += Vector2(wraps)
 	
+	if subpixels.x < 0:
+		subpixels.x += subpixel.RANGE
+		wraps.x -= 1
+	if subpixels.y < 0:
+		subpixels.y += subpixel.RANGE
+		wraps.y -= 1
+	
+	position += Vector2(wraps)
 	hitbox.position = Vector2i(position) - hitbox.size / 2
 
 #endregion
