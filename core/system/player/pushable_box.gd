@@ -204,44 +204,27 @@ func print_position() -> void:
 func move(movement: Vector2i) -> void:
 	subpixels += movement
 	
-	while subpixels.x > subpixel.MAX:
-		subpixels.x -= subpixel.RANGE
-		position.x += 1
-	while subpixels.x < subpixel.MIN:
-		subpixels.x += subpixel.RANGE
-		position.x -= 1
-	while subpixels.y > subpixel.MAX:
-		subpixels.y -= subpixel.RANGE
-		position.y += 1
-	while subpixels.y < subpixel.MIN:
-		subpixels.y += subpixel.RANGE
-		position.y -= 1
-	
-	position = round(position)
-	hitbox.position = Vector2i(position) - hitbox.size / 2
+	clamp_subpixels()
 
 # Sets the position using the subpixel system.
 # This function uses subpixels. Multiply any input in pixels by 1000.
 func move_to(given_position: Vector2i) -> void:
 	position = given_position / 1000
 	
-	subpixels.x = given_position.x % 1000
-	subpixels.y = given_position.y % 1000
+	subpixels = given_position % 1000
 	
-	while subpixels.x > subpixel.MAX:
-		subpixels.x -= subpixel.RANGE
-		position.x += 1
-	while subpixels.x < subpixel.MIN:
-		subpixels.x += subpixel.RANGE
-		position.x -= 1
-	while subpixels.y > subpixel.MAX:
-		subpixels.y -= subpixel.RANGE
-		position.y += 1
-	while subpixels.y < subpixel.MIN:
-		subpixels.y += subpixel.RANGE
-		position.y -= 1
+	clamp_subpixels()
+
+
+func clamp_subpixels() -> void:
+	@warning_ignore("integer_division")
+	var wraps: Vector2i = Vector2i(
+		subpixels.x / subpixel.RANGE,
+		subpixels.y / subpixel.RANGE
+	)
 	
-	position = round(position)
+	subpixels -= wraps * subpixel.RANGE
+	position += Vector2(wraps)
 	
 	hitbox.position = Vector2i(position) - hitbox.size / 2
 
