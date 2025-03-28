@@ -65,11 +65,11 @@ func push_out_rectangle(rect: Rect2i, wall: Rect2i) -> Rect2i:
 		get_closest(0, top_overlap, bottom_overlap)
 	)
 	
-	# Slightly favor X axis.
-	if abs(push.x) <= abs(push.y):
-		push.y = 0
-	else:
+	# Slightly favor getting pushed along the X axis during ties.
+	if abs(push.x) > abs(push.y):
 		push.x = 0
+	else:
+		push.y = 0
 	
 	rect.position += push
 	return rect
@@ -164,6 +164,11 @@ func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_vel
 		var distance_up: int = box_center.y - chosen_wall.position.y + half_size.y
 		var distance_down: int = chosen_wall.end.y - box_center.y + half_size.y
 		
+		# Letting wall physics do the job if the end is less than one move away.
+		if abs(distance_up) < abs(speed_from_input.x) or \
+				abs(distance_down) < abs(speed_from_input.x):
+			return Vector2i.ZERO
+		
 		# Don't slide in case of a perfect tie
 		if distance_up == distance_down:
 			return Vector2i.ZERO
@@ -177,6 +182,11 @@ func corner_slide(walls: Array[Rect2i], speed_from_input: Vector2i, external_vel
 	else:
 		var distance_left: int = box_center.x - chosen_wall.position.x + half_size.x
 		var distance_right: int = chosen_wall.end.x - box_center.x + half_size.x
+		
+		# Letting wall physics do the job if the end is less than one move away.
+		if abs(distance_left) < abs(speed_from_input.y) or \
+				abs(distance_right) < abs(speed_from_input.y):
+			return Vector2i.ZERO
 		
 		# Don't slide in case of a perfect tie
 		if distance_left == distance_right:
