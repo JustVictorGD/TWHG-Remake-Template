@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var flash: ColorRect = $Flash
-@onready var flash_timer: TickBasedTimer = $TickBasedTimer
 
 
 func _ready() -> void:
@@ -12,16 +11,10 @@ func _ready() -> void:
 	$FinalTime.text = "Final time: " + format_time(GameManager.time)
 
 
-func _process(delta: float) -> void:
-	flash.color.a = flash_timer.get_progress_left()
-
-
 func on_button_pressed() -> void:
-	GameManager.reset_stats()
 	SaveData.wipe_save()
-	SaveData.load_game()
 	
-	get_tree().change_scene_to_packed(load("res://game/scenes/world.tscn"))
+	get_tree().change_scene_to_packed(load("res://game/scenes/save_select.tscn"))
 
 
 func format_time(total_ticks: int) -> String:

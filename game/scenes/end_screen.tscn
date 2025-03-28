@@ -1,9 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmrgen2r562ou"]
+[gd_scene load_steps=11 format=3 uid="uid://cmrgen2r562ou"]
 
 [ext_resource type="Script" uid="uid://hleid1nunjt7" path="res://core/system/scene/end_screen.gd" id="1_cwniu"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="1_r53vj"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="2_6ujsm"]
-[ext_resource type="Script" uid="uid://dbvamlrxvnbh2" path="res://core/components/tick_based_timer.gd" id="3_2fd14"]
+
+[sub_resource type="Animation" id="Animation_ussjd"]
+resource_name = "new_animation"
+length = 0.25
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w1n7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2eh3r"]
+_data = {
+&"RESET": SubResource("Animation_w1n7l"),
+&"new_animation": SubResource("Animation_ussjd")
+}
 
 [sub_resource type="Gradient" id="Gradient_i2ar1"]
 offsets = PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.8, 0.9, 1)
@@ -27,7 +64,14 @@ script = ExtResource("1_cwniu")
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
+color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flash"]
+libraries = {
+&"": SubResource("AnimationLibrary_2eh3r")
+}
+autoplay = "new_animation"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -72
@@ -90,8 +134,3 @@ text = "Play Again"
 label_settings = SubResource("LabelSettings_4x5ip")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="TickBasedTimer" type="Node" parent="."]
-script = ExtResource("3_2fd14")
-autostart = true
-duration = 30
