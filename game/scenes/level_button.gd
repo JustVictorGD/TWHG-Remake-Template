@@ -1,5 +1,6 @@
 @tool
 extends Button
+class_name LevelButton
 
 @export var level_code: String
 @export var visible_number: String = "?"
@@ -16,11 +17,9 @@ extends Button
 
 func _ready() -> void:
 	update()
-	
-	self.pressed.connect(on_pressed)
 
 
-func on_pressed() -> void:
+func _pressed() -> void:
 	GameManager.current_level = level_code
 	SaveData.save_game()
 	
@@ -36,3 +35,8 @@ func update() -> void:
 	label.text = visible_number
 	outline.color = outline_color
 	fill.color = fill_color
+
+
+func toggle(state: bool) -> void:
+	$Locked.visible = not state
+	disabled = not state

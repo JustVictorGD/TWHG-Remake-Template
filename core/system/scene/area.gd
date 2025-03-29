@@ -60,3 +60,7 @@ func get_last_checkpoint_id() -> int:
 		persistent_data["last_checkpoint_id"] = -1
 	
 	return persistent_data["last_checkpoint_id"]
+
+
+func erase_data() -> void:
+	SaveData.data["areas"].erase(code_name)

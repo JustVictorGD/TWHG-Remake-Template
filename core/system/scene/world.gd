@@ -28,6 +28,9 @@ func _ready() -> void:
 	instance = self
 	GameManager.starting_level_code = self.starting_level_code
 	
+	if "visited_levels" not in SaveData.data["global"]:
+		SaveData.data["global"]["visited_levels"] = [starting_level_code]
+	
 	Signals.switch_level.connect(queue_switch_level)
 	Signals.load_game.connect(load_game)
 	
@@ -52,6 +55,12 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 	if not connections.has(key):
 		push_error("Level switch failed: The key '", key, "' does not exist in connections.json")
 		return
+	
+	if "visited_levels" not in SaveData.data["global"]:
+		SaveData.data["global"]["visited_levels"] = []
+	
+	if key not in SaveData.data["global"]["visited_levels"]:
+		SaveData.data["global"]["visited_levels"].append(key)
 	
 	if active_level != null:
 		remove_child(active_level)

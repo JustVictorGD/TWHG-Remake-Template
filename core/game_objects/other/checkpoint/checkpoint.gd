@@ -105,6 +105,8 @@ func select() -> void:
 
 
 func win() -> void:
+	World.instance.active_level.erase_data()
+	
 	SFX.play(SFX.sounds.FINISH)
 	warp_timer.reset_and_play()
 	
