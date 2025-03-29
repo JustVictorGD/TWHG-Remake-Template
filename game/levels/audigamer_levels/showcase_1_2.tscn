@@ -1,0 +1,619 @@
+[gd_scene load_steps=24 format=4 uid="uid://c8sq2kufkxcgb"]
+
+[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_nimlw"]
+[ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_b13nt"]
+[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_lgm30"]
+[ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_lfg88"]
+[ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_buuat"]
+[ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="6_yfwkb"]
+[ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_ac8bc"]
+[ext_resource type="Script" path="res://core/components/tick_based_timer.gd" id="8_mu227"]
+[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="8_v3lcr"]
+[ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="10_66bql"]
+[ext_resource type="PackedScene" uid="uid://emohoynp8joi" path="res://core/game_objects/solids/gold_door/gold_door.tscn" id="11_jk8vc"]
+
+[sub_resource type="Animation" id="Animation_lothf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0d1hx"]
+resource_name = "new_animation"
+length = 1.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -288)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u0174"]
+_data = {
+"RESET": SubResource("Animation_lothf"),
+"new_animation": SubResource("Animation_0d1hx")
+}
+
+[sub_resource type="Animation" id="Animation_kn5in"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1kwpu"]
+resource_name = "new_animation"
+length = 0.75
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 288)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4xsgh"]
+_data = {
+"RESET": SubResource("Animation_kn5in"),
+"new_animation": SubResource("Animation_1kwpu")
+}
+
+[sub_resource type="Animation" id="Animation_ow3dy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wubvi"]
+resource_name = "new_animation"
+length = 6.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(672, 0), Vector2(672, -672), Vector2(0, -672), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_13oii"]
+_data = {
+"RESET": SubResource("Animation_ow3dy"),
+"new_animation": SubResource("Animation_wubvi")
+}
+
+[sub_resource type="Animation" id="Animation_jniqj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_26j33"]
+resource_name = "new_animation"
+length = 6.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(480, 0), Vector2(480, -480), Vector2(0, -480), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_06qan"]
+_data = {
+"RESET": SubResource("Animation_jniqj"),
+"new_animation": SubResource("Animation_26j33")
+}
+
+[node name="Showcase1" type="Node2D" groups=["area"]]
+script = ExtResource("1_nimlw")
+level_code = "2/16"
+bottom_text = "A new beginning: Godot Edition"
+theme = ExtResource("2_b13nt")
+metadata/_edit_lock_ = true
+
+[node name="Floors" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
+
+[node name="Floor" parent="Floors" instance=ExtResource("4_lfg88")]
+offset_right = 32.0
+offset_bottom = 20.0
+color_1 = Color(0.585062, 0.585062, 0.585062, 1)
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
+
+[node name="TileBasedWall" parent="Walls" instance=ExtResource("5_buuat")]
+tile_map_data = PackedByteArray("AAD/////AAABAAEAAAD//wAAAAABAAIAAAD//wEAAAABAAIAAAD//wIAAAABAAIAAAD//wMAAAABAAIAAAD//wQAAAABAAIAAAD//wUAAAABAAIAAAD//wYAAAABAAIAAAD//wcAAAABAAIAAAD//wgAAAABAAIAAAD//wkAAAABAAIAAAD//woAAAABAAIAAAD//wsAAAABAAIAAAD//wwAAAABAAIAAAD//w0AAAABAAIAAAD//w4AAAABAAIAAAD//xAAAAABAAIAAAD//xEAAAABAAIAAAD//xIAAAABAAIAAAD//xMAAAABAAIAAAD//xQAAAABAAMAAAAAAP//AAACAAEAAAAAAAAAAAACAAIAAAAAAAEAAAACAAIAAAAAAAIAAAACAAIAAAAAAAMAAAACAAIAAAAAAAQAAAACAAIAAAAAAAUAAAACAAIAAAAAAAYAAAACAAIAAAAAAAcAAAACAAIAAAAAAAgAAAACAAIAAAAAAAkAAAACAAIAAAAAAAoAAAACAAIAAAAAAAsAAAACAAIAAAAAAAwAAAACAAIAAAAAAA0AAAACAAIAAAAAAA4AAAACAAIAAAAAABAAAAACAAIAAAAAABEAAAACAAIAAAAAABIAAAACAAIAAAAAABMAAAACAAIAAAAAABQAAAACAAMAAAABAP//AAACAAEAAAABAAAAAAACAAIAAAABAAEAAAAFAAEAAAABAAIAAAADAAIAAAABAAMAAAADAAIAAAABAAQAAAADAAIAAAABAAUAAAADAAIAAAABAAYAAAAFAAQAAAABAAcAAAADAAIAAAABAAgAAAADAAIAAAABAAkAAAADAAIAAAABAAoAAAADAAIAAAABAAsAAAADAAIAAAABAAwAAAADAAIAAAABAA0AAAADAAIAAAABABIAAAAFAAIAAAABABMAAAACAAIAAAABABQAAAACAAMAAAACAP//AAACAAEAAAACAAAAAAACAAIAAAACAAEAAAACAAMAAAACABIAAAACAAEAAAACABMAAAACAAIAAAACABQAAAACAAMAAAADAP//AAACAAEAAAADAAAAAAACAAIAAAADAAEAAAACAAMAAAADABIAAAACAAEAAAADABMAAAACAAIAAAADABQAAAACAAMAAAAEAP//AAACAAEAAAAEAAAAAAACAAIAAAAEAAEAAAACAAMAAAAEABIAAAACAAEAAAAEABMAAAACAAIAAAAEABQAAAACAAMAAAAFAP//AAACAAEAAAAFAAAAAAACAAIAAAAFAAEAAAACAAMAAAAFABIAAAACAAEAAAAFABMAAAACAAIAAAAFABQAAAACAAMAAAAGAP//AAACAAEAAAAGAAAAAAACAAIAAAAGAAEAAAAGAAEAAAAGABIAAAAGAAIAAAAGABMAAAACAAIAAAAGABQAAAACAAMAAAAHAP//AAACAAEAAAAHAAAAAAACAAIAAAAHAAEAAAAFAAEAAAAHABIAAAAFAAIAAAAHABMAAAACAAIAAAAHABQAAAACAAMAAAAIAP//AAACAAEAAAAIAAAAAAACAAIAAAAIAAEAAAACAAMAAAAKAP//AAACAAEAAAAKAAAAAAACAAIAAAAKAAEAAAACAAMAAAAKABIAAAACAAEAAAAKABMAAAACAAIAAAAKABQAAAACAAMAAAALAP//AAACAAEAAAALAAAAAAACAAIAAAALAAEAAAACAAMAAAALABIAAAACAAEAAAALABMAAAACAAIAAAALABQAAAACAAMAAAAMAP//AAACAAEAAAAMAAAAAAACAAIAAAAMAAEAAAAGAAEAAAAMABIAAAAGAAIAAAAMABMAAAACAAIAAAAMABQAAAACAAMAAAANAP//AAACAAEAAAANAAAAAAACAAIAAAANAAEAAAAFAAEAAAANABIAAAAFAAIAAAANABMAAAACAAIAAAANABQAAAACAAMAAAAOAP//AAACAAEAAAAOAAAAAAACAAIAAAAOAAEAAAACAAMAAAAOABIAAAACAAEAAAAOABMAAAACAAIAAAAOABQAAAACAAMAAAAPAP//AAACAAEAAAAPAAAAAAACAAIAAAAPAAEAAAACAAMAAAAPABIAAAACAAEAAAAPABMAAAACAAIAAAAPABQAAAACAAMAAAAQAP//AAACAAEAAAAQAAAAAAACAAIAAAAQAAEAAAACAAMAAAAQABIAAAACAAEAAAAQABMAAAACAAIAAAAQABQAAAACAAMAAAARAP//AAACAAEAAAARAAAAAAACAAIAAAARAAEAAAACAAMAAAARABIAAAACAAEAAAARABMAAAACAAIAAAARABQAAAACAAMAAAASAP//AAACAAEAAAASAAAAAAACAAIAAAASAAEAAAACAAMAAAASABIAAAACAAEAAAASABMAAAACAAIAAAASABQAAAACAAMAAAATAP//AAACAAEAAAATAAAAAAACAAIAAAATAAEAAAACAAMAAAATABIAAAACAAEAAAATABMAAAACAAIAAAATABQAAAACAAMAAAAUAP//AAACAAEAAAAUAAAAAAACAAIAAAAUAAEAAAACAAMAAAAUABIAAAACAAEAAAAUABMAAAACAAIAAAAUABQAAAACAAMAAAAVAP//AAACAAEAAAAVAAAAAAACAAIAAAAVAAEAAAACAAMAAAAVABIAAAACAAEAAAAVABMAAAACAAIAAAAVABQAAAACAAMAAAAWAP//AAACAAEAAAAWAAAAAAACAAIAAAAWAAEAAAACAAMAAAAWABIAAAACAAEAAAAWABMAAAACAAIAAAAWABQAAAACAAMAAAAXAP//AAACAAEAAAAXAAAAAAACAAIAAAAXAAEAAAACAAMAAAAXABIAAAACAAEAAAAXABMAAAACAAIAAAAXABQAAAACAAMAAAAYAP//AAACAAEAAAAYAAAAAAACAAIAAAAYAAEAAAACAAMAAAAYABIAAAACAAEAAAAYABMAAAACAAIAAAAYABQAAAACAAMAAAAZAP//AAACAAEAAAAZAAAAAAACAAIAAAAZAAEAAAACAAMAAAAZABIAAAACAAEAAAAZABMAAAACAAIAAAAZABQAAAACAAMAAAAaAP//AAACAAEAAAAaAAAAAAACAAIAAAAaAAEAAAACAAMAAAAaABIAAAACAAEAAAAaABMAAAACAAIAAAAaABQAAAACAAMAAAAbAP//AAACAAEAAAAbAAAAAAACAAIAAAAbAAEAAAACAAMAAAAbABIAAAACAAEAAAAbABMAAAACAAIAAAAbABQAAAACAAMAAAAcAP//AAACAAEAAAAcAAAAAAACAAIAAAAcAAEAAAACAAMAAAAcABIAAAACAAEAAAAcABMAAAACAAIAAAAcABQAAAACAAMAAAAdAP//AAACAAEAAAAdAAAAAAACAAIAAAAdAAEAAAACAAMAAAAdABIAAAACAAEAAAAdABMAAAACAAIAAAAdABQAAAACAAMAAAAeAP//AAACAAEAAAAeAAAAAAACAAIAAAAeAAEAAAAGAAEAAAAeAAIAAAABAAIAAAAeAAMAAAABAAIAAAAeAAQAAAABAAIAAAAeAAUAAAABAAIAAAAeAAYAAAABAAIAAAAeAAcAAAABAAIAAAAeAAgAAAABAAIAAAAeAAkAAAABAAIAAAAeAAoAAAABAAIAAAAeAAsAAAABAAIAAAAeAAwAAAABAAIAAAAeAA0AAAABAAIAAAAeAA4AAAABAAIAAAAeABAAAAABAAIAAAAeABEAAAABAAIAAAAeABIAAAAGAAIAAAAeABMAAAACAAIAAAAeABQAAAACAAMAAAAfAP//AAACAAEAAAAfAAAAAAACAAIAAAAfAAEAAAACAAIAAAAfAAIAAAACAAIAAAAfAAMAAAACAAIAAAAfAAQAAAACAAIAAAAfAAUAAAACAAIAAAAfAAYAAAACAAIAAAAfAAcAAAACAAIAAAAfAAgAAAACAAIAAAAfAAkAAAACAAIAAAAfAAoAAAACAAIAAAAfAAsAAAACAAIAAAAfAAwAAAACAAIAAAAfAA0AAAACAAIAAAAfAA4AAAACAAIAAAAfABAAAAACAAIAAAAfABEAAAACAAIAAAAfABIAAAACAAIAAAAfABMAAAACAAIAAAAfABQAAAACAAMAAAAgAA4AAAADAAIAAAAgAAgAAAADAAIAAAAgAAcAAAADAAIAAAAgAAYAAAADAAIAAAAgAAUAAAADAAIAAAAgAAQAAAADAAIAAAAgAAMAAAADAAIAAAAgAAIAAAADAAIAAAAgAAEAAAADAAIAAAAgAAAAAAADAAIAAAAgAP//AAADAAEAAAAgAAkAAAADAAIAAAAgAAoAAAADAAIAAAAgAAsAAAADAAIAAAAgAAwAAAADAAIAAAAgAA0AAAADAAIAAAAgABAAAAADAAIAAAAgABEAAAADAAIAAAAgABIAAAADAAIAAAAgABMAAAADAAIAAAAgABQAAAADAAMAAAAeAA8AAAABAAIAAAAfAA8AAAACAAIAAAAgAA8AAAADAAIAAAAAAA8AAAACAAIAAAD//w8AAAABAAIAAAAIABIAAAACAAEAAAAIABMAAAACAAIAAAAIABQAAAACAAMAAAAJABIAAAACAAEAAAAJABMAAAACAAIAAAAJABQAAAACAAMAAAAJAAEAAAACAAMAAAAJAAAAAAACAAIAAAAJAP//AAACAAEAAAACAAYAAAACAAAAAAADAAYAAAACAAAAAAAEAAYAAAACAAAAAAAFAAYAAAACAAAAAAAHAAIAAAADAAMAAAAGAAIAAAABAAMAAAAGAAUAAAABAAEAAAAGAAYAAAAGAAQAAAAHAAYAAAADAAIAAAAHAAUAAAADAAEAAAAMAAIAAAABAAIAAAAMAAMAAAABAAIAAAAMAAQAAAABAAIAAAAMAAUAAAABAAIAAAAMAAYAAAABAAIAAAAMAAcAAAABAAIAAAAMAAgAAAABAAIAAAAMAAkAAAABAAIAAAAMAAoAAAABAAIAAAAMAAsAAAABAAIAAAAMAAwAAAABAAIAAAAMAA0AAAAGAAQAAAAHAAcAAAADAAMAAAAGAAcAAAABAAMAAAAGAA0AAAABAAIAAAAHAA0AAAAFAAQAAAAGAAwAAAABAAEAAAAHAAwAAAADAAEAAAANAA0AAAADAAIAAAANAAwAAAADAAIAAAANAAsAAAADAAIAAAANAAoAAAADAAIAAAANAAkAAAADAAIAAAANAAgAAAADAAIAAAANAAcAAAADAAIAAAANAAYAAAADAAIAAAANAAUAAAADAAIAAAANAAQAAAADAAIAAAANAAMAAAADAAIAAAANAAIAAAADAAIAAAABAA4AAAADAAIAAAABAA8AAAADAAIAAAABABAAAAADAAIAAAABABEAAAADAAIAAAAGAA4AAAABAAMAAAAHAA4AAAADAAMAAAAGABEAAAABAAEAAAAHABEAAAADAAEAAAAIAA0AAAACAAAAAAAJAA0AAAACAAAAAAAKAA0AAAACAAAAAAALAA0AAAACAAAAAAAMAA4AAAABAAMAAAANAA4AAAADAAMAAAAMABEAAAABAAEAAAANABEAAAADAAEAAAASAAYAAAABAAEAAAASAAcAAAABAAIAAAASAAgAAAABAAIAAAASAAkAAAABAAIAAAASAAoAAAABAAIAAAASAAsAAAABAAIAAAASAAwAAAABAAIAAAASAA0AAAABAAMAAAATAA0AAAACAAMAAAATAAwAAAAFAAIAAAATAAsAAAADAAIAAAATAAoAAAADAAIAAAATAAkAAAADAAIAAAATAAgAAAADAAIAAAATAAcAAAAFAAEAAAATAAYAAAACAAEAAAAUAAYAAAACAAEAAAAVAAYAAAACAAEAAAAWAAYAAAACAAEAAAAXAAYAAAACAAEAAAAYAAYAAAACAAEAAAAZAAYAAAADAAEAAAAZAAcAAAADAAIAAAAYAAcAAAAGAAEAAAAXAAcAAAACAAMAAAAWAAcAAAACAAMAAAAVAAcAAAACAAMAAAAUAAcAAAACAAMAAAAYAAgAAAABAAIAAAAYAAkAAAABAAIAAAAYAAoAAAABAAIAAAAYAAsAAAABAAIAAAAYAAwAAAAGAAIAAAAZAAwAAAADAAIAAAAZAAsAAAADAAIAAAAZAAoAAAADAAIAAAAZAAkAAAADAAIAAAAZAAgAAAADAAIAAAAYAA0AAAACAAMAAAAZAA0AAAADAAMAAAAXAAwAAAABAAEAAAAXAA0AAAABAAMAAAAUAAwAAAADAAEAAAAUAA0AAAADAAMAAAA=")
+metadata/_edit_lock_ = true
+
+[node name="Checkpoints" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("6_yfwkb")]
+offset_left = 96.0
+offset_top = 96.0
+offset_right = 288.0
+offset_bottom = 288.0
+type = 1
+
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("6_yfwkb")]
+offset_left = 384.0
+offset_top = 672.0
+offset_right = 576.0
+offset_bottom = 864.0
+
+[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("6_yfwkb")]
+offset_left = 960.0
+offset_top = 384.0
+offset_right = 1152.0
+offset_bottom = 576.0
+type = 2
+level_warp = "showcase_1_3"
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
+
+[node name="Group" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
+position = Vector2(120, 888)
+
+[node name="Enemy2" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
+position = Vector2(168, 888)
+
+[node name="Enemy3" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
+position = Vector2(120, 600)
+
+[node name="Enemy4" parent="Enemies/Group" instance=ExtResource("8_ac8bc")]
+position = Vector2(168, 600)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group"]
+libraries = {
+"": SubResource("AnimationLibrary_u0174")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 45
+
+[node name="Group2" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
+position = Vector2(216, 888)
+
+[node name="Enemy2" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
+position = Vector2(264, 888)
+
+[node name="Enemy3" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
+position = Vector2(216, 600)
+
+[node name="Enemy4" parent="Enemies/Group2" instance=ExtResource("8_ac8bc")]
+position = Vector2(264, 600)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
+libraries = {
+"": SubResource("AnimationLibrary_u0174")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+
+[node name="Group3" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Group3" instance=ExtResource("8_ac8bc")]
+position = Vector2(408, 360)
+
+[node name="Enemy2" parent="Enemies/Group3" instance=ExtResource("8_ac8bc")]
+position = Vector2(456, 360)
+
+[node name="Enemy3" parent="Enemies/Group3" instance=ExtResource("8_ac8bc")]
+position = Vector2(408, 72)
+
+[node name="Enemy4" parent="Enemies/Group3" instance=ExtResource("8_ac8bc")]
+position = Vector2(456, 72)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group3"]
+libraries = {
+"": SubResource("AnimationLibrary_4xsgh")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 23
+
+[node name="Group4" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Group4" instance=ExtResource("8_ac8bc")]
+position = Vector2(504, 360)
+
+[node name="Enemy2" parent="Enemies/Group4" instance=ExtResource("8_ac8bc")]
+position = Vector2(552, 360)
+
+[node name="Enemy3" parent="Enemies/Group4" instance=ExtResource("8_ac8bc")]
+position = Vector2(504, 72)
+
+[node name="Enemy4" parent="Enemies/Group4" instance=ExtResource("8_ac8bc")]
+position = Vector2(552, 72)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group4"]
+libraries = {
+"": SubResource("AnimationLibrary_4xsgh")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+
+[node name="Square" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Square" instance=ExtResource("8_ac8bc")]
+position = Vector2(696, 792)
+
+[node name="Enemy2" parent="Enemies/Square" instance=ExtResource("8_ac8bc")]
+position = Vector2(744, 792)
+
+[node name="Enemy3" parent="Enemies/Square" instance=ExtResource("8_ac8bc")]
+position = Vector2(696, 840)
+
+[node name="Enemy4" parent="Enemies/Square" instance=ExtResource("8_ac8bc")]
+position = Vector2(744, 840)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Square"]
+libraries = {
+"": SubResource("AnimationLibrary_13oii")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+
+[node name="Square2" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Square2" instance=ExtResource("8_ac8bc")]
+position = Vector2(696, 792)
+
+[node name="Enemy2" parent="Enemies/Square2" instance=ExtResource("8_ac8bc")]
+position = Vector2(744, 792)
+
+[node name="Enemy3" parent="Enemies/Square2" instance=ExtResource("8_ac8bc")]
+position = Vector2(696, 840)
+
+[node name="Enemy4" parent="Enemies/Square2" instance=ExtResource("8_ac8bc")]
+position = Vector2(744, 840)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Square2"]
+libraries = {
+"": SubResource("AnimationLibrary_13oii")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 90
+
+[node name="Square3" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Square3" instance=ExtResource("8_ac8bc")]
+position = Vector2(696, 792)
+
+[node name="Enemy2" parent="Enemies/Square3" instance=ExtResource("8_ac8bc")]
+position = Vector2(744, 792)
+
+[node name="Enemy3" parent="Enemies/Square3" instance=ExtResource("8_ac8bc")]
+position = Vector2(696, 840)
+
+[node name="Enemy4" parent="Enemies/Square3" instance=ExtResource("8_ac8bc")]
+position = Vector2(744, 840)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Square3"]
+libraries = {
+"": SubResource("AnimationLibrary_13oii")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 180
+
+[node name="Square4" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Square4" instance=ExtResource("8_ac8bc")]
+position = Vector2(696, 792)
+
+[node name="Enemy2" parent="Enemies/Square4" instance=ExtResource("8_ac8bc")]
+position = Vector2(744, 792)
+
+[node name="Enemy3" parent="Enemies/Square4" instance=ExtResource("8_ac8bc")]
+position = Vector2(696, 840)
+
+[node name="Enemy4" parent="Enemies/Square4" instance=ExtResource("8_ac8bc")]
+position = Vector2(744, 840)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Square4"]
+libraries = {
+"": SubResource("AnimationLibrary_13oii")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 270
+
+[node name="Square5" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Square5" instance=ExtResource("8_ac8bc")]
+position = Vector2(792, 696)
+
+[node name="Enemy2" parent="Enemies/Square5" instance=ExtResource("8_ac8bc")]
+position = Vector2(840, 696)
+
+[node name="Enemy3" parent="Enemies/Square5" instance=ExtResource("8_ac8bc")]
+position = Vector2(792, 744)
+
+[node name="Enemy4" parent="Enemies/Square5" instance=ExtResource("8_ac8bc")]
+position = Vector2(840, 744)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Square5"]
+libraries = {
+"": SubResource("AnimationLibrary_06qan")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 45
+
+[node name="Square6" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Square6" instance=ExtResource("8_ac8bc")]
+position = Vector2(792, 696)
+
+[node name="Enemy2" parent="Enemies/Square6" instance=ExtResource("8_ac8bc")]
+position = Vector2(840, 696)
+
+[node name="Enemy3" parent="Enemies/Square6" instance=ExtResource("8_ac8bc")]
+position = Vector2(792, 744)
+
+[node name="Enemy4" parent="Enemies/Square6" instance=ExtResource("8_ac8bc")]
+position = Vector2(840, 744)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Square6"]
+libraries = {
+"": SubResource("AnimationLibrary_06qan")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 135
+
+[node name="Square7" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Square7" instance=ExtResource("8_ac8bc")]
+position = Vector2(792, 696)
+
+[node name="Enemy2" parent="Enemies/Square7" instance=ExtResource("8_ac8bc")]
+position = Vector2(840, 696)
+
+[node name="Enemy3" parent="Enemies/Square7" instance=ExtResource("8_ac8bc")]
+position = Vector2(792, 744)
+
+[node name="Enemy4" parent="Enemies/Square7" instance=ExtResource("8_ac8bc")]
+position = Vector2(840, 744)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Square7"]
+libraries = {
+"": SubResource("AnimationLibrary_06qan")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 225
+
+[node name="Square8" type="Node2D" parent="Enemies"]
+script = ExtResource("3_lgm30")
+
+[node name="Enemy" parent="Enemies/Square8" instance=ExtResource("8_ac8bc")]
+position = Vector2(792, 696)
+
+[node name="Enemy2" parent="Enemies/Square8" instance=ExtResource("8_ac8bc")]
+position = Vector2(840, 696)
+
+[node name="Enemy3" parent="Enemies/Square8" instance=ExtResource("8_ac8bc")]
+position = Vector2(792, 744)
+
+[node name="Enemy4" parent="Enemies/Square8" instance=ExtResource("8_ac8bc")]
+position = Vector2(840, 744)
+
+[node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Square8"]
+libraries = {
+"": SubResource("AnimationLibrary_06qan")
+}
+autoplay = "new_animation"
+script = ExtResource("8_v3lcr")
+start_time = 315
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(408, 264)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(456, 264)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(552, 456)
+
+[node name="Enemy11" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(888, 696)
+
+[node name="Enemy12" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(888, 744)
+
+[node name="Enemy13" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(888, 792)
+
+[node name="Enemy14" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(888, 840)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(504, 456)
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(252, 552)
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(132, 552)
+
+[node name="Enemy7" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(252, 600)
+
+[node name="Enemy8" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(132, 600)
+
+[node name="Enemy9" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(252, 648)
+
+[node name="Enemy10" parent="Enemies" instance=ExtResource("8_ac8bc")]
+position = Vector2(132, 648)
+
+[node name="Turrets" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+
+[node name="FireTimer" type="Node" parent="Turrets"]
+script = ExtResource("8_mu227")
+metronome = true
+autostart = true
+duration = 60
+
+[node name="Coins" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
+
+[node name="Coin" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(840, 456)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(744, 120)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(696, 120)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(696, 168)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1416, 120)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1368, 120)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1416, 168)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1416, 792)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1368, 840)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1416, 840)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1032, 264)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1080, 264)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1272, 456)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(1272, 504)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("10_66bql")]
+position = Vector2(840, 504)
+
+[node name="Keys" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
+
+[node name="GoldDoors" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
+
+[node name="GoldDoor" parent="GoldDoors" instance=ExtResource("11_jk8vc")]
+offset_left = 1008.0
+offset_top = 576.0
+offset_right = 1104.0
+offset_bottom = 672.0
+
+[node name="KeyDoors" type="Node2D" parent="."]
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
+
+[node name="Decoration" type="Node2D" parent="."]
+editor_description = "This folder doesn't get scanned at launch. Put everything purely decorative that doesn't use IDs here."
+script = ExtResource("3_lgm30")
+metadata/_edit_lock_ = true
