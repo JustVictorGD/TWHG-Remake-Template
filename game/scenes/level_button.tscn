@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu2cjpp58n1mk"]
+
+[ext_resource type="Script" uid="uid://ci5a2atd11d1w" path="res://game/scenes/level_button.gd" id="1_n7kd2"]
+[ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_cryhs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_utow7"]
+font = ExtResource("2_cryhs")
+font_size = 72
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cryhs"]
+font = ExtResource("2_cryhs")
+font_size = 72
+
+[node name="LevelButton" type="Button"]
+offset_right = 80.0
+offset_bottom = 80.0
+flat = true
+script = ExtResource("1_n7kd2")
+
+[node name="Outline" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+mouse_filter = 2
+color = Color(0.55, 0.55, 0.55, 1)
+
+[node name="Fill" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 70.0
+offset_bottom = 70.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = -6.0
+offset_right = 80.0
+offset_bottom = 90.0
+text = "1"
+label_settings = SubResource("LabelSettings_utow7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Locked" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Locked"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_cryhs")
+theme_override_font_sizes/font_size = 30
+text = "?"
+label_settings = SubResource("LabelSettings_cryhs")
+horizontal_alignment = 1
+vertical_alignment = 1

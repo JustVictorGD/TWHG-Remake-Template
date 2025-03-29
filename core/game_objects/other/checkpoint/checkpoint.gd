@@ -114,7 +114,7 @@ func win() -> void:
 
 
 func warp_level() -> void:
-	GameManager.last_checkpoint_id = -1
+	World.instance.active_level.last_checkpoint_id = -1
 	
 	if final_destination:
 		get_tree().change_scene_to_packed(preload("res://game/scenes/end_screen.tscn"))
@@ -124,9 +124,8 @@ func warp_level() -> void:
 
 
 func player_entered() -> void:
-	GameManager.last_checkpoint_id = id
+	World.instance.active_level.last_checkpoint_id = id
 	select()
-	
 	GameManager.touched_checkpoint_ids.append(id)
 
 

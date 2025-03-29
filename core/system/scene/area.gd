@@ -23,6 +23,8 @@ class_name Area
 ## Change for small player or fat player gameplay.
 @export var player_size: Vector2i = Vector2i(42, 42)
 
+var last_checkpoint_id: int
+
 ## Used by 'persistent_data' to skip subsequent searches after a successful one.
 var data_is_valid: bool = false
 
@@ -41,3 +43,20 @@ var persistent_data: Dictionary:
 		data_is_valid = true
 		persistent_data = SaveData.data["areas"][code_name]
 		return persistent_data
+
+
+func _ready() -> void:
+	Signals.save_game.connect(save_game)
+	
+	last_checkpoint_id = get_last_checkpoint_id()
+
+
+func save_game() -> void:
+	persistent_data["last_checkpoint_id"] = last_checkpoint_id
+
+
+func get_last_checkpoint_id() -> int:
+	if "last_checkpoint_id" not in persistent_data:
+		persistent_data["last_checkpoint_id"] = -1
+	
+	return persistent_data["last_checkpoint_id"]

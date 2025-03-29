@@ -2,8 +2,9 @@ extends Node2D
 
 func load_game(save_id: int) -> void:
 	SaveData.current_save = save_id
+	SaveData.load_game()
 	GameManager.paused = false
-	get_tree().change_scene_to_packed(preload("res://game/scenes/world.tscn"))
+	get_tree().change_scene_to_packed(preload("res://game/scenes/level_select.tscn"))
 
 
 func _on_save_1_pressed() -> void:

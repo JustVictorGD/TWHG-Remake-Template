@@ -1,41 +1,146 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsvyehfhimk2k"]
+[gd_scene load_steps=15 format=3 uid="uid://dsvyehfhimk2k"]
 
-[ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="1_r0t2a"]
+[ext_resource type="Script" uid="uid://c0l341qnyqfo1" path="res://game/scenes/level_select.gd" id="1_uh8wr"]
+[ext_resource type="Texture2D" uid="uid://c8h3158ht7fco" path="res://core/game_objects/other/floor/void_diagonal.png" id="1_vp07g"]
+[ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_jp123"]
+[ext_resource type="PackedScene" uid="uid://cu2cjpp58n1mk" path="res://game/scenes/level_button.tscn" id="4_dp8ja"]
 
 [sub_resource type="Gradient" id="Gradient_wytoc"]
-offsets = PackedFloat32Array(0, 0.25, 0.5, 0.751073, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.5, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4yyi2"]
 gradient = SubResource("Gradient_wytoc")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
+[sub_resource type="Animation" id="Animation_uh8wr"]
+resource_name = "new_animation"
+length = 0.5
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dp8ja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80161"]
+_data = {
+&"RESET": SubResource("Animation_dp8ja"),
+&"new_animation": SubResource("Animation_uh8wr")
+}
+
+[sub_resource type="Animation" id="Animation_vp07g"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-160, -80)]
+}
+
+[sub_resource type="Animation" id="Animation_jp123"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uh8wr"]
+_data = {
+&"RESET": SubResource("Animation_jp123"),
+&"new_animation": SubResource("Animation_vp07g")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_3l7kl"]
 font_size = 144
-outline_size = 40
-outline_color = Color(0, 0, 0, 1)
+outline_size = 20
+outline_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uh8wr"]
+font = ExtResource("2_jp123")
+font_size = 48
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0.42, 0, 0, 1)
 
 [node name="LevelSelect" type="Node2D"]
-
-[node name="Floor" parent="." instance=ExtResource("1_r0t2a")]
-z_index = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 16.0
-offset_bottom = 9.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(80, 80)
-copy_area_theme = false
-color_1 = Color(0.14, 0.14, 0.14, 1)
-color_2 = Color(0.31, 0.31, 0.31, 1)
+script = ExtResource("1_uh8wr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
 scale = Vector2(20, 11.25)
 texture = SubResource("GradientTexture2D_4yyi2")
+metadata/_edit_lock_ = true
+
+[node name="Flash" type="ColorRect" parent="."]
+z_index = 16
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flash"]
+libraries = {
+&"": SubResource("AnimationLibrary_80161")
+}
+autoplay = "new_animation"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.266667)
+texture_filter = 1
+offset_right = 36.0
+offset_bottom = 20.0
+scale = Vector2(40, 40)
+texture = ExtResource("1_vp07g")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_uh8wr")
+}
+autoplay = "new_animation"
 
 [node name="Label" type="Label" parent="."]
 offset_left = 200.0
@@ -45,3 +150,61 @@ text = "Level Select"
 label_settings = SubResource("LabelSettings_3l7kl")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Back" type="Button" parent="."]
+offset_right = 100.0
+offset_bottom = 60.0
+flat = true
+
+[node name="Label" type="Label" parent="Back"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 91.0
+offset_bottom = 60.0
+text = "Back"
+label_settings = SubResource("LabelSettings_uh8wr")
+horizontal_alignment = 1
+
+[node name="LevelButtons" type="Node" parent="."]
+
+[node name="LevelButton" parent="LevelButtons" instance=ExtResource("4_dp8ja")]
+offset_left = 360.0
+offset_top = 360.0
+offset_right = 440.0
+offset_bottom = 440.0
+level_code = "showcase_1"
+visible_number = "1"
+outline_color = Color(0.25, 0.25, 0.5, 1)
+fill_color = Color(0.75, 0.75, 1, 1)
+
+[node name="LevelButton2" parent="LevelButtons" instance=ExtResource("4_dp8ja")]
+offset_left = 520.0
+offset_top = 360.0
+offset_right = 600.0
+offset_bottom = 440.0
+level_code = "showcase_2"
+visible_number = "2"
+outline_color = Color(0.5, 0.4375, 0.25, 1)
+fill_color = Color(1, 0.9375, 0.75, 1)
+
+[node name="LevelButton3" parent="LevelButtons" instance=ExtResource("4_dp8ja")]
+offset_left = 680.0
+offset_top = 360.0
+offset_right = 760.0
+offset_bottom = 440.0
+level_code = "showcase_3"
+visible_number = "3"
+outline_color = Color(0.4, 0.4, 0.4, 1)
+fill_color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="LevelButton4" parent="LevelButtons" instance=ExtResource("4_dp8ja")]
+offset_left = 840.0
+offset_top = 360.0
+offset_right = 920.0
+offset_bottom = 440.0
+level_code = "showcase_4"
+visible_number = "4"
+outline_color = Color(0.5, 0.25, 0.5, 1)
+fill_color = Color(1, 0.75, 1, 1)
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

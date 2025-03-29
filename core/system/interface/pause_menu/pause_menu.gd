@@ -32,8 +32,6 @@ func load_game() -> void:
 	update_trails()
 	
 	$SensitivitySlider.value = GameManager.sliding_sensitivity
-	print($SensitivitySlider.value)
-	print(GameManager.sliding_sensitivity)
 
 
 func return_to_game_click() -> void:

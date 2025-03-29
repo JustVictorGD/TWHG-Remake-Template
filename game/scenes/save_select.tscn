@@ -11,12 +11,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0.14, 0.6, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_slww4"]
 gradient = SubResource("Gradient_sttm1")
 
-[sub_resource type="LabelSettings" id="LabelSettings_76yte"]
-font = ExtResource("1_sttm1")
-font_size = 128
-outline_size = 12
-outline_color = Color(0.51, 0.51, 0.51, 1)
-
 [sub_resource type="Animation" id="Animation_noapy"]
 length = 0.001
 tracks/0/type = "value"
@@ -53,6 +47,12 @@ _data = {
 &"RESET": SubResource("Animation_noapy"),
 &"new_animation": SubResource("Animation_rhg1r")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_76yte"]
+font = ExtResource("1_sttm1")
+font_size = 128
+outline_size = 12
+outline_color = Color(0.5, 0.5, 0.5, 1)
 
 [sub_resource type="Animation" id="Animation_76yte"]
 length = 0.001
@@ -114,16 +114,8 @@ position = Vector2(640, 360)
 scale = Vector2(5, 720)
 texture = SubResource("GradientTexture1D_slww4")
 
-[node name="Label" type="Label" parent="."]
-offset_top = 80.0
-offset_right = 1280.0
-offset_bottom = 240.0
-text = "TWHG Remake Template"
-label_settings = SubResource("LabelSettings_76yte")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Flash" type="ColorRect" parent="."]
+z_index = 16
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
@@ -134,6 +126,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_shk33")
 }
 autoplay = "new_animation"
+
+[node name="Label" type="Label" parent="."]
+offset_top = 80.0
+offset_right = 1280.0
+offset_bottom = 240.0
+text = "TWHG Remake Template"
+label_settings = SubResource("LabelSettings_76yte")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Floor" parent="." instance=ExtResource("1_slww4")]
 offset_left = -160.0
@@ -170,6 +171,7 @@ vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="Save1"]
 z_index = -8
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 80.0
 mouse_filter = 2
@@ -192,6 +194,7 @@ vertical_alignment = 1
 
 [node name="ColorRect2" type="ColorRect" parent="Save2"]
 z_index = -8
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 80.0
 mouse_filter = 2
@@ -214,6 +217,7 @@ vertical_alignment = 1
 
 [node name="ColorRect3" type="ColorRect" parent="Save3"]
 z_index = -8
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 80.0
 mouse_filter = 2
