@@ -506,7 +506,7 @@ fill_color = Color(0.6, 0.6, 0.6, 1)
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Walls"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_ppnw4")
+&"": SubResource("AnimationLibrary_ppnw4")
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
@@ -557,7 +557,7 @@ fill_color = Color(0, 0, 1, 1)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Ring1"]
 libraries = {
-"": SubResource("AnimationLibrary_pg12r")
+&"": SubResource("AnimationLibrary_pg12r")
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
@@ -580,7 +580,7 @@ position = Vector2(0, 96)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Ring2"]
 libraries = {
-"": SubResource("AnimationLibrary_75u1h")
+&"": SubResource("AnimationLibrary_75u1h")
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
@@ -598,7 +598,7 @@ properties = SubResource("Resource_24d7x")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Ring3"]
 libraries = {
-"": SubResource("AnimationLibrary_y3cdk")
+&"": SubResource("AnimationLibrary_y3cdk")
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
@@ -621,7 +621,7 @@ position = Vector2(1320, 636)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Vertical"]
 libraries = {
-"": SubResource("AnimationLibrary_ug1uo")
+&"": SubResource("AnimationLibrary_ug1uo")
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
@@ -645,7 +645,7 @@ position = Vector2(1416, 636)
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Vertical2"]
 reset_on_save = false
 libraries = {
-"": SubResource("AnimationLibrary_ug1uo")
+&"": SubResource("AnimationLibrary_ug1uo")
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
@@ -683,7 +683,7 @@ position = Vector2(0, 96)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/AnotherSpinner"]
 libraries = {
-"": SubResource("AnimationLibrary_u1ebv")
+&"": SubResource("AnimationLibrary_u1ebv")
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
@@ -911,7 +911,7 @@ fire_timer = NodePath("TickBasedTimer")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Turrets/Turret"]
 libraries = {
-"": SubResource("AnimationLibrary_i8m1s")
+&"": SubResource("AnimationLibrary_i8m1s")
 }
 autoplay = "new_animation"
 script = ExtResource("9_yeknw")
@@ -941,26 +941,21 @@ script = ExtResource("3_womt2")
 
 [node name="Paint" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(708, 168)
-paint_id = 4
 save_behavior = 2
 
 [node name="Paint2" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(792, 168)
-paint_id = 4
 
 [node name="Paint3" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(888, 168)
-paint_id = 4
 save_behavior = 1
 
 [node name="Paint4" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(888, 312)
-paint_id = 2
 save_behavior = 1
 
 [node name="Paint5" parent="Paints" instance=ExtResource("21_vxatf")]
 position = Vector2(984, 312)
-paint_id = 1
 save_behavior = 1
 
 [node name="Teleporter" parent="." instance=ExtResource("22_t4d3y")]

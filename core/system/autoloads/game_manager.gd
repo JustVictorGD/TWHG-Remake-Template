@@ -119,3 +119,7 @@ func save_unsafely() -> void:
 	
 	SaveData.data["global"]["deaths"] = deaths
 	SaveData.data["global"]["time"] = time
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		paused = true

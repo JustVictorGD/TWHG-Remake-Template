@@ -261,7 +261,7 @@ script = ExtResource("6_1elcq")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
 libraries = {
-"": SubResource("AnimationLibrary_lixfg")
+&"": SubResource("AnimationLibrary_lixfg")
 }
 autoplay = "new_animation"
 script = ExtResource("8_m2jsx")
@@ -277,7 +277,7 @@ script = ExtResource("6_1elcq")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
 libraries = {
-"": SubResource("AnimationLibrary_cyuu8")
+&"": SubResource("AnimationLibrary_cyuu8")
 }
 autoplay = "new_animation"
 script = ExtResource("8_m2jsx")

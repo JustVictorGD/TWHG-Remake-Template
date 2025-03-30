@@ -304,9 +304,9 @@ script = ExtResource("3_wku1j")
 metadata/_edit_lock_ = true
 
 [node name="Checkpoint" parent="Checkpoints" instance=ExtResource("6_txssx")]
-offset_left = 384.0
+offset_left = 385.0
 offset_top = 384.0
-offset_right = 576.0
+offset_right = 577.0
 offset_bottom = 576.0
 type = 3
 level_warp = "showcase_2"

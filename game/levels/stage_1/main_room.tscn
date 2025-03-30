@@ -507,7 +507,7 @@ full_circle_mode = false
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Circles/Circle"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_hu2f0")
+&"": SubResource("AnimationLibrary_hu2f0")
 }
 autoplay = "new_animation"
 script = ExtResource("7_8uesn")
@@ -532,7 +532,7 @@ script = ExtResource("4_gna1d")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group5"]
 libraries = {
-"": SubResource("AnimationLibrary_1fkvn")
+&"": SubResource("AnimationLibrary_1fkvn")
 }
 autoplay = "new_animation"
 script = ExtResource("7_8uesn")
@@ -626,7 +626,7 @@ script = ExtResource("4_gna1d")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group6"]
 libraries = {
-"": SubResource("AnimationLibrary_mq7e6")
+&"": SubResource("AnimationLibrary_mq7e6")
 }
 autoplay = "new_animation"
 script = ExtResource("7_8uesn")
@@ -688,7 +688,7 @@ script = ExtResource("4_gna1d")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/4-B4"]
 libraries = {
-"": SubResource("AnimationLibrary_04hee")
+&"": SubResource("AnimationLibrary_04hee")
 }
 autoplay = "new_animation"
 script = ExtResource("7_8uesn")
@@ -718,7 +718,7 @@ metadata/_edit_group_ = true
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group1"]
 libraries = {
-"": SubResource("AnimationLibrary_ypg5j")
+&"": SubResource("AnimationLibrary_ypg5j")
 }
 autoplay = "new_animation"
 script = ExtResource("7_8uesn")
@@ -777,7 +777,7 @@ metadata/_edit_group_ = true
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Group2"]
 libraries = {
-"": SubResource("AnimationLibrary_ypg5j")
+&"": SubResource("AnimationLibrary_ypg5j")
 }
 autoplay = "new_animation"
 script = ExtResource("7_8uesn")
@@ -969,7 +969,7 @@ metadata/_edit_group_ = true
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Glow"]
 libraries = {
-"": SubResource("AnimationLibrary_rxq0a")
+&"": SubResource("AnimationLibrary_rxq0a")
 }
 autoplay = "new_animation"
 script = ExtResource("7_8uesn")

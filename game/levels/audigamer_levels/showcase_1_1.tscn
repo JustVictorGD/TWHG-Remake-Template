@@ -1,12 +1,12 @@
 [gd_scene load_steps=36 format=4 uid="uid://bjiuuwu6jwy3a"]
 
-[ext_resource type="Script" path="res://core/system/scene/area.gd" id="1_bsau6"]
+[ext_resource type="Script" uid="uid://ls7lnt2trggs" path="res://core/system/scene/area.gd" id="1_bsau6"]
 [ext_resource type="Resource" uid="uid://bce68jr2gt8ep" path="res://game/themes/original/blue_theme.tres" id="2_dfyn1"]
-[ext_resource type="Script" path="res://core/system/folder_2d.gd" id="3_fcprs"]
+[ext_resource type="Script" uid="uid://gl2d7dv5wh5s" path="res://core/system/folder_2d.gd" id="3_fcprs"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="4_88u1m"]
 [ext_resource type="PackedScene" uid="uid://lgefvp2uysn3" path="res://core/game_objects/solids/tile_map/solid_tile_set.tscn" id="5_8wvfu"]
 [ext_resource type="PackedScene" uid="uid://bf8htjaobfs6b" path="res://core/game_objects/other/checkpoint/checkpoint.tscn" id="6_7tkvf"]
-[ext_resource type="Script" path="res://core/components/tick_based_animator.gd" id="7_ghvmd"]
+[ext_resource type="Script" uid="uid://cc65l40ksv5uw" path="res://core/components/tick_based_animator.gd" id="7_ghvmd"]
 [ext_resource type="PackedScene" uid="uid://d2tu2qgth8he6" path="res://core/game_objects/other/enemy/enemy.tscn" id="8_v3q2g"]
 [ext_resource type="PackedScene" uid="uid://b1dbw36tkmvwy" path="res://core/game_objects/collectables/coin/coin.tscn" id="9_foce4"]
 [ext_resource type="PackedScene" uid="uid://b0dbbdclyjpxo" path="res://core/game_objects/collectables/key/key.tscn" id="11_4xiqh"]
@@ -46,8 +46,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dhryx"]
 _data = {
-"RESET": SubResource("Animation_sskqh"),
-"new_animation": SubResource("Animation_fd5v8")
+&"RESET": SubResource("Animation_sskqh"),
+&"new_animation": SubResource("Animation_fd5v8")
 }
 
 [sub_resource type="Animation" id="Animation_isdrj"]
@@ -84,8 +84,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7xhw5"]
 _data = {
-"RESET": SubResource("Animation_isdrj"),
-"new_animation": SubResource("Animation_toklg")
+&"RESET": SubResource("Animation_isdrj"),
+&"new_animation": SubResource("Animation_toklg")
 }
 
 [sub_resource type="Animation" id="Animation_227c8"]
@@ -123,8 +123,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0igti"]
 _data = {
-"RESET": SubResource("Animation_227c8"),
-"new_animation": SubResource("Animation_7qnrl")
+&"RESET": SubResource("Animation_227c8"),
+&"new_animation": SubResource("Animation_7qnrl")
 }
 
 [sub_resource type="Animation" id="Animation_pcd7w"]
@@ -160,8 +160,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_164fo"]
 _data = {
-"RESET": SubResource("Animation_pcd7w"),
-"new_animation": SubResource("Animation_doxl8")
+&"RESET": SubResource("Animation_pcd7w"),
+&"new_animation": SubResource("Animation_doxl8")
 }
 
 [sub_resource type="Animation" id="Animation_5eifw"]
@@ -200,8 +200,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c0jb6"]
 _data = {
-"RESET": SubResource("Animation_5eifw"),
-"new_animation": SubResource("Animation_hp7pu")
+&"RESET": SubResource("Animation_5eifw"),
+&"new_animation": SubResource("Animation_hp7pu")
 }
 
 [sub_resource type="Animation" id="Animation_2vckd"]
@@ -263,8 +263,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_khjhd"]
 _data = {
-"RESET": SubResource("Animation_2vckd"),
-"new_animation": SubResource("Animation_xf10t")
+&"RESET": SubResource("Animation_2vckd"),
+&"new_animation": SubResource("Animation_xf10t")
 }
 
 [sub_resource type="Animation" id="Animation_0q0bg"]
@@ -326,8 +326,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yhboj"]
 _data = {
-"RESET": SubResource("Animation_0q0bg"),
-"new_animation": SubResource("Animation_jq1sl")
+&"RESET": SubResource("Animation_0q0bg"),
+&"new_animation": SubResource("Animation_jq1sl")
 }
 
 [sub_resource type="Animation" id="Animation_qh0sh"]
@@ -364,8 +364,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iod0u"]
 _data = {
-"RESET": SubResource("Animation_qh0sh"),
-"new_animation": SubResource("Animation_7d7xi")
+&"RESET": SubResource("Animation_qh0sh"),
+&"new_animation": SubResource("Animation_7d7xi")
 }
 
 [node name="Showcase1" type="Node2D" groups=["area"]]
@@ -424,7 +424,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Bottom/Group1"]
 libraries = {
-"": SubResource("AnimationLibrary_dhryx")
+&"": SubResource("AnimationLibrary_dhryx")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -446,7 +446,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Bottom/Group2"]
 libraries = {
-"": SubResource("AnimationLibrary_7xhw5")
+&"": SubResource("AnimationLibrary_7xhw5")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -468,7 +468,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Bottom/Group3"]
 libraries = {
-"": SubResource("AnimationLibrary_0igti")
+&"": SubResource("AnimationLibrary_0igti")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -490,7 +490,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Bottom/Group4"]
 libraries = {
-"": SubResource("AnimationLibrary_0igti")
+&"": SubResource("AnimationLibrary_0igti")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -513,7 +513,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Bottom/Group5"]
 libraries = {
-"": SubResource("AnimationLibrary_164fo")
+&"": SubResource("AnimationLibrary_164fo")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -533,7 +533,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Bottom/Group6"]
 libraries = {
-"": SubResource("AnimationLibrary_164fo")
+&"": SubResource("AnimationLibrary_164fo")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -612,7 +612,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Room1/Group1/Square"]
 libraries = {
-"": SubResource("AnimationLibrary_c0jb6")
+&"": SubResource("AnimationLibrary_c0jb6")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -634,7 +634,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Room1/Group1/Square2"]
 libraries = {
-"": SubResource("AnimationLibrary_c0jb6")
+&"": SubResource("AnimationLibrary_c0jb6")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -661,7 +661,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Room1/Group2/Square"]
 libraries = {
-"": SubResource("AnimationLibrary_c0jb6")
+&"": SubResource("AnimationLibrary_c0jb6")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -683,7 +683,7 @@ script = ExtResource("3_fcprs")
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Room1/Group2/Square2"]
 libraries = {
-"": SubResource("AnimationLibrary_c0jb6")
+&"": SubResource("AnimationLibrary_c0jb6")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -728,7 +728,7 @@ position = Vector2(-60, 60)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Room2/Spinner1"]
 libraries = {
-"": SubResource("AnimationLibrary_khjhd")
+&"": SubResource("AnimationLibrary_khjhd")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -745,7 +745,7 @@ position = Vector2(60, 60)
 
 [node name="TickBasedAnimator" type="AnimationPlayer" parent="Enemies/Room2/Spinner2"]
 libraries = {
-"": SubResource("AnimationLibrary_yhboj")
+&"": SubResource("AnimationLibrary_yhboj")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -765,7 +765,7 @@ position = Vector2(1116, 264)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/Room3/WavePattern"]
 root_node = NodePath("../Enemy")
 libraries = {
-"": SubResource("AnimationLibrary_iod0u")
+&"": SubResource("AnimationLibrary_iod0u")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -782,7 +782,7 @@ position = Vector2(1116, 216)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/Room3/WavePattern2"]
 root_node = NodePath("../Enemy")
 libraries = {
-"": SubResource("AnimationLibrary_iod0u")
+&"": SubResource("AnimationLibrary_iod0u")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -800,7 +800,7 @@ position = Vector2(1116, 168)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/Room3/WavePattern3"]
 root_node = NodePath("../Enemy")
 libraries = {
-"": SubResource("AnimationLibrary_iod0u")
+&"": SubResource("AnimationLibrary_iod0u")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
@@ -818,7 +818,7 @@ position = Vector2(1116, 120)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/Room3/WavePattern4"]
 root_node = NodePath("../Enemy")
 libraries = {
-"": SubResource("AnimationLibrary_iod0u")
+&"": SubResource("AnimationLibrary_iod0u")
 }
 autoplay = "new_animation"
 script = ExtResource("7_ghvmd")
