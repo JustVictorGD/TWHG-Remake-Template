@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://rkxxljuf1bh5"]
+[gd_scene load_steps=16 format=3 uid="uid://rkxxljuf1bh5"]
 
 [ext_resource type="Script" uid="uid://c6kck7pwtsgyt" path="res://game/scenes/save_select.gd" id="1_76yte"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="1_slww4"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="1_sttm1"]
+[ext_resource type="PackedScene" uid="uid://bcfxybt0tylqy" path="res://game/scenes/save_select/save_block.tscn" id="4_rhg1r"]
 
 [sub_resource type="Gradient" id="Gradient_sttm1"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -128,9 +129,9 @@ libraries = {
 autoplay = "new_animation"
 
 [node name="Label" type="Label" parent="."]
-offset_top = 80.0
+offset_top = 40.0
 offset_right = 1280.0
-offset_bottom = 240.0
+offset_bottom = 200.0
 text = "TWHG Remake Template"
 label_settings = SubResource("LabelSettings_76yte")
 horizontal_alignment = 1
@@ -153,80 +154,32 @@ libraries = {
 }
 autoplay = "new_animation"
 
-[node name="Save1" type="Button" parent="."]
+[node name="SaveBlock1" parent="." instance=ExtResource("4_rhg1r")]
 offset_left = 80.0
-offset_top = 320.0
+offset_top = 240.0
 offset_right = 400.0
-offset_bottom = 400.0
-flat = true
+offset_bottom = 560.0
+id = 1
 
-[node name="Label" type="Label" parent="Save1"]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 80.0
-text = "SAVE 1"
-label_settings = SubResource("LabelSettings_slww4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="Save1"]
-z_index = -8
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 80.0
-mouse_filter = 2
-
-[node name="Save2" type="Button" parent="."]
+[node name="SaveBlock2" parent="." instance=ExtResource("4_rhg1r")]
 offset_left = 480.0
-offset_top = 320.0
+offset_top = 240.0
 offset_right = 800.0
-offset_bottom = 400.0
-flat = true
+offset_bottom = 560.0
+id = 2
 
-[node name="Label" type="Label" parent="Save2"]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 80.0
-text = "SAVE 2"
-label_settings = SubResource("LabelSettings_slww4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect2" type="ColorRect" parent="Save2"]
-z_index = -8
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 80.0
-mouse_filter = 2
-
-[node name="Save3" type="Button" parent="."]
+[node name="SaveBlock3" parent="." instance=ExtResource("4_rhg1r")]
 offset_left = 880.0
-offset_top = 320.0
+offset_top = 240.0
 offset_right = 1200.0
-offset_bottom = 400.0
-flat = true
-
-[node name="Label" type="Label" parent="Save3"]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 80.0
-text = "SAVE 3"
-label_settings = SubResource("LabelSettings_slww4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect3" type="ColorRect" parent="Save3"]
-z_index = -8
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 80.0
-mouse_filter = 2
+offset_bottom = 560.0
+id = 3
 
 [node name="Reset1" type="Button" parent="."]
 offset_left = 160.0
-offset_top = 440.0
+offset_top = 600.0
 offset_right = 320.0
-offset_bottom = 520.0
+offset_bottom = 680.0
 flat = true
 
 [node name="Label" type="Label" parent="Reset1"]
@@ -249,9 +202,9 @@ color = Color(1, 0.57, 0.57, 1)
 
 [node name="Reset2" type="Button" parent="."]
 offset_left = 560.0
-offset_top = 440.0
+offset_top = 600.0
 offset_right = 720.0
-offset_bottom = 520.0
+offset_bottom = 680.0
 flat = true
 
 [node name="Label" type="Label" parent="Reset2"]
@@ -274,9 +227,9 @@ color = Color(1, 0.57, 0.57, 1)
 
 [node name="Reset3" type="Button" parent="."]
 offset_left = 960.0
-offset_top = 440.0
+offset_top = 600.0
 offset_right = 1120.0
-offset_bottom = 520.0
+offset_bottom = 680.0
 flat = true
 
 [node name="Label" type="Label" parent="Reset3"]
@@ -310,9 +263,9 @@ text = "Exit"
 label_settings = SubResource("LabelSettings_rhg1r")
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Save1" to="." method="_on_save_1_pressed"]
-[connection signal="pressed" from="Save2" to="." method="_on_save_2_pressed"]
-[connection signal="pressed" from="Save3" to="." method="_on_save_3_pressed"]
+[connection signal="pressed" from="SaveBlock1" to="." method="_on_save_1_pressed"]
+[connection signal="pressed" from="SaveBlock2" to="." method="_on_save_2_pressed"]
+[connection signal="pressed" from="SaveBlock3" to="." method="_on_save_3_pressed"]
 [connection signal="pressed" from="Reset1" to="." method="_on_reset_1_pressed"]
 [connection signal="pressed" from="Reset2" to="." method="_on_reset_2_pressed"]
 [connection signal="pressed" from="Reset3" to="." method="_on_reset_3_pressed"]

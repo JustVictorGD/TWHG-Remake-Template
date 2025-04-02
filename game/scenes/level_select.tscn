@@ -14,6 +14,21 @@ gradient = SubResource("Gradient_wytoc")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
+[sub_resource type="Animation" id="Animation_dp8ja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_uh8wr"]
 resource_name = "new_animation"
 length = 0.5
@@ -31,25 +46,25 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_dp8ja"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80161"]
+_data = {
+&"RESET": SubResource("Animation_dp8ja"),
+&"new_animation": SubResource("Animation_uh8wr")
+}
+
+[sub_resource type="Animation" id="Animation_jp123"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_80161"]
-_data = {
-&"RESET": SubResource("Animation_dp8ja"),
-&"new_animation": SubResource("Animation_uh8wr")
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vp07g"]
@@ -68,21 +83,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-160, -80)]
-}
-
-[sub_resource type="Animation" id="Animation_jp123"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uh8wr"]
@@ -105,6 +105,7 @@ outline_color = Color(0.42, 0, 0, 1)
 
 [node name="LevelSelect" type="Node2D"]
 script = ExtResource("1_uh8wr")
+starting_level = "classic_1"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
@@ -166,6 +167,16 @@ label_settings = SubResource("LabelSettings_uh8wr")
 horizontal_alignment = 1
 
 [node name="LevelButtons" type="Node" parent="."]
+
+[node name="LevelButton0" parent="LevelButtons" instance=ExtResource("4_dp8ja")]
+offset_left = 120.0
+offset_top = 360.0
+offset_right = 200.0
+offset_bottom = 440.0
+level_code = "classic_1"
+visible_number = "0"
+outline_color = Color(0.25, 0.375, 0.5, 1)
+fill_color = Color(0.75, 0.875, 1, 1)
 
 [node name="LevelButton" parent="LevelButtons" instance=ExtResource("4_dp8ja")]
 offset_left = 360.0

@@ -23,7 +23,7 @@ layout_mode = 0
 offset_right = 80.0
 offset_bottom = 80.0
 mouse_filter = 2
-color = Color(0.55, 0.55, 0.55, 1)
+color = Color(0.5, 0.5, 0.5, 1)
 
 [node name="Fill" type="ColorRect" parent="."]
 layout_mode = 0
@@ -38,7 +38,7 @@ layout_mode = 0
 offset_top = -6.0
 offset_right = 80.0
 offset_bottom = 90.0
-text = "1"
+text = "?"
 label_settings = SubResource("LabelSettings_utow7")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -27,7 +27,7 @@ func menu_click() -> void:
 	GameManager.paused = not GameManager.paused
 
 
-func format_time(total_ticks: int) -> String:
+static func format_time(total_ticks: int) -> String:
 	@warning_ignore("integer_division")
 	var hours: int = total_ticks / 216_000
 	@warning_ignore("integer_division")
