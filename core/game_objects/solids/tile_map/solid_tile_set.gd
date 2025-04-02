@@ -1,6 +1,8 @@
 @tool
 extends TileMapLayer
 
+@export var decorative: bool = false
+
 ## If the node's owner is a node of the "Area" type, the area's theme gets
 ## referenced instead of the wall's outline and fill colors being set manually.
 @export var copy_area_theme: bool = true
@@ -19,7 +21,7 @@ var previous_cells: Array[Vector2i] = []
 
 
 func _ready() -> void:
-	if not Engine.is_editor_hint():
+	if not Engine.is_editor_hint() and not decorative:
 		for cell: Vector2i in get_used_cells():
 			GameManager.walls.append(Rect2i(
 				Vector2i(cell.x * 48 - 3, cell.y * 48 - 3) + Vector2i(global_position),
