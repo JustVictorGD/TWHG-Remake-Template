@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://btuvdtlg5u165"]
+[gd_scene load_steps=6 format=3 uid="uid://btuvdtlg5u165"]
 
 [ext_resource type="Script" uid="uid://bcygdpa10puv6" path="res://core/system/interface/pause_menu/pause_menu.gd" id="1_eyytm"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="2_g15fw"]
 [ext_resource type="Script" uid="uid://0k0kcrsoeqyv" path="res://core/system/interface/pause_menu/paint_container/paint_container.gd" id="3_orb62"]
+[ext_resource type="Script" uid="uid://c480etxxc8i44" path="res://core/components/audible_button.gd" id="3_yflpy"]
 
 [sub_resource type="Theme" id="Theme_ddqyr"]
 
@@ -40,6 +41,8 @@ grow_vertical = 2
 theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "Return to Game"
+script = ExtResource("3_yflpy")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="MotionTrails" type="Button" parent="."]
 layout_mode = 1
@@ -56,6 +59,8 @@ theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "Motion Trails"
 alignment = 0
+script = ExtResource("3_yflpy")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="State" type="Label" parent="MotionTrails"]
 layout_mode = 0
@@ -80,6 +85,8 @@ grow_vertical = 2
 theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "To Main Menu"
+script = ExtResource("3_yflpy")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="MusicToggle" type="Button" parent="."]
 layout_mode = 1
@@ -96,6 +103,8 @@ theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "Music"
 alignment = 0
+script = ExtResource("3_yflpy")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="State" type="Label" parent="MusicToggle"]
 layout_mode = 0
@@ -123,6 +132,8 @@ theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "SFX"
 alignment = 0
+script = ExtResource("3_yflpy")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="State" type="Label" parent="SFXToggle"]
 layout_mode = 0
@@ -150,6 +161,8 @@ theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "Max FPS"
 alignment = 0
+script = ExtResource("3_yflpy")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="State" type="Label" parent="MaxFPS"]
 layout_mode = 0
@@ -177,6 +190,8 @@ theme = ExtResource("2_g15fw")
 theme_type_variation = &"FlatButton"
 text = "Movement Type"
 alignment = 0
+script = ExtResource("3_yflpy")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="State" type="Label" parent="MovementType"]
 layout_mode = 0

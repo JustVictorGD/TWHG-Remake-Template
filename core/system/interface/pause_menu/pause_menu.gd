@@ -6,15 +6,18 @@ var sfx_index: int
 var fps_values: Array = [60, 120, 240]
 var fps_value_index: int = 0
 
+# Used for tracking updates.
+var old_paused: bool
+
 
 func _ready() -> void:
-	$ReturnToGame.button_down.connect(return_to_game_click)
-	$MotionTrails.button_down.connect(motion_trails_click)
-	$ToMainMenu.button_down.connect(main_menu_click)
-	$MusicToggle.button_down.connect(music_click)
-	$SFXToggle.button_down.connect(sfx_click)
-	$MaxFPS.button_down.connect(max_fps_click)
-	$MovementType.button_down.connect(movement_type_click)
+	$ReturnToGame.pressed.connect(return_to_game_click)
+	$MotionTrails.pressed.connect(motion_trails_click)
+	$ToMainMenu.pressed.connect(main_menu_click)
+	$MusicToggle.pressed.connect(music_click)
+	$SFXToggle.pressed.connect(sfx_click)
+	$MaxFPS.pressed.connect(max_fps_click)
+	$MovementType.pressed.connect(movement_type_click)
 	
 	music_index = AudioServer.get_bus_index("Music")
 	sfx_index = AudioServer.get_bus_index("SFX")
@@ -102,10 +105,11 @@ func sliding_value_changed(value: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	if GameManager.paused:
-		self.visible = true
-	else:
-		self.visible = false
+	if GameManager.paused != old_paused:
+		self.visible = GameManager.paused
+		SFX.play(SFX.sounds.MENU_CLICK)
+	
+	old_paused = GameManager.paused
 
 
 func update_trails() -> void:

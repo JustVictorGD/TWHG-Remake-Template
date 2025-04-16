@@ -1,4 +1,4 @@
-extends Button
+extends AudibleButton
 class_name PaintButton
 
 var id: int

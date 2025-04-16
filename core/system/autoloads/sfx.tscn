@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://csfgjflaug8s3"]
+[gd_scene load_steps=10 format=3 uid="uid://csfgjflaug8s3"]
 
 [ext_resource type="AudioStream" uid="uid://0rswldab7ydh" path="res://core/misc_assets/sfx/enemyDeathSoundTrim.mp3" id="1_e4xx7"]
 [ext_resource type="Script" uid="uid://coo61ue21pg0u" path="res://core/system/autoloads/sfx.gd" id="1_mivbn"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bxd6745sqaour" path="res://core/misc_assets/sfx/doorSoundTrim.mp3" id="6_k78t6"]
 [ext_resource type="AudioStream" uid="uid://bmocxq1e1y3gi" path="res://core/misc_assets/sfx/keySoundTrim.mp3" id="7_wptrf"]
 [ext_resource type="AudioStream" uid="uid://d3tepgeik4klo" path="res://core/misc_assets/sfx/paintSound.mp3" id="8_g3hen"]
+[ext_resource type="AudioStream" uid="uid://bxh36kqomusmy" path="res://core/misc_assets/sfx/selectSound.mp3" id="9_x212a"]
 
 [node name="SFX" type="Node"]
 script = ExtResource("1_mivbn")
@@ -44,3 +45,6 @@ bus = &"SFX"
 stream = ExtResource("6_k78t6")
 volume_db = -10.0
 bus = &"SFX"
+
+[node name="MenuClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_x212a")

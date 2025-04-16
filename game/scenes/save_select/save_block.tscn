@@ -56,6 +56,7 @@ offset_right = 320.0
 offset_bottom = 320.0
 flat = true
 script = ExtResource("1_52036")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="Flash" type="ColorRect" parent="."]
 z_index = 1

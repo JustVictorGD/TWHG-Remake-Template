@@ -9,6 +9,7 @@ custom_minimum_size = Vector2(36, 36)
 offset_right = 36.0
 offset_bottom = 36.0
 script = ExtResource("2_xbfm7")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="Outline" type="Control" parent="."]
 layout_mode = 1

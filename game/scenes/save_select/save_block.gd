@@ -1,4 +1,4 @@
-extends Button
+extends AudibleButton
 class_name SaveBlock
 
 @onready var animation_player: AnimationPlayer = $Flash/AnimationPlayer

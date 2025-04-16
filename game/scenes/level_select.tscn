@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsvyehfhimk2k"]
+[gd_scene load_steps=16 format=3 uid="uid://dsvyehfhimk2k"]
 
 [ext_resource type="Script" uid="uid://c0l341qnyqfo1" path="res://game/scenes/level_select.gd" id="1_uh8wr"]
 [ext_resource type="Texture2D" uid="uid://c8h3158ht7fco" path="res://core/game_objects/other/floor/void_diagonal.png" id="1_vp07g"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_jp123"]
+[ext_resource type="Script" uid="uid://c480etxxc8i44" path="res://core/components/audible_button.gd" id="3_80161"]
 [ext_resource type="PackedScene" uid="uid://cu2cjpp58n1mk" path="res://game/scenes/level_button.tscn" id="4_dp8ja"]
 
 [sub_resource type="Gradient" id="Gradient_wytoc"]
@@ -156,6 +157,8 @@ vertical_alignment = 1
 offset_right = 100.0
 offset_bottom = 60.0
 flat = true
+script = ExtResource("3_80161")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="Label" type="Label" parent="Back"]
 layout_mode = 0

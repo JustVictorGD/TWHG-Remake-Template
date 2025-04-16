@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://jn6lkoo3vdrt"]
+[gd_scene load_steps=21 format=3 uid="uid://jn6lkoo3vdrt"]
 
 [ext_resource type="Script" uid="uid://blru7j53opht5" path="res://core/system/interface/interface.gd" id="1_5xmwe"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_svcw7"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="3_1ytlt"]
 [ext_resource type="PackedScene" uid="uid://btuvdtlg5u165" path="res://core/system/interface/pause_menu/pause_menu.tscn" id="3_l5642"]
+[ext_resource type="Script" uid="uid://c480etxxc8i44" path="res://core/components/audible_button.gd" id="4_2nl8f"]
 
 [sub_resource type="Animation" id="Animation_58n8g"]
 resource_name = "new_animation"
@@ -287,6 +288,8 @@ theme = ExtResource("3_1ytlt")
 theme_override_font_sizes/font_size = 40
 text = "Menu"
 alignment = 0
+script = ExtResource("4_2nl8f")
+metadata/_custom_type_script = "uid://c480etxxc8i44"
 
 [node name="FPS" type="Label" parent="."]
 layout_mode = 0
@@ -339,5 +342,6 @@ offset_bottom = 660.0
 color = Color(1, 1, 1, 0)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_l5642")]
+visible = false
 
 [connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

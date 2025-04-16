@@ -11,6 +11,7 @@ enum sounds {
 	PAINT,
 	OPEN_DOOR,
 	CLOSE_DOOR,
+	MENU_CLICK,
 }
 
 
@@ -22,6 +23,7 @@ enum sounds {
 @onready var paint: AudioStreamPlayer = $Paint
 @onready var open_door: AudioStreamPlayer = $OpenDoor
 @onready var close_door: AudioStreamPlayer = $CloseDoor
+@onready var menu_click: AudioStreamPlayer = $MenuClick
 
 
 func play(sound_name: sounds) -> void:
@@ -44,3 +46,5 @@ func play(sound_name: sounds) -> void:
 			open_door.play()
 		sounds.CLOSE_DOOR:
 			close_door.play()
+		sounds.MENU_CLICK:
+			menu_click.play()
