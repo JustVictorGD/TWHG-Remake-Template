@@ -36,4 +36,5 @@ func stay_collected() -> void:
 func drop() -> void:
 	super()
 	
+	Signals.coin_dropped.emit()
 	GameManager.collected_money -= 1

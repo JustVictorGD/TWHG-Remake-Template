@@ -83,8 +83,9 @@ func switch_level(key: String, teleport_position: Vector2 = Vector2.ZERO) -> voi
 	
 	add_child(active_level)
 	focus_camera(active_level)
-	
 	load_room_state(active_level.get_last_checkpoint_id(), teleport_position)
+	
+	interface.screen_flash.play("new_animation")
 
 
 func focus_camera(area: Area) -> void:

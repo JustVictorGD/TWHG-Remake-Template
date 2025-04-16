@@ -1,10 +1,161 @@
-[gd_scene load_steps=9 format=3 uid="uid://jn6lkoo3vdrt"]
+[gd_scene load_steps=20 format=3 uid="uid://jn6lkoo3vdrt"]
 
 [ext_resource type="Script" uid="uid://blru7j53opht5" path="res://core/system/interface/interface.gd" id="1_5xmwe"]
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="2_svcw7"]
 [ext_resource type="Theme" uid="uid://b1ip8y004rknx" path="res://core/misc_assets/resources/menu_button_style.tres" id="3_1ytlt"]
 [ext_resource type="PackedScene" uid="uid://btuvdtlg5u165" path="res://core/system/interface/pause_menu/pause_menu.tscn" id="3_l5642"]
-[ext_resource type="Script" uid="uid://dbvamlrxvnbh2" path="res://core/components/tick_based_timer.gd" id="5_nnsi2"]
+
+[sub_resource type="Animation" id="Animation_58n8g"]
+resource_name = "new_animation"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2nl8f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa3gt"]
+_data = {
+&"RESET": SubResource("Animation_2nl8f"),
+&"new_animation": SubResource("Animation_58n8g")
+}
+
+[sub_resource type="Animation" id="Animation_xa3gt"]
+resource_name = "new_animation"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Deaths:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n7s7a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Deaths:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m3una"]
+_data = {
+&"RESET": SubResource("Animation_n7s7a"),
+&"new_animation": SubResource("Animation_xa3gt")
+}
+
+[sub_resource type="Animation" id="Animation_m3una"]
+resource_name = "new_animation"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Money:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.8, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_phchl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Money:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pun7q"]
+_data = {
+&"RESET": SubResource("Animation_phchl"),
+&"new_animation": SubResource("Animation_m3una")
+}
+
+[sub_resource type="Animation" id="Animation_pun7q"]
+resource_name = "new_animation"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Money:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_epyj6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Money:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgcyl"]
+_data = {
+&"RESET": SubResource("Animation_epyj6"),
+&"new_animation": SubResource("Animation_pun7q")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_aag45"]
 font = ExtResource("2_svcw7")
@@ -28,6 +179,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5xmwe")
+
+[node name="ScreenFlash" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xa3gt")
+}
+autoplay = "new_animation"
+
+[node name="UpdateDeaths" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_m3una")
+}
+
+[node name="CollectMoney" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pun7q")
+}
+
+[node name="DropMoney" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hgcyl")
+}
 
 [node name="Sides" type="Control" parent="."]
 anchors_preset = 0
@@ -168,6 +340,4 @@ color = Color(1, 1, 1, 0)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_l5642")]
 
-[node name="FlashTimer" type="Node" parent="."]
-script = ExtResource("5_nnsi2")
-duration = 30
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

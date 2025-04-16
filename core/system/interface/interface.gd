@@ -13,28 +13,32 @@ class_name Interface
 @onready var sides: Control = $Sides
 @onready var flash: ColorRect = $Flash
 
-@onready var flash_timer: TickBasedTimer = $FlashTimer
+@onready var screen_flash: AnimationPlayer = $ScreenFlash
+@onready var update_deaths: AnimationPlayer = $UpdateDeaths
+@onready var collect_money: AnimationPlayer = $CollectMoney
+@onready var drop_money: AnimationPlayer = $DropMoney
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Menu.button_down.connect(menu_click)
-	
-	Signals.level_switched.connect(flash_timer.reset_and_play)
+	Signals.coin_collected.connect(coin_collected)
+	Signals.player_death.connect(player_death)
+	Signals.coin_dropped.connect(coin_dropped)
 
 
-func menu_click() -> void:
+func coin_collected() -> void:
+	collect_money.play("new_animation")
+
+
+func player_death() -> void:
+	update_deaths.play("new_animation")
+
+
+func coin_dropped() -> void:
+	drop_money.play("new_animation")
+
+
+func _on_menu_pressed() -> void:
 	GameManager.paused = not GameManager.paused
-
-
-static func format_time(total_ticks: int) -> String:
-	@warning_ignore("integer_division")
-	var hours: int = total_ticks / 216_000
-	@warning_ignore("integer_division")
-	var minutes: int = total_ticks / 3_600 % 60
-	@warning_ignore("integer_division")
-	var seconds: int = total_ticks / 60 % 60
-	return str(hours) + ":%02d:%02d" % [minutes, seconds]
 
 
 func _process(_delta : float) -> void:
@@ -64,7 +68,15 @@ func _process(_delta : float) -> void:
 		timer.modulate = Color.WHITE
 		tick_timer.modulate = Color.WHITE
 	
-	flash.color.a = flash_timer.get_progress_left()
-	
 	if World.instance.active_level.theme != null:
 		sides.modulate = World.instance.active_level.theme.interface_sides
+
+
+static func format_time(total_ticks: int) -> String:
+	@warning_ignore("integer_division")
+	var hours: int = total_ticks / 216_000
+	@warning_ignore("integer_division")
+	var minutes: int = total_ticks / 3_600 % 60
+	@warning_ignore("integer_division")
+	var seconds: int = total_ticks / 60 % 60
+	return str(hours) + ":%02d:%02d" % [minutes, seconds]

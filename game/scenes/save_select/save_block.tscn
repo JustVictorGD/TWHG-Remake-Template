@@ -3,6 +3,21 @@
 [ext_resource type="FontFile" uid="uid://cesouak3176ok" path="res://core/misc_assets/resources/Univers_Condensed_Regular.ttf" id="1_34tba"]
 [ext_resource type="Script" uid="uid://db0lwmokw60bo" path="res://game/scenes/save_select/save_block.gd" id="1_52036"]
 
+[sub_resource type="Animation" id="Animation_5qwaq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_52036"]
 resource_name = "new_animation"
 length = 0.5
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_5qwaq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4rdsa"]
@@ -59,6 +59,7 @@ script = ExtResource("1_52036")
 
 [node name="Flash" type="ColorRect" parent="."]
 z_index = 1
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 320.0
 mouse_filter = 2
@@ -70,6 +71,7 @@ libraries = {
 }
 
 [node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 310.0
@@ -86,6 +88,7 @@ mouse_filter = 2
 color = Color(0.8, 0.8, 0.8, 1)
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 120.0
 text = "SAVE ?"
@@ -94,6 +97,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NoData" type="Label" parent="."]
+layout_mode = 0
 offset_top = 160.0
 offset_right = 320.0
 offset_bottom = 240.0
@@ -104,6 +108,7 @@ vertical_alignment = 1
 
 [node name="Stage" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_top = 120.0
 offset_right = 320.0
 offset_bottom = 200.0
@@ -114,6 +119,7 @@ vertical_alignment = 1
 
 [node name="Deaths" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_top = 180.0
 offset_right = 320.0
 offset_bottom = 260.0
@@ -124,6 +130,7 @@ vertical_alignment = 1
 
 [node name="Time" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_top = 240.0
 offset_right = 320.0
 offset_bottom = 320.0

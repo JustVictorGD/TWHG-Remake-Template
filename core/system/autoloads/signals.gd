@@ -1,6 +1,7 @@
 extends Node
 
 signal coin_collected(id: int)
+signal coin_dropped
 signal anything_collected # Update checkpoints
 signal checkpoint_touched(id: int)
 signal player_death

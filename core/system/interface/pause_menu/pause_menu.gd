@@ -11,8 +11,6 @@ func _ready() -> void:
 	$ReturnToGame.button_down.connect(return_to_game_click)
 	$MotionTrails.button_down.connect(motion_trails_click)
 	$ToMainMenu.button_down.connect(main_menu_click)
-	$LoadGame.button_down.connect(load_game_click)
-	$WipeSave.button_down.connect(wipe_save_click)
 	$MusicToggle.button_down.connect(music_click)
 	$SFXToggle.button_down.connect(sfx_click)
 	$MaxFPS.button_down.connect(max_fps_click)
@@ -46,14 +44,6 @@ func motion_trails_click() -> void:
 func main_menu_click() -> void:
 	SaveData.exit()
 	get_tree().change_scene_to_packed(load("res://game/scenes/save_select.tscn"))
-
-
-func load_game_click() -> void:
-	SaveData.load_game()
-
-
-func wipe_save_click() -> void:
-	SaveData.wipe_save()
 
 
 func music_click() -> void:
