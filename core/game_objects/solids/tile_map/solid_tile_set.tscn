@@ -1034,7 +1034,6 @@ z_index = 7
 tile_set = SubResource("TileSet_3tfq3")
 collision_enabled = false
 script = ExtResource("2_2hxhm")
-decorative = null
 
 [node name="Outline" type="TileMapLayer" parent="."]
 modulate = Color(0, 0, 0, 1)
