@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://rkxxljuf1bh5"]
+[gd_scene load_steps=18 format=3 uid="uid://rkxxljuf1bh5"]
 
 [ext_resource type="Script" uid="uid://c6kck7pwtsgyt" path="res://game/scenes/save_select.gd" id="1_76yte"]
 [ext_resource type="PackedScene" uid="uid://dq45r84k0k6e2" path="res://core/game_objects/other/floor/floor.tscn" id="1_slww4"]
@@ -95,6 +95,8 @@ _data = {
 &"new_animation": SubResource("Animation_slww4")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_noapy"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_slww4"]
 font = ExtResource("1_sttm1")
 font_size = 64
@@ -181,6 +183,8 @@ offset_left = 160.0
 offset_top = 600.0
 offset_right = 320.0
 offset_bottom = 680.0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_noapy")
 flat = true
 script = ExtResource("5_noapy")
 metadata/_custom_type_script = "uid://c480etxxc8i44"
@@ -195,11 +199,21 @@ label_settings = SubResource("LabelSettings_slww4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="Reset1"]
+[node name="ColorRect2" type="ColorRect" parent="Reset1"]
 z_index = -8
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 80.0
+mouse_filter = 2
+color = Color(0.999994, 0.414809, 0.438536, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Reset1"]
+z_index = -8
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 72.0
 mouse_filter = 2
 color = Color(1, 0.57, 0.57, 1)
 
@@ -208,6 +222,8 @@ offset_left = 560.0
 offset_top = 600.0
 offset_right = 720.0
 offset_bottom = 680.0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_noapy")
 flat = true
 script = ExtResource("5_noapy")
 metadata/_custom_type_script = "uid://c480etxxc8i44"
@@ -222,11 +238,19 @@ label_settings = SubResource("LabelSettings_slww4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="Reset2"]
+[node name="ColorRect2" type="ColorRect" parent="Reset2"]
 z_index = -8
-layout_mode = 0
 offset_right = 160.0
 offset_bottom = 80.0
+mouse_filter = 2
+color = Color(0.999994, 0.414809, 0.438536, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Reset2"]
+z_index = -8
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 72.0
 mouse_filter = 2
 color = Color(1, 0.57, 0.57, 1)
 
@@ -235,6 +259,8 @@ offset_left = 960.0
 offset_top = 600.0
 offset_right = 1120.0
 offset_bottom = 680.0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_noapy")
 flat = true
 script = ExtResource("5_noapy")
 metadata/_custom_type_script = "uid://c480etxxc8i44"
@@ -249,11 +275,19 @@ label_settings = SubResource("LabelSettings_slww4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="Reset3"]
+[node name="ColorRect2" type="ColorRect" parent="Reset3"]
 z_index = -8
-layout_mode = 0
 offset_right = 160.0
 offset_bottom = 80.0
+mouse_filter = 2
+color = Color(0.999994, 0.414809, 0.438536, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Reset3"]
+z_index = -8
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 72.0
 mouse_filter = 2
 color = Color(1, 0.57, 0.57, 1)
 
